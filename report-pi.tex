@@ -1,0 +1,755 @@
+%% LaTeX2e template for FEUP's Projeto Integrador
+%% 
+%% FEUP, JCL, Tue Jan 30 21:57:48 2024
+%%
+%% PLEASE send improvements to jlopes at fe.up.pt (up till 2028 :-)
+
+\documentclass[11pt,a4paper]{report}
+
+%%------------------------------- preamble ------------------------------------
+
+%% comment next for EN
+\usepackage[english]{babel}      % language PT 
+\usepackage[utf8]{inputenc}       % accents
+\usepackage[T1]{fontenc}          % PS fonts
+\usepackage{newtxtext,newtxmath}  % do not use CM fonts
+\usepackage{amsmath}              % multi-line and other mathematical statements
+\usepackage{setspace}             % setting the spacing between lines
+\usepackage{graphicx}             % go far beyond what the graphics package
+\usepackage[normalem]{ulem}       % various types of underlining
+\usepackage{caption}              % rotating captions, sideways captions, etc.
+\usepackage{float}                % tables and figures in the multi-column environment 
+\usepackage{subcaption}           % for subfigures and the like
+\usepackage{longtable}            % tables that continue to the next page
+\usepackage{multirow}             % tabular cells spanning multiple rows
+\usepackage[table]{xcolor}        % driver-independent color extensions
+\usepackage{lipsum}               % loren dummy text
+\setlength{\marginparwidth}{2cm}  % todonotes' requirements
+\usepackage{todonotes}            % todo's
+\usepackage{csquotes}             % context sensitive quotation facilities
+\usepackage[backend=biber,authordate]{biblatex-chicago}  % Chicago Manual of Style
+\usepackage{pgfgantt}             % Gantt charts
+
+%% document dimensions
+\usepackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm,headheight=6mm,footskip=12mm]{geometry}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1ex}
+
+%% headers & footers
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\fancyhf{}                            % clear off all default fancyhdr headers and footers
+\rhead{\small{\emph{\projtitle, \projauthor}}}
+\rfoot{\small{\thepage\ / \pageref{LastPage}}}
+\pagestyle{fancy}                     % apply the fancy header style
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+%% colors
+\usepackage{color}
+\definecolor{engineering}{rgb}{0.549,0.176,0.098}
+\definecolor{cloudwhite}{cmyk}{0,0,0,0.025}
+
+%% source-code listings
+\usepackage{listings}
+\lstset{ %
+ language=C,                        % choose the language of the code
+ basicstyle=\footnotesize\ttfamily,
+ keywordstyle=\bfseries,
+ numbers=left,                      % where to put the line-numbers
+ numberstyle=\scriptsize\texttt,    % the size of the fonts that are used for the line-numbers
+ stepnumber=1,                      % the step between two line-numbers. If it's 1 each line will be numbered
+ numbersep=8pt,                     % how far the line-numbers are from the code
+ frame=tb,
+ float=htb,
+ aboveskip=8mm,
+ belowskip=4mm,
+ backgroundcolor=\color{cloudwhite},
+ showspaces=false,                  % show spaces adding particular underscores
+ showstringspaces=false,            % underline spaces within strings
+ showtabs=false,                    % show tabs within strings adding particular underscores
+ tabsize=2,                         % sets default tabsize to 2 spaces
+ captionpos=t,                      % sets the caption-position to top
+ belowcaptionskip=12pt,             % space between caption and listing
+ breaklines=true,                   % sets automatic line breaking
+ breakatwhitespace=false,           % sets if automatic breaks should only happen at whitespace
+ escapeinside={\%*}{*)},            % if you want to add a comment within your code
+ morekeywords={*,var,template,new}  % if you want to add more keywords to the set
+}
+
+%% hyperreferences (HREF, URL)
+\usepackage{hyperref}
+\hypersetup{
+    plainpages=false, 
+    pdfpagelayout=SinglePage,
+    bookmarksopen=false,
+    bookmarksnumbered=true,
+    breaklinks=true,
+    linktocpage,
+    colorlinks=true,
+    linkcolor=engineering,
+    urlcolor=engineering,
+    filecolor=engineering,
+    citecolor=engineering,
+    allcolors=engineering
+}
+
+%% path to the figures directory
+\graphicspath{{figures/}}
+
+%% bibliography file, must be in preamble
+\addbibresource{bibliography.bib}
+
+%% macros, to be updated as needed
+\newcommand{\school}{Institut National des Sciences Appliquées de Toulouse }
+\newcommand{\degree}{Bachelor's Degree in Computer Science and Engineering}
+\newcommand{\projtitle}{Optimizing and Adapting Language Models for Domain-Specific Task}
+\newcommand{\subtitle}{End-of-studies Apprenticeship Report}
+\newcommand{\projauthor}{Minh Duy Nguyen}
+\newcommand{\supervisor}{Milad Mozafari (Torus AI), David Bertoin (INSA Toulouse)}
+\newcommand{\tutor}{David Bertoin}
+
+%% my other macros, if needed
+\newcommand{\windspt}{\textsf{WindsPT\/}}
+\newcommand{\windscannerpt}{\emph{Windscanner.PT\/}}
+\newcommand{\class}[1]{{\normalfont\sffamily #1\/}}
+\newcommand{\svg}{\class{SVG}}
+
+%% my environments for infos
+\newenvironment{info}[1]{\vspace*{6mm}\color{blue}[ \textbf{INFO:} \begin{em} #1}
+                        {\vspace*{3mm}\end{em} ]}
+\newenvironment{infoopt}[1]{\vspace*{6mm}\color{blue}[ \textbf{INFO (optional element):} \begin{em} #1}
+                        {\vspace*{3mm}\end{em} ]}
+
+%%------------------------------- document-------------------------------------
+
+\begin{document}
+
+%% preamble page numbers with roman numerals
+\pagenumbering{roman}\setcounter{page}{1}
+\pagestyle{plain}
+
+%%------------------------------- cover page ----------------------------------
+
+\begin{titlepage}
+\center
+
+\vspace{-15mm}
+{\large \textbf{\textsc{\school}}}\\
+
+\vfill
+
+{\Large \textbf{\projtitle}}\\[8mm]
+{\large \textbf{\subtitle}}\\[28mm]
+
+{\Large \textbf{\projauthor}}\\
+
+\vfill
+
+\includegraphics[width=52mm]{figures/logo-INSA.png}
+\includegraphics[width=52mm]{figures/logo-N7.png}
+
+\vfill
+
+{\large \degree}\\[8mm]
+% {\large \textbf{Tutor na U.Porto}: \tutor}\\[2mm]
+{\large \textbf{Supervised by}: \supervisor}\\[8mm]
+
+%\renewcommand{\today}{15 de dezembro de 2023}
+\today
+
+\end{titlepage}
+
+%%------------------------------- Abstract ------------------------------------
+
+\chapter*{Abstract}
+
+\begin{info}
+The abstract is essentially informative in nature and should be
+written concisely (up to 200 words) in a way that captures the
+interest of the reader.
+
+The Abstract replaces reading the document and does not contain figures,
+tables, citations, etc.\ 
+It should include the following topics: scope, objectives, methods,
+main findings, including results, conclusions and
+recommendations, if any.
+
+For more information on how to write a good abstract, consult the online
+tutorial available on the Library website, ``Publication Support Guide'',
+section: 
+``\href{https://docs.google.com/document/d/1TDC1behVq8x7fQL4CcPEEh_np5GXviJevQxnQ9gbiJs/edit\#heading=h.s4z9k57ywd9w}
+{Structuring Technical Report}''.
+\end{info}
+
+\todo[inline]{Write the Abstract, but only at the end.}
+
+%\vspace{\fill}
+%{\Large \textbf{Palavras-chave}:} palavra1, palavra2, palavra3, palavra4
+%\vspace*{24mm}
+
+%%------------------------------- Acknowledgments -----------------------------
+
+\chapter*{Acknowledgement}
+
+\begin{infoopt}
+Usually the contribution of other people or entities is mentioned,
+both for carrying out the study and for producing the report.
+They can be done on a separate page or included in the introduction.
+\end{infoopt}
+
+%%------------------------------- table of contents ---------------------------
+
+%% redefine tableofcontents text, ONLY for PT
+\renewcommand{\contentsname}{Table of contents}
+
+\tableofcontents
+
+%%------------------------------- list of todos -------------------------------
+
+% list todos; comment in the end (should be empty before delivery :-)
+\listoftodos
+
+\begin{infoopt}
+Annotations can be placed during document preparation, which
+are listed here.
+
+This element does not appear in the final document!
+\end{infoopt}
+
+%%------------------------------- Glossary ------------------------------------
+
+\chapter*{Glossary}
+%\addcontentsline{toc}{chapter}{Glossary}
+
+\begin{description}
+\item[bash] \hfill \\
+  Bash is a \emph{Unix shell} and command language written
+  in 1989 by Brian Fox for the GNU Project as a free
+  software replacement for the \emph{Bourne shell}.
+\item[firewall] \hfill \\
+  In computing, a \emph{firewall} is a network security system
+  that monitors and controls incoming and outgoing network traffic
+  based on predetermined security rules.
+  A \emph{firewall} typically establishes a barrier between a
+  trusted network and an untrusted network, such as the Internet.
+\item[Glossary] \hfill \\
+  A glossary is a kind of small specific dictionary for
+  little-known words and expressions present in a text, whether
+  they are technical, regional or from another language.
+\end{description}
+
+\begin{infoopt}
+Having a glossary is justified whenever it is necessary to clarify
+to the reader the meaning of specific terminology used in the report text.
+Its location in the initial elements is recommended, although in
+existing standards there are variants, and it can also appear in
+the final elements.
+
+The list of items should be sorted alphabetically\footnote{%
+For more information, consult the online tutorial
+``\href{https://docs.google.com/document/d/1TDC1behVq8x7fQL4CcPEEh_np5GXviJevQxnQ9gbiJs/edit}
+{Publication Support Guide}''.}.
+\end{infoopt}
+
+%%------------------------------- chapter ------------------------------------
+
+\chapter{Introduction}
+
+%% display headers & footers
+\pagestyle{fancy}
+%% main page numbers with arabic numerals
+\pagenumbering{arabic}\setcounter{page}{1}
+
+\begin{info}
+Succinct contextualization of the report subject, making
+reference to the scope and objectives.
+Here the motivation of the presented work is clarified and the
+adopted approach and its relationship with similar works is explained,
+from a generic perspective.
+Details about what is explained in the following sections
+should not be anticipated.
+If relevant, the target audience can also be indicated\footnote{%
+For more information, consult the online tutorial
+``\href{https://docs.google.com/document/d/1TDC1behVq8x7fQL4CcPEEh_np5GXviJevQxnQ9gbiJs/edit}
+{Publication Support Guide}''.}.
+\end{info}
+
+This report addresses \ldots\ provides an overview of the context, objectives and approach adopted.
+
+\section{Context}
+
+\begin{info}
+   Present the organizational context in which the project/internship took place (company, institution, research unit, research laboratory, etc.).
+   Present the problem addressed and the motivation for the work carried out (what is the problem addressed and why is it important).
+\end{info}
+
+\section{Objectives and expected results}
+
+\begin{info}
+  Indicate the objectives of the work and the expected results.
+\end{info}
+
+\section{Report structure}
+	
+\begin{info}
+  Briefly describe the structure of the report.
+
+  It is expected that the report will have between 10 to 25 pages (in A4 format, single column, with a font size not exceeding 12pt in paragraph text), already including appendices.
+\end{info}
+
+In addition to the introduction, this report is organized into 4 more chapters.
+In Chapter~\ref{chap:metodo} \ldots
+
+%%------------------------------- DELETEME ----------------------------------
+
+\newpage  % don't do this
+\section*{Examples}
+
+\todo[inline]{Remove the ``Examples'' section when no longer needed.}
+
+\begin{info}
+  Some parts of the document are illustrated below.
+
+  This section does not appear in the final document!
+\end{info}
+
+\subsection*{Equations}
+
+\begin{info}
+This text is just an example that precedes an equation.
+\end{info}  
+
+Simple equations can be inserted inline with the text:
+the line is \(y=mx+b\).
+
+More complicated equations should be separated into individual lines and
+numbered sequentially on the right within parentheses.
+This is the generic quadratic equation:
+
+\begin{equation} \label{eq:1}
+  ax^2+bx+cx=0
+\end{equation}
+
+Where $a$ is the quadratic coefficient; $b$ the linear coefficient; $c$ the
+constant coefficient independent of variable $x$, to be determined.
+
+Equations should be referred to by their number.
+For example, Equation~\ref{eq:2} solves problems formulated as
+shown in Equation~\ref{eq:1}.
+
+\begin{equation} \label{eq:2}
+  x=\frac{-b\pm \sqrt{b^2-4ac}}{2a}
+\end{equation}
+
+\subsection*{Figures and tables}
+
+All figures and tables must be captioned and
+numbered sequentially:
+
+\begin{itemize}
+\item figures should be captioned below;
+\item tables should be captioned at the top.
+\end{itemize}
+
+Keep figures centered and inline with text so that the
+caption always appears attached to the image.
+
+\begin{info}
+Figures should float freely on the page and be referenced and
+described in the text, with sources properly stated,
+to avoid plagiarism.
+\end{info}
+
+As an example, Figure~\ref{fig:campus} % (taken from \url{www.fe.up.pt})
+shows the FEUP \emph{campus}. 
+
+\lipsum[1]
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{campus}
+\caption[Aerial photograph of the FEUP Campus]{Aerial photograph of the FEUP Campus~\cite{kn:figura}.} \label{fig:campus}
+\end{figure}
+
+\lipsum[2]
+
+\begin{info}
+Space can be reserved for placing a figure in the future; for
+example, Figure~\ref{fig:natal}.
+\end{info}
+
+\lipsum[3]
+
+\begin{figure} [b]
+  \centering
+  \missingfigure{Insert the Christmas figure.}
+  \caption{Christmas at the FEUP Campus.} \label{fig:natal}
+\end{figure}
+
+\lipsum[4]
+
+\begin{info}
+Tables should float freely on the page and be referenced and
+described in the text, with sources properly stated,
+to avoid plagiarism.
+\end{info}
+
+Table~\ref{tab:feup} % (excerpt adapted from ``FEUP in numbers'', 2011)
+serves to exemplify how to show some values that, in this case, are
+related to some numerical data associated with resources and investments
+of FEUP in the year 2011.
+
+\lipsum[4]
+
+\begin{table}
+  \centering
+  \caption[FEUP Physical Resources]{FEUP Physical Resources. Adapted from~\cite{kn:tabela}}
+  \begin{tabular}{| l | c |}
+    \hline
+    \textbf{Description} & \textbf{Quantity}\\\hline
+    \hline
+    Total area of FEUP campus & 93 918 $m^2$\\\hline
+    Green spaces & 23 000 $m^2$\\\hline
+    Number of computers dedicated to teaching & 1 815\\\hline
+    Investment in laboratory equipment & 1.46 M€\\
+    \hline
+  \end{tabular}
+  \label{tab:feup}
+\end{table}
+
+\lipsum[6]
+
+\subsection*{Citations}
+
+As you write the report text, you should indicate the works
+of other authors on which you are based, in the form of citations.
+This consists of briefly indicating the sources used from which
+you obtained additional information to develop the topic of your
+report.
+
+There are two main ways to cite:
+\begin{itemize}
+\item by \textbf{paraphrase}: interpretation of the original content in
+  words different from those of the consulted source, indicating the source
+  immediately after; or
+\item
+  by \textbf{transcription}: use of an excerpt of the original content
+  presenting it in quotation marks, indicating the source immediately after.
+\end{itemize}
+
+Citations must follow a standardized style.
+Among the many that exist, the FEUP Library recommends the
+Chicago style (author-date format).
+
+\begin{info}
+Below are some examples, at random, of citations (by paraphrase)
+according to this style.
+\end{info}
+
+The decision to choose a topic for an academic work can
+vary~\cite{kn:Bel02-book}.
+The topic can be thought of and chosen by the student themselves, or from
+a list of topics already conceived, with potential interest
+for study~\cite{kn:GLPR14-joPhysics}.
+
+Each citation throughout the text should correspond to a reference
+indicated in the final list of bibliographic
+references~\cite{kn:Lip08,kn:MSS+12-wemep,kn:VKL+18-dtu}.
+
+It is important not to forget that figures (images, tables,
+graphs, etc.) from works by other authors (for example
+obtained through the Internet) should always be cited, after the
+respective captions~\cite{kn:GLPC22-torque}.
+
+For more information on this subject and to see examples, consult the guide
+``Avoiding plagiarism: good practices in the use of
+information''\footnote{\url{https://feup.libguides.com/plagio/citar}}.  
+
+Duis non odio morbi ut dui sed accumsan risus eget odio~\cite{iso_19156_2011,ornelas2016}. 
+
+%\lipsum[7]
+
+\subsection*{Code}
+
+\begin{info}
+Below is an illustration of including code in the document.
+\end{info}
+
+Listing~\ref{code:useless} 
+\lipsum[8]
+
+\begin{lstlisting}[language=Python, caption=Python example, label=code:useless]
+# Take the user's input
+words = input("Enter the text to translate to pig latin: ")
+print(f"You entered: {words}")
+
+# Break apart the words into a list
+words = words.split(' ')
+
+# Use a list comprehension to translate words greater than or equal to 3 characters
+translated_words = [(w[1:] + w[0] + "ay") for w in words if len(w) >= 3 ]
+
+# Print each translated word
+for word in translated_words:
+    print(word)
+\end{lstlisting}
+
+\subsection*{Using macros}
+
+\begin{info}
+Below is an illustration of using \LaTeX{} macros defined in
+the preamble.
+Note the use of the \verb!\class{}! macro for classes, methods and components.
+\end{info}
+
+The \windspt, taken from \windscannerpt, uses \svg\ \ldots\ as in \class{Student.calculate-age()}.
+
+\lipsum[9]
+
+\begin{info}
+The subsequent component parts that make up the body of the text
+should be structured in sections, estimating that up to 3 levels is
+sufficient for this type of work.
+
+For more information, consult the online tutorial
+``\href{https://docs.google.com/document/d/1TDC1behVq8x7fQL4CcPEEh_np5GXviJevQxnQ9gbiJs/edit}
+{Publication Support Guide}''.
+Note that the sections indicated there can be adapted according to the topic
+or depth of the study to be developed.
+\end{info}
+
+\begin{info}
+It is not customary to have consecutive section headings without text.
+\end{info}
+
+\subsection*{The dash}
+
+About the use of the hyphen and the dash\footnote{``Portuguese Language Questions'', \url{https://ciberduvidas.iscte-iul.pt/consultorio/perguntas/o-uso-do-hifen-e-do-travessao/31251}}:
+\begin{enumerate}
+    \item The hyphen (Alt + 0045): without spaces (-);
+    \item The em-dash (Alt + 0151): in Portuguese, surrounded by spaces (---);
+    \item The en-dash (Alt + 150): without spaces (--);
+    \item The mathematical subtraction sign: without spaces (–).
+\end{enumerate}
+
+\subsection*{Quotation marks}
+
+About quotation marks in \LaTeX, either the glyph is used directly, or they are made with the backtick at the beginning and the apostrophe at the end, as in ``example''\footnote{What is the best way to use quotation mark glyphs?
+\url{https://tex.stackexchange.com/questions/531/what-is-the-best-way-to-use-quotation-mark-glyphs}}.
+
+%%------------------------------- chapter ------------------------------------
+
+\chapter{Methodology used and main activities developed}\label{chap:metodo}
+
+In this chapter, the methodology followed is described, the main
+participants in the project are listed and the main
+activities developed are recorded.
+
+\section{Methodology used}
+
+\begin{info}
+Describe the methodology~\cite{despa2014comparative} followed (for
+example, iterative development with biweekly \emph{sprints} and weekly
+follow-up meetings) and the resources used (for example,
+GitHub\footnote{\url{https://github.com/}}, etc.).
+\end{info}
+
+\section{Participants, roles and responsibilities}
+
+\begin{info}
+Identify the project team, \emph{stakeholders} and other participants with whom there was interaction; in the case of group work, clarify the roles and responsibilities of each group member.
+\end{info}
+
+\section{Activities developed}
+
+\begin{info}
+Describe the activities carried out over time (including relevant events, such as presentations, meetings with clients, etc.) and respective \emph{deliverables}, typically using a Gantt chart~\cite{gantt} (see Figure~\ref{fig:gantt}) and a brief description of each activity/\emph{deliverable}.
+It can also be presented through a table with weekly progress.
+\end{info}
+
+\begin{figure}
+    \begin{ganttchart}[vgrid, hgrid, title height=1,
+        x unit=6mm, y unit title=8mm, y unit chart=7mm]{1}{21}
+
+        \gantttitle{Feb.}{4}
+        \gantttitle{Mar.}{4}
+        \gantttitle{Apr.}{5}
+        \gantttitle{May.}{4}
+        \gantttitle{Jun.}{4} \\
+
+        \gantttitle{}{1}
+        \gantttitle{S1}{1}
+        \gantttitle{S2}{1}
+        \gantttitle{S3}{1}
+        \gantttitle{S4}{1}
+        \gantttitle{S5}{1}
+        \gantttitle{S6}{1}
+        \gantttitle{S7}{1}
+        \gantttitle{P}{1}
+        \gantttitle{S8}{1}
+        \gantttitle{S9}{1}
+        \gantttitle{S10}{1}
+        \gantttitle{S11}{1}
+        \gantttitle{Q}{1}
+        \gantttitle{S12}{1}
+        \gantttitle{S13}{1}
+        \gantttitle{S14}{1}
+        \gantttitle{S15}{1}
+        \gantttitle{S16}{1}
+        \gantttitle{S17}{1}
+        \gantttitle{S18}{1} \\
+
+        \ganttbar{\textbf{Kick-off meeting}}{1}{1} \\
+        \ganttgroup{Work at the company}{2}{17} \\
+        \ganttbar{\textbf{Intermediate meeting}}{11}{11} \\
+        \ganttbar{\textbf{Final meeting}}{18}{18} \\
+        \ganttbar{Report writing}{18}{20} \\
+        \ganttbar{Deliveries}{21}{21}
+    \end{ganttchart}
+    \caption{Gantt chart.} \label{fig:gantt}
+\end{figure}
+
+\chapter{Solution development}
+
+In this chapter, the work developed to achieve the
+expected results is described.
+
+If it is the case of a software prototype, the
+requirements, solution architecture, development and validation
+of the prototype are presented.
+
+\section{Requirements}
+
+\begin{info}
+Identify relevant functional and non-functional requirements and respective sources, as well as project constraints.
+
+Below is an example of a table with \textit{user stories}, which can be used if the number of rows is large.
+An additional column for priorities may be needed.
+\end{info}
+
+\subsection*{User stories}
+
+Examples of possible usage scenarios are presented in Table~\ref{tab:userstories}, using \textit{user stories} written according to the model:
+``\textbf{As a <type of user>, I want <some goal> so that <some reason>}''.
+
+\begin{center}
+\begin{longtable}{| c | p{18mm} | p{110mm} |}
+\caption{Usage scenario} \label{tab:userstories} \\[-2mm] \hline
+
+\textbf{Identifier} & \textbf{Name} & \textbf{Description} \\ \hline\hline
+\endfirsthead
+
+\multicolumn{3}{c}{{\tablename\ \thetable{} -- continued from previous page}} \\[2mm] \hline
+\textbf{Identifier} & \textbf{Name} & \textbf{Description} \\ \hline\hline
+\endhead
+
+\multicolumn{3}{r}{{Continues on next page\ldots}} \\
+\endfoot
+
+\hline
+\endlastfoot
+
+US01 & Register (High) & As a \textit{Visitor}, I want to register a new account so that I have access to profile data  \\ \hline
+
+% US02 & Login (High) & As a \textit{Visitor}, I want to login so that % I have access to profile data  \\ \hline
+% 
+% US03 & Edit profile (High) & As a \textit{Authenticated user}, I want % to edit \ldots\  \\ \hline
+
+\end{longtable}
+\end{center}
+
+\section{Architecture and technologies (or Design and Implementation)}
+
+\begin{info}
+Architecture and technologies used and respective justification (taking into account requirements and existing alternatives), technical diagrams prepared (see Figure~\ref{fig:componentes} taken from SPARX\footnote{\url{https://sparxsystems.com/resources/tutorials/uml2/component-diagram.html}}), technical difficulties encountered and their resolution, etc.
+\end{info}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.72\textwidth]{components}
+\caption{UML Component Diagram.} \label{fig:componentes}
+\end{figure}
+
+\section{Developed solution}
+
+\begin{info}
+Present the developed solution from the user's perspective, with the help of \emph{screenshots}.
+\end{info}
+
+\section{Validation}
+
+\begin{info}
+Description of the validation of the developed solution, in relation to the identified requirements and constraints, and respective results (for example, experimental evaluation results, tests performed, \emph{feedback} from users or specialists, etc.).
+\end{info}
+
+\chapter{Conclusions}
+
+In this chapter, the results achieved and lessons
+learned are summarized.
+Finally, the limitations of the work are presented and
+improvements and future work are proposed.
+
+\section{Results achieved}
+
+\begin{info}
+Summarize the results achieved and contributions (in relation to the objectives).
+
+In the case of group work, clarify individual contributions, in qualitative and quantitative terms (percentage).
+\end{info}
+
+\lipsum[11]
+
+\section{Lessons learned}
+
+\begin{info}
+Reflect on the lessons learned (taking into account the learning objectives).
+\end{info}
+
+\lipsum[12]
+
+\section{Future work}
+
+\begin{info}
+Identify limitations of the work performed and ideas for improvements and future work.
+\end{info}
+
+
+%%------------------------------- Bibliography --------------------------------
+
+%Here should be the bibliographic references contained in the report text and any relevant bibliography consulted during the project.
+
+\renewcommand{\bibname}{Bibliographic references}
+\printbibliography
+\addcontentsline{toc}{chapter}{\refname}  % add it to table of contents
+
+\begin{info}
+In the final list of references, the works of the authors
+cited in abbreviated form throughout the text should appear, obtained automatically
+with \class{BibTeX}.
+The bibliographic reference is the most developed way of indicating the
+sources of information on which it was based.
+\end{info}
+
+%%------------------------------- appendix ------------------------------------
+
+\appendix
+\chapter{An Appendix}
+
+\begin{infoopt}
+Appendices and annexes contain information that complements, supports and
+clarifies the report and whose inclusion in the main body of the report
+would interfere with a good order of presentation of ideas.
+
+There is an important difference between appendices and annexes: ``In the appendix
+only documents authored by the author of the
+report are compiled, while in the annex documents authored by
+other authors than the report author are compiled.''\footnote{%
+For more information, consult the online tutorial
+``\href{https://docs.google.com/document/d/1TDC1behVq8x7fQL4CcPEEh_np5GXviJevQxnQ9gbiJs/edit}
+{Publication Support Guide}''.}
+\end{infoopt}
+
+%%------------------------------- the end. ------------------------------------
+
+\end{document}
