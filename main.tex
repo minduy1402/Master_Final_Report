@@ -25,6 +25,9 @@
 \usepackage[T5]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, vietnamese]{babel}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
 
 %% document dimensions
 \usepackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm,headheight=6mm,footskip=12mm]{geometry}
@@ -954,406 +957,417 @@ Chương tiếp theo sẽ trình bày phương pháp thứ hai để thích ứn
 
 \chapter{Fine-tuning Mô hình Ngôn ngữ Nhỏ cho Tác vụ Đặc thù: Trường hợp Tarot Reader}
 
-Nếu Chương 3 giải quyết \textit{Knowledge Gap} thông qua việc tích hợp tri thức bên ngoài với RAG, chương này hướng đến một thách thức khác biệt cơ bản: \textit{Behavior Gap} --- làm thế nào để mô hình ngôn ngữ không chỉ biết thông tin đúng, mà còn diễn đạt theo đúng phong cách, tuân thủ đúng quy tắc ứng xử, và duy trì tính nhất quán trong suốt cuộc hội thoại.
+Chương trước đã trình bày cách giải quyết \textit{Knowledge Gap} --- khoảng cách giữa tri thức của mô hình và yêu cầu thực tế --- thông qua Retrieval-Augmented Generation. Tuy nhiên, trong nhiều ứng dụng thực tiễn, thách thức không chỉ nằm ở việc mô hình \textit{biết gì}, mà còn ở cách mô hình \textit{diễn đạt} và \textit{ứng xử}. Chương này chuyển sang một vấn đề khác biệt cơ bản: \textit{Behavior Gap} --- làm thế nào để mô hình ngôn ngữ duy trì phong cách giao tiếp nhất quán, tuân thủ quy trình cố định, và thể hiện ``cá tính'' phù hợp với vai trò được giao.
 
-Chúng tôi trình bày một case study hoàn chỉnh: xây dựng và fine-tune một mô hình ngôn ngữ nhỏ ($<$ 3B tham số) để đóng vai trò \textit{Tarot Reader} --- một tác vụ đòi hỏi sự kết hợp tinh tế giữa tri thức về bài Tarot, kỹ năng tư vấn tâm lý, và phong cách giao tiếp đặc trưng.
+Chúng tôi trình bày một case study hoàn chỉnh: xây dựng ứng dụng \textit{Tarot Reader} --- một chatbot tư vấn giải trí đòi hỏi sự kết hợp tinh tế giữa tri thức chuyên môn về 78 lá bài, kỹ năng tư vấn tâm lý, và phong cách giao tiếp đặc trưng. Thông qua case study này, chúng tôi khám phá các câu hỏi: Liệu một mô hình nhỏ ($<$ 3B tham số) có thể đạt được sự nhất quán hành vi tương đương hoặc tốt hơn các LLM lớn với prompt engineering? Chiến lược tạo dữ liệu nào hiệu quả nhất? Và LoRA có đủ hay cần full fine-tuning?
 
-\section{Bài toán và Động lực}
+\section{Phân tích Bài toán}
 
-\subsection{Tại sao không dùng Prompt Engineering?}
+\subsection{Giới hạn của Prompt Engineering cho Behavioral Tasks}
 
-Một câu hỏi tự nhiên được đặt ra: tại sao không đơn giản sử dụng một LLM mạnh (như GPT-4 hoặc Claude) với system prompt được thiết kế cẩn thận? Để trả lời, chúng tôi phân tích ba hạn chế cơ bản của hướng tiếp cận prompt-only.
+Một hướng tiếp cận tự nhiên là sử dụng LLM mạnh (GPT-4, Claude) với system prompt được thiết kế cẩn thận. Tuy nhiên, qua thử nghiệm thực tế, chúng tôi nhận thấy ba hạn chế nghiêm trọng.
 
-\textbf{Hạn chế 1: Giới hạn của In-Context Learning}
+\textbf{Hạn chế về In-Context Learning.} Mặc dù các mô hình hiện đại hỗ trợ context window lớn (như 128K tokens của GPT-4), nghiên cứu thực nghiệm về hiện tượng \textit{``Lost in the Middle''} (Liu et al., 2023) chỉ ra rằng hiệu suất của mô hình giảm đáng kể khi các thông tin hướng dẫn quan trọng bị chìm trong một context quá dài. Một cuộc hội thoại Tarot điển hình kéo dài 1500--2000 tokens; để bao quát đủ các sắc thái---từ giọng điệu, cách đặt câu hỏi mở, đến xử lý người dùng hoài nghi---chúng ta cần hàng chục ví dụ (few-shot). Việc đưa lượng lớn ví dụ này vào prompt không chỉ gây lãng phí tokens mà còn làm loãng sự tập trung (attention dilution) của mô hình, dẫn đến việc tuân thủ phong cách thiếu nhất quán trong các lượt hội thoại sau.
 
-Như đã trình bày trong Định lý 2.1 (Chương 2), với context window kích thước $C$ tokens và độ dài trung bình mỗi ví dụ $L_{avg}$, số lượng few-shot examples tối đa là $k_{max} = \lfloor C / L_{avg} \rfloor$. Với một cuộc hội thoại Tarot điển hình dài 1500--2000 tokens, chỉ có thể đưa 2--3 ví dụ vào context của GPT-4-turbo (128K tokens), không đủ để mô hình học được toàn bộ sắc thái của phong cách mong muốn.
-
-\textbf{Hạn chế 2: Chi phí vận hành}
-
-Bảng \ref{tab:cost-comparison} so sánh chi phí vận hành giữa các phương án. Với một ứng dụng chatbot xử lý 10.000 cuộc hội thoại/tháng, mỗi cuộc trung bình 3.000 tokens (input + output), chi phí API của GPT-4 có thể lên tới \$450--\$900/tháng. Trong khi đó, một mô hình fine-tuned chạy trên GPU cloud (ví dụ: T4 trên GCP) chỉ tốn khoảng \$50--\$100/tháng.
+\textbf{Hạn chế về chi phí vận hành.} Bảng \ref{tab:cost-comparison} so sánh chi phí giữa các phương án. Với một ứng dụng xử lý 10.000 cuộc hội thoại/tháng (quy mô nhỏ-vừa), chi phí API của GPT-4 dao động \$300--900/tháng. Mô hình fine-tuned chạy trên GPU cloud chỉ tốn 10--20\% con số đó, đồng thời cho phép kiểm soát hoàn toàn về dữ liệu và hành vi.
 
 \begin{table}[H]
     \centering
     \begin{tabular}{|l|c|c|c|}
         \hline
-        \textbf{Phương án} & \textbf{Chi phí/1K tokens} & \textbf{Chi phí/tháng*} & \textbf{Kiểm soát} \\
+        \textbf{Phương án} & \textbf{Chi phí/1K tokens} & \textbf{Chi phí/tháng*} & \textbf{Mức kiểm soát} \\
         \hline
-        GPT-4-turbo API & \$0.01--0.03 & \$300--900 & Thấp \\
-        Claude 3 Sonnet API & \$0.003--0.015 & \$90--450 & Thấp \\
+        GPT-4-turbo API & \$0.01--0.03 & \$300--900 & Phụ thuộc prompt \\
+        Claude 3 Sonnet API & \$0.003--0.015 & \$90--450 & Phụ thuộc prompt \\
         Qwen-1.5B Fine-tuned (T4) & \$0.0005** & \$50--100 & Cao \\
         Qwen-0.5B Fine-tuned (Edge) & \$0.0001** & \$10--30 & Rất cao \\
         \hline
     \end{tabular}
-    \caption{So sánh chi phí vận hành giữa các phương án. *Giả định 10K cuộc hội thoại, 3K tokens/cuộc. **Ước tính chi phí GPU amortized.}
+    \caption{So sánh chi phí vận hành. *Giả định 10K cuộc hội thoại × 3K tokens/cuộc. **Chi phí GPU amortized.}
     \label{tab:cost-comparison}
 \end{table}
 
-\textbf{Hạn chế 3: Độ trễ và Khả năng triển khai}
+\begin{table}[H]
+    \centering
+    \small % Thu nhỏ chữ một chút để bảng gọn hơn
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Phương án} & \textbf{Đơn giá/1M tokens} & \textbf{Chi phí tháng (30M)} & \textbf{Ghi chú} \\
+        \hline
+        GPT-4o API & $\sim$\$8.00\textsuperscript{[1]} & \$240 & Phụ thuộc prompt \\
+        Claude 3.5 Sonnet API & $\sim$\$12.00\textsuperscript{[2]} & \$360 & Latency cao \\
+        \hline
+        \textbf{Qwen-1.5B (T4 GPU)} & \textbf{$\sim$\$0.55}\textsuperscript{[3]} & \textbf{\$16 -- \$50} & \textbf{Tối ưu nhất} \\
+        Qwen-0.5B (CPU/Edge) & $<\$0.10$ & $<\$5$ & Chạy local device \\
+        \hline
+    \end{tabular}
+    \caption{Phân tích chi phí vận hành (Operational Cost Analysis).
+    \textsuperscript{[1]}Dựa trên OpenAI Pricing: \$2.5 In / \$10 Out.
+    \textsuperscript{[2]}Dựa trên Anthropic Pricing: \$3 In / \$15 Out.
+    \textsuperscript{[3]}Tính toán dựa trên GPU T4 (\$0.2/h) với tốc độ suy luận 100 tok/s (vLLM backend).}
+    \label{tab:cost-comparison}
+\end{table}
 
-Các API cloud có độ trễ (latency) thường từ 500ms--2s cho response đầu tiên, không phù hợp với trải nghiệm real-time. Mô hình nhỏ chạy local có thể đạt time-to-first-token dưới 100ms.
+Để tối ưu chi phí GPU, chúng tôi sử dụng engine suy luận vLLM với kỹ thuật PagedAttention, cho phép đạt throughput trên 100 tokens/s ngay cả với GPU dòng cũ như NVIDIA T4
+
+\textbf{Hạn chế về độ trễ.} API cloud thường có latency 500ms--2s cho token đầu tiên, tạo cảm giác ``chờ đợi'' không phù hợp với trải nghiệm real-time của ứng dụng tư vấn. Mô hình nhỏ chạy local có thể đạt time-to-first-token dưới 100ms, mang lại cảm giác phản hồi tức thì.
 
 \subsection{Đặc thù của Tác vụ Tarot Reader}
 
-Tarot Reader là một ứng dụng tư vấn giải trí đòi hỏi mô hình phải thể hiện các đặc điểm sau:
+Tarot Reader không phải là một chatbot thông tin thông thường mà là một ứng dụng tư vấn giải trí với các yêu cầu đặc biệt:
 
 \begin{enumerate}
-    \item \textbf{Tri thức chuyên môn:} Hiểu ý nghĩa của 78 lá bài (Major Arcana và Minor Arcana), cả ở vị trí thuận (upright) và ngược (reversed).
+    \item \textbf{Tri thức chuyên môn:} Hiểu ý nghĩa của 78 lá bài Tarot --- 22 lá Major Arcana (The Fool, The Magician, The High Priestess...) và 56 lá Minor Arcana (chia thành 4 bộ: Wands, Cups, Swords, Pentacles) --- cả ở vị trí thuận (upright) và ngược (reversed). Mỗi lá có ý nghĩa phức tạp, phụ thuộc vào ngữ cảnh câu hỏi.
     
-    \item \textbf{Kỹ năng tư vấn:} Đặt câu hỏi mở, lắng nghe tích cực (active listening), phản hồi với sự đồng cảm mà không phán xét.
+    \item \textbf{Kỹ năng tư vấn:} Đặt câu hỏi mở để tìm hiểu tình huống; lắng nghe tích cực (active listening); phản hồi với sự đồng cảm mà không phán xét; không đưa ra ``phán quyết'' mà hướng dẫn người hỏi tự suy ngẫm.
     
-    \item \textbf{Phong cách giao tiếp:} Thân thiện, casual, như đang trò chuyện với bạn bè --- không formal hay khô khan.
+    \item \textbf{Phong cách giao tiếp:} Thân thiện, casual --- như đang trò chuyện với một người bạn hiểu biết, không formal hay ``robot''. Sử dụng ngôn ngữ đơn giản, gần gũi; thêm một chút hài hước khi phù hợp.
     
-    \item \textbf{Quy trình chuẩn:} Tuân theo workflow cố định: (1) Hỏi về tình huống, (2) Mời rút bài, (3) Giải bài theo từng lá, (4) Tổng hợp và đưa lời khuyên, (5) Hỏi mở tiếp.
+    \item \textbf{Quy trình chuẩn (Workflow):} Tuân theo trình tự cố định: (1) Chào hỏi và tìm hiểu tình huống, (2) Mời người hỏi rút 3 lá bài, (3) Giải thích từng lá trong bối cảnh câu hỏi, (4) Tổng hợp và đưa ra thông điệp chung, (5) Hỏi xem có muốn khám phá thêm không.
     
-    \item \textbf{Tính nhất quán:} Duy trì giọng điệu và vai trò xuyên suốt cuộc hội thoại, không ``lạc character''.
+    \item \textbf{Tính nhất quán:} Duy trì ``character'' xuyên suốt --- không đột nhiên chuyển sang giọng điệu formal hay đưa ra lời khuyên kiểu ``advisor'' khô khan.
 \end{enumerate}
 
-Những yêu cầu này tạo thành một \textit{behavioral specification} phức tạp mà prompt engineering đơn thuần khó có thể đảm bảo nhất quán.
+Các yêu cầu này tạo thành một \textit{behavioral specification} phức tạp. Prompt engineering có thể mô tả các yêu cầu này, nhưng không đảm bảo mô hình tuân thủ nhất quán --- đặc biệt với các tình huống không được cover trong prompt.
 
 \subsection{Câu hỏi Nghiên cứu}
 
-Dựa trên phân tích trên, chúng tôi đặt ra các câu hỏi nghiên cứu:
+Từ phân tích trên, chúng tôi đặt ra ba câu hỏi nghiên cứu:
 
 \begin{itemize}
-    \item \textbf{RQ1:} Liệu có thể fine-tune một mô hình nhỏ ($\leq$ 3B tham số) để đạt được behavioral consistency tương đương với prompt engineering trên LLM lớn?
+    \item \textbf{RQ1:} Liệu mô hình nhỏ ($\leq$ 3B tham số) được fine-tune có thể đạt behavioral consistency tương đương hoặc tốt hơn LLM lớn với prompt engineering?
     
-    \item \textbf{RQ2:} Phương pháp tạo dữ liệu huấn luyện nào hiệu quả nhất cho tác vụ đòi hỏi phong cách đặc thù?
+    \item \textbf{RQ2:} Chiến lược tạo dữ liệu huấn luyện nào hiệu quả nhất cho tác vụ đòi hỏi phong cách đặc thù?
     
-    \item \textbf{RQ3:} LoRA có đủ để học phong cách mới hay cần full fine-tuning?
+    \item \textbf{RQ3:} LoRA có đủ để học behavioral patterns hay cần full fine-tuning?
 \end{itemize}
 
 \section{Phương pháp: Data-Centric Fine-tuning Pipeline}
 
-Hình \ref{fig:finetuning-pipeline} minh họa pipeline hoàn chỉnh của chúng tôi, bao gồm ba giai đoạn: (1) Tạo dữ liệu tổng hợp với Teacher Model, (2) Supervised Fine-Tuning với LoRA, và (3) Đánh giá với LLM-as-a-Judge.
+Hình \ref{fig:finetuning-pipeline} minh họa pipeline của chúng tôi, gồm ba giai đoạn: (1) Tạo dữ liệu tổng hợp với Teacher Model, (2) Supervised Fine-Tuning với LoRA/Full, và (3) Đánh giá đa chiều.
 
 \begin{figure}[H]
     \centering
-    % [Placeholder: Hình minh họa pipeline với 3 stages]
-    % Stage 1: Teacher Model (GPT-4/Gemini) -> Synthetic Conversations
-    % Stage 2: Student Model + LoRA Adapters -> Training
-    % Stage 3: Evaluation (LLM Judge + Human Eval)
-    \fbox{\parbox{0.9\textwidth}{\centering
-        \textbf{[PLACEHOLDER: Pipeline Diagram]}\\[2mm]
-        \textit{Sơ đồ 3 giai đoạn: Data Generation $\rightarrow$ SFT with LoRA $\rightarrow$ Evaluation}
+    \fbox{\parbox{0.95\textwidth}{\centering
+        \textbf{[PLACEHOLDER: Pipeline Diagram]}\\[3mm]
+        \begin{tabular}{ccccc}
+        \fbox{\parbox{2.5cm}{\centering \small Teacher Model\\(GPT-4o, Qwen-Plus)}} & 
+        $\xrightarrow{\text{sinh}}$ & 
+        \fbox{\parbox{2.5cm}{\centering \small Synthetic\\Conversations}} & 
+        $\xrightarrow{\text{lọc}}$ & 
+        \fbox{\parbox{2.5cm}{\centering \small Training\\Dataset}} \\
+        & & & & $\downarrow$ \\
+        \fbox{\parbox{2.5cm}{\centering \small LLM Judge +\\Human Eval}} & 
+        $\xleftarrow{\text{đánh giá}}$ & 
+        \fbox{\parbox{2.5cm}{\centering \small Fine-tuned\\Model}} & 
+        $\xleftarrow{\text{train}}$ & 
+        \fbox{\parbox{2.5cm}{\centering \small Student Model\\+ LoRA}}
+        \end{tabular}
     }}
-    \caption{Pipeline Fine-tuning cho Tarot Reader. Teacher Model sinh dữ liệu conversation chất lượng cao, Student Model học từ dữ liệu này qua SFT, kết quả được đánh giá bởi LLM Judge và human evaluators.}
+    \caption{Pipeline Fine-tuning cho Tarot Reader. Teacher Model sinh dữ liệu mẫu, Student Model học từ dữ liệu này, kết quả được đánh giá bởi LLM Judge và human evaluators.}
     \label{fig:finetuning-pipeline}
 \end{figure}
 
 \subsection{Giai đoạn 1: Synthetic Data Generation}
 
-\subsubsection{Chiến lược Knowledge Distillation}
+\subsubsection{Mục tiêu và Định dạng Dữ liệu}
 
-Như đã trình bày trong Chương 2, Knowledge Distillation cho phép chuyển giao khả năng từ Teacher Model sang Student Model. Trong bối cảnh này, chúng tôi không distill ở mức probability distribution (soft labels) mà ở mức \textit{behavioral patterns} --- tức là Student học từ các cuộc hội thoại mẫu do Teacher tạo ra.
+Trước khi sinh dữ liệu, cần xác định rõ dữ liệu cần có dạng như thế nào. Một cuộc hội thoại Tarot điển hình có cấu trúc như sau:
 
-\textbf{Teacher Model Selection:} Chúng tôi sử dụng Qwen2.5-72B-Instruct (thông qua API) làm Teacher vì:
-\begin{itemize}
-    \item Có khả năng tuân theo instruction phức tạp
-    \item Hỗ trợ tiếng Anh lẫn tiếng Việt (multilingual)
-    \item Có thể truy cập với chi phí hợp lý so với GPT-4
-\end{itemize}
+\begin{tcolorbox}[breakable, colback=gray!5!white, colframe=gray!50!black, title=\textbf{Ví dụ minh họa: Hội thoại Tarot}]
+    \small
+    \textbf{Querent:} Hi, I've been feeling stuck in my job lately. I'm not sure if I should stay or look for something new.
 
-\subsubsection{Prompt Template cho Teacher}
+    \vspace{0.5em} % Tạo khoảng cách nhỏ giữa các lượt lời
+    \textbf{Chatbot:} Hey there! Career crossroads can be tricky, right? Before we dive into the cards, tell me a bit more --- what's making you feel stuck? Is it the work itself, the environment, or something else?
 
-Listing \ref{lst:teacher-prompt} trình bày prompt template được sử dụng để Teacher sinh cuộc hội thoại mẫu.
+    \vspace{0.5em}
+    \textbf{Querent:} It's mostly that I don't feel challenged anymore. The pay is good but I'm just going through the motions.
 
-\begin{lstlisting}[caption={System Prompt cho Teacher Model để sinh dữ liệu huấn luyện},label={lst:teacher-prompt},language=Python]
+    \vspace{0.5em}
+    \textbf{Chatbot:} Ah, the golden handcuffs situation! That's actually really common. So you're craving growth and meaning, not just a paycheck. Got it. Ready to see what the cards have to say? Focus on your question, take a deep breath, and pick three cards when you're ready.
+
+    \vspace{0.5em}
+    \textbf{Querent:} [Draws: The Tower (reversed), Eight of Cups, The Star]
+
+    \vspace{0.5em}
+    \textbf{Chatbot:} Ooh, interesting spread! Let's start with The Tower reversed in your first position. Usually The Tower upright is about sudden upheaval, but reversed? It's more like... you're \textit{avoiding} a necessary change. Maybe you already know things need to shake up, but you're holding on because it feels safer?
+    
+    The Eight of Cups in the middle --- this one's literally about walking away from something that no longer fulfills you. See how the figure is leaving those cups behind? That's you, being called to seek something more meaningful...
+    
+    \textit{[continues with card interpretations and synthesis]}
+\end{tcolorbox}
+
+Cấu trúc này thể hiện đầy đủ các yêu cầu: phong cách casual (``golden handcuffs'', ``Ooh, interesting spread!''), quy trình đúng (hỏi trước, mời rút bài, giải từng lá), và sự đồng cảm (``That's actually really common'').
+
+\subsubsection{Thu thập Tri thức về Tarot Cards}
+
+Để Teacher Model có thể sinh dữ liệu chính xác, chúng tôi thu thập thông tin chi tiết về 78 lá bài từ các nguồn uy tín. Dữ liệu được crawl bằng thư viện BeautifulSoup4 và lưu dưới dạng CSV với các trường: \texttt{card\_name}, \texttt{card\_box} (Major/Minor Arcana), \texttt{upright} (ý nghĩa khi thuận), \texttt{reversed} (ý nghĩa khi ngược), \texttt{description} (mô tả hình ảnh và biểu tượng), và \texttt{img\_url}. Chi tiết về code crawling được trình bày trong Phụ lục.
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{|l|l|p{4cm}|p{4cm}|}
+        \hline
+        \textbf{Card} & \textbf{Type} & \textbf{Upright} & \textbf{Reversed} \\
+        \hline
+        The Fool & Major & Beginnings, innocence, spontaneity, free spirit & Holding back, recklessness, risk-taking \\
+        The Tower & Major & Sudden change, upheaval, revelation & Fear of change, avoiding disaster \\
+        Eight of Cups & Minor & Walking away, seeking truth, leaving behind & Fear of change, stagnation \\
+        \hline
+    \end{tabular}
+    \caption{Ví dụ dữ liệu Tarot cards (trích)}
+    \label{tab:tarot-data-sample}
+\end{table}
+
+\subsubsection{Chiến lược Sinh Dữ liệu với Teacher Model}
+
+Chúng tôi áp dụng Knowledge Distillation ở mức \textit{behavioral patterns} --- Teacher Model sinh các cuộc hội thoại mẫu thể hiện đúng phong cách và quy trình, Student Model học từ các mẫu này.
+
+\textbf{Teacher Model:} Sử dụng GPT-4o và Qwen-Plus làm Teacher vì khả năng tuân theo instruction phức tạp và hỗ trợ đa ngôn ngữ.
+
+\textbf{Quy trình sinh dữ liệu:}
+
+\begin{enumerate}
+    \item \textbf{Tạo câu hỏi khởi đầu:} Sử dụng LLM sinh danh sách 100+ câu hỏi theo 5 chủ đề (career, relationships, health, personal growth, finance). Mỗi câu hỏi là một tình huống cụ thể có thể dùng làm điểm khởi đầu cho session.
+    
+    \item \textbf{Định nghĩa biến thể:} Với mỗi câu hỏi, sinh nhiều cuộc hội thoại với các biến thể:
+    \begin{itemize}
+        \item \textit{Độ dài:} short (5--7 turns), moderate (8--10 turns), long (11--15 turns)
+        \item \textit{Tính cách người hỏi:} gentle, expressive, doubtful, skeptical, rude, rejective
+        \item \textit{Tổ hợp bài:} Random 3 lá từ 78 lá, xác suất 30\% cho mỗi lá ở vị trí reversed
+    \end{itemize}
+    
+    \item \textbf{Sinh conversation:} Teacher Model nhận system prompt (Listing \ref{lst:teacher-prompt}), thông tin về cards được rút, và persona của querent để sinh cuộc hội thoại hoàn chỉnh.
+\end{enumerate}
+
+\begin{lstlisting}[caption={System Prompt cho Teacher Model},label={lst:teacher-prompt},language=Python,basicstyle=\small\ttfamily]
 SYSTEM_PROMPT = """
 You are a skilled and intuitive tarot reader with a warm, 
-friendly demeanor. Your goal is to guide the user through 
-a personalized tarot reading based on their concerns and 
-the cards they draw. You should: 
-- Ask the querent 4-5 short, thoughtful questions to get 
-  to know more about the situation. Keep it casual and 
-  conversational - no pressure, just curiosity.
-- Invite the querent to draw 3 cards for their reading. 
-- Conduct the reading in several turns of chat. For each 
-  reading turn you should:
-    - Start with a description of the drawn cards.
-    - Provide 2-3 concrete, relatable examples tailored 
-      to the querent's concerns.
-    - End with a question to open the chance for querent 
-      to share more about their feelings.
-- At the end of the reading, ask if the querent wants to 
-  explore another question or concern.
+friendly demeanor. Guide the user through a personalized 
+tarot reading:
 
-## Tone and style:
-- Be casual, friendly, and conversational - like you're 
-  chatting with a close friend.
-- Use simple, relatable language. Show empathy and warmth, 
-  but don't overdo it - stay grounded and human-like.
-- Add a touch of humor or encouragement when appropriate.
+1. Ask 3-4 short questions to understand their situation
+2. Invite them to draw 3 cards
+3. For each card:
+   - Describe the card's imagery briefly
+   - Explain its meaning in context of their question
+   - Give 1-2 relatable examples
+   - End with a reflective question
+4. Synthesize the reading with an overall message
+5. Ask if they want to explore another question
+
+TONE: Casual, friendly, like chatting with a close friend.
+Use simple language, show empathy, add light humor when 
+appropriate. Never be preachy or overly mystical.
 """
 \end{lstlisting}
 
 \subsubsection{Diversity Injection}
 
-Để tránh overfitting vào một số patterns nhất định, chúng tôi inject diversity vào quá trình sinh dữ liệu bằng cách:
-
-\begin{enumerate}
-    \item \textbf{Topic Diversity:} Tạo các personas với các vấn đề khác nhau (career, relationships, health, personal growth, finance).
-    
-    \item \textbf{Card Diversity:} Mỗi session sử dụng tổ hợp 3 lá bài khác nhau được random từ bộ 78 lá, với xác suất 30\% cho reversed.
-    
-    \item \textbf{Personality Diversity:} Querent được gán các đặc điểm tính cách khác nhau (skeptical, enthusiastic, anxious, curious).
-    
-    \item \textbf{Length Diversity:} Cuộc hội thoại có độ dài từ 5 đến 12 turns.
-\end{enumerate}
+Để tránh overfitting, chúng tôi inject diversity theo nhiều chiều:
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|c|p{6cm}|}
+    \begin{tabular}{|l|c|p{7cm}|}
         \hline
-        \textbf{Dimension} & \textbf{Số lượng} & \textbf{Ví dụ} \\
+        \textbf{Chiều diversity} & \textbf{Số lượng} & \textbf{Chi tiết} \\
         \hline
-        Topics & 5 & Career, Relationships, Health, Growth, Finance \\
-        Card Combinations & 78C3 = 76,076 & (Fool, Tower, Star), (Lovers, Death, Sun)... \\
-        Querent Personas & 8 & Skeptical introvert, Anxious professional... \\
-        Conversation Lengths & 5--12 turns & Short (5--7), Medium (8--10), Long (11--12) \\
+        Topics & 5 & Career, Relationships, Health, Personal Growth, Finance \\
+        Querent Personas & 6 & Gentle, Expressive, Doubtful, Skeptical, Rude, Rejective \\
+        Conversation Length & 3 & Short (5--7), Moderate (8--10), Long (11--15 turns) \\
+        Card Combinations & $C_{78}^3 \times 2^3$ & 76,076 tổ hợp × 8 variations (upright/reversed) \\
         \hline
-        \textbf{Total Potential} & $>$ 1M & Không gian diversity lý thuyết \\
+        \textbf{Không gian lý thuyết} & $>$ 5M & Đảm bảo training data không bị trùng lặp \\
         \hline
     \end{tabular}
-    \caption{Các chiều diversity trong quá trình sinh dữ liệu}
+    \caption{Các chiều diversity trong sinh dữ liệu}
     \label{tab:diversity-dimensions}
 \end{table}
 
-\subsubsection{Quy trình Sinh và Lọc Dữ liệu}
+\subsubsection{Lọc và Kiểm tra Chất lượng}
+
+Sau khi sinh raw data, chúng tôi áp dụng quy trình lọc:
 
 \begin{enumerate}
-    \item \textbf{Generation:} Sử dụng Teacher Model sinh 200 cuộc hội thoại raw.
-    
-    \item \textbf{Automated Filtering:}
+    \item \textbf{Lọc tự động:}
     \begin{itemize}
-        \item Loại bỏ các cuộc quá ngắn ($<$ 5 turns) hoặc quá dài ($>$ 15 turns)
-        \item Loại bỏ các cuộc có repetition cao (Jaccard similarity giữa consecutive turns $>$ 0.7)
-        \item Loại bỏ các cuộc có hallucination về card meanings (cross-check với database 78 lá)
+        \item Loại bỏ conversations quá ngắn ($<$ 5 turns) hoặc quá dài ($>$ 15 turns)
+        \item Loại bỏ conversations có repetition cao (Jaccard similarity giữa các turns liên tiếp $>$ 0.7)
+        \item Cross-check ý nghĩa lá bài với database --- loại bỏ các hallucination
     \end{itemize}
     
-    \item \textbf{Human Review:} Một sample 20\% được đọc bởi annotator để đánh giá naturalness và adherence to style guide.
+    \item \textbf{Human review:} 20\% mẫu được đọc bởi annotator để đánh giá naturalness và adherence to style guide.
     
-    \item \textbf{Final Dataset:} 150 cuộc hội thoại chất lượng cao, tổng cộng $\sim$45,000 tokens.
+    \item \textbf{Kết quả:} Từ 200 raw conversations, thu được 150 conversations chất lượng cao ($\sim$45,000 tokens).
 \end{enumerate}
 
-\subsection{Giai đoạn 2: Supervised Fine-Tuning với LoRA}
+\subsection{Giai đoạn 2: Supervised Fine-Tuning}
 
 \subsubsection{Lựa chọn Base Model}
 
-Chúng tôi thử nghiệm với ba mô hình từ family Qwen2.5-Instruct:
+Chúng tôi chọn họ Qwen2.5-Instruct làm base model vì:
+
+\begin{itemize}
+    \item Hiệu suất cao trên benchmarks tiếng Anh và đa ngôn ngữ
+    \item Context length 32K tokens --- đủ cho multi-turn conversation
+    \item Chat template được thiết kế tốt (\texttt{<|im\_start|>}, \texttt{<|im\_end|>})
+    \item License Apache 2.0 --- phù hợp cho ứng dụng thương mại
+\end{itemize}
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|c|c|c|c|}
+    \begin{tabular}{|l|c|c|c|}
         \hline
-        \textbf{Model} & \textbf{Parameters} & \textbf{VRAM (FP16)} & \textbf{VRAM (4-bit)} & \textbf{Layers} \\
+        \textbf{Model} & \textbf{Parameters} & \textbf{VRAM (FP16)} & \textbf{VRAM (4-bit)} \\
         \hline
-        Qwen2.5-0.5B-Instruct & 500M & 1.5GB & 0.5GB & 24 \\
-        Qwen2.5-1.5B-Instruct & 1.5B & 4GB & 1.5GB & 28 \\
-        Qwen2.5-3B-Instruct & 3B & 8GB & 3GB & 36 \\
+        Qwen2.5-0.5B-Instruct & 500M & 1.5GB & 0.5GB \\
+        Qwen2.5-1.5B-Instruct & 1.5B & 4GB & 1.5GB \\
+        Qwen2.5-3B-Instruct & 3B & 8GB & 3GB \\
         \hline
     \end{tabular}
     \caption{Các mô hình base được thử nghiệm}
     \label{tab:base-models}
 \end{table}
 
-\textbf{Lý do chọn Qwen2.5:}
-\begin{itemize}
-    \item Hiệu suất cao trên các benchmark tiếng Anh và đa ngôn ngữ
-    \item Hỗ trợ context length 32K tokens (đủ cho multi-turn conversation)
-    \item Chat template được thiết kế tốt với \texttt{<|im\_start|>} và \texttt{<|im\_end|>}
-    \item License thân thiện cho mục đích thương mại
-\end{itemize}
+\subsubsection{Cấu hình Training}
 
-\subsubsection{Cấu hình LoRA}
+Chúng tôi thử nghiệm hai phương pháp: \textbf{Full Fine-tuning} và \textbf{LoRA}.
 
-Dựa trên phân tích về intrinsic dimensionality (Chương 2, Mục 2.3.2), chúng tôi cấu hình LoRA như sau:
-
-\begin{lstlisting}[caption={Cấu hình LoRA cho Fine-tuning},label={lst:lora-config},language=Python]
-from peft import LoraConfig
-
+\textbf{Cấu hình LoRA:}
+\begin{lstlisting}[language=Python,basicstyle=\small\ttfamily]
 peft_config = LoraConfig(
     task_type="CAUSAL_LM",
-    r=16,              # Rank of low-rank matrices
-    lora_alpha=32,     # Scaling factor (alpha/r = 2)
-    lora_dropout=0.05, # Dropout for regularization
-    target_modules=[
-        "q_proj", "k_proj", "v_proj",  # Attention projections
-        "o_proj",                       # Output projection
-        "gate_proj", "up_proj", "down_proj"  # FFN layers
-    ]
+    r=16,                    # Rank
+    lora_alpha=32,           # Scaling (alpha/r = 2)
+    lora_dropout=0.05,
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
+                    "gate_proj", "up_proj", "down_proj"]
 )
 \end{lstlisting}
 
-\textbf{Giải thích các hyperparameters:}
+Chúng tôi áp dụng LoRA lên cả attention layers và FFN layers, vì behavioral adaptation cần thay đổi không chỉ cách model ``nhìn'' thông tin (attention) mà còn cách ``xử lý'' thông tin (FFN).
 
-\begin{itemize}
-    \item \textbf{rank $r = 16$:} Trade-off giữa expressiveness và efficiency. Với $r = 16$, số tham số trainable chỉ chiếm $\sim$0.5\% tổng số tham số của mô hình 1.5B.
-    
-    \item \textbf{$\alpha = 32$:} Scaling factor $\alpha/r = 2$ giúp adaptation có magnitude đủ lớn để ảnh hưởng đến output mà không gây instability.
-    
-    \item \textbf{Target modules:} Áp dụng LoRA lên tất cả linear layers trong attention và FFN, thay vì chỉ attention layers, vì behavioral adaptation cần thay đổi cả cách model xử lý thông tin (FFN).
-\end{itemize}
-
-\subsubsection{Training Configuration}
-
-\begin{lstlisting}[caption={Cấu hình Training Arguments},label={lst:training-config},language=Python]
-from transformers import TrainingArguments
-
+\textbf{Cấu hình Training Arguments:}
+\begin{lstlisting}[language=Python,basicstyle=\small\ttfamily]
 training_args = TrainingArguments(
-    output_dir="./checkpoints/tarot-reader",
     per_device_train_batch_size=1,
-    gradient_accumulation_steps=8,   # Effective batch size = 8
+    gradient_accumulation_steps=8,  # Effective batch = 8
     num_train_epochs=10,
     learning_rate=3e-5,
     lr_scheduler_type="cosine",
     warmup_ratio=0.05,
-    fp16=False,                      # Use bf16 if available
-    logging_steps=10,
-    save_strategy="epoch",
-    save_total_limit=3,
     optim="adamw_torch",
 )
 \end{lstlisting}
 
-\textbf{Chiến lược Training:}
-
-\begin{itemize}
-    \item \textbf{Completion-Only Loss:} Sử dụng \texttt{DataCollatorForCompletionOnlyLM} để chỉ tính loss trên phần assistant response, không tính trên user input hoặc system prompt. Điều này giúp mô hình tập trung học cách respond thay vì memorize prompts.
-    
-    \item \textbf{Gradient Accumulation:} Với batch size 1 và accumulation 8, effective batch size = 8, phù hợp với GPU memory hạn chế (16GB T4).
-    
-    \item \textbf{Cosine LR Schedule:} Giúp training ổn định, learning rate giảm dần theo cosine curve với warmup 5\% đầu.
-\end{itemize}
+\textbf{Completion-Only Loss:} Sử dụng \texttt{DataCollatorForCompletionOnlyLM} để chỉ tính loss trên phần assistant response, giúp mô hình tập trung học cách phản hồi thay vì memorize user prompts.
 
 \subsubsection{Xử lý Multi-turn Conversation}
 
-Một thách thức kỹ thuật là tokenize đúng cách multi-turn conversation. Listing \ref{lst:format-conversation} minh họa cách format và tokenize.
+Conversations được format theo Qwen chat template:
 
-\begin{lstlisting}[caption={Format conversation cho training},label={lst:format-conversation},language=Python]
-def format_conversation(conversation, tokenizer):
-    """
-    Format multi-turn conversation using Qwen's chat template.
-    """
-    formatted = tokenizer.apply_chat_template(
-        conversation,
-        tokenize=False,
-        add_generation_prompt=False
-    )
-    return formatted
-
-# Example conversation structure
-conversation = [
-    {"role": "system", "content": SYSTEM_PROMPT},
-    {"role": "user", "content": "I'm feeling lost in my career..."},
-    {"role": "assistant", "content": "I hear you. Career crossroads..."},
-    {"role": "user", "content": "Yes, I've been thinking about..."},
-    {"role": "assistant", "content": "That's a brave step..."},
-    # ... more turns
-]
-\end{lstlisting}
-
-\textbf{Output format (Qwen chat template):}
 \begin{verbatim}
 <|im_start|>system
-You are a skilled and intuitive tarot reader...
+You are a skilled tarot reader...
 <|im_end|>
 <|im_start|>user
-I'm feeling lost in my career...
+I've been feeling stuck in my job...
 <|im_end|>
 <|im_start|>assistant
-I hear you. Career crossroads...
+Hey there! Career crossroads can be tricky...
 <|im_end|>
-...
+<|im_start|>user
+It's mostly that I don't feel challenged anymore...
+<|im_end|>
+<|im_start|>assistant
+Ah, the golden handcuffs situation!...
+<|im_end|>
 \end{verbatim}
 
-\subsection{Giai đoạn 3: Đánh giá với LLM-as-a-Judge}
+\subsection{Giai đoạn 3: Đánh giá Đa chiều}
 
-Đánh giá chất lượng chatbot đối thoại là một bài toán khó vì không có ground truth rõ ràng. Chúng tôi sử dụng framework LLM-as-a-Judge kết hợp với human evaluation.
+\subsubsection{LLM-as-a-Judge}
 
-\subsubsection{LLM Judge Setup}
+Đánh giá chatbot không có ground truth rõ ràng như các task khác. Chúng tôi sử dụng hai LLM làm judges để giảm bias: \textbf{Gemma-3-12B-Instruct} và \textbf{Mistral-Small-24B-Instruct}.
 
-Chúng tôi sử dụng hai LLM mạnh làm judges để giảm bias:
-\begin{itemize}
-    \item \textbf{Judge 1:} Gemma-3-12B-Instruct
-    \item \textbf{Judge 2:} Mistral-Small-24B-Instruct
-\end{itemize}
-
-Mỗi judge đánh giá trên 5 tiêu chí với thang điểm 0--1:
+Mỗi judge đánh giá trên 5 tiêu chí (thang 0--1):
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|p{8cm}|}
+    \begin{tabular}{|l|p{9cm}|}
         \hline
-        \textbf{Tiêu chí} & \textbf{Mô tả} \\
+        \textbf{Tiêu chí} & \textbf{Câu hỏi đánh giá} \\
         \hline
-        \textbf{Style Adherence} & Mô hình có duy trì phong cách casual, friendly không? \\
-        \textbf{Card Knowledge} & Giải thích về ý nghĩa lá bài có chính xác không? \\
-        \textbf{Empathy} & Phản hồi có thể hiện sự đồng cảm, không phán xét không? \\
-        \textbf{Workflow Compliance} & Có tuân theo quy trình (hỏi $\rightarrow$ rút bài $\rightarrow$ giải $\rightarrow$ tổng hợp) không? \\
-        \textbf{Coherence} & Cuộc hội thoại có mạch lạc, logic không? \\
+        Style Adherence & Phong cách có casual, friendly như đang nói chuyện với bạn? \\
+        Card Knowledge & Ý nghĩa lá bài có được giải thích chính xác? \\
+        Empathy & Phản hồi có thể hiện sự đồng cảm, không phán xét? \\
+        Workflow Compliance & Có tuân theo quy trình (hỏi → rút bài → giải → tổng hợp)? \\
+        Coherence & Cuộc hội thoại có mạch lạc, logic? \\
         \hline
     \end{tabular}
-    \caption{Các tiêu chí đánh giá của LLM Judge}
+    \caption{Tiêu chí đánh giá của LLM Judge}
     \label{tab:eval-criteria}
 \end{table}
 
-\subsubsection{Human Evaluation Protocol}
+\subsubsection{Human Evaluation}
 
-Bổ sung cho LLM Judge, chúng tôi tiến hành human evaluation với 3 annotators trên 30 cuộc hội thoại test. Annotators được yêu cầu:
+Bổ sung cho automated evaluation, chúng tôi tiến hành human evaluation với 3 annotators trên 30 test conversations:
+
 \begin{enumerate}
-    \item Đánh giá preference giữa Base Model, Fine-tuned Model, và GPT-4 (blind test)
-    \item Đánh giá mức độ ``human-like'' trên thang 1--5
-    \item Ghi nhận các lỗi cụ thể (out-of-character, hallucination, repetition)
+    \item \textbf{Pairwise preference:} So sánh blind giữa Base Model, Fine-tuned Model, và GPT-4
+    \item \textbf{Human-like rating:} Đánh giá trên thang 1--5
+    \item \textbf{Error annotation:} Ghi nhận các lỗi cụ thể (out-of-character, hallucination, repetition)
 \end{enumerate}
 
 \section{Kết quả Thực nghiệm}
 
 \subsection{Training Dynamics}
 
-Hình \ref{fig:training-loss} minh họa đường cong loss trong quá trình training cho các cấu hình khác nhau.
+Hình \ref{fig:training-loss} và Bảng \ref{tab:training-results} trình bày kết quả training.
 
 \begin{figure}[H]
     \centering
-    % [Placeholder: Training loss curves]
     \fbox{\parbox{0.9\textwidth}{\centering
         \textbf{[PLACEHOLDER: Training Loss Curves]}\\[2mm]
-        \textit{Loss curves cho Qwen-0.5B, 1.5B, 3B với LoRA r=8 và r=16}\\[2mm]
-        \textit{X-axis: Training Steps, Y-axis: Loss}
+        \textit{Loss curves cho Qwen-0.5B, 1.5B với Full FT và LoRA}\\[2mm]
+        \textit{Quan sát: Loss giảm nhanh trong 200 steps đầu, sau đó ổn định}
     }}
-    \caption{Training loss curves. Tất cả các mô hình converge sau khoảng 500 steps, với mô hình lớn hơn đạt loss thấp hơn.}
+    \caption{Training loss curves. Mô hình lớn hơn đạt loss thấp hơn; LoRA và Full FT converge tương đương.}
     \label{fig:training-loss}
 \end{figure}
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|c|c|c|c|}
+    \begin{tabular}{|l|l|c|c|c|}
         \hline
-        \textbf{Model} & \textbf{LoRA r} & \textbf{Final Loss} & \textbf{Training Time} & \textbf{VRAM Peak} \\
+        \textbf{Model} & \textbf{Method} & \textbf{Final Loss} & \textbf{Time} & \textbf{VRAM} \\
         \hline
-        Qwen2.5-0.5B & 8 & 1.42 & 25 min & 4.2 GB \\
-        Qwen2.5-0.5B & 16 & 1.38 & 28 min & 4.8 GB \\
-        Qwen2.5-1.5B & 8 & 1.21 & 55 min & 8.5 GB \\
-        Qwen2.5-1.5B & 16 & 1.15 & 62 min & 9.8 GB \\
-        Qwen2.5-3B & 16 & 0.98 & 2.1 hrs & 14.2 GB \\
+        Qwen2.5-0.5B & Full FT & 1.35 & 30 min & 5.2 GB \\
+        Qwen2.5-0.5B & LoRA r=16 & 1.38 & 28 min & 4.8 GB \\
+        Qwen2.5-1.5B & Full FT & 1.12 & 1.2 hrs & 11.5 GB \\
+        Qwen2.5-1.5B & LoRA r=16 & 1.15 & 62 min & 9.8 GB \\
+        Qwen2.5-3B & LoRA r=16 & 0.98 & 2.1 hrs & 14.2 GB \\
         \hline
     \end{tabular}
-    \caption{Kết quả training trên NVIDIA T4 (16GB). Training time là cho 10 epochs.}
+    \caption{Kết quả training trên NVIDIA T4 (16GB), 10 epochs}
     \label{tab:training-results}
 \end{table}
 
 \textbf{Nhận xét:}
 \begin{itemize}
-    \item Loss giảm nhanh trong 200 steps đầu, sau đó ổn định --- cho thấy behavioral patterns được học nhanh.
-    \item Mô hình 3B đạt loss thấp nhất nhưng thời gian training gấp đôi so với 1.5B.
-    \item LoRA r=16 cho kết quả tốt hơn r=8 một cách nhất quán, với chi phí VRAM tăng $\sim$15\%.
+    \item Loss giảm nhanh trong 200 steps đầu rồi ổn định --- behavioral patterns được học nhanh
+    \item Full FT và LoRA đạt loss tương đương, nhưng LoRA tiết kiệm 15--20\% thời gian và VRAM
+    \item Mô hình 3B đạt loss thấp nhất nhưng thời gian gấp đôi so với 1.5B
 \end{itemize}
 
-\subsection{Kết quả Đánh giá Tự động (LLM-as-a-Judge)}
+\subsection{Kết quả LLM-as-a-Judge}
 
-Bảng \ref{tab:llm-judge-results} trình bày kết quả đánh giá bởi hai LLM judges.
+Bảng \ref{tab:llm-judge-results} trình bày kết quả đánh giá bởi hai judges.
 
 \begin{table}[H]
     \centering
+    \small
     \begin{tabular}{|l|c|c|c|c|c|c|}
         \hline
         \textbf{Model} & \textbf{Style} & \textbf{Knowledge} & \textbf{Empathy} & \textbf{Workflow} & \textbf{Coherence} & \textbf{Avg} \\
@@ -1363,34 +1377,31 @@ Bảng \ref{tab:llm-judge-results} trình bày kết quả đánh giá bởi hai
         Qwen-0.5B (base) & 0.42 & 0.65 & 0.48 & 0.35 & 0.72 & 0.52 \\
         Qwen-0.5B (FT) & 0.78 & 0.72 & 0.81 & 0.85 & 0.80 & 0.79 \\
         Qwen-1.5B (base) & 0.55 & 0.71 & 0.58 & 0.42 & 0.78 & 0.61 \\
+        \rowcolor{gray!20}
         Qwen-1.5B (FT) & \textbf{0.88} & 0.85 & \textbf{0.89} & \textbf{0.92} & 0.88 & \textbf{0.88} \\
         Qwen-3B (FT) & 0.86 & \textbf{0.88} & 0.87 & 0.90 & \textbf{0.91} & 0.88 \\
         GPT-4 (prompt) & 0.82 & 0.90 & 0.85 & 0.75 & 0.92 & 0.85 \\
         \hline
         \multicolumn{7}{|c|}{\textit{Judge: Mistral-Small-24B-Instruct}} \\
         \hline
-        Qwen-0.5B (base) & 0.38 & 0.62 & 0.45 & 0.32 & 0.70 & 0.49 \\
-        Qwen-0.5B (FT) & 0.75 & 0.70 & 0.78 & 0.82 & 0.78 & 0.77 \\
         Qwen-1.5B (base) & 0.52 & 0.68 & 0.55 & 0.40 & 0.75 & 0.58 \\
+        \rowcolor{gray!20}
         Qwen-1.5B (FT) & \textbf{0.85} & 0.82 & \textbf{0.86} & \textbf{0.90} & 0.86 & \textbf{0.86} \\
-        Qwen-3B (FT) & 0.84 & \textbf{0.86} & 0.85 & 0.88 & \textbf{0.89} & 0.86 \\
-        GPT-4 (prompt) & 0.80 & 0.88 & 0.82 & 0.72 & 0.90 & 0.82 \\
+        GPT-4 (prompt) & 0.80 & \textbf{0.88} & 0.82 & 0.72 & \textbf{0.90} & 0.82 \\
         \hline
     \end{tabular}
-    \caption{Kết quả đánh giá bởi LLM Judges. FT = Fine-tuned. Điểm trên thang 0--1.}
+    \caption{Kết quả LLM-as-a-Judge. FT = Fine-tuned. Hàng highlight: best overall model.}
     \label{tab:llm-judge-results}
 \end{table}
 
-\textbf{Phân tích kết quả:}
+\textbf{Phân tích chi tiết:}
 
 \begin{enumerate}
-    \item \textbf{Fine-tuning cải thiện đáng kể:} Điểm trung bình tăng từ 0.52 lên 0.79 cho Qwen-0.5B (+52\%) và từ 0.61 lên 0.88 cho Qwen-1.5B (+44\%).
+    \item \textbf{Fine-tuning cải thiện toàn diện:} Qwen-1.5B tăng từ 0.61 lên 0.88 (+44\%). Cải thiện lớn nhất ở Workflow Compliance (+119\%: 0.42 → 0.92), cho thấy fine-tuning đặc biệt hiệu quả trong việc học quy trình cố định.
     
-    \item \textbf{Workflow Compliance cải thiện mạnh nhất:} Từ 0.35--0.42 (base) lên 0.85--0.92 (fine-tuned), cho thấy fine-tuning đặc biệt hiệu quả trong việc học quy trình cố định.
+    \item \textbf{Fine-tuned model vượt GPT-4 trên behavioral metrics:} Qwen-1.5B FT đạt Style 0.88 (vs 0.82 của GPT-4) và Workflow 0.92 (vs 0.75). GPT-4 có Knowledge cao hơn (0.90 vs 0.85) nhờ lượng training data lớn, nhưng thiếu nhất quán trong việc tuân thủ workflow.
     
-    \item \textbf{Qwen-1.5B FT vượt GPT-4 trên Style và Workflow:} Mô hình 1.5B fine-tuned đạt 0.88/0.92 so với 0.82/0.75 của GPT-4 với prompt engineering. Điều này xác nhận giả thuyết rằng fine-tuning có thể học behavioral patterns tốt hơn prompting.
-    
-    \item \textbf{Diminishing returns với model size:} Qwen-3B chỉ tốt hơn Qwen-1.5B một chút (0.88 vs 0.88 average), suggesting 1.5B đã đủ capacity cho tác vụ này.
+    \item \textbf{Diminishing returns với model size:} Qwen-3B FT chỉ tốt hơn 1.5B một chút (0.88 vs 0.88 average), suggesting 1.5B đã đủ capacity cho tác vụ này.
 \end{enumerate}
 
 \subsection{Kết quả Human Evaluation}
@@ -1399,59 +1410,57 @@ Bảng \ref{tab:llm-judge-results} trình bày kết quả đánh giá bởi hai
     \centering
     \begin{tabular}{|l|c|c|c|c|}
         \hline
-        \textbf{Model} & \textbf{Win Rate*} & \textbf{Human-like (1-5)} & \textbf{Error Rate} & \textbf{Avg Length} \\
+        \textbf{Model} & \textbf{Win Rate} & \textbf{Human-like (1-5)} & \textbf{Error Rate} & \textbf{Avg Words} \\
         \hline
-        Qwen-0.5B (FT) & 22\% & 3.2 & 18\% & 145 words \\
-        Qwen-1.5B (FT) & 41\% & 4.1 & 8\% & 168 words \\
-        Qwen-3B (FT) & 38\% & 4.0 & 7\% & 172 words \\
-        GPT-4 (prompt) & 35\% & 3.8 & 12\% & 195 words \\
+        Qwen-0.5B (FT) & 22\% & 3.2 & 18\% & 145 \\
+        \rowcolor{gray!20}
+        Qwen-1.5B (FT) & \textbf{41\%} & \textbf{4.1} & \textbf{8\%} & 168 \\
+        Qwen-3B (FT) & 38\% & 4.0 & 7\% & 172 \\
+        GPT-4 (prompt) & 35\% & 3.8 & 12\% & 195 \\
         \hline
     \end{tabular}
-    \caption{Kết quả Human Evaluation trên 30 cuộc hội thoại test. *Win rate trong pairwise comparison (tie allowed).}
+    \caption{Human Evaluation trên 30 test conversations}
     \label{tab:human-eval-results}
 \end{table}
 
-\textbf{Nhận xét quan trọng:}
-
+\textbf{Key insights:}
 \begin{itemize}
-    \item \textbf{Qwen-1.5B FT được prefer nhất:} Win rate 41\% so với 35\% của GPT-4, cho thấy fine-tuning thực sự mang lại trải nghiệm tốt hơn cho tác vụ này.
+    \item \textbf{Qwen-1.5B FT được prefer nhất} với win rate 41\%, vượt GPT-4 (35\%). Annotators nhận xét rằng mô hình fine-tuned ``feels more natural'' và ``follows the flow better''.
     
-    \item \textbf{Error Rate giảm mạnh với model size:} 18\% $\rightarrow$ 8\% từ 0.5B đến 1.5B. Các lỗi phổ biến ở 0.5B: repetition (lặp cụm từ), incomplete responses (câu trả lời bị cắt).
+    \item \textbf{Error rate giảm mạnh với model size:} 18\% → 8\% từ 0.5B đến 1.5B. Lỗi phổ biến ở 0.5B: repetition và incomplete responses.
     
-    \item \textbf{GPT-4 verbose hơn nhưng không tốt hơn:} Response dài hơn 16\% nhưng có error rate cao hơn (12\% vs 8\%), chủ yếu do workflow violations (không tuân theo quy trình chuẩn).
+    \item \textbf{GPT-4 verbose nhưng không tốt hơn:} Response dài hơn 16\% nhưng error rate cao hơn (12\% vs 8\%), chủ yếu do workflow violations.
 \end{itemize}
 
 \subsection{Phân tích Định tính}
 
-Để hiểu sâu hơn sự khác biệt, chúng tôi phân tích một số ví dụ cụ thể.
+Để minh họa sự khác biệt, chúng tôi trình bày hai ví dụ tiêu biểu.
 
-\textbf{Ví dụ 1: Style Adherence}
+\textbf{Ví dụ 1 --- Style Adherence:}
 
 \begin{quote}
 \textbf{User:} I'm not sure if I should take this new job offer. It pays more but I'd have to relocate.
 
-\textbf{Qwen-1.5B (Base):} ``This is a common dilemma. You should consider the following factors: salary increase percentage, cost of living difference, career growth opportunities, personal relationships, and long-term goals. Make a pros and cons list.''
+\textbf{Qwen-1.5B Base:} ``This is a common dilemma. You should consider: salary increase percentage, cost of living difference, career growth opportunities, personal relationships, and long-term goals. Make a pros and cons list.''
 
-\textbf{Qwen-1.5B (Fine-tuned):} ``Oh, that's a big decision! Relocating can be exciting but also scary, right? Tell me a bit more --- what's drawing you to this new opportunity? And what would you miss most if you left?''
+\textbf{Qwen-1.5B Fine-tuned:} ``Oh, that's a big decision! Relocating can be exciting but also scary, right? Tell me a bit more --- what's drawing you to this new opportunity? And what would you miss most if you left?''
 \end{quote}
 
-\textit{Phân tích:} Base model trả lời theo kiểu ``advice column'' khô khan, trong khi fine-tuned model thể hiện đúng phong cách casual, hỏi ngược để tìm hiểu sâu hơn --- đặc trưng của một tarot reader.
+Base model trả lời như ``career advisor'' khô khan với bullet points. Fine-tuned model thể hiện đúng phong cách: casual (``Oh, that's a big decision!''), empathetic (``exciting but also scary, right?''), và hỏi ngược để tìm hiểu sâu hơn.
 
-\textbf{Ví dụ 2: Workflow Compliance}
+\textbf{Ví dụ 2 --- Workflow Compliance:}
 
 \begin{quote}
-\textbf{User:} [After describing their situation] So what do the cards say?
+\textbf{User:} [After describing situation] So what do the cards say?
 
-\textbf{GPT-4 (Prompt):} ``Based on your situation, I sense themes of transformation and new beginnings. The universe is guiding you toward...'' [Proceeds to give reading without asking user to draw cards]
+\textbf{GPT-4 (Prompt):} ``Based on your situation, I sense themes of transformation and new beginnings. The universe is guiding you toward...'' \textit{[Proceeds to give reading without asking user to draw cards]}
 
-\textbf{Qwen-1.5B (Fine-tuned):} ``I love your energy! Let's see what the cards have to say. Take a deep breath, focus on your question, and when you're ready, tell me --- which three cards are you drawn to?''
+\textbf{Qwen-1.5B Fine-tuned:} ``I love your energy! Let's see what the cards have to say. Take a deep breath, focus on your question, and when you're ready, tell me --- which three cards are you drawn to?''
 \end{quote}
 
-\textit{Phân tích:} GPT-4 bỏ qua bước quan trọng (mời rút bài), trong khi fine-tuned model tuân thủ đúng workflow đã học.
+GPT-4 bỏ qua bước mời rút bài --- một workflow violation nghiêm trọng. Fine-tuned model tuân thủ đúng quy trình đã học.
 
 \subsection{Ablation Study}
-
-Để hiểu contribution của từng component, chúng tôi thực hiện ablation study.
 
 \begin{table}[H]
     \centering
@@ -1459,76 +1468,119 @@ Bảng \ref{tab:llm-judge-results} trình bày kết quả đánh giá bởi hai
         \hline
         \textbf{Configuration} & \textbf{Style} & \textbf{Workflow} & \textbf{Avg} \\
         \hline
-        Full (LoRA r=16, all layers) & \textbf{0.88} & \textbf{0.92} & \textbf{0.88} \\
+        \rowcolor{gray!20}
+        Full config (LoRA r=16, all layers) & \textbf{0.88} & \textbf{0.92} & \textbf{0.88} \\
         LoRA r=8, all layers & 0.84 & 0.88 & 0.85 \\
         LoRA r=16, attention only & 0.80 & 0.85 & 0.82 \\
         Full Fine-tuning (no LoRA) & 0.87 & 0.91 & 0.87 \\
+        \hline
         50\% training data & 0.78 & 0.82 & 0.79 \\
         No diversity injection & 0.72 & 0.80 & 0.75 \\
         \hline
     \end{tabular}
-    \caption{Ablation Study trên Qwen-1.5B. Đánh giá bởi Gemma-3-12B Judge.}
+    \caption{Ablation Study trên Qwen-1.5B}
     \label{tab:ablation}
 \end{table}
 
 \textbf{Key findings:}
+
 \begin{itemize}
-    \item \textbf{FFN layers quan trọng:} Chỉ apply LoRA lên attention giảm hiệu suất 6\%, confirm rằng behavioral adaptation cần cả FFN.
+    \item \textbf{FFN layers quan trọng:} Chỉ apply LoRA lên attention giảm hiệu suất 7\%, confirm rằng behavioral adaptation cần cả FFN để thay đổi cách model ``xử lý'' thông tin, không chỉ cách ``nhìn'' thông tin.
     
-    \item \textbf{LoRA $\approx$ Full Fine-tuning:} Với r=16, LoRA đạt 99\% hiệu suất của full fine-tuning trong khi chỉ train 0.5\% tham số.
+    \item \textbf{LoRA $\approx$ Full Fine-tuning:} Với r=16, LoRA đạt 99\% hiệu suất của full FT trong khi chỉ train 0.5\% parameters.
     
-    \item \textbf{Data diversity critical:} Không có diversity injection, hiệu suất giảm 13\%, confirm tầm quan trọng của việc tạo dữ liệu đa dạng.
+    \item \textbf{Data diversity là yếu tố quyết định:} Không có diversity injection, hiệu suất giảm 15\% --- đây là factor quan trọng nhất, hơn cả model size hay training method.
 \end{itemize}
+
+\section{Demo Application}
+
+Để validate kết quả trong môi trường thực tế, chúng tôi xây dựng demo application sử dụng Gradio framework.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.9\textwidth}{\centering
+        \textbf{[PLACEHOLDER: Screenshot của Gradio Demo]}\\[2mm]
+        \textit{Giao diện chat với Tarot Reader, hiển thị cards được rút và conversation history}
+    }}
+    \caption{Demo Tarot Reader trên Gradio}
+    \label{fig:gradio-demo}
+\end{figure}
+
+\textbf{Cấu hình deployment:}
+\begin{itemize}
+    \item \textbf{Model:} Qwen2.5-1.5B-Instruct Full Fine-tuned (3 epochs) --- được chọn dựa trên kết quả evaluation
+    \item \textbf{Inference:} vLLM server với quantization INT8
+    \item \textbf{Hardware:} NVIDIA T4 (16GB)
+    \item \textbf{Latency:} Time-to-first-token $\sim$80ms, throughput $\sim$50 tokens/s
+\end{itemize}
+
+User có thể chat với Tarot Reader, rút bài từ bộ 78 lá (với hình ảnh), và nhận reading cá nhân hóa. Demo cho phép đánh giá real-time experience và thu thập feedback cho iteration tiếp theo.
 
 \section{Thảo luận}
 
 \subsection{Trả lời Câu hỏi Nghiên cứu}
 
-\textbf{RQ1:} \textit{Có thể fine-tune mô hình nhỏ để đạt behavioral consistency tương đương LLM lớn?}
+\textbf{RQ1: Model nhỏ có thể đạt behavioral consistency tương đương LLM lớn?}
 
-Câu trả lời là \textbf{có, thậm chí tốt hơn cho tác vụ cụ thể}. Qwen-1.5B fine-tuned vượt GPT-4 prompted trên các metrics Style (0.88 vs 0.82) và Workflow (0.92 vs 0.75). Fine-tuning ``bakes in'' behavioral patterns vào weights, trong khi prompting chỉ là ``soft guidance'' có thể bị ignore.
+\textit{Có, và thậm chí tốt hơn cho tác vụ cụ thể.} Qwen-1.5B fine-tuned vượt GPT-4 prompted trên Style (0.88 vs 0.82) và Workflow (0.92 vs 0.75). Fine-tuning ``bakes'' behavioral patterns vào weights một cách vĩnh viễn, trong khi prompting chỉ là ``soft guidance'' có thể bị ignore trong các edge cases.
 
-\textbf{RQ2:} \textit{Phương pháp tạo dữ liệu nào hiệu quả nhất?}
+\textbf{RQ2: Chiến lược tạo dữ liệu nào hiệu quả nhất?}
 
-Synthetic data từ Teacher Model kết hợp \textbf{diversity injection} là approach hiệu quả nhất. Ablation cho thấy diversity injection cải thiện 13\% so với dữ liệu không có diversity. Key insight: không phải số lượng mà chất lượng và đa dạng của dữ liệu quyết định.
+\textit{Synthetic data với diversity injection.} Ablation cho thấy diversity injection cải thiện 15\% so với dữ liệu đồng nhất. Key insight: không phải số lượng (150 vs 200 conversations) mà chất lượng và đa dạng quyết định --- các biến thể về persona, conversation length, và card combinations giúp model generalize tốt hơn.
 
-\textbf{RQ3:} \textit{LoRA có đủ hay cần full fine-tuning?}
+\textbf{RQ3: LoRA có đủ hay cần full fine-tuning?}
 
-\textbf{LoRA đủ tốt} cho tác vụ behavioral adaptation. Với r=16 và target cả attention lẫn FFN, LoRA đạt 99\% hiệu suất của full fine-tuning. Điều này align với lý thuyết về intrinsic dimensionality --- behavioral patterns náº±m trong subspace chiều thấp.
+\textit{LoRA đủ tốt.} Với r=16 và target cả attention + FFN, LoRA đạt 99\% hiệu suất của full FT. Điều này align với lý thuyết về intrinsic dimensionality --- behavioral patterns nằm trong subspace chiều thấp, không cần update toàn bộ weights.
 
-\subsection{Hạn chế và Hướng Phát triển}
+\subsection{So sánh với Related Work}
 
-\textbf{Hạn chế hiện tại:}
+Kết quả của chúng tôi consistent với các nghiên cứu gần đây:
+
 \begin{itemize}
-    \item \textbf{Dataset size nhỏ:} 150 cuộc hội thoại có thể chưa đủ để cover edge cases.
-    \item \textbf{Single task:} Chưa đánh giá khả năng generalization sang các tác vụ tư vấn khác.
-    \item \textbf{Tiếng Anh only:} Chưa thử nghiệm với tiếng Việt hoặc đa ngôn ngữ.
+    \item \textbf{Hu et al. (2021)} cho thấy LoRA với r=4--16 đủ cho hầu hết NLU tasks. Chúng tôi extend finding này sang behavioral tasks với kết luận tương tự.
+    
+    \item \textbf{Taori et al. (2023)} với Alpaca demonstrating rằng synthetic data từ GPT có thể train model nhỏ hiệu quả. Chúng tôi confirm điều này và thêm insight về tầm quan trọng của diversity.
+    
+    \item \textbf{Zheng et al. (2023)} đề xuất LLM-as-a-Judge. Chúng tôi áp dụng với multiple judges để giảm bias và validate bằng human evaluation.
 \end{itemize}
 
-\textbf{Hướng phát triển:}
+\subsection{Hạn chế}
+
 \begin{itemize}
-    \item \textbf{GRPO (Group Relative Policy Optimization):} Áp dụng reinforcement learning để tiếp tục cải thiện mô hình dựa trên human feedback. Chúng tôi đã implement prototype (xem file \texttt{grpo.py}) nhưng chưa có đủ feedback data để train.
-    
-    \item \textbf{Multi-task Fine-tuning:} Extend sang các tác vụ tư vấn khác (life coach, career advisor) để tạo mô hình versatile hơn.
-    
-    \item \textbf{Quantization for Edge Deployment:} Áp dụng QLoRA hoặc GPTQ để chạy mô hình trên mobile devices.
+    \item \textbf{Dataset size:} 150 conversations có thể chưa cover edge cases hiếm
+    \item \textbf{Single language:} Chỉ thử nghiệm tiếng Anh
+    \item \textbf{Single domain:} Chưa đánh giá generalization sang các tác vụ tư vấn khác
+    \item \textbf{Limited human eval:} 30 test cases với 3 annotators --- cần scale lớn hơn
 \end{itemize}
+
+\subsection{Hướng Phát triển}
+
+\begin{enumerate}
+    \item \textbf{GRPO (Group Relative Policy Optimization):} Áp dụng RL từ human feedback để tiếp tục cải thiện. Chúng tôi đã implement prototype nhưng cần thu thập feedback data.
+    
+    \item \textbf{Multi-task Fine-tuning:} Extend sang life coach, career advisor để tạo model versatile hơn.
+    
+    \item \textbf{Edge Deployment:} Áp dụng QLoRA/GPTQ để chạy trên mobile (target: Qwen-0.5B với 4-bit quantization).
+    
+    \item \textbf{Tiếng Việt:} Fine-tune phiên bản tiếng Việt cho thị trường nội địa.
+\end{enumerate}
 
 \section{Kết luận Chương}
 
-Chương này đã trình bày một case study hoàn chỉnh về fine-tuning mô hình ngôn ngữ nhỏ cho tác vụ đòi hỏi behavioral adaptation. Những đóng góp chính bao gồm:
+Chương này đã trình bày case study hoàn chỉnh về fine-tuning mô hình ngôn ngữ nhỏ cho tác vụ đòi hỏi behavioral adaptation. Những đóng góp chính:
 
 \begin{enumerate}
-    \item \textbf{Data-centric Pipeline:} Quy trình tạo dữ liệu tổng hợp với Teacher Model và diversity injection, giúp tạo ra training data chất lượng cao với chi phí thấp.
+    \item \textbf{Data-centric Pipeline:} Quy trình sinh dữ liệu tổng hợp với Teacher Model và diversity injection --- đây là factor quan trọng nhất quyết định chất lượng fine-tuned model.
     
-    \item \textbf{LoRA Configuration Insights:} Xác định rằng LoRA với r=16 áp dụng lên cả attention và FFN layers là optimal cho behavioral fine-tuning.
+    \item \textbf{LoRA Configuration:} Xác định rằng LoRA r=16 với target attention + FFN là optimal cho behavioral fine-tuning, đạt 99\% hiệu suất của full FT với 0.5\% parameters.
     
-    \item \textbf{Empirical Validation:} Chứng minh rằng mô hình 1.5B fine-tuned có thể vượt trội LLM lớn (GPT-4) trên các metrics về style adherence và workflow compliance.
+    \item \textbf{Empirical Validation:} Chứng minh mô hình 1.5B fine-tuned vượt GPT-4 prompted trên Style (+7\%) và Workflow Compliance (+23\%), với chi phí vận hành giảm 10--20×.
     
-    \item \textbf{Cost-Effectiveness:} Chi phí vận hành giảm 10--20 lần so với sử dụng API của LLM lớn, với chất lượng tương đương hoặc tốt hơn.
+    \item \textbf{Practical Demo:} Xây dựng ứng dụng Tarot Reader hoàn chỉnh trên Gradio, demonstrating feasibility của approach trong production.
 \end{enumerate}
 
-Kết quả này validate giả thuyết H2 đặt ra ở Chương 1: fine-tuning với PEFT là phương pháp hiệu quả để thích ứng hành vi mô hình cho các tác vụ đặc thù, bổ sung cho RAG trong việc giải quyết cả Knowledge Gap lẫn Behavior Gap khi triển khai LLMs trong môi trường production.
+Kết quả này validate giả thuyết H2 (Chương 1): fine-tuning với PEFT là phương pháp hiệu quả để thích ứng hành vi mô hình cho tác vụ đặc thù. Kết hợp với RAG (Chương 3), hai phương pháp này cùng giải quyết cả Knowledge Gap lẫn Behavior Gap --- hai thách thức cốt lõi khi triển khai LLMs trong môi trường doanh nghiệp.
+
 
 %% ----------------- End of Chapter 4 -----------------
 
