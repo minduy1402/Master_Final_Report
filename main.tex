@@ -28,6 +28,7 @@
 \usepackage[table]{xcolor}
 \usepackage{tcolorbox}
 \tcbuselibrary{breakable}
+\usepackage{booktabs}
 
 %% document dimensions
 \usepackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm,headheight=6mm,footskip=12mm]{geometry}
@@ -1138,7 +1139,7 @@ Chúng tôi áp dụng Knowledge Distillation ở mức \textit{behavioral patte
         \item \textit{Tổ hợp bài:} Random 3 lá từ 78 lá, xác suất 30\% cho mỗi lá ở vị trí reversed
     \end{itemize}
     
-    \item \textbf{Sinh conversation:} Teacher Model nhận system prompt (Listing \ref{lst:teacher-prompt}), thông tin về cards được rút, và persona của querent để sinh cuộc hội thoại hoàn chỉnh.
+    \item \textbf{Sinh conversation:} Teacher Model nhận system prompt (xem trong Annexe Listing \ref{lst:teacher-prompt}), thông tin về cards được rút, và persona của querent để sinh cuộc hội thoại hoàn chỉnh.
 \end{enumerate}
 
 \begin{lstlisting}[caption={System Prompt cho Teacher Model},label={lst:teacher-prompt},language=Python,basicstyle=\small\ttfamily]
@@ -1194,26 +1195,42 @@ Sau khi sinh raw data, chúng tôi áp dụng quy trình lọc:
     \begin{itemize}
         \item Loại bỏ conversations quá ngắn ($<$ 5 turns) hoặc quá dài ($>$ 15 turns)
         \item Loại bỏ conversations có repetition cao (Jaccard similarity giữa các turns liên tiếp $>$ 0.7)
-        \item Cross-check ý nghĩa lá bài với database --- loại bỏ các hallucination
     \end{itemize}
     
-    \item \textbf{Human review:} 20\% mẫu được đọc bởi annotator để đánh giá naturalness và adherence to style guide.
-    
-    \item \textbf{Kết quả:} Từ 200 raw conversations, thu được 150 conversations chất lượng cao ($\sim$45,000 tokens).
+    \item \textbf{Kết quả:} Từ 366 raw conversations cho mỗi teacher model Qwen Plus và GPT-4o thu được 732 conversations chất lượng cao ($\sim$585K tokens).
+
+    \item \textbf{Human review:} 20\% mẫu được đọc bởi annotator để đánh giá naturalness và adherence to style guide. Ngoài ra chúng tôi cũng tự prompt bằng tay manually để tạo thêm 48 conversations chất lượng cao sử dụng DeepSeek-R1, nâng tổng dataset lên 780 conversations.
 \end{enumerate}
+
+
 
 \subsection{Giai đoạn 2: Supervised Fine-Tuning}
 
 \subsubsection{Lựa chọn Base Model}
 
-Chúng tôi chọn họ Qwen2.5-Instruct làm base model vì:
+Trong bối cảnh tài nguyên tính toán bị giới hạn (Edge deployment/Consumer GPU), việc lựa chọn mô hình nền tảng đòi hỏi sự cân bằng tối ưu giữa hiệu suất (performance) và chi phí tính toán (computational cost). Sau khi khảo sát các mô hình SOTA (State-of-the-Art) ở phân khúc dưới 3 tỷ tham số, chúng tôi quyết định chọn họ mô hình Qwen2.5-Instruct (biến thể 0.5B và 1.5B) dựa trên ba luận điểm chính sau:
 
-\begin{itemize}
-    \item Hiệu suất cao trên benchmarks tiếng Anh và đa ngôn ngữ
-    \item Context length 32K tokens --- đủ cho multi-turn conversation
-    \item Chat template được thiết kế tốt (\texttt{<|im\_start|>}, \texttt{<|im\_end|>})
-    \item License Apache 2.0 --- phù hợp cho ứng dụng thương mại
-\end{itemize}
+\textbf{1. Hiệu suất vượt trội trên tỷ lệ tham số (Performance-to-Parameter Ratio).} Dữ liệu thực nghiệm trên các bộ benchmark tiêu chuẩn (Bảng \ref{tab:model-comparison}) cho thấy Qwen2.5-1.5B vượt trội đáng kể so với các đối thủ cùng phân khúc như Llama-3.2-1B hay Gemma-2-2.6B. Đặc biệt, chỉ số MMLU (kiến thức tổng quát) đạt 60.9, tiệm cận với các mô hình 7B của thế hệ trước. Khả năng suy luận logic cao ở size nhỏ là yếu tố then chốt giúp Chatbot xử lý logic bài Tarot phức tạp.
+
+\begin{table}[H] 
+    \centering 
+    \small 
+    \begin{tabular}{lcccc} 
+        \toprule \textbf{Model} & \textbf{Params} & \textbf{MMLU} & \textbf{GSM8K} & \textbf{MATH} \\ 
+        \ & & (Knowledge) & (Reasoning) & (Hard Logic) \\ 
+        \midrule 
+        Llama-3.2-1B-Instruct & 1.23B & 49.3 & 44.4 & 30.6 \\ 
+        Gemma-2-2.6B-Base & 2.6B & 52.2 & 30.3 & 25.3 \\ 
+        \textbf{Qwen2.5-0.5B-Instruct} & \textbf{0.49B} & 47.5\textsuperscript{} & \textbf{49.6} & \textbf{34.4} \\ 
+        \textbf{Qwen2.5-1.5B-Instruct} & \textbf{1.54B} & \textbf{60.9}\textsuperscript{} & \textbf{73.2} & \textbf{55.2} \\ 
+        \bottomrule 
+    \end{tabular} 
+    \caption{So sánh hiệu năng trên các bộ benchmark tiêu chuẩn. Số liệu trích xuất từ Qwen2.5 Technical Report (2024).} \label{tab:model-comparison} 
+\end{table}
+
+\textbf{2. Khả năng đa ngôn ngữ.} Khác với dòng Llama tập trung chủ yếu vào tiếng Anh và các ngôn ngữ châu Âu, Qwen được huấn luyện trên tập dữ liệu đa ngôn ngữ khổng lồ. over 29 languages. Tokenizer của Qwen có hiệu suất nén văn bản tốt hơn (dẫn nguồn), giúp giảm chi phí token và tăng độ dài ngữ cảnh thực tế (effective context length) cho các phiên tư vấn dài.
+Context length 32K tokens --- đủ cho multi-turn conversation dài.
+Giấy phép Apache 2.0 cũng đảm bảo tính tự do cho các mục đích thương mại hóa sau này.
 
 \begin{table}[H]
     \centering
@@ -1221,12 +1238,12 @@ Chúng tôi chọn họ Qwen2.5-Instruct làm base model vì:
         \hline
         \textbf{Model} & \textbf{Parameters} & \textbf{VRAM (FP16)} & \textbf{VRAM (4-bit)} \\
         \hline
-        Qwen2.5-0.5B-Instruct & 500M & 1.5GB & 0.5GB \\
-        Qwen2.5-1.5B-Instruct & 1.5B & 4GB & 1.5GB \\
-        Qwen2.5-3B-Instruct & 3B & 8GB & 3GB \\
+        Qwen2.5-0.5B-Instruct & 0.49B & 5.02 GB & 2.46 GB \\
+        Qwen2.5-1.5B-Instruct & 1.5B & 10.05 GB & 4.17 GB \\
+        Qwen2.5-3B-Instruct & 3B & 20.60 GB & 7.95 GB \\
         \hline
     \end{tabular}
-    \caption{Các mô hình base được thử nghiệm}
+    \caption{Các mô hình base được thử nghiệm. Thông số được tính trên trường hợp context length là 32K tokens. Thông tin lấy từ https://apxml.com/models?family=3 }
     \label{tab:base-models}
 \end{table}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.31)  14 JAN 2026 17:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.31)  15 JAN 2026 15:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1140,22 +1140,41 @@ Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
 \tcb@testbox=\box88
 \tcb@totalupperbox=\box89
 \tcb@totallowerbox=\box90
+) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen292
+\lightrulewidth=\dimen293
+\cmidrulewidth=\dimen294
+\belowrulesep=\dimen295
+\belowbottomsep=\dimen296
+\aboverulesep=\dimen297
+\abovetopsep=\dimen298
+\cmidrulesep=\dimen299
+\cmidrulekern=\dimen300
+\defaultaddspace=\dimen301
+\@cmidla=\count493
+\@cmidlb=\count494
+\@aboverulesep=\dimen302
+\@belowrulesep=\dimen303
+\@thisruleclass=\count495
+\@lastruleclass=\count496
+\@thisrulewidth=\dimen304
 ) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count493
-\Gm@cntv=\count494
-\c@Gm@tempcnt=\count495
-\Gm@bindingoffset=\dimen292
-\Gm@wd@mp=\dimen293
-\Gm@odd@mp=\dimen294
-\Gm@even@mp=\dimen295
-\Gm@layoutwidth=\dimen296
-\Gm@layoutheight=\dimen297
-\Gm@layouthoffset=\dimen298
-\Gm@layoutvoffset=\dimen299
+\Gm@cnth=\count497
+\Gm@cntv=\count498
+\c@Gm@tempcnt=\count499
+\Gm@bindingoffset=\dimen305
+\Gm@wd@mp=\dimen306
+\Gm@odd@mp=\dimen307
+\Gm@even@mp=\dimen308
+\Gm@layoutwidth=\dimen309
+\Gm@layoutheight=\dimen310
+\Gm@layouthoffset=\dimen311
+\Gm@layoutvoffset=\dimen312
 \Gm@dimlist=\toks50
 ) (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2023/10/14 v2.0e lastpage: 2.09 or 2e? (HMM)
@@ -1163,7 +1182,7 @@ Package: lastpage 2023/10/14 v2.0e lastpage: 2.09 or 2e? (HMM)
 Package: lastpage2e 2023/10/14 v2.0e Decide which 2e lastpage version to use (HMM)
  (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
 Package: lastpagemodern 2023-10-14 v2.0e Refers to last page's name (HMM; JPG)
-\c@lastpagecount=\count496
+\c@lastpagecount=\count500
 ) 
 )) (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
@@ -1177,22 +1196,22 @@ Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 \f@nch@O@olf=\skip96
 \f@nch@O@orf=\skip97
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count497
+\lst@mode=\count501
 \lst@gtempboxa=\box91
 \lst@token=\toks51
-\lst@length=\count498
-\lst@currlwidth=\dimen300
-\lst@column=\count499
-\lst@pos=\count500
-\lst@lostspace=\dimen301
-\lst@width=\dimen302
-\lst@newlines=\count501
-\lst@lineno=\count502
-\lst@maxwidth=\dimen303
+\lst@length=\count502
+\lst@currlwidth=\dimen313
+\lst@column=\count503
+\lst@pos=\count504
+\lst@lostspace=\dimen314
+\lst@width=\dimen315
+\lst@newlines=\count505
+\lst@lineno=\count506
+\lst@maxwidth=\dimen316
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count503
-\lst@skipnumbers=\count504
+\c@lstnumber=\count507
+\lst@skipnumbers=\count508
 \lst@framebox=\box92
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
@@ -1213,9 +1232,9 @@ Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 ) (/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-\@linkdim=\dimen304
-\Hy@linkcounter=\count505
-\Hy@pagecounter=\count506
+\@linkdim=\dimen317
+\Hy@linkcounter=\count509
+\Hy@pagecounter=\count510
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -1223,7 +1242,7 @@ Now handling font encoding PD1 ...
 ) (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count507
+\Hy@SavedSpaceFactor=\count511
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -1236,17 +1255,17 @@ Package hyperref Info: Plain pages OFF on input line 4194.
 Package hyperref Info: Backreferencing OFF on input line 4199.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4446.
-\c@Hy@tempcnt=\count508
+\c@Hy@tempcnt=\count512
 LaTeX Info: Redefining \url on input line 4784.
-\XeTeXLinkMargin=\dimen305
+\XeTeXLinkMargin=\dimen318
  (/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count509
-\Field@Width=\dimen306
-\Fld@charsize=\dimen307
+\Fld@menulength=\count513
+\Field@Width=\dimen319
+\Fld@charsize=\dimen320
 Package hyperref Info: Hyper figures OFF on input line 6063.
 Package hyperref Info: Link nesting OFF on input line 6068.
 Package hyperref Info: Hyper index ON on input line 6071.
@@ -1258,9 +1277,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6093.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count510
-\c@Item=\count511
-\c@Hfootnote=\count512
+\Hy@abspage=\count514
+\c@Item=\count515
+\c@Hfootnote=\count516
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -1269,8 +1288,8 @@ File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count513
-\c@bookmark@seq@number=\count514
+\Fld@listcount=\count517
+\c@bookmark@seq@number=\count518
  (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
  (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -1280,25 +1299,25 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip98
 )
-Package hyperref Info: Option `plainpages' set `false' on input line 94.
-Package hyperref Info: Option `bookmarksopen' set `false' on input line 94.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 94.
-Package hyperref Info: Option `breaklinks' set `true' on input line 94.
-Package hyperref Info: Option `linktocpage' set `true' on input line 94.
-Package hyperref Info: Option `colorlinks' set `true' on input line 94.
-LaTeX Font Info:    Trying to load font information for T5+ntxtlf on input line 125.
-LaTeX Font Info:    No file T5ntxtlf.fd. on input line 125.
+Package hyperref Info: Option `plainpages' set `false' on input line 95.
+Package hyperref Info: Option `bookmarksopen' set `false' on input line 95.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 95.
+Package hyperref Info: Option `breaklinks' set `true' on input line 95.
+Package hyperref Info: Option `linktocpage' set `true' on input line 95.
+Package hyperref Info: Option `colorlinks' set `true' on input line 95.
+LaTeX Font Info:    Trying to load font information for T5+ntxtlf on input line 126.
+LaTeX Font Info:    No file T5ntxtlf.fd. on input line 126.
 
 
 LaTeX Font Warning: Font shape `T5/ntxtlf/m/n' undefined
-(Font)              using `T5/cmr/m/n' instead on input line 125.
+(Font)              using `T5/cmr/m/n' instead on input line 126.
 
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 
 Package csquotes Warning: No style for language 'vietnamese'.
-(csquotes)                Using fallback style on input line 125.
+(csquotes)                Using fallback style on input line 126.
 
 Package csquotes Info: Redefining alias 'default' -> 'fallback'.
 (build/main.aux
@@ -1308,58 +1327,58 @@ LaTeX Warning: Label `tab:cost-comparison' multiply defined.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 125.
-LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 125.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 126.
+LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 126.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 125.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 125.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 126.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 126.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 125.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 125.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 126.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 126.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 125.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 125.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 126.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 126.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for T5/cmr/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for T5/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count515
-\scratchdimen=\dimen308
+\scratchcounter=\count519
+\scratchdimen=\dimen321
 \scratchbox=\box93
-\nofMPsegments=\count516
-\nofMParguments=\count517
+\nofMPsegments=\count520
+\nofMParguments=\count521
 \everyMPshowfont=\toks52
-\MPscratchCnt=\count518
-\MPscratchDim=\dimen309
-\MPnumerator=\count519
-\makeMPintoPDFobject=\count520
+\MPscratchCnt=\count522
+\MPscratchDim=\dimen322
+\MPnumerator=\count523
+\makeMPintoPDFobject=\count524
 \everyMPtoPDFconversion=\toks53
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1367,10 +1386,10 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-\c@mv@tabular=\count521
-\c@mv@boldtabular=\count522
-LaTeX Info: Command `\dddot' is already robust on input line 125.
-LaTeX Info: Command `\ddddot' is already robust on input line 125.
+\c@mv@tabular=\count525
+\c@mv@boldtabular=\count526
+LaTeX Info: Command `\dddot' is already robust on input line 126.
+LaTeX Info: Command `\ddddot' is already robust on input line 126.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
@@ -1385,7 +1404,7 @@ Package biblatex Info: ... file 'vietnamese.lbx' not found.
 
 
 Package biblatex Warning: Language 'vietnamese' not supported.
-(biblatex)                Using dummy definitions on input line 125.
+(biblatex)                Using dummy definitions on input line 126.
 
 Package biblatex Info: Trying to load language 'english' -> 'cms-american'...
 Package biblatex Info: ... file 'cms-american.lbx' found.
@@ -1413,8 +1432,8 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (build/main.bbl)
-Package biblatex Info: Reference section=0 on input line 125.
-Package biblatex Info: Reference segment=0 on input line 125.
+Package biblatex Info: Reference section=0 on input line 126.
+Package biblatex Info: Reference segment=0 on input line 126.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1450,8 +1469,8 @@ Package biblatex Info: Reference segment=0 on input line 125.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count523
-Package hyperref Info: Link coloring ON on input line 125.
+\c@lstlisting=\count527
+Package hyperref Info: Link coloring ON on input line 126.
 (build/main.out) (build/main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
@@ -1459,21 +1478,21 @@ Package hyperref Info: Link coloring ON on input line 125.
 
 
 LaTeX Font Warning: Font shape `T5/ntxtlf/b/n' undefined
-(Font)              using `T5/ntxtlf/m/n' instead on input line 137.
+(Font)              using `T5/ntxtlf/m/n' instead on input line 138.
 
 
 LaTeX Font Warning: Font shape `T5/ntxtlf/b/sc' undefined
-(Font)              using `T5/ntxtlf/b/n' instead on input line 137.
+(Font)              using `T5/ntxtlf/b/n' instead on input line 138.
 
 <figures/logo-INSA.png, id=413, 2546.51375pt x 552.0625pt>
 File: figures/logo-INSA.png Graphic file (type png)
 <use figures/logo-INSA.png>
-Package pdftex.def Info: figures/logo-INSA.png  used on input line 148.
+Package pdftex.def Info: figures/logo-INSA.png  used on input line 149.
 (pdftex.def)             Requested size: 147.95433pt x 32.06934pt.
 <figures/logo-N7.png, id=415, 567.11874pt x 205.76875pt>
 File: figures/logo-N7.png Graphic file (type png)
 <use figures/logo-N7.png>
-Package pdftex.def Info: figures/logo-N7.png  used on input line 149.
+Package pdftex.def Info: figures/logo-N7.png  used on input line 150.
 (pdftex.def)             Requested size: 147.95433pt x 53.68071pt.
 [1
 
@@ -1482,50 +1501,50 @@ Ch\uhorn \ohorn ng 1.
 [1
 
 ]
-Overfull \hbox (15.48967pt too wide) in paragraph at lines 199--200
+Overfull \hbox (15.48967pt too wide) in paragraph at lines 200--201
 \T5/ntxtlf/m/n/10.95 This master's thesis was completed at Torus AI, a technology company with the mission "Intelligence
  []
 
 
-Overfull \hbox (0.72171pt too wide) in paragraph at lines 223--225
+Overfull \hbox (0.72171pt too wide) in paragraph at lines 224--226
 \T5/ntxtlf/b/n/10.95 the semantics of complex tables or visual information. The question is: How to build a Multimodal
  []
 
 [2] [3] [4]
 Ch\uhorn \ohorn ng 2.
-LaTeX Font Info:    Trying to load font information for OT1+minntx on input line 274.
+LaTeX Font Info:    Trying to load font information for OT1+minntx on input line 275.
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/ot1minntx.fd
 File: ot1minntx.fd 2023/09/09 v1.1 font definition file for OT1/minntx
 )
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 274.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 275.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 274.
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 275.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 274.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 275.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 ) [5
 
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 337--337
 []|\T5/ntxtlf/b/n/10.95 Khâ th½ch ùng vîi v«n
  []
 
 
 LaTeX Font Warning: Font shape `T5/ntxtlf/m/it' undefined
-(Font)              using `T5/ntxtlf/m/n' instead on input line 342.
+(Font)              using `T5/ntxtlf/m/n' instead on input line 343.
 
 [6] [7] [8] [9]
-Overfull \hbox (10.50983pt too wide) in paragraph at lines 520--521
+Overfull \hbox (10.50983pt too wide) in paragraph at lines 521--522
 \T5/ntxtlf/b/n/10.95 Aghajanyan et al. (2021) chùng minh r¬ng c¡c mæ h¼nh ngæn ngú lîn câ **intrinsic dimensionality**
  []
 
 [10] [11] [12]
-Overfull \hbox (154.04922pt too wide) in paragraph at lines 675--684
+Overfull \hbox (154.04922pt too wide) in paragraph at lines 676--685
  [][] 
  []
 
@@ -1534,50 +1553,50 @@ Ch\uhorn \ohorn ng 3.
 [15
 
 ] [16]
-Overfull \hbox (3.0608pt too wide) in paragraph at lines 741--742
+Overfull \hbox (3.0608pt too wide) in paragraph at lines 742--743
 \T5/ntxtlf/b/n/10.95 (Sparse), ^^_°c bi»t quan trång cho queries chùa code. Reranker gi£i quy¸t "Lost in the Middle"b¬ng
  []
 
 
-Overfull \hbox (24.00926pt too wide) in paragraph at lines 747--749
+Overfull \hbox (24.00926pt too wide) in paragraph at lines 748--750
 \T5/ntxtlf/b/n/10.95 Chóng tæi ^^_¡nh gi¡ ba cæng cö parsing phê bi¸n: PyPDF/PyMuPDF, LlamaParse, v  UnstructuredIO.
  []
 
-LaTeX Font Info:    Trying to load font information for T5+ntxtt on input line 752.
-LaTeX Font Info:    No file T5ntxtt.fd. on input line 752.
+LaTeX Font Info:    Trying to load font information for T5+ntxtt on input line 753.
+LaTeX Font Info:    No file T5ntxtt.fd. on input line 753.
 
 LaTeX Font Warning: Font shape `T5/ntxtt/m/n' undefined
-(Font)              using `T5/cmr/m/n' instead on input line 752.
+(Font)              using `T5/cmr/m/n' instead on input line 753.
 
 
-Overfull \hbox (10.77988pt too wide) in paragraph at lines 752--753
+Overfull \hbox (10.77988pt too wide) in paragraph at lines 753--754
 \T5/ntxtt/m/n/10.95 Trong pipeline cõa chóng tæi, UnstructuredIO ^^_÷ñc c§u h¼nh vîi c¡c tham sè sau: strategy=``hi_res''
  []
 
 
-Overfull \hbox (69.7712pt too wide) in paragraph at lines 752--753
+Overfull \hbox (69.7712pt too wide) in paragraph at lines 753--754
 \T5/ntxtt/m/n/10.95 infer_table_structure=True ^^_º tü ^^_ëng detect v  parse c§u tróc b£ng, extract_image_block_types=[``Images'',
  []
 
 [17]
-Overfull \hbox (12.6653pt too wide) in paragraph at lines 764--768
+Overfull \hbox (12.6653pt too wide) in paragraph at lines 765--769
 \T5/ntxtt/m/n/10.95 Mët c¥u häi tü nhi¶n l : t¤i sao khæng embed trüc ti¸p raw content m  c¦n qua b÷îc summarization?
  []
 
 [18] [19]
-LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 830.
+LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 831.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 830.
+(Font)              scaled to size 10.95pt on input line 831.
 
-Overfull \hbox (117.0679pt too wide) in paragraph at lines 830--831
+Overfull \hbox (117.0679pt too wide) in paragraph at lines 831--832
 []\T5/ntxtt/m/n/10.95 Document Parsing: UnstructuredIO vîi partition_pdf(), c§u h¼nh strategy="hi_res", infer_table_structure=True,
  []
 
 [20]
-Overfull \hbox (8.74821pt too wide) in paragraph at lines 831--832
+Overfull \hbox (8.74821pt too wide) in paragraph at lines 832--833
 []\T5/ntxtt/m/n/10.95 Summarization: Sû döng Gemma-3-12b-it qua GENTL API. Texts v  Tables ^^_÷ñc summarize
  []
 
@@ -1586,58 +1605,63 @@ Ch\uhorn \ohorn ng 4.
 [26
 
 ] [27] [28]
-Underfull \hbox (badness 10000) in paragraph at lines 1114--1114
+Underfull \hbox (badness 10000) in paragraph at lines 1115--1115
 []|\T5/ntxtlf/m/it/10 Beginnings, innocence,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1114--1115
+Underfull \hbox (badness 10000) in paragraph at lines 1115--1116
 []|\T5/ntxtlf/m/it/10 Holding back,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1116--1116
+Underfull \hbox (badness 10000) in paragraph at lines 1117--1117
 []|\T5/ntxtlf/m/it/10 Walking away, seeking
  []
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 1144.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 1145.
  [29]
 
 LaTeX Font Warning: Font shape `T5/ntxtt/m/it' undefined
-(Font)              using `T5/ntxtt/m/n' instead on input line 1145.
+(Font)              using `T5/ntxtt/m/n' instead on input line 1146.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1179--1180
+Underfull \hbox (badness 10000) in paragraph at lines 1180--1181
 []|\T5/ntxtlf/m/it/10.95 76,076 tê hñp \TS1/ntxtlf/m/n/10.95 Ö \T5/ntxtlf/m/it/10.95 8 variations
  []
 
-[30] [31]
-Package textcomp Info: Symbol \textrightarrow not provided by
-(textcomp)             font family ntxtlf in TS1 encoding.
-(textcomp)             Default family used instead on input line 1305.
-Package textcomp Info: Symbol \textrightarrow not provided by
-(textcomp)             font family ntxtlf in TS1 encoding.
-(textcomp)             Default family used instead on input line 1305.
-Package textcomp Info: Symbol \textrightarrow not provided by
-(textcomp)             font family ntxtlf in TS1 encoding.
-(textcomp)             Default family used instead on input line 1305.
- [32{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Package textcomp Info: Symbol \textrightarrow not provided by
-(textcomp)             font family ntxtlf in TS1 encoding.
-(textcomp)             Default family used instead on input line 1400.
- [33]
-Package textcomp Info: Symbol \textrightarrow not provided by
-(textcomp)             font family ntxtlf in TS1 encoding.
-(textcomp)             Default family used instead on input line 1430.
 
-Overfull \hbox (10.27643pt too wide) in paragraph at lines 1444--1445
+Overfull \hbox (3.75978pt too wide) in paragraph at lines 1202--1203
+\T5/ntxtlf/m/it/10.95 conversations ch§t l÷ñng cao sû döng DeepSeek-R1, n¥ng têng dataset l¶n 780 conversations. 
+ []
+
+[30] [31] [32]
+Package textcomp Info: Symbol \textrightarrow not provided by
+(textcomp)             font family ntxtlf in TS1 encoding.
+(textcomp)             Default family used instead on input line 1322.
+Package textcomp Info: Symbol \textrightarrow not provided by
+(textcomp)             font family ntxtlf in TS1 encoding.
+(textcomp)             Default family used instead on input line 1322.
+Package textcomp Info: Symbol \textrightarrow not provided by
+(textcomp)             font family ntxtlf in TS1 encoding.
+(textcomp)             Default family used instead on input line 1322.
+ [33{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Package textcomp Info: Symbol \textrightarrow not provided by
+(textcomp)             font family ntxtlf in TS1 encoding.
+(textcomp)             Default family used instead on input line 1417.
+ [34]
+Package textcomp Info: Symbol \textrightarrow not provided by
+(textcomp)             font family ntxtlf in TS1 encoding.
+(textcomp)             Default family used instead on input line 1447.
+
+Overfull \hbox (10.27643pt too wide) in paragraph at lines 1461--1462
 \T5/ntxtlf/m/it/10.95 percentage, cost of living difference, career growth opportunities, personal relationships,
  []
 
-[34] [35] [36] [37] 
+[35] [36] [37] [38] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (build/main.aux
 LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 9.
@@ -1665,18 +1689,18 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44541 strings out of 474222
- 848107 string characters out of 5748732
- 2162541 words of memory out of 5000000
- 65843 multiletter control sequences out of 15000+600000
+ 44611 strings out of 474222
+ 849271 string characters out of 5748732
+ 2163683 words of memory out of 5000000
+ 65907 multiletter control sequences out of 15000+600000
  609585 words of font info for 130 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,24n,117p,1030b,4039s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on build/main.pdf (38 pages, 417311 bytes).
+Output written on build/main.pdf (39 pages, 419632 bytes).
 PDF statistics:
- 866 PDF objects out of 1000 (max. 8388607)
- 782 compressed objects within 8 object streams
- 271 named destinations out of 1000 (max. 500000)
+ 872 PDF objects out of 1000 (max. 8388607)
+ 787 compressed objects within 8 object streams
+ 273 named destinations out of 1000 (max. 500000)
  831 words of extra memory for PDF output out of 10000 (max. 10000000)
 
