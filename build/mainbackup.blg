@@ -1,0 +1,9 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'build/mainbackup.blg'
+[34] biber:340> INFO - === Fri Jan 16, 2026, 13:52:50
+[44] Biber.pm:419> INFO - Reading 'build/mainbackup.bcf'
+[93] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
+[99] bbl.pm:660> INFO - Writing 'build/mainbackup.bbl' with encoding 'UTF-8'
+[99] bbl.pm:763> INFO - Output to build/mainbackup.bbl
+[99] Biber.pm:131> WARN - The file 'build/mainbackup.bcf' does not contain any citations!
+[100] Biber.pm:133> INFO - WARNINGS: 1

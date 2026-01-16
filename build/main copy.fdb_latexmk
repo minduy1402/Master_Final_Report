@@ -1,14 +1,13 @@
 # Fdb version 4
-["biber build/main"] 0 "build/main.bcf" "build/main.bbl" "build/main" 1768577773.42731 -1
-  "bibliography.bib" 1767174044 4042 0bc08e8a5e3faf87bf37fb212f8ab79d ""
-  "build/main.bcf" 1768577773.33792 202967 51b3c56958c135420dd361fbafa996e5 "pdflatex"
+["biber build/main copy"] 1768567953.82057 "build/main copy.bcf" "build/main copy.bbl" "build/main copy" 1768567956.71369 0
+  "build/main copy.bcf" 1768567956.62736 202967 51b3c56958c135420dd361fbafa996e5 "pdflatex"
   (generated)
-  "build/main.bbl"
-  "build/main.blg"
+  "build/main copy.bbl"
+  "build/main copy.blg"
   (rewritten before read)
-["pdflatex"] 1768577772.10386 "/home/minhduy/Documents/Projects/Master_Final_Report/main.tex" "build/main.pdf" "main" 1768577773.42762 0
+["pdflatex"] 1768567955.46972 "/home/minhduy/Documents/Projects/Master_Final_Report/main copy.tex" "build/main copy.pdf" "main copy" 1768567956.71398 0
   "/etc/texmf/web2c/texmf.cnf" 1759430234.41919 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/minhduy/Documents/Projects/Master_Final_Report/main.tex" 1768577771.90137 105470 4cae1f64abd86621ebd5dcd469cadccc ""
+  "/home/minhduy/Documents/Projects/Master_Final_Report/main copy.tex" 1768567952.24196 113573 7c18b30ceb4609138e504b839ed78b48 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1095.tfm" 1136768653 3584 929cdff2b7a8c11bd4d49fd68cb0ae70 ""
@@ -59,7 +58,6 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr10.pfb" 1647811568 41608 f55c1a79be39d4e7ed224ba660d7353d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb" 1647811568 40319 02110ade360715fbba33c66db50ef607 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr17.pfb" 1647811568 40384 b6b332b554db567a0151da5ffb2a1eaa ""
-  "/usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr6.pfb" 1647811568 41329 347fce17df5390efebfa22c90ac72c92 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr7.pfb" 1647811568 41393 9cbb672552ab44d80b90a5e64ba26e98 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr8.pfb" 1647811568 41310 310d863e4c8e005265dc9ba6af1579a2 ""
   "/usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntx-Bold-tlf-ot1.vf" 1572470264 956 0cf724d01d1d2d4ced0eca019099663a ""
@@ -295,21 +293,18 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1767176506.15359 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1767176575 8213879 d16424704dd7bce93b09b80383a617c6 ""
-  "build/main.aux" 1768577773.33392 27013 e84708d2bfd1a5048fbe31dba4e7afc8 "pdflatex"
-  "build/main.bbl" 1768482756.23663 466 ee04f40f768daeed26442158e95aba61 "biber build/main"
-  "build/main.out" 1768577773.33592 22986 b75648a74df58be4a37ca57a50654ded "pdflatex"
-  "build/main.run.xml" 1768577773.33862 2409 e4c9260686d53f9156fba2ee374fbbff "pdflatex"
-  "figures/ccam_dense_search_failure.png" 1768574652.55557 49560 f3eee5f52b1eb8a6a01b2b55c0757b3c ""
-  "figures/ccam_example.png" 1768568967.30665 139470 530b1d1c3ac9b438724761d0d498178b ""
-  "figures/gpm_report_example.png" 1768568594.07822 138738 323bf5f1770a7e1c5b6fe218883c613a ""
+  "build/main copy.aux" 1768567956.62436 27413 dd02cbdc98e595c4e966bcd04a805419 "pdflatex"
+  "build/main copy.bbl" 1768567954.19938 466 ee04f40f768daeed26442158e95aba61 "biber build/main copy"
+  "build/main copy.out" 1768567956.62613 26952 b2df6d0726581f4e2324595edb2d3ecc "pdflatex"
+  "build/main copy.run.xml" 1768567956.62916 2458 fef20b098f3ec51bb5efc050bbd37429 "pdflatex"
   "figures/logo-INSA.png" 1767174046 57250 5d0aec2fae94ae200cc6a9e1123f8546 ""
   "figures/logo-N7.png" 1767174046 7953 12a430ce840dc3a8868fa58e9dad87d4 ""
-  "main.tex" 1768577771.90137 105470 4cae1f64abd86621ebd5dcd469cadccc ""
+  "main copy.tex" 1768567952.24196 113573 7c18b30ceb4609138e504b839ed78b48 ""
   (generated)
-  "build/main.aux"
-  "build/main.bcf"
-  "build/main.log"
-  "build/main.out"
-  "build/main.pdf"
-  "build/main.run.xml"
+  "build/main copy.aux"
+  "build/main copy.bcf"
+  "build/main copy.log"
+  "build/main copy.out"
+  "build/main copy.pdf"
+  "build/main copy.run.xml"
   (rewritten before read)

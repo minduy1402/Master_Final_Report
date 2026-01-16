@@ -83,112 +83,112 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Multimodal RAG for Complex Document Understanding}{15}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Tại sao RAG Cơ bản Không Đủ? Phân tích Vấn đề}{15}{section.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Thử nghiệm với RAG Cơ bản: Vấn đề Gặp phải}{15}{subsection.3.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Vấn đề 1: Mất Cấu trúc Bảng biểu (Table Structure Loss)}{16}{section*.35}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Vấn đề 2: Semantic Gap giữa Query và Document (Query-Document Mismatch)}{16}{section*.36}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Vấn đề 3: Lost in the Middle Phenomenon}{16}{section*.37}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Định nghĩa Bài toán Nghiên cứu}{16}{subsection.3.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Kiến trúc Tổng quan của Pipeline RAG Nâng cao}{16}{section.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Thiết kế Kiến trúc}{16}{subsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Lý do Chọn Kiến trúc Này}{17}{subsection.3.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Document Parsing: Trích xuất Thông tin Đa phương thức}{17}{section.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Lựa chọn Công cụ: Tại sao UnstructuredIO?}{17}{subsection.3.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Cấu hình Parsing cho Tài liệu Phức tạp}{17}{subsection.3.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Xử lý Từng Loại Content}{17}{subsection.3.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Summarization: Tạo Cầu nối Ngữ nghĩa}{18}{section.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Tại sao Cần Summarization?}{18}{subsection.3.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Chiến lược Summarization}{18}{subsection.3.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Chiến lược Parent-Child Indexing}{18}{subsection.3.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Embedding Model: Lựa chọn và Lý do}{19}{section.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Đánh giá Các Lựa chọn}{19}{subsection.3.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Lựa chọn và Justification}{19}{subsection.3.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Hybrid Search và Reranking: Kết hợp Semantic và Keyword}{19}{section.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Vấn đề của Dense Search Thuần túy}{19}{subsection.3.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Giải pháp: Hybrid Search}{19}{subsection.3.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Cross-Encoder Reranking: Giải quyết ``Lost in the Middle''}{20}{subsection.3.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.4}Tác động của Reranking}{20}{subsection.3.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Use-Case 1: Hệ thống Hỏi đáp Tài liệu Tài chính (GPM)}{20}{section.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Mô tả Bài toán}{20}{subsection.3.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Triển khai Pipeline cho GPM}{20}{subsection.3.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Ví dụ Minh họa}{21}{subsection.3.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.8}Use-Case 2: Hệ thống Tra cứu Mã Y tế (Dr. Besnier / CCAM)}{21}{section.3.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}Mô tả Bài toán}{21}{subsection.3.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.2}Thách thức Đặc thù}{21}{subsection.3.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.3}Triển khai Pipeline cho CCAM}{22}{subsection.3.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.4}Ví dụ Minh họa}{22}{subsection.3.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.9}Đánh giá Thực nghiệm và Kết quả}{22}{section.3.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.1}Phương pháp Đánh giá}{22}{subsection.3.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.2}Dataset Đánh giá}{23}{subsection.3.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.3}Kết quả So sánh Simple RAG vs Advanced RAG}{23}{subsection.3.9.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces So sánh kết quả giữa Simple RAG và Advanced RAG trên use-case GPM}}{23}{table.caption.38}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.4}Phân tích Chi tiết với RAGAS Metrics}{23}{subsection.3.9.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.5}Phân tích Nguyên nhân Cải thiện}{23}{subsection.3.9.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.6}Giám sát và Quan sát (Observability)}{24}{subsection.3.9.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.10}Thảo luận và Hạn chế}{24}{section.3.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.1}Thảo luận về Kết quả}{24}{subsection.3.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.2}Hạn chế của Nghiên cứu}{24}{subsection.3.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.3}Hướng Phát triển}{24}{subsection.3.10.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.11}Kết luận Chương}{25}{section.3.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Bài toán Thực tế: Hai Use-case từ Doanh nghiệp}{15}{section.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Use-case GPM: Hỏi đáp Tài liệu Tài chính}{15}{subsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Use-case Dr. Besnier: Tra cứu Mã Y tế CCAM}{15}{subsection.3.1.2}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:ccam_example}{{3.1a}{16}{Ví dụ về mã CCAM}{figure.caption.35}{}}
+\newlabel{sub@fig:ccam_example}{{a}{16}{Ví dụ về mã CCAM}{figure.caption.35}{}}
+\newlabel{fig:gpm_report_example}{{3.1b}{16}{Ví dụ về báo cáo GPM}{figure.caption.35}{}}
+\newlabel{sub@fig:gpm_report_example}{{b}{16}{Ví dụ về báo cáo GPM}{figure.caption.35}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Minh họa tài liệu CCAM và GPM}}{16}{figure.caption.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Điểm Chung và Lý do Cần RAG Pipeline In-house}{16}{subsection.3.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.4}Mục tiêu: Một Pipeline Chung cho Mọi Tài liệu}{17}{subsection.3.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Tại sao Simple RAG Thất bại? Phân tích Thực nghiệm}{17}{section.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Cấu hình Simple RAG Baseline}{17}{subsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Vấn đề 1: Mất Cấu trúc Bảng biểu}{17}{subsection.3.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces So sánh cấu trúc: Bảng gốc vs Text trích xuất từ PyPDF}}{18}{table.caption.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Vấn đề 2: Semantic Gap với Embedding Model Tiếng Anh}{18}{subsection.3.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces So sánh Embedding Models trên Query Tiếng Pháp}}{18}{table.caption.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Vấn đề 3: Thất bại với Exact Code Matching}{18}{subsection.3.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Kết quả Dense Search cho query ``HAFA508''}}{19}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:ccam_dense_search_failure}{{3.2}{19}{Kết quả Dense Search cho query ``HAFA508''}{figure.caption.38}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}Vấn đề 4: Lost in the Middle}{19}{subsection.3.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.6}Kết quả Định lượng: Simple RAG vs. Ground Truth}{19}{subsection.3.2.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Kết quả Simple RAG trên GPM Test Set}}{19}{table.caption.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Kiến trúc Advanced RAG Pipeline}{19}{section.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Indexing Phase: Từ PDF đến Vector Store}{20}{subsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Document Parsing với UnstructuredIO}{20}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Summarization: Semantic Bridge}{20}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Parent-Child Indexing Strategy}{21}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Multilingual Embedding Model}{21}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Query Phase: Từ Câu hỏi đến Câu trả lời}{21}{subsection.3.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Hybrid Search: Kết hợp Semantic và Keyword}{21}{section*.44}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Cross-Encoder Reranking}{22}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Multimodal Generation}{22}{section*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Đánh giá Thực nghiệm}{22}{section.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Datasets và Metrics}{22}{subsection.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Kết quả So sánh: Simple RAG vs. Advanced RAG}{23}{subsection.3.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Kết quả trên GPM Test Set (25 câu hỏi)}}{23}{table.caption.47}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces Kết quả trên CCAM Test Set (10 scenarios)}}{23}{table.caption.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Ablation Study: Đóng góp của Từng Thành phần}{23}{section.3.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.6}{\ignorespaces Ablation Study trên GPM Test Set}}{23}{table.caption.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Phân tích Chi tiết từng Component}{23}{subsection.3.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Ablation trên CCAM: Tầm quan trọng của Hybrid Search}{24}{subsection.3.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.7}{\ignorespaces Ablation Study trên CCAM Test Set}}{24}{table.caption.50}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Thảo luận và Hướng Phát triển}{24}{section.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Tổng kết Đóng góp}{24}{subsection.3.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Hạn chế}{24}{subsection.3.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Hướng Phát triển}{24}{subsection.3.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Kết luận Chương}{24}{section.3.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {4}Fine-tuning Mô hình Ngôn ngữ Nhỏ cho Tác vụ Đặc thù: Trường hợp Tarot Reader}{26}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {4.1}Phân tích Bài toán}{26}{section.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Giới hạn của Prompt Engineering cho Behavioral Tasks}{26}{subsection.4.1.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces So sánh chi phí vận hành. *Giả định 10K cuộc hội thoại × 3K tokens/cuộc. **Chi phí GPU amortized.}}{27}{table.caption.39}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:cost-comparison}{{4.1}{27}{So sánh chi phí vận hành. *Giả định 10K cuộc hội thoại × 3K tokens/cuộc. **Chi phí GPU amortized}{table.caption.39}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Phân tích chi phí vận hành (Operational Cost Analysis). \textsuperscript  {[1]}Dựa trên OpenAI Pricing: \$2.5 In / \$10 Out. \textsuperscript  {[2]}Dựa trên Anthropic Pricing: \$3 In / \$15 Out. \textsuperscript  {[3]}Tính toán dựa trên GPU T4 (\$0.2/h) với tốc độ suy luận 100 tok/s (vLLM backend).}}{27}{table.caption.40}\protected@file@percent }
-\newlabel{tab:cost-comparison}{{4.2}{27}{Phân tích chi phí vận hành (Operational Cost Analysis). \textsuperscript {[1]}Dựa trên OpenAI Pricing: \$2.5 In / \$10 Out. \textsuperscript {[2]}Dựa trên Anthropic Pricing: \$3 In / \$15 Out. \textsuperscript {[3]}Tính toán dựa trên GPU T4 (\$0.2/h) với tốc độ suy luận 100 tok/s (vLLM backend)}{table.caption.40}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces So sánh chi phí vận hành. *Giả định 10K cuộc hội thoại × 3K tokens/cuộc. **Chi phí GPU amortized.}}{27}{table.caption.51}\protected@file@percent }
+\newlabel{tab:cost-comparison}{{4.1}{27}{So sánh chi phí vận hành. *Giả định 10K cuộc hội thoại × 3K tokens/cuộc. **Chi phí GPU amortized}{table.caption.51}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Phân tích chi phí vận hành (Operational Cost Analysis). \textsuperscript  {[1]}Dựa trên OpenAI Pricing: \$2.5 In / \$10 Out. \textsuperscript  {[2]}Dựa trên Anthropic Pricing: \$3 In / \$15 Out. \textsuperscript  {[3]}Tính toán dựa trên GPU T4 (\$0.2/h) với tốc độ suy luận 100 tok/s (vLLM backend).}}{27}{table.caption.52}\protected@file@percent }
+\newlabel{tab:cost-comparison}{{4.2}{27}{Phân tích chi phí vận hành (Operational Cost Analysis). \textsuperscript {[1]}Dựa trên OpenAI Pricing: \$2.5 In / \$10 Out. \textsuperscript {[2]}Dựa trên Anthropic Pricing: \$3 In / \$15 Out. \textsuperscript {[3]}Tính toán dựa trên GPU T4 (\$0.2/h) với tốc độ suy luận 100 tok/s (vLLM backend)}{table.caption.52}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Đặc thù của Tác vụ Tarot Reader}{27}{subsection.4.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}Câu hỏi Nghiên cứu}{28}{subsection.4.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4.2}Phương pháp: Data-Centric Fine-tuning Pipeline}{28}{section.4.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Pipeline Fine-tuning cho Tarot Reader. Teacher Model sinh dữ liệu mẫu, Student Model học từ dữ liệu này, kết quả được đánh giá bởi LLM Judge và human evaluators.}}{28}{figure.caption.41}\protected@file@percent }
-\newlabel{fig:finetuning-pipeline}{{4.1}{28}{Pipeline Fine-tuning cho Tarot Reader. Teacher Model sinh dữ liệu mẫu, Student Model học từ dữ liệu này, kết quả được đánh giá bởi LLM Judge và human evaluators}{figure.caption.41}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Pipeline Fine-tuning cho Tarot Reader. Teacher Model sinh dữ liệu mẫu, Student Model học từ dữ liệu này, kết quả được đánh giá bởi LLM Judge và human evaluators.}}{28}{figure.caption.53}\protected@file@percent }
+\newlabel{fig:finetuning-pipeline}{{4.1}{28}{Pipeline Fine-tuning cho Tarot Reader. Teacher Model sinh dữ liệu mẫu, Student Model học từ dữ liệu này, kết quả được đánh giá bởi LLM Judge và human evaluators}{figure.caption.53}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Giai đoạn 1: Synthetic Data Generation}{28}{subsection.4.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Mục tiêu và Định dạng Dữ liệu}{28}{section*.42}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Thu thập Tri thức về Tarot Cards}{29}{section*.43}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Ví dụ dữ liệu Tarot cards (trích)}}{29}{table.caption.44}\protected@file@percent }
-\newlabel{tab:tarot-data-sample}{{4.3}{29}{Ví dụ dữ liệu Tarot cards (trích)}{table.caption.44}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Chiến lược Sinh Dữ liệu với Teacher Model}{29}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Mục tiêu và Định dạng Dữ liệu}{28}{section*.54}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Thu thập Tri thức về Tarot Cards}{29}{section*.55}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Ví dụ dữ liệu Tarot cards (trích)}}{29}{table.caption.56}\protected@file@percent }
+\newlabel{tab:tarot-data-sample}{{4.3}{29}{Ví dụ dữ liệu Tarot cards (trích)}{table.caption.56}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Chiến lược Sinh Dữ liệu với Teacher Model}{29}{section*.57}\protected@file@percent }
 \newlabel{lst:teacher-prompt}{{4.1}{30}{System Prompt cho Teacher Model}{lstlisting.4.1}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {4.1}{\ignorespaces System Prompt cho Teacher Model}}{30}{lstlisting.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Diversity Injection}{30}{section*.46}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Các chiều diversity trong sinh dữ liệu}}{30}{table.caption.47}\protected@file@percent }
-\newlabel{tab:diversity-dimensions}{{4.4}{30}{Các chiều diversity trong sinh dữ liệu}{table.caption.47}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Lọc và Kiểm tra Chất lượng}{30}{section*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Diversity Injection}{30}{section*.58}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Các chiều diversity trong sinh dữ liệu}}{30}{table.caption.59}\protected@file@percent }
+\newlabel{tab:diversity-dimensions}{{4.4}{30}{Các chiều diversity trong sinh dữ liệu}{table.caption.59}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Lọc và Kiểm tra Chất lượng}{30}{section*.60}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Giai đoạn 2: Supervised Fine-Tuning}{31}{subsection.4.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Lựa chọn Base Model}{31}{section*.49}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.5}{\ignorespaces So sánh hiệu năng trên các bộ benchmark tiêu chuẩn. Số liệu trích xuất từ Qwen2.5 Technical Report (2024).}}{31}{table.caption.50}\protected@file@percent }
-\newlabel{tab:model-comparison}{{4.5}{31}{So sánh hiệu năng trên các bộ benchmark tiêu chuẩn. Số liệu trích xuất từ Qwen2.5 Technical Report (2024)}{table.caption.50}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.6}{\ignorespaces Các mô hình base được thử nghiệm. Thông số được tính trên trường hợp context length là 32K tokens. Thông tin lấy từ https://apxml.com/models?family=3 }}{31}{table.caption.51}\protected@file@percent }
-\newlabel{tab:base-models}{{4.6}{31}{Các mô hình base được thử nghiệm. Thông số được tính trên trường hợp context length là 32K tokens. Thông tin lấy từ https://apxml.com/models?family=3}{table.caption.51}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Cấu hình Training}{31}{section*.52}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Xử lý Multi-turn Conversation}{32}{section*.53}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Lựa chọn Base Model}{31}{section*.61}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.5}{\ignorespaces So sánh hiệu năng trên các bộ benchmark tiêu chuẩn. Số liệu trích xuất từ Qwen2.5 Technical Report (2024).}}{31}{table.caption.62}\protected@file@percent }
+\newlabel{tab:model-comparison}{{4.5}{31}{So sánh hiệu năng trên các bộ benchmark tiêu chuẩn. Số liệu trích xuất từ Qwen2.5 Technical Report (2024)}{table.caption.62}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.6}{\ignorespaces Các mô hình base được thử nghiệm. Thông số được tính trên trường hợp context length là 32K tokens. Thông tin lấy từ https://apxml.com/models?family=3 }}{31}{table.caption.63}\protected@file@percent }
+\newlabel{tab:base-models}{{4.6}{31}{Các mô hình base được thử nghiệm. Thông số được tính trên trường hợp context length là 32K tokens. Thông tin lấy từ https://apxml.com/models?family=3}{table.caption.63}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Cấu hình Training}{31}{section*.64}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Xử lý Multi-turn Conversation}{32}{section*.65}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Giai đoạn 3: Đánh giá Đa chiều}{33}{subsection.4.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{LLM-as-a-Judge}{33}{section*.54}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.7}{\ignorespaces Tiêu chí đánh giá của LLM Judge}}{33}{table.caption.55}\protected@file@percent }
-\newlabel{tab:eval-criteria}{{4.7}{33}{Tiêu chí đánh giá của LLM Judge}{table.caption.55}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Human Evaluation}{33}{section*.56}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{LLM-as-a-Judge}{33}{section*.66}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.7}{\ignorespaces Tiêu chí đánh giá của LLM Judge}}{33}{table.caption.67}\protected@file@percent }
+\newlabel{tab:eval-criteria}{{4.7}{33}{Tiêu chí đánh giá của LLM Judge}{table.caption.67}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Human Evaluation}{33}{section*.68}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4.3}Kết quả Thực nghiệm}{33}{section.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Training Dynamics}{33}{subsection.4.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Training loss curves. Mô hình lớn hơn đạt loss thấp hơn; LoRA và Full FT converge tương đương.}}{33}{figure.caption.57}\protected@file@percent }
-\newlabel{fig:training-loss}{{4.2}{33}{Training loss curves. Mô hình lớn hơn đạt loss thấp hơn; LoRA và Full FT converge tương đương}{figure.caption.57}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.8}{\ignorespaces Kết quả training trên NVIDIA T4 (16GB), 10 epochs}}{34}{table.caption.58}\protected@file@percent }
-\newlabel{tab:training-results}{{4.8}{34}{Kết quả training trên NVIDIA T4 (16GB), 10 epochs}{table.caption.58}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Training loss curves. Mô hình lớn hơn đạt loss thấp hơn; LoRA và Full FT converge tương đương.}}{33}{figure.caption.69}\protected@file@percent }
+\newlabel{fig:training-loss}{{4.2}{33}{Training loss curves. Mô hình lớn hơn đạt loss thấp hơn; LoRA và Full FT converge tương đương}{figure.caption.69}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.8}{\ignorespaces Kết quả training trên NVIDIA T4 (16GB), 10 epochs}}{34}{table.caption.70}\protected@file@percent }
+\newlabel{tab:training-results}{{4.8}{34}{Kết quả training trên NVIDIA T4 (16GB), 10 epochs}{table.caption.70}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Kết quả LLM-as-a-Judge}{34}{subsection.4.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.9}{\ignorespaces Kết quả LLM-as-a-Judge. FT = Fine-tuned. Hàng highlight: best overall model.}}{34}{table.caption.59}\protected@file@percent }
-\newlabel{tab:llm-judge-results}{{4.9}{34}{Kết quả LLM-as-a-Judge. FT = Fine-tuned. Hàng highlight: best overall model}{table.caption.59}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.9}{\ignorespaces Kết quả LLM-as-a-Judge. FT = Fine-tuned. Hàng highlight: best overall model.}}{34}{table.caption.71}\protected@file@percent }
+\newlabel{tab:llm-judge-results}{{4.9}{34}{Kết quả LLM-as-a-Judge. FT = Fine-tuned. Hàng highlight: best overall model}{table.caption.71}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Kết quả Human Evaluation}{35}{subsection.4.3.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.10}{\ignorespaces Human Evaluation trên 30 test conversations}}{35}{table.caption.60}\protected@file@percent }
-\newlabel{tab:human-eval-results}{{4.10}{35}{Human Evaluation trên 30 test conversations}{table.caption.60}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.10}{\ignorespaces Human Evaluation trên 30 test conversations}}{35}{table.caption.72}\protected@file@percent }
+\newlabel{tab:human-eval-results}{{4.10}{35}{Human Evaluation trên 30 test conversations}{table.caption.72}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Phân tích Định tính}{35}{subsection.4.3.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.5}Ablation Study}{36}{subsection.4.3.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.11}{\ignorespaces Ablation Study trên Qwen-1.5B}}{36}{table.caption.61}\protected@file@percent }
-\newlabel{tab:ablation}{{4.11}{36}{Ablation Study trên Qwen-1.5B}{table.caption.61}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.11}{\ignorespaces Ablation Study trên Qwen-1.5B}}{36}{table.caption.73}\protected@file@percent }
+\newlabel{tab:ablation}{{4.11}{36}{Ablation Study trên Qwen-1.5B}{table.caption.73}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.4}Demo Application}{36}{section.4.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Demo Tarot Reader trên Gradio}}{36}{figure.caption.62}\protected@file@percent }
-\newlabel{fig:gradio-demo}{{4.3}{36}{Demo Tarot Reader trên Gradio}{figure.caption.62}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Demo Tarot Reader trên Gradio}}{36}{figure.caption.74}\protected@file@percent }
+\newlabel{fig:gradio-demo}{{4.3}{36}{Demo Tarot Reader trên Gradio}{figure.caption.74}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.5}Thảo luận}{37}{section.4.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Trả lời Câu hỏi Nghiên cứu}{37}{subsection.4.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}So sánh với Related Work}{37}{subsection.4.5.2}\protected@file@percent }

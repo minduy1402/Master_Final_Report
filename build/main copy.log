@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.31)  16 JAN 2026 16:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.31)  16 JAN 2026 13:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/minhduy/Documents/Projects/Master_Final_Report/main.tex
-(/home/minhduy/Documents/Projects/Master_Final_Report/main.tex
+**"/home/minhduy/Documents/Projects/Master_Final_Report/main copy.tex"
+(/home/minhduy/Documents/Projects/Master_Final_Report/main copy.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
@@ -1320,12 +1320,12 @@ Package csquotes Warning: No style for language 'vietnamese'.
 (csquotes)                Using fallback style on input line 126.
 
 Package csquotes Info: Redefining alias 'default' -> 'fallback'.
-(build/main.aux
+(build/main copy.aux
 
 LaTeX Warning: Label `tab:cost-comparison' multiply defined.
 
 )
-\openout1 = `main.aux'.
+\openout1 = `"main copy.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 126.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 126.
@@ -1427,11 +1427,11 @@ File: english.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout4 = `main.bcf'.
+\openout4 = `"main copy.bcf"'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main.bbl' found.
- (build/main.bbl)
+Package biblatex Info: ... file '"main copy".bbl' found.
+ (build/main copy.bbl)
 Package biblatex Info: Reference section=0 on input line 126.
 Package biblatex Info: Reference segment=0 on input line 126.
 
@@ -1471,9 +1471,9 @@ Package biblatex Info: Reference segment=0 on input line 126.
 
 \c@lstlisting=\count527
 Package hyperref Info: Link coloring ON on input line 126.
-(build/main.out) (build/main.out)
+(build/main copy.out) (build/main copy.out)
 \@outlinefile=\write5
-\openout5 = `main.out'.
+\openout5 = `"main copy.out"'.
 
 
 
@@ -1484,12 +1484,12 @@ LaTeX Font Warning: Font shape `T5/ntxtlf/b/n' undefined
 LaTeX Font Warning: Font shape `T5/ntxtlf/b/sc' undefined
 (Font)              using `T5/ntxtlf/b/n' instead on input line 138.
 
-<figures/logo-INSA.png, id=344, 2546.51375pt x 552.0625pt>
+<figures/logo-INSA.png, id=413, 2546.51375pt x 552.0625pt>
 File: figures/logo-INSA.png Graphic file (type png)
 <use figures/logo-INSA.png>
 Package pdftex.def Info: figures/logo-INSA.png  used on input line 149.
 (pdftex.def)             Requested size: 147.95433pt x 32.06934pt.
-<figures/logo-N7.png, id=346, 567.11874pt x 205.76875pt>
+<figures/logo-N7.png, id=415, 567.11874pt x 205.76875pt>
 File: figures/logo-N7.png Graphic file (type png)
 <use figures/logo-N7.png>
 Package pdftex.def Info: figures/logo-N7.png  used on input line 150.
@@ -1550,128 +1550,125 @@ Overfull \hbox (154.04922pt too wide) in paragraph at lines 676--685
 
 [13] [14]
 Ch\uhorn \ohorn ng 3.
-<figures/ccam_example.png, id=460, 550.055pt x 719.68875pt>
-File: figures/ccam_example.png Graphic file (type png)
-<use figures/ccam_example.png>
-Package pdftex.def Info: figures/ccam_example.png  used on input line 712.
-(pdftex.def)             Requested size: 204.85846pt x 268.03772pt.
-<figures/gpm_report_example.png, id=461, 550.055pt x 719.68875pt>
-File: figures/gpm_report_example.png Graphic file (type png)
-<use figures/gpm_report_example.png>
-Package pdftex.def Info: figures/gpm_report_example.png  used on input line 718.
-(pdftex.def)             Requested size: 204.85846pt x 268.03772pt.
 [15
 
-] [16 <./figures/ccam_example.png> <./figures/gpm_report_example.png>]
-LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 748.
+] [16]
+Overfull \hbox (3.0608pt too wide) in paragraph at lines 742--743
+\T5/ntxtlf/b/n/10.95 (Sparse), ^^_°c bi»t quan trång cho queries chùa code. Reranker gi£i quy¸t "Lost in the Middle"b¬ng
+ []
+
+
+Overfull \hbox (24.00926pt too wide) in paragraph at lines 748--750
+\T5/ntxtlf/b/n/10.95 Chóng tæi ^^_¡nh gi¡ ba cæng cö parsing phê bi¸n: PyPDF/PyMuPDF, LlamaParse, v  UnstructuredIO.
+ []
+
+LaTeX Font Info:    Trying to load font information for T5+ntxtt on input line 753.
+LaTeX Font Info:    No file T5ntxtt.fd. on input line 753.
+
+LaTeX Font Warning: Font shape `T5/ntxtt/m/n' undefined
+(Font)              using `T5/cmr/m/n' instead on input line 753.
+
+
+Overfull \hbox (10.77988pt too wide) in paragraph at lines 753--754
+\T5/ntxtt/m/n/10.95 Trong pipeline cõa chóng tæi, UnstructuredIO ^^_÷ñc c§u h¼nh vîi c¡c tham sè sau: strategy=``hi_res''
+ []
+
+
+Overfull \hbox (69.7712pt too wide) in paragraph at lines 753--754
+\T5/ntxtt/m/n/10.95 infer_table_structure=True ^^_º tü ^^_ëng detect v  parse c§u tróc b£ng, extract_image_block_types=[``Images'',
+ []
+
+[17]
+File: figures/logo-INSA.png Graphic file (type png)
+<use figures/logo-INSA.png>
+Package pdftex.def Info: figures/logo-INSA.png  used on input line 763.
+(pdftex.def)             Requested size: 364.19667pt x 78.94771pt.
+
+Overfull \hbox (12.6653pt too wide) in paragraph at lines 772--776
+\T5/ntxtt/m/n/10.95 Mët c¥u häi tü nhi¶n l : t¤i sao khæng embed trüc ti¸p raw content m  c¦n qua b÷îc summarization?
+ []
+
+[18] [19] [20]
+LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 838.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 748.
-LaTeX Font Info:    Trying to load font information for T5+ntxtt on input line 767.
-LaTeX Font Info:    No file T5ntxtt.fd. on input line 767.
+(Font)              scaled to size 10.95pt on input line 838.
 
-
-LaTeX Font Warning: Font shape `T5/ntxtt/m/n' undefined
-(Font)              using `T5/cmr/m/n' instead on input line 767.
-
-LaTeX Font Info:    Faking \texteuro for font family ntxtlf
-(Font)              in TS1 encoding on input line 800.
-LaTeX Font Info:    Faking \texteuro for font family ntxtt
-(Font)              in TS1 encoding on input line 808.
-[17{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
-<figures/ccam_dense_search_failure.png, id=482, 627.34375pt x 289.08pt>
-File: figures/ccam_dense_search_failure.png Graphic file (type png)
-<use figures/ccam_dense_search_failure.png>
-Package pdftex.def Info: figures/ccam_dense_search_failure.png  used on input line 854.
-(pdftex.def)             Requested size: 364.19667pt x 167.82971pt.
- [18]
-
-LaTeX Warning: Reference `fig:pipeline_architecture' on page 19 undefined on input line 889.
-
-[19 <./figures/ccam_dense_search_failure.png>]
-LaTeX Font Info:    Faking \texteuro for font family ntxtt
-(Font)              in TS1 encoding on input line 947.
- [20]
-Overfull \hbox (8.16103pt too wide) in paragraph at lines 973--974
-[]\T5/ntxtt/m/n/10.95 Model n y câ 560M parameters, ^^_÷ñc train tr¶n 100+ ngæn ngú vîi instruction-following capability.
+Overfull \hbox (117.0679pt too wide) in paragraph at lines 838--839
+[]\T5/ntxtt/m/n/10.95 Document Parsing: UnstructuredIO vîi partition_pdf(), c§u h¼nh strategy="hi_res", infer_table_structure=True,
  []
 
-[21] [22] [23]
-Overfull \hbox (9.84526pt too wide) in paragraph at lines 1175--1176
-[]\T5/ntxtlf/m/it/10.95 Query Routing: Route semantic queries ^^_¸n Dense-heavy path, code queries ^^_¸n Sparse-heavy
+
+Overfull \hbox (8.74821pt too wide) in paragraph at lines 839--840
+[]\T5/ntxtt/m/n/10.95 Summarization: Sû döng Gemma-3-12b-it qua GENTL API. Texts v  Tables ^^_÷ñc summarize
  []
 
-[24] [25]
+[21{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}] [22] [23] [24] [25]
 Ch\uhorn \ohorn ng 4.
 [26
 
 ] [27] [28]
-Underfull \hbox (badness 10000) in paragraph at lines 1346--1346
+Underfull \hbox (badness 10000) in paragraph at lines 1122--1122
 []|\T5/ntxtlf/m/it/10 Beginnings, innocence,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1346--1347
+Underfull \hbox (badness 10000) in paragraph at lines 1122--1123
 []|\T5/ntxtlf/m/it/10 Holding back,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1348--1348
+Underfull \hbox (badness 10000) in paragraph at lines 1124--1124
 []|\T5/ntxtlf/m/it/10 Walking away, seeking
  []
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 1376.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 1152.
  [29]
 
 LaTeX Font Warning: Font shape `T5/ntxtt/m/it' undefined
-(Font)              using `T5/ntxtt/m/n' instead on input line 1377.
+(Font)              using `T5/ntxtt/m/n' instead on input line 1153.
 
 
-Underfull \hbox (badness 5302) in paragraph at lines 1410--1411
-[]|\T5/ntxtlf/m/it/10.95 Short (5--7), Moderate (8--10), Long
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1411--1412
+Underfull \hbox (badness 10000) in paragraph at lines 1187--1188
 []|\T5/ntxtlf/m/it/10.95 76,076 tê hñp \TS1/ntxtlf/m/n/10.95 Ö \T5/ntxtlf/m/it/10.95 8 variations
  []
 
 
-Overfull \hbox (3.75978pt too wide) in paragraph at lines 1433--1434
+Overfull \hbox (3.75978pt too wide) in paragraph at lines 1209--1210
 \T5/ntxtlf/m/it/10.95 conversations ch§t l÷ñng cao sû döng DeepSeek-R1, n¥ng têng dataset l¶n 780 conversations. 
  []
 
 [30] [31] [32]
 Package textcomp Info: Symbol \textrightarrow not provided by
 (textcomp)             font family ntxtlf in TS1 encoding.
-(textcomp)             Default family used instead on input line 1553.
+(textcomp)             Default family used instead on input line 1329.
 Package textcomp Info: Symbol \textrightarrow not provided by
 (textcomp)             font family ntxtlf in TS1 encoding.
-(textcomp)             Default family used instead on input line 1553.
+(textcomp)             Default family used instead on input line 1329.
 Package textcomp Info: Symbol \textrightarrow not provided by
 (textcomp)             font family ntxtlf in TS1 encoding.
-(textcomp)             Default family used instead on input line 1553.
+(textcomp)             Default family used instead on input line 1329.
  [33{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 Package textcomp Info: Symbol \textrightarrow not provided by
 (textcomp)             font family ntxtlf in TS1 encoding.
-(textcomp)             Default family used instead on input line 1648.
+(textcomp)             Default family used instead on input line 1424.
  [34]
 Package textcomp Info: Symbol \textrightarrow not provided by
 (textcomp)             font family ntxtlf in TS1 encoding.
-(textcomp)             Default family used instead on input line 1678.
+(textcomp)             Default family used instead on input line 1454.
 
-Overfull \hbox (10.27643pt too wide) in paragraph at lines 1692--1693
+Overfull \hbox (10.27643pt too wide) in paragraph at lines 1468--1469
 \T5/ntxtlf/m/it/10.95 percentage, cost of living difference, career growth opportunities, personal relationships,
  []
 
 [35] [36] [37] [38] 
 enddocument/afterlastpage: lastpage setting LastPage.
-(build/main.aux
+(build/main copy.aux
 LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 9.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtlf.fd
 File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
@@ -1688,30 +1685,27 @@ L3 programming layer <2020/03/25>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B75648A74DF58BE4A37CA57A50654DED;22986.
-Package logreq Info: Writing requests to 'main.run.xml'.
-\openout1 = `main.run.xml'.
+Package rerunfilecheck Info: File `"main copy".out' has not changed.
+(rerunfilecheck)             Checksum: B2DF6D0726581F4E2324595EDB2D3ECC;26952.
+Package logreq Info: Writing requests to '"main copy".run.xml'.
+\openout1 = `"main copy.run.xml"'.
 
  ) 
 Here is how much of TeX's memory you used:
  44615 strings out of 474222
- 849819 string characters out of 5748732
- 2163995 words of memory out of 5000000
+ 849505 string characters out of 5748732
+ 2163704 words of memory out of 5000000
  65910 multiletter control sequences out of 15000+600000
- 611530 words of font info for 132 fonts, out of 8000000 for 9000
+ 609585 words of font info for 130 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,24n,117p,1030b,4039s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on build/main.pdf (39 pages, 652678 bytes).
+ 99i,24n,117p,1037b,4039s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
+Output written on "build/main copy.pdf" (39 pages, 419857 bytes).
 PDF statistics:
- 834 PDF objects out of 1000 (max. 8388607)
- 741 compressed objects within 8 object streams
+ 873 PDF objects out of 1000 (max. 8388607)
+ 788 compressed objects within 8 object streams
  274 named destinations out of 1000 (max. 500000)
- 710 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 831 words of extra memory for PDF output out of 10000 (max. 10000000)
 

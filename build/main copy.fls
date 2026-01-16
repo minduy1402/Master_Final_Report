@@ -3,8 +3,8 @@ INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/minhduy/Documents/Projects/Master_Final_Report/main.tex
-OUTPUT build/main.log
+INPUT /home/minhduy/Documents/Projects/Master_Final_Report/main copy.tex
+OUTPUT build/main copy.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
@@ -405,10 +405,10 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
-INPUT build/main.aux
-INPUT build/main.aux
-INPUT build/main.aux
-OUTPUT build/main.aux
+INPUT build/main copy.aux
+INPUT build/main copy.aux
+INPUT build/main copy.aux
+OUTPUT build/main copy.aux
 INPUT /usr/share/texlive/texmf-dist/tex/latex/newtx/omlntxmi.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/newtx/omlntxmi.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/newtx/omlntxmi.fd
@@ -441,20 +441,20 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 INPUT /usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 INPUT /usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 INPUT /usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
-OUTPUT build/main.bcf
-INPUT build/main.bbl
-INPUT build/main.bbl
-INPUT build/main.bbl
-INPUT build/main.bbl
-INPUT build/main.bbl
-INPUT build/main.out
-INPUT build/main.out
-INPUT build/main.out
-INPUT build/main.out
-OUTPUT build/main.pdf
-INPUT build/main.out
-INPUT build/main.out
-OUTPUT build/main.out
+OUTPUT build/main copy.bcf
+INPUT build/main copy.bbl
+INPUT build/main copy.bbl
+INPUT build/main copy.bbl
+INPUT build/main copy.bbl
+INPUT build/main copy.bbl
+INPUT build/main copy.out
+INPUT build/main copy.out
+INPUT build/main copy.out
+INPUT build/main copy.out
+OUTPUT build/main copy.pdf
+INPUT build/main copy.out
+INPUT build/main copy.out
+OUTPUT build/main copy.out
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/vntex/vnr/vnr12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/vntex/vnr/vnr12.tfm
 INPUT ./figures/logo-INSA.png
@@ -542,29 +542,16 @@ INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
-INPUT ./figures/ccam_example.png
-INPUT ./figures/ccam_example.png
-INPUT ./figures/ccam_example.png
-INPUT ./figures/ccam_example.png
-INPUT ./figures/ccam_example.png
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/vntex/vnr/vnr10.tfm
-INPUT ./figures/gpm_report_example.png
-INPUT ./figures/gpm_report_example.png
-INPUT ./figures/gpm_report_example.png
-INPUT ./figures/gpm_report_example.png
-INPUT ./figures/gpm_report_example.png
+INPUT ./figures/logo-INSA.png
+INPUT ./figures/logo-INSA.png
+INPUT ./figures/logo-INSA.png
+INPUT ./figures/logo-INSA.png
 INPUT /usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 INPUT /usr/share/texmf/fonts/tfm/public/tex-gyre/ts1-qtmr.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/vntex/vnr/vnr8.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/vntex/vnr/vnr6.tfm
 INPUT /usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc
-INPUT ./figures/ccam_dense_search_failure.png
-INPUT ./figures/ccam_dense_search_failure.png
-INPUT ./figures/ccam_dense_search_failure.png
-INPUT ./figures/ccam_dense_search_failure.png
-INPUT ./figures/ccam_dense_search_failure.png
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/vntex/vnr/vnr10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
@@ -607,15 +594,15 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm
 INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-INPUT build/main.aux
+INPUT build/main copy.aux
 INPUT /usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtlf.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtlf.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtlf.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-t1.tfm
-INPUT build/main.out
-INPUT build/main.out
-INPUT build/main.run.xml
-OUTPUT build/main.run.xml
+INPUT build/main copy.out
+INPUT build/main copy.out
+INPUT build/main copy.run.xml
+OUTPUT build/main copy.run.xml
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb
@@ -628,7 +615,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr17.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnr8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmb.pfb
