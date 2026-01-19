@@ -1,0 +1,36 @@
+<table>
+    <thead>
+        <tr>
+            <th>Sous modules (en k€)</th>
+            <th>SCR 2024</th>
+            <th>SCR 2023</th>
+            <th>Evolution</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Type 1</td>
+            <td>2 692</td>
+            <td>2 487</td>
+            <td>8%</td>
+        </tr>
+        <tr>
+            <td>Type 2</td>
+            <td>28 377</td>
+            <td>36 221</td>
+            <td>-22%</td>
+        </tr>
+        <tr>
+            <td>Effet de diversification</td>
+            <td>-621</td>
+            <td>-586</td>
+            <td>6%</td>
+        </tr>
+        <tr>
+            <td>Risque de défaut</td>
+            <td>30 448</td>
+            <td>38 121</td>
+            <td>-20%</td>
+        </tr>
+    </tbody>
+</table>

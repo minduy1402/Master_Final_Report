@@ -1,3 +1,4 @@
+\PassOptionsToPackage{table,svgnames}{xcolor}
 \documentclass[11pt,a4paper]{report}
 
 %%------------------------------- preamble ------------------------------------
@@ -27,8 +28,10 @@
 \usepackage[english, vietnamese]{babel}
 \usepackage[table]{xcolor}
 \usepackage{tcolorbox}
+\usepackage{eurosym}     
 \tcbuselibrary{breakable}
 \usepackage{booktabs}
+\tcbuselibrary{listings, skins}
 
 %% document dimensions
 \usepackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm,headheight=6mm,footskip=12mm]{geometry}
@@ -114,6 +117,42 @@
 \newcommand{\windscannerpt}{\emph{Windscanner.PT\/}}
 \newcommand{\class}[1]{{\normalfont\sffamily #1\/}}
 \newcommand{\svg}{\class{SVG}}
+
+\newtcblisting{htmlcode}{
+    arc=2pt,
+    outer arc=2pt,
+    boxrule=0.5pt,
+    colback=gray!5,
+    colframe=gray!60!black,
+    listing only, 
+    top=0pt,                          % Padding phía trên sát code
+    bottom=0pt,                       % Padding phía dưới sát code
+    middle=1pt,                       % Khoảng cách giữa tiêu đề và nội dung
+    boxsep=3pt,                       % Khoảng cách từ chữ tới khung
+    listing options={
+        basicstyle=\tiny\ttfamily,        % Dùng \tiny nếu code quá dài để tránh tràn lề
+        numbers=none, 
+        breaklines=true,                  % Tự động xuống dòng
+        breakatwhitespace=true,           % Ngắt dòng tại khoảng trắng nếu có thể
+        language=HTML,
+        tabsize=2,
+        showstringspaces=false,
+        inputencoding=utf8,               % Đảm bảo nhận encoding utf8
+        extendedchars=true,
+        aboveskip=0pt,                % Loại bỏ khoảng trắng thừa của gói listings
+        belowskip=0pt,
+        frame=none, 
+        % Cấu hình để listings hiểu các ký tự đặc biệt
+        literate={€}{{\euro}}1 {é}{{\'e}}1 {â}{{\^a}}1 {à}{{\`a}}1 {ô}{{\^o}}1 {ê}{{\^e}}1,
+    },
+    title=\textbf{Parsed HTML Output},
+    fonttitle=\small\sffamily,
+    colbacktitle=gray!20!white,
+    coltitle=black,
+    enhanced,
+    width=\textwidth,                     % Đảm bảo khung không vượt quá chiều ngang trang
+    right=5mm,                            % Tạo khoảng trống bên phải để tránh tràn chữ
+}
 
 %% my environments for infos
 \newenvironment{info}[1]{\vspace*{6mm}\color{blue}[ \textbf{INFO:} \begin{em} #1}
@@ -258,6 +297,32 @@ Dựa trên các câu hỏi nghiên cứu, chúng tôi đề xuất các giả t
 
 \section{Objectives \& Contributions}
 
+\subsection{Objectives}
+
+Mục tiêu chính của luận văn là nghiên cứu, triển khai và đánh giá định lượng hiệu quả của hai phương pháp thích ứng LLM — Retrieval-Augmented Generation (RAG) và Parameter-Efficient Fine-Tuning (PEFT) — áp dụng cho các bài toán miền cụ thể trong môi trường công nghiệp. Cụ thể
+
+\subsubsection{Đóng góp thực nghiệm}
+Đánh giá định lượng khả năng của SLMs trên tác vụ Persona-based Reasoning:
+
+So sánh hiệu năng của các mô hình Qwen (0.5B, 1.5B, 3B) và Llama 3.2 (1B, 3B) sau Fine-tuning
+Phân tích failure modes và xác định ngưỡng tham số tối thiểu cho các tác vụ suy luận phức tạp
+
+
+Phân tích Scaling Laws và Reasoning Gap:
+
+Chứng minh thực nghiệm mối quan hệ giữa kích thước mô hình và khả năng instruction following
+Phân tích hiện tượng Catastrophic Forgetting trong quá trình Fine-tuning SLMs
+
+\subsubsection{Đóng góp về ứng dụng}
+Triển khai hai hệ thống RAG production-ready:
+
+- Hệ thống tra cứu mã y tế (Medical Reimbursement) đạt Faithfulness > 0.9
+- Hệ thống hỏi đáp tài liệu tài chính bảo mật (Confidential Financial QA) với Table QA Accuracy đạt 92\%
+
+Bộ công cụ và Framework có thể tái sử dụng:
+
+- Pipeline xử lý PDF đa phương thức sử dụng Unstructured.io
+- Scripts tự động hóa cho QLoRA Fine-tuning với Unsloth
 
 \section{Thesis Structure}
 
@@ -693,17 +758,19 @@ Các chương tiếp theo sẽ trình bày chi tiết việc triển khai và đ
 
 \section{Bài toán Thực tế: Hai Use-case từ Doanh nghiệp}
 
-Trong quá trình hoạt động tại Torus AI, chúng tôi tiếp nhận hai yêu cầu từ các đối tác với những thách thức tương đồng nhưng ở hai lĩnh vực hoàn toàn khác nhau: tài chính và y tế. Điều thú vị là, dù bối cảnh nghiệp vụ khác biệt, cả hai đều đối mặt với cùng một vấn đề cốt lõi: làm sao để khai thác hiệu quả tri thức từ những tài liệu phi cấu trúc phức tạp chứa nhiều bảng biểu, hình ảnh và dữ liệu đa phương thức.
+Trong quá trình hoạt động tại Torus AI, chúng tôi tiếp nhận hai yêu cầu từ các đối tác với những thách thức tương đồng nhưng ở hai lĩnh vực hoàn toàn khác nhau: tài chính và y tế. Mặc dù bối cảnh nghiệp vụ khác biệt rõ rệt, cả hai đều đối mặt với cùng một vấn đề cốt lõi: làm sao để khai thác hiệu quả tri thức từ những tài liệu phi cấu trúc có mật độ thông tin cao, nói cách khác, là những tài liệu chứa nhiều bảng biểu, hình ảnh và dữ liệu đa phương thức phức tạp.
 
-\subsection{Use-case GPM: Hỏi đáp Tài liệu Tài chính}
+\subsection{Tài chính: Hệ thống Hỏi đáp Báo cáo SFCR (GPM)}
 
 GPM (Gestion Patrimoine Mutualiste) là một quỹ bảo hiểm tương hỗ thuộc tập đoàn AGMF (Association Générale des Médecins de France). Yêu cầu của họ nghe có vẻ đơn giản: xây dựng hệ thống hỏi đáp nhanh để nhân viên có thể tra cứu thông tin từ các báo cáo tài chính hàng năm. 
 
-Tuy nhiên, ``đơn giản'' chỉ là bề ngoài. Các tài liệu của GPM bao gồm báo cáo SFCR (Solvency and Financial Condition Report) và báo cáo kế toán thường niên --- những file PDF dài 50 đến 200 trang. Điểm đặc biệt là phần lớn thông tin quan trọng không nằm trong văn bản mà nằm trong các bảng số liệu tài chính phức tạp: bảng cân đối kế toán với hàng chục cột và hàng, biểu đồ xu hướng doanh thu, và các ma trận phân tích rủi ro. Một câu hỏi điển hình như ``Doanh thu năm 2024 là bao nhiêu?'' đòi hỏi hệ thống phải hiểu được cấu trúc 2D của bảng biểu, không chỉ đọc text.
+GPM đối mặt với khối lượng lớn báo cáo SFCR (Solvency and Financial Condition Report) và báo cáo kế toán thường niên. Thách thức không chỉ nằm ở độ dài tài liệu (50-200 trang) mà còn ở tính đa phương thức của dữ liệu. Hình \ref{fig:ccam_example} minh họa cấu trúc của một trang dữ liệu này. 
 
-\subsection{Use-case Dr. Besnier: Tra cứu Mã Y tế CCAM}
+Tri thức quan trọng nhất thường không nằm ở văn bản thuần túy mà được cô đọng trong các bảng cân đối kế toán đa chiều, biểu đồ xu hướng và ma trận rủi ro. Việc truy vấn các chỉ số như "Tỷ lệ khả năng thanh toán năm 2024" đòi hỏi hệ thống phải có khả năng hiểu cấu trúc không gian (spatial understanding) của bảng biểu thay vì chỉ đọc chuỗi ký tự đơn thuần.
 
-Dr. Besnier đến từ lĩnh vực y khoa với nhu cầu hoàn toàn khác: tra cứu mã hoàn tiền trong danh mục CCAM (Classification Commune des Actes Médicaux). CCAM là hệ thống mã hóa chuẩn của Pháp cho các hành vi y tế, được sử dụng để xác định mức bảo hiểm chi trả. Hình \ref{fig:ccam_example} minh họa cấu trúc của danh mục này.
+\subsection{Y tế: Tra cứu Mã hóa Danh mục CCAM (Dr. Besnier)}
+
+Ngược lại, bài toán từ Dr. Besnier tập trung vào hệ thống CCAM (Classification Commune des Actes Médicaux) – một hệ thống phân loại phức tạp gồm hàng nghìn mã hóa y khoa của Pháp, được sử dụng để xác định mức bảo hiểm chi trả. Hình \ref{fig:ccam_example} minh họa cấu trúc của danh mục này.
 
 % 2 Ảnh minh họa danh mục CCAM và tài liệu GPM 
 \begin{figure}[H]
@@ -722,21 +789,19 @@ Dr. Besnier đến từ lĩnh vực y khoa với nhu cầu hoàn toàn khác: tr
     \caption{Minh họa tài liệu CCAM và GPM} 
 \end{figure}
 
-Thách thức ở đây là dữ liệu CCAM chứa hàng nghìn mã y tế được tổ chức trong một cấu trúc bảng cực kỳ phức tạp. Mỗi mã có nhiều thuộc tính: code (ví dụ ``HAFA008''), mô tả hành vi, giá sector 1, giá ngoài sector, và đặc biệt là các điều kiện áp dụng phức tạp phụ thuộc vào ngữ cảnh bệnh nhân.
+Thách thức ở đây là dữ liệu CCAM chứa hàng nghìn mã y tế được tổ chức trong một cấu trúc bảng cực kỳ phức tạp. Mỗi mã (ví dụ: HAFA008) đi kèm với các điều kiện áp dụng nghiêm ngặt và mức giá bảo hiểm chi trả khác nhau dựa trên ngữ cảnh lâm sàng.
 
-Một truy vấn thực tế có thể là: ``Patiente 69 ans, exérèse de carcinome basocellulaire de la lèvre, suture par lambeau à la volée'' (Bệnh nhân 69 tuổi, cắt bỏ ung thư biểu mô đáy môi, khâu bằng vạt da). Hệ thống cần trả về các mã CCAM phù hợp như HAFA008 hay QAMA002 --- một bài toán đòi hỏi không chỉ hiểu ngữ nghĩa mà còn cần exact matching với các mã code cụ thể.
+Một truy vấn thực tế có thể là: ``Patiente 69 ans, exérèse de carcinome basocellulaire de la lèvre, suture par lambeau à la volée'' (Bệnh nhân 69 tuổi, cắt bỏ ung thư biểu mô đáy môi, khâu bằng vạt da). Hệ thống cần trả về các mã CCAM phù hợp như HAFA008 hay QAMA002 --- một bài toán đòi hỏi không chỉ hiểu ngữ nghĩa mà còn cần exact matching với các mã code cụ thể. Một sai sót nhỏ trong việc đối soát mã (Exact Match) có thể dẫn đến sai lệch trong hồ sơ bệnh án và quy trình hoàn tiền bảo hiểm.
 
-\subsection{Điểm Chung và Lý do Cần RAG Pipeline In-house}
+\subsection{Rào cản Kỹ thuật và Sự cần thiết của Pipeline Nội bộ}
 
-Hai use-case này, dù khác biệt về domain, chia sẻ những đặc điểm quan trọng:
+Điểm chung của hai use-case này xác định ba rào cản chính buộc chúng tôi phải tự xây dựng một Pipeline RAG nâng cao (In-house Advanced RAG):
 
 \begin{enumerate}
-    \item \textbf{Tài liệu phi cấu trúc phức tạp}: Không phải văn bản thuần túy mà là sự kết hợp của text, bảng biểu phức tạp, và hình ảnh minh họa.
-    \item \textbf{Yêu cầu bảo mật dữ liệu nghiêm ngặt}: Cả tài liệu tài chính lẫn hồ sơ y tế đều là dữ liệu nhạy cảm. Theo quy định GDPR và các tiêu chuẩn ngành, việc sử dụng các dịch vụ cloud như ChatGPT hay Claude API trực tiếp với dữ liệu raw là không được phép. Khách hàng cần một giải pháp chạy hoàn toàn on-premise hoặc trong private cloud của họ.
-    \item \textbf{Độ chính xác cao}: Trong tài chính và y tế, sai số là không chấp nhận được. Câu trả lời sai về doanh thu có thể dẫn đến quyết định đầu tư sai lầm; mã y tế không chính xác ảnh hưởng trực tiếp đến việc chữa trị và hoàn tiền bảo hiểm cho bệnh nhân.
+    \item \textbf{Yêu cầu bảo mật dữ liệu nghiêm ngặt}: Cả tài liệu tài chính lẫn hồ sơ y tế đều là dữ liệu nhạy cảm và bảo mật của doanh nghiệp. Theo quy định GDPR và các tiêu chuẩn ngành, việc sử dụng các dịch vụ cloud như ChatGPT hay Claude API trực tiếp với dữ liệu raw là không được phép vì có nguy cơ bị rò ri dữ liệu. Khách hàng cần một giải pháp chạy hoàn toàn on-premise hoặc trong private cloud của họ.
+    \item \textbf{Độ chính xác cao}: Trong hai lĩnh vực này, "hallucination" (ảo giác ngôn ngữ) là không được phép. Câu trả lời sai về doanh thu có thể dẫn đến quyết định đầu tư sai lầm; mã y tế không chính xác ảnh hưởng trực tiếp đến việc chữa trị và hoàn tiền bảo hiểm cho bệnh nhân. Hệ thống cần có cơ chế trích dẫn (attribution) minh bạch
+    \item Hạn chế của LLM nguyên bản: Context window hạn hẹp của các mô hình ngôn ngữ không thể bao quát toàn bộ kho tài liệu khổng lồ, đồng thời khả năng cập nhật tri thức thời gian thực của chúng bị giới hạn nếu không có cơ chế Retrieval hiệu quả.
 \end{enumerate}
-
-Với những ràng buộc này, việc sử dụng LLM đơn thuần (prompt engineering trực tiếp) không khả thi vì hai lý do: (1) context window của LLM không đủ chứa toàn bộ tài liệu 200 trang, và (2) LLM không có khả năng cập nhật kiến thức theo thời gian thực khi tài liệu thay đổi.
 
 \textbf{RAG (Retrieval-Augmented Generation)} là giải pháp phù hợp: retrieve thông tin liên quan từ knowledge base, sau đó augment vào prompt cho LLM generate câu trả lời. Điều này cho phép LLM ``học'' từ tài liệu mới mà không cần fine-tuning.
 
@@ -771,7 +836,7 @@ Pipeline Simple RAG được triển khai với các thành phần tiêu chuẩn
 
 \subsection{Vấn đề 1: Mất Cấu trúc Bảng biểu}
 
-Đây là vấn đề nghiêm trọng nhất. Khi PyPDF trích xuất text từ PDF, nó ``flatten'' cấu trúc 2D của bảng thành chuỗi 1D. Hãy xem một ví dụ cụ thể từ tài liệu GPM:
+Vấn đề nghiêm trọng nhất nảy sinh từ giai đoạn Document Parsing. Các bộ trích xuất truyền thống như PyPDF thực hiện "làm phẳng" (flatten) cấu trúc 2D của bảng biểu thành một chuỗi văn bản 1D. Hãy xem một ví dụ cụ thể từ tài liệu GPM:
 
 \begin{table}[H]
     \centering
@@ -814,39 +879,13 @@ Risque de défaut 30 448 38 121 -20 %
     \end{minipage}
 \end{table}
 
-Với chuỗi text này, việc trả lời câu hỏi tự động như ``SCR 2024 của Type 2 là bao nhiêu?'' trở nên rất khó khăn đối với mô hình ngôn ngữ (LLM). Hệ thống khó có thể phân biệt liệu số ``28 377'' thuộc về cột ``SCR 2024'' hay là hai số riêng biệt ``28'' và ``377'', và nó tương ứng với hàng ``Type 2'' hay hàng nào khác do mất đi sự gióng hàng (alignment).
-
-\subsection{Vấn đề 2: Semantic Gap với Embedding Model Tiếng Anh}
-
-Model \texttt{all-MiniLM-L6-v2} được train chủ yếu trên dữ liệu tiếng Anh. Khi áp dụng vào tài liệu tiếng Pháp, hiệu suất suy giảm đáng kể.
-
-Chúng tôi thực hiện một thử nghiệm đơn giản: với cùng một query, đo cosine similarity giữa query và ground-truth passage.
-
-\begin{table}[H]
-    \centering
-    \caption{So sánh Embedding Models trên Query Tiếng Pháp}
-    \begin{tabular}{|l|c|c|}
-        \hline
-        \textbf{Model} & \textbf{MTEB French Score} & \textbf{Avg. Similarity} \\
-        \hline
-        all-MiniLM-L6-v2 & 0.45 & 0.62 \\
-        \hline
-        multilingual-e5-large & 0.65 & 0.78 \\
-        \hline
-        multilingual-e5-large-instruct & 0.68 & 0.81 \\
-        \hline
-    \end{tabular}
-\end{table}
-
-Sự khác biệt 0.19 trong similarity có vẻ nhỏ, nhưng với top-k retrieval, nó đồng nghĩa với việc passage đúng có thể rơi từ vị trí 3 xuống vị trí 15 --- nằm ngoài context window của LLM.
+Với chuỗi text này, việc trả lời câu hỏi như ``SCR 2024 của Type 2 là bao nhiêu?'' trở nên rất khó khăn đối với mô hình ngôn ngữ (LLM) vì mối quan hệ ngữ nghĩa giữa Header (Cột/Hàng) và Value (Giá trị) bị cắt đứt. Hệ thống khó có thể phân biệt liệu số ``28 377'' thuộc về cột ``SCR 2024'' hay là hai số riêng biệt ``28'' và ``377'', và nó tương ứng với hàng ``Type 2'' hay hàng nào khác do mất đi sự gióng hàng (alignment). Điều này dẫn đến các câu trả lời sai lệch hoàn toàn về mặt định lượng.
 
 \subsection{Vấn đề 3: Thất bại với Exact Code Matching}
 
-Trong use-case CCAM, người dùng thường hỏi trực tiếp về một mã cụ thể: ``Mã HAFA006 dùng cho trường hợp nào?''. 
+Đối với use-case y tế, chúng tôi nhận thấy Dense Search (Vector Search) thường xuyên trả về kết quả nhiễu khi đối mặt với các mã code (như HAFA006). Nguyên nhân là vì embedding model tập trung vào sự tương đồng về ngữ nghĩa (semantic similarity). Tuy nhiên, các mã hiệu y khoa thường không mang ý nghĩa ngôn ngữ tự nhiên; chúng là các thực thể cần được khớp chính xác (Exact Match). Việc chỉ sử dụng Vector Search khiến hệ thống gợi ý các mã "trông có vẻ giống" nhưng sai khác hoàn toàn về mặt y lý.
 
-Dense Search hoạt động dựa trên semantic similarity --- nó tìm các passage ``có ý nghĩa tương tự''. Nhưng ``HAFA006'' không có semantic meaning; đây là một code cần exact match.
-
-Kết quả thực tế từ Simple RAG cho query này:
+Ví dụ về kết quả retrieval từ Simple RAG cho query hỏi về  mã code HAFA006:
 
 % Ảnh kết quả retrieval 
 \begin{figure}[H]
@@ -858,11 +897,9 @@ Kết quả thực tế từ Simple RAG cho query này:
 
 Retriever trả về  passage chứa code ở vị trí thứ 3, và các vị trí khác cao hơn được match với những code khác tương tự vì Dense Search không hiểu rằng người dùng cần \textbf{chính xác} ``HAFA006'', không phải một code tương tự.
 
-\subsection{Vấn đề 4: Lost in the Middle}
+\subsection{Những vấn đề  khác}
 
-Hiện tượng ``Lost in the Middle'' được Liu et al. (2023) phát hiện: khi context chứa nhiều passages (ví dụ 10-20), LLM có xu hướng tập trung vào đầu và cuối, bỏ qua thông tin ở giữa.
-
-Trong thử nghiệm của chúng tôi với top-20 retrieval, khi ground-truth passage nằm ở vị trí 7-12, accuracy của LLM giảm 23\% so với khi passage đó nằm ở vị trí 1-3.
+Hiện tượng ``Lost in the Middle'' được Liu et al. (2023) phát hiện: khi context chứa nhiều passages (ví dụ 10-20), LLM có xu hướng tập trung vào đầu và cuối, bỏ qua thông tin ở giữa. Trong thử nghiệm của chúng tôi với top-20 retrieval, khi ground-truth passage nằm ở vị trí 7-12, accuracy của LLM giảm 23\% so với khi passage đó nằm ở vị trí 1-3. Ngoài ra, còn vấn đề  với embedding model. Model \texttt{all-MiniLM-L6-v2} được train chủ yếu trên dữ liệu tiếng Anh. Khi áp dụng vào tài liệu tiếng Pháp, hiệu suất suy giảm đáng kể. 
 
 \subsection{Kết quả Định lượng: Simple RAG vs. Ground Truth}
 
@@ -897,16 +934,13 @@ Dựa trên phân tích ở phần trước, chúng tôi thiết kế một pipe
 
 Pipeline được tổ chức thành hai pha: \textbf{Indexing Phase} (offline, chạy một lần khi có tài liệu mới) và \textbf{Query Phase} (online, mỗi khi có câu hỏi từ người dùng).
 
-\subsection{Indexing Phase: Từ PDF đến Vector Store}
+\subsection{Indexing Phase: Tái cấu trúc Tri thức}
 
-\subsubsection{Document Parsing với UnstructuredIO}
+\subsubsection{Bảo toàn Cấu trúc với UnstructuredIO và Table Transformer}
 
-\textbf{Vấn đề giải quyết}: Mất cấu trúc bảng biểu khi parsing.
+Để giải quyết vấn đề  mất cấu trúc bảng biểu khi parsing, chúng tôi sử  dụng UnstructuredIO --- một thư viện mạnh mẽ cho Document Layout Analysis. Thay vì PyPDF chỉ trích xuất raw text, UnstructuredIO sử dụng computer vision để detect các regions trong PDF: Text blocks, Table regions, và Image regions. Đặc biệt, với tables, UnstructuredIO bảo toàn cấu trúc 2D bằng cách chuyển đổi thành HTML.
 
-\textbf{Giải pháp}: UnstructuredIO với Document Layout Analysis.
-
-Thay vì PyPDF chỉ trích xuất raw text, UnstructuredIO sử dụng computer vision để detect các regions trong PDF: Text blocks, Table regions, và Image regions. Đặc biệt, với tables, UnstructuredIO bảo toàn cấu trúc 2D bằng cách chuyển đổi thành HTML.
-
+Cấu hình UnstructedIO được đề cập trong Annexe. 
 \begin{verbatim}
 # Cấu hình UnstructuredIO cho hi-res parsing
 chunks = partition_pdf(
@@ -918,34 +952,87 @@ chunks = partition_pdf(
     max_characters=10000
 )
 \end{verbatim}
+Chúng tôi sử dụng strategy "hi\_res" của UnstructedIO. Với strategy này, UnstructuredIO coi mỗi trang tài liệu là một hình ảnh và đưa qua các mô hình Object Detection như YoloX hoặc Detectron2 để phân loại các vùng trong trang thành Title, Text, List, Table, Image và dự đoán các "bounding boxes" (khung bao) quanh từng thành phần. Đặc biệt, đối với các vùng đánh dấu là "Table", UnstructuredIO không chỉ trích xuất chữ mà còn phải hiểu cấu trúc hàng/cột nhờ vào Table Transformer (TATR). Cách hoạt động: 1. Table Detection: Xác định vị trí bảng. 2. Table Structure Recognition: Nhận diện các đường kẻ (cells), các ô bị gộp (merged cells) và phân loại đâu là Header, đâu là Body. 3. HTML Mapping: Cuối cùng, nó ánh xạ các tọa độ này thành thẻ <table> để LLM dễ dàng xử lý.
+
+% ảnh của 1 bảng trong trang tài liệu được phát hiện và render
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/unstructuredio_table_detection.png}
+    \caption{Phát hiện và render bảng tài chính}
+    \label{fig:unstructuredio_table_detection}
+\end{figure}
+
+% Ảnh một trạng tài liệu được
 
 Kết quả: Bảng tài chính được bảo toàn dưới dạng HTML:
-
-\begin{verbatim}
+\begin{htmlcode}
 <table>
-  <tr><th>Indicateur</th><th>2022</th><th>2023</th><th>2024</th></tr>
-  <tr><td>Chiffre d'affaires</td><td>187,234</td><td>198,456</td>
-      <td>210,294</td></tr>
+    <thead>
+        <tr>
+            <th>Sous modules (en k€)</th>
+            <th>SCR 2024</th>
+            <th>SCR 2023</th>
+            <th>Evolution</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Type 1</td>
+            <td>2 692</td>
+            <td>2 487</td>
+            <td>8%</td>
+        </tr>
+        <tr>
+            <td>Type 2</td>
+            <td>28 377</td>
+            <td>36 221</td>
+            <td>-22%</td>
+        </tr>
+        <tr>
+            <td>Effet de diversification</td>
+            <td>-621</td>
+            <td>-586</td>
+            <td>6%</td>
+        </tr>
+        <tr>
+            <td>Risque de défaut</td>
+            <td>30 448</td>
+            <td>38 121</td>
+            <td>-20%</td>
+        </tr>
+    </tbody>
 </table>
-\end{verbatim}
+\end{htmlcode}
 
-LLMs được train trên lượng lớn HTML/Markdown, do đó có khả năng ``hiểu'' cấu trúc 2D này và mapping giữa header (2024) với giá trị (210,294).
+Cũng cùng là bảng trong phần test PyPDF ở trên, nhưng bây giờ chúng ta đã giữ được cấu trúc bảng dưới dạng HTML. Cấu trúc này sẽ được feed cho LLM. Việc sử dụng HTML làm định dạng trung gian cho bảng biểu là tối ưu nhất vì các LLM hiện đại (như Gemma-3) được huấn luyện trên lượng lớn dữ liệu web, giúp chúng có khả năng "hiểu" và "suy luận" trên cấu trúc thẻ <table> tốt hơn nhiều so với văn bản thuần túy.
 
-\subsubsection{Summarization: Semantic Bridge}
+\subsubsection{Semantic Bridge: Cơ chế Summarization cho Dữ liệu Đa phương thức}
 
-\textbf{Vấn đề giải quyết}: Semantic gap giữa query và raw content.
+Để thu hẹp khoảng cách ngữ nghĩa giữa câu hỏi của người dùng và các con số khô khan trong bảng biểu/hình ảnh, chúng tôi triển khai lớp Summarization. Các embedding model hiện nay thường gặp khó khăn với:
 
-\textbf{Giải pháp}: Sử dụng LLM tạo summary cho mỗi chunk.
+Bảng số liệu (Tables): Các bảng quá lớn hoặc chứa số liệu thuần túy (ví dụ: "2024: 210,294") thường thiếu từ khóa ngữ cảnh (như "doanh thu", "tăng trưởng"), khiến việc truy xuất không chính xác.
 
-Raw content (đặc biệt là bảng số liệu) thường không chứa đủ context để embedding model hiểu. Ví dụ, một bảng chỉ có ``2024: 210,294'' không có từ ``doanh thu'' hay ``chiffre d'affaires'' xuất hiện.
+Hình ảnh (Images): Embedding model truyền thống không thể "đọc" trực tiếp nội dung từ ảnh.
 
-Chúng tôi sử dụng Gemma-3-12b-it để tạo summary mô tả nội dung:
+\textbf{Giải pháp}: Sử dụng LLM để tạo tóm tắt (Summary) cho từng chunk dữ liệu, đóng vai trò "cầu nối ngữ nghĩa" giúp tăng hiệu quả định danh nội dung.
 
-\begin{verbatim}
-Summary: "Ce tableau présente l'évolution du chiffre d'affaires 
-de l'entreprise de 2022 à 2024. Le chiffre d'affaires 2024 
-s'élève à 210 294 k€, en hausse de 6% par rapport à 2023."
-\end{verbatim}
+Chúng tôi sử dụng Gemma-3-12b-it, để phân tích các bảng số liệu phức tạp trong chunk. LLM sẽ diễn giải các con số thành văn bản có ý nghĩa (ví dụ: "Bảng thể hiện doanh thu năm 2024 đạt 210.294 k€, tăng 6\%"). Điều này giúp embedding của chunk khớp chính xác với các truy vấn mang tính mô tả của người dùng. Đối với các chunk chứa hình ảnh, vì Gemma-3-12b-it là một Multimodal LM có khả năng chuyển đổi thông tin thị giác thành mô tả văn bản. Quá trình này giúp embedding model "hiểu" được nội dung ảnh thông qua lớp summary bổ trợ.
+
+Kết quả: Summary giúp làm giàu (enrich) thông tin cho chunk, đảm bảo độ tương đồng (similarity) cao nhất giữa vector truy vấn và nội dung tài liệu, ngay cả khi dữ liệu gốc không chứa các từ khóa xuất hiện trong câu hỏi.
+
+Đối với bảng trong hình \ref{fig:unstructuredio_table_detection}, summary được tạo ra như sau:
+\begin{center}
+    \fbox{
+    \begin{minipage}{0.95\textwidth}
+        \footnotesize
+        \textbf{Summary:} "Le tableau détaille l'évolution du Solvency Capital Requirement (SCR) pour différents sous-modules entre 2023 et 2024, avec les montants exprimés en milliers d'euros (k€) et l'évolution en pourcentage. 
+
+        Pour le sous-module << Type 1 >>, le SCR est passé de 2 487 k€ en 2023 à 2 692 k€ en 2024, affichant une évolution de 8\%. Le sous-module << Type 2 >> a vu son SCR passer de 36 221 k€ en 2023 à 28 377 k€ en 2024, avec une évolution indiquée de -22\%. 
+
+        L'<< Effet de diversification >> a évolué de -586 k€ en 2023 à 621 k€ en 2024, soit une évolution de 6\%. Enfin, le << Risque de défaut >> a diminué, passant de 38 121 k€ en 2023 à 30 448 k€ en 2024, l'évolution diminue de -20\%."
+    \end{minipage}
+    }
+\end{center}
 
 Summary này trở thành ``semantic bridge'': khi người dùng hỏi về ``doanh thu 2024'', embedding của câu hỏi sẽ có similarity cao với summary (chứa ``chiffre d'affaires'' và ``2024'').
 
@@ -955,41 +1042,56 @@ Summary này trở thành ``semantic bridge'': khi người dùng hỏi về ``d
 
 \textbf{Giải pháp}: Lưu summary vào VectorStore, raw content vào DocStore.
 
-Summary ngắn gọn giúp retrieval chính xác hơn (ít noise), nhưng LLM cần raw content đầy đủ (bao gồm HTML table) để sinh câu trả lời chi tiết.
+Sau bước summary generation, mỗi chunk giờ có hai phần: raw content và summary của chính nó. Summary sẽ được lưu vào vector store để  retrieval. Tuy nhiên nếu ta sử dụng chính summary này làm context cho LLM, LLM sẽ bị thiếu thông tin cần thiết để  trả lời chi tiết. Summary ngắn gọn giúp retrieval chính xác hơn (ít noise), nhưng LLM cần raw content đầy đủ (bao gồm HTML table) để sinh câu trả lời chi tiết. Vì vậy, chúng tôi áp dụng \textbf{Parent-Child Indexing Strategy}:
 
 Quy trình:
 \begin{enumerate}
     \item Index summary embeddings vào ChromaDB/Qdrant với \texttt{doc\_id} liên kết.
     \item Lưu raw content (text, HTML tables, base64 images) vào InMemoryStore.
-    \item Khi retrieval, tìm summaries tương tự, sau đó fetch raw content theo \texttt{doc\_id}.
+    \item Khi retrieval, tìm summaries tương tự, sau đó fetch raw content tương ứng theo \texttt{doc\_id}.
 \end{enumerate}
+
+Bây giờ, summary sẽ chịu trách nhiệm định vị các chunk liên quan. Sau khi biết chunk nào có liên quan rồi, raw content của chunk đó sẽ được feed cho LLM để đảm bảo LLM có đủ thông tin chi tiết để trả lời câu hỏi. Strategy này có lợi thế: retrieval phase chính xác và nhanh hơn vì summary chứa đầy đủ thông tin nhưng ngắn gọn hơn raw content, đồng thời LLM có đầy đủ context từ raw content.
 
 \subsubsection{Multilingual Embedding Model}
 
-\textbf{Vấn đề giải quyết}: Embedding model tiếng Anh không hiệu quả với tài liệu tiếng Pháp.
+Trong phần trê, chúng tôi có đề cập rằng embedding model all-Mini-LM6 không thể hiện tốt trên những ngôn ngữ khác tiếng Anh vì nó được train chủ yếu trên dữ liệu tiếng Anh. Ở đây chúng tôi muốn một embedding model hiểu được nhiều thứ tiếng (cụ thể trong trường hợp của chúng tôi là các tài liệu tiếng Pháp), tuy nhiên model đó vẫn phải đáp ứng điều kiện nhỏ gọn (dưới 1B tham số). Dựa trên bảng xếp hạng MTEB, chúng tôi lựa chọn \texttt{intfloat/multilingual-e5-large-instruct}. Hình \ref{fig:mteb_multilingual} so sánh hiệu suất của các model phổ biến trên tập dữ liệu multilingual MTEB:
 
-\textbf{Giải pháp}: \texttt{intfloat/multilingual-e5-large-instruct}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/mteb_multilingual_comparison.png}
+    \caption{So sánh hiệu suất các embedding model trên MTEB Multilingual}
+    \label{fig:mteb_multilingual}
+\end{figure}
 
-Model này có 560M parameters, được train trên 100+ ngôn ngữ với instruction-following capability. Đặc biệt, nó cho phép prefix query với task description:
+Model này có 560M parameters, được train trên 100+ ngôn ngữ với instruction-following capability. Ở thời điểm xây dựng pipeline, đây là model retriever tốt nhất dưới 1B parameters cho dữ liệu đa ngôn ngữ (Lưu ý: hiện tại đã có các model mới ra đời như \texttt{Qwen3-embeddings-0.6B} có thể  sử dụng thay thế để tối ưu pipeline).
 
-\begin{verbatim}
-query = get_detailed_instruct(
-    "Given a query, retrieve relevant passages that answer the query.",
-    "Quel est le chiffre d'affaires 2024?"
-)
-\end{verbatim}
+% Đặc biệt, nó cho phép prefix query với task description:
 
-Instruction này giúp model hiểu mục tiêu không chỉ là tìm passages tương tự mà là tìm passages chứa \textbf{câu trả lời}.
+% \begin{verbatim}
+% query = get_detailed_instruct(
+%     "Given a query, retrieve relevant passages that answer the query.",
+%     "Quel est le chiffre d'affaires 2024?"
+% )
+% \end{verbatim}
 
-\subsection{Query Phase: Từ Câu hỏi đến Câu trả lời}
+% Instruction này giúp model hiểu mục tiêu không chỉ là tìm passages tương tự mà là tìm passages chứa \textbf{câu trả lời}.
 
+\subsection{Query Phase: Cơ chế Truy vấn và Tổng hợp Tri thức Đa phương thức}
+Nếu Indexing Phase là quá trình xây dựng "thư viện" tri thức, thì Query Phase quyết định khả năng "tìm kiếm và diễn giải" thông tin để đưa ra câu trả lời chính xác. Để khắc phục triệt để các hạn chế của Simple RAG, chúng tôi triển khai một quy trình truy vấn hai giai đoạn (Two-stage Retrieval) kết hợp với khả năng suy luận đa phương thức.
 \subsubsection{Hybrid Search: Kết hợp Semantic và Keyword}
 
-\textbf{Vấn đề giải quyết}: Dense Search thất bại với exact code matching.
+Như đã phân tích tại phần 2.3, các truy vấn chứa mã định danh (như mã CCAM "HAFA008") thường thất bại trong không gian Vector (Dense Search) do tính chất phân tán của embedding. Để giải quyết vấn đề này, chúng tôi áp dụng chiến lược Hybrid Search, kết hợp sức mạnh của truy vấn ngữ nghĩa và truy vấn từ khóa (Sparse Search).
 
-\textbf{Giải pháp}: Kết hợp Dense Search (semantic) và BM25 (keyword).
+Cơ chế phối hợp: Chúng tôi sử dụng thuật toán BM25 để bắt chính xác các từ khóa đặc hiệu (exact match) và Dense Search với model multilingual-e5-large để hiểu ngữ cảnh.
 
-Dense Search tốt cho semantic queries như ``doanh thu tăng bao nhiêu?'' nhưng kém với ``mã HAFA008''. BM25 (sparse retrieval) tính relevance dựa trên term frequency --- nếu query chứa ``HAFA008'', BM25 sẽ ưu tiên documents chứa chính xác chuỗi ký tự này.
+Hợp nhất kết quả bằng Reciprocal Rank Fusion (RRF): Do thang điểm của BM25 và Vector Similarity không đồng nhất, chúng tôi sử dụng kỹ thuật RRF để xếp hạng lại các tài liệu từ cả hai nguồn. Công thức RRF giúp ưu tiên các tài liệu xuất hiện ở vị trí cao trong cả hai danh sách mà không cần chuẩn hóa điểm số:
+
+\[
+\text{RRF}(d) = \sum_{r \in R} \frac{1}{k + r(d)}
+\]
+
+Trong đó $r(d)$ là thứ hạng của tài liệu $d$, và $k$ là hằng số (thường chọn $k=60$) để giảm nhiễu từ các tài liệu có thứ hạng cực thấp. 
 
 Chúng tôi sử dụng Qdrant với Hybrid Search:
 
@@ -1002,41 +1104,36 @@ vector_store = QdrantVectorStore(
 )
 \end{verbatim}
 
-Kết quả từ Dense và BM25 được merge bằng \textbf{Reciprocal Rank Fusion (RRF)}:
+\subsubsection{Cross-Encoder Reranking: Giải quyết hiện tượng "Lost in the Middle"}
 
-\[
-\text{RRF}(d) = \sum_{r \in R} \frac{1}{k + r(d)}
-\]
+Mặc dù Hybrid Search cải thiện đáng kể khả năng thu hồi (Recall), nhưng danh sách kết quả vẫn có thể chứa nhiễu. LLM khi đối mặt với quá nhiều thông tin trong context window thường gặp hiện tượng suy giảm hiệu suất ở các vị trí giữa (Lost in the Middle). Nếu chunk chứa thông tin rơi vào các vị trí giữa này, LLM sẽ có xu hướng bỏ qua và tìm kiếm ở những chunk vị trí đầu hoặc cuối trong context. Chúng tôi giải quyết vấn đề này bằng một lớp Reranker sử dụng kiến trúc Cross-Encoder.
 
-với $R$ là tập các rankings, $r(d)$ là rank của document $d$ trong ranking $r$, và $k=60$ là constant để smoothing.
+Sự khác biệt về kiến trúc: Khác với Bi-Encoder (dùng trong Indexing) chỉ tính toán similarity dựa trên hai vector độc lập, Cross-Encoder đưa đồng thời cả Query và Document vào mô hình Transformer. Điều này cho phép mô hình thực hiện cơ chế Full Self-Attention giữa mọi token của câu hỏi và tài liệu, từ đó đánh giá mức độ liên quan một cách cực kỳ chi tiết.
 
-\subsubsection{Cross-Encoder Reranking}
+Chiến lược tối ưu: Do chi phí tính toán của Cross-Encoder lớn, chúng tôi chỉ thực hiện tái xếp hạng trên top-10 ứng viên từ bước Hybrid Search. Kết quả là những passage có độ tương quan cao nhất sẽ được đưa lên đầu ngữ cảnh, tối ưu hóa khả năng "đọc hiểu" của LLM ở bước sau.
 
-\textbf{Vấn đề giải quyết}: Lost in the Middle --- LLM bỏ qua thông tin giữa context.
+% Ở phần trên, chúng tôi đã đề cập đến vấn đề Lost in the Middle --- LLM bỏ qua thông tin giữa context. Giải pháp cho vấn đề này chính là sử dụng model Reranker để đưa thông tin relevant nhất lên đầu. Reranker sử dụng model có kiến trúc cross encoder, cho phép đưa cặp (query, document) vào cùng một Transformer, cho phép attention giữa mọi token --- đánh giá relevance chính xác hơn so với bi-encoder (được sử dụng trong Dense Search). Sở dĩ chúng tôi không dùng cross-encoder trực tiếp trong retrieval phase vì chi phí tính toán quá cao (phải encode từng cặp query-document cho tất cả các chunk). Chúng tôi chỉ dùng cross-encoder để rerank top-10 candidates sau retrieval phase. Lúc này chỉ cần encode 10 cặp, chi phí chấp nhận được.
 
-\textbf{Giải pháp}: Rerank để đưa thông tin relevant nhất lên đầu.
+% Quy trình này diễn ra như sau: 
+% \begin{enumerate}
+%     \item Hybrid Search retrieve top-10 candidates (nhanh vì dùng HNSW index).
+%     \item Cross-Encoder (\texttt{cross-encoder/ms-marco-MiniLM-L-12-v2}) score 10 candidates này.
+%     \item Chọn top-5 có score cao nhất để đưa vào LLM.
+% \end{enumerate}
 
-Bi-Encoder (dùng trong Dense Search) tính embedding độc lập cho query và document, nhanh nhưng ``shallow''. Cross-Encoder đưa cặp (query, document) vào cùng một Transformer, cho phép attention giữa mọi token --- đánh giá relevance chính xác hơn nhưng chậm hơn.
+% Với top-5 reranked results, thông tin quan trọng nhất được đảm bảo đẩy lên đầu context --- giảm thiểu ``Lost in the Middle''.
 
-Quy trình two-stage:
-\begin{enumerate}
-    \item Hybrid Search retrieve top-50 candidates (nhanh vì dùng HNSW index).
-    \item Cross-Encoder (\texttt{cross-encoder/ms-marco-MiniLM-L-12-v2}) score 50 candidates này.
-    \item Chọn top-5 có score cao nhất để đưa vào LLM.
-\end{enumerate}
+\subsubsection{Multimodal Generation: Tổng hợp tri thức từ Văn bản, Bảng biểu và Hình ảnh}
 
-Với top-5 reranked results, thông tin quan trọng nhất đảm bảo nằm ở đầu context --- giảm thiểu ``Lost in the Middle''.
+Giai đoạn cuối cùng là quá trình sinh phản hồi, nơi LLM phải đóng vai trò một chuyên gia tổng hợp dữ liệu đa nguồn. Thay vì chỉ nhận văn bản thuần túy (plain text) như Simple RAG, mô hình Gemma-3-12b-it của chúng tôi được cung cấp một "Augmented Prompt" giàu cấu trúc:
 
-\subsubsection{Multimodal Generation}
+Cấu trúc 2D: Các bảng biểu tài chính được truyền dưới dạng HTML nguyên bản, giúp LLM duy trì sự gióng hàng giữa các cột (năm tài chính) và hàng (chỉ số doanh thu), loại bỏ hoàn toàn lỗi đọc sai số liệu do làm phẳng văn bản (flattening).
 
-Bước cuối cùng, LLM (Gemma-3-12b-it với multimodal capability) nhận context bao gồm:
-\begin{itemize}
-    \item Text passages (từ raw content).
-    \item HTML tables (bảo toàn cấu trúc 2D).
-    \item Base64 images (biểu đồ, đồ thị).
-\end{itemize}
+Thông tin thị giác: Đối với các chunk chứa biểu đồ hoặc hình ảnh minh họa y tế, mô hình nhận trực tiếp dữ liệu hình ảnh (Base64) cùng với các đoạn mô tả (summaries) đã tạo ở bước Indexing.
 
-Prompt được thiết kế để LLM trả lời dựa \textbf{chỉ} vào context được cung cấp (giảm hallucination) và giữ nguyên ngôn ngữ của tài liệu.
+Hàng rào an toàn (Guardrails): Prompt được thiết kế theo kỹ thuật Chain-of-Thought (CoT), yêu cầu mô hình trích dẫn trực tiếp nguồn dữ liệu từ ngữ cảnh để giảm thiểu hiện tượng ảo giác (hallucination).
+
+Kết quả là pipeline này không chỉ trả về câu trả lời mà còn giải thích được "tại sao số liệu đó được chọn" dựa trên việc đối chiếu giữa bảng biểu và văn bản mô tả xung quanh. Điều này tạo ra sự minh bạch — một yếu tố then chốt trong các quyết định tài chính và chẩn đoán y khoa.
 
 \section{Đánh giá Thực nghiệm}
 
