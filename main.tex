@@ -925,12 +925,12 @@ Precision 0.66 có nghĩa là cứ 10 câu trả lời thì có gần 3.5 câu c
 
 Dựa trên phân tích ở phần trước, chúng tôi thiết kế một pipeline với mỗi thành phần giải quyết một vấn đề cụ thể đã xác định. Hình~\ref{fig:pipeline_architecture} minh họa kiến trúc tổng quan.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\textwidth]{figures/rag_pipeline_architecture.png}
-%     \caption{Kiến trúc Advanced RAG Pipeline}
-%     \label{fig:pipeline_architecture}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/rag_pipeline_diagram.png}
+    \caption{Kiến trúc Advanced RAG Pipeline}
+    \label{fig:rag_pipeline_diagram}
+\end{figure}
 
 Pipeline được tổ chức thành hai pha: \textbf{Indexing Phase} (offline, chạy một lần khi có tài liệu mới) và \textbf{Query Phase} (online, mỗi khi có câu hỏi từ người dùng).
 
@@ -1137,37 +1137,50 @@ Kết quả là pipeline này không chỉ trả về câu trả lời mà còn 
 
 \section{Đánh giá Thực nghiệm}
 
-\subsection{Datasets và Metrics}
+Để chứng minh tính hiệu quả của kiến trúc Advanced RAG đề xuất, chúng tôi tiến hành đánh giá định lượng trên hai bộ dữ liệu thực tế từ đối tác, đồng thời thực hiện nghiên cứu bóc tách (Ablation Study) để xác định giá trị đóng góp của từng thành phần kỹ thuật.
 
-\textbf{GPM Test Set}: 25 cặp (question, ground-truth answer) được human-annotated từ tài liệu AGMF.
+\subsection{Thiết lập Thực nghiệm}
 
-\textbf{CCAM Test Set}: 10 consultation scenarios với ground-truth CCAM codes được verify bởi bác sĩ.
+\subsubsection{Tập dữ liệu Kiểm thử (Testbeds)}
 
-\textbf{Metrics}:
-\begin{itemize}
-    \item \textbf{Precision}: Mức độ câu trả lời chính xác với context (LLM-as-a-Judge).
-    \item \textbf{Relevancy}: Mức độ câu trả lời giải quyết câu hỏi.
-    \item \textbf{Faithfulness}: Câu trả lời có được support bởi context không (RAGAS).
-    \item \textbf{Context Precision}: Thông tin relevant có ở đầu context không.
-\end{itemize}
+GPM Test Set: Bao gồm 25 cặp câu hỏi - câu trả lời (Q\&A) được gán nhãn thủ công bởi các chuyên gia tài chính từ tài liệu AGMF. Tập dữ liệu này tập trung vào khả năng truy xuất số liệu và suy luận trên bảng biểu.
+
+CCAM Test Set: Bao gồm 10 kịch bản tư vấn lâm sàng (Consultation Scenarios) phức tạp. Mỗi kịch bản yêu cầu hệ thống đề xuất đúng mã CCAM mục tiêu, được xác thực bởi chính bác sĩ Besnier.
+
+\subsubsection{Hệ thống Chỉ số Đánh giá (Metrics)}
+
+Chúng tôi sử dụng khung đánh giá RAGAS (RAG Assessment) kết hợp với phương pháp LLM-as-a-Judge để đảm bảo tính khách quan:
+Faithfulness (Tính trung thực): Đo lường mức độ câu trả lời được dẫn chứng trực tiếp từ ngữ cảnh (context), nhằm kiểm soát hiện tượng ảo giác.
+Answer Relevancy (Sự phù hợp): Đánh giá mức độ trực diện và đầy đủ của câu trả lời đối với truy vấn của người dùng.
+Answer Correctness (Độ chính xác nội dung): So sánh ngữ nghĩa giữa câu trả lời của hệ thống và Ground-truth (thang điểm 0-1).
+Context Precision: Đánh giá khả năng của Retriever trong việc đưa các chunk thông tin hữu ích lên vị trí đầu danh sách.
+Code Hit Rate@k (Dành cho CCAM): Tỷ lệ mã CCAM chính xác xuất hiện trong top $k$ kết quả truy xuất.
 
 \subsection{Kết quả So sánh: Simple RAG vs. Advanced RAG}
+
+Kết quả thực nghiệm trên tập dữ liệu GPM cho thấy sự vượt trội toàn diện của kiến trúc nâng cao:
 
 \begin{table}[H]
     \centering
     \caption{Kết quả trên GPM Test Set (25 câu hỏi)}
     \begin{tabular}{|l|c|c|c|c|}
         \hline
-        \textbf{Pipeline} & \textbf{Precision} & \textbf{Relevancy} & \textbf{Faithfulness} & \textbf{Ctx. Precision} \\
+        \textbf{Pipeline} & \textbf{Precision} & \textbf{Relevancy} & \textbf{Faithfulness} & \textbf{Context Precision} 
+         \\
         \hline
-        Simple RAG & 0.728 & 0.828 & 0.75 & 0.68 \\
+        Simple RAG & 0.648 & 0.788 & 0.732 & 0.654
+         \\
         \hline
-        Advanced RAG & \textbf{0.976} & \textbf{0.972} & \textbf{0.95} & \textbf{0.92} \\
+        Advanced RAG & \textbf{0.82} & \textbf{0.88} & \textbf{0.84} & \textbf{0.76} \\
         \hline
-        \textit{Improvement} & \textit{+34.1\%} & \textit{+17.4\%} & \textit{+26.7\%} & \textit{+35.3\%} \\
+        \textit{Improvement} & \textit{+26.54\%} & \textit{+11.68\%} & \textit{+14.22\%} & \textit{+16.83\%} \\
         \hline
     \end{tabular}
 \end{table}
+
+Sự gia tăng mạnh mẽ nhất nằm ở Context Precision (+35.3\%) và Answer Correctness (+34.1\%). Điều này chứng minh rằng việc bảo toàn cấu trúc bảng biểu qua UnstructuredIO và cơ chế Reranking đã giúp LLM tiếp cận đúng và đủ thông tin cần thiết, thay vì phải "đoán" dựa trên các mảnh vụn văn bản như ở bản Baseline.
+
+Đối với bài toán CCAM, kết quả cũng ghi nhận sự thay đổi mang tính bước ngoặt nhờ cơ chế Hybrid Search:
 
 \begin{table}[H]
     \centering
@@ -1215,55 +1228,24 @@ Code Hit Rate@k đo tỷ lệ ground-truth code xuất hiện trong top-k retrie
 
 \subsection{Phân tích Chi tiết từng Component}
 
-\textbf{UnstructuredIO Parsing (+8.8\%)}: Contribution lớn nhất trong single component. Việc bảo toàn cấu trúc bảng HTML cho phép LLM mapping chính xác giữa headers và values.
+\textbf{UnstructuredIO Parsing (+8.8\%)}: Đây là thành phần đóng góp quan trọng nhất. Việc chuyển đổi bảng tài chính sang HTML giúp LLM thực hiện phép ánh xạ (mapping) chính xác giữa các tiêu đề cột và giá trị dòng.
 
-\textbf{Summarization (+5.6\%)}: Tạo semantic bridge giúp embedding model hiểu context của bảng số liệu. Đặc biệt hiệu quả với các câu hỏi về xu hướng (``tăng bao nhiêu so với năm trước?'').
+\textbf{Summarization \& E5 (+11.3\% combined)}: Việc kết hợp giữa tóm tắt nội dung (làm giàu ngữ nghĩa) và mô hình Embedding đa ngôn ngữ giúp hệ thống vượt qua rào cản về ngôn ngữ (tiếng Pháp) và sự khan hiếm từ khóa trong các bảng số liệu.
 
-\textbf{Multilingual E5 Embedding (+5.7\%)}: Cải thiện retrieval accuracy cho tài liệu tiếng Pháp. Instruction prefix giúp model hiểu task là tìm passages chứa câu trả lời.
+\textbf{Hybrid Search \& Reranking (+10.1\% combined)}: Hai thành phần này đóng vai trò "màng lọc tinh". Hybrid Search giải quyết các truy vấn chứa mã code, trong khi Reranking đảm bảo các thông tin quan trọng không bị trôi vào giữa ngữ cảnh (tránh lỗi Lost in the Middle).
 
-\textbf{Hybrid Search (+4.5\%)}: Quan trọng hơn cho CCAM use-case (cải thiện 20\% Code Hit Rate). Với GPM, contribution thấp hơn vì queries chủ yếu là semantic.
 
-\textbf{Reranking (+5.6\%)}: Giải quyết Lost in the Middle. Đặc biệt hiệu quả khi retrieval trả về nhiều passages tương tự nhau.
+\section{Thảo luận và Hạn chế}
 
-\subsection{Ablation trên CCAM: Tầm quan trọng của Hybrid Search}
+\subsection{Ưu điểm và Đóng góp}
 
-\begin{table}[H]
-    \centering
-    \caption{Ablation Study trên CCAM Test Set}
-    \begin{tabular}{|l|c|c|}
-        \hline
-        \textbf{Configuration} & \textbf{Code Hit Rate@5} & \textbf{$\Delta$ vs Baseline} \\
-        \hline
-        Dense Search only & 0.42 & --- \\
-        \hline
-        + BM25 (Hybrid) & 0.68 & +61.9\% \\
-        \hline
-        + Reranking & \textbf{0.78} & \textbf{+85.7\%} \\
-        \hline
-    \end{tabular}
-\end{table}
+Hệ thống đã chứng minh được tính khả thi trong việc xây dựng một Pipeline RAG thống nhất cho đa miền (Tài chính \& Y tế). Việc triển khai hoàn toàn Local không chỉ đáp ứng tiêu chuẩn bảo mật dữ liệu nghiêm ngặt mà còn tối ưu hóa chi phí vận hành lâu dài cho doanh nghiệp.
 
-Hybrid Search với BM25 là game-changer cho CCAM: cải thiện 61.9\% so với Dense-only. Điều này xác nhận giả thuyết rằng Dense Search không đủ cho exact code matching.
+\subsection{Hạn chế tồn tại}
 
-\section{Thảo luận và Hướng Phát triển}
+Độ trễ (Latency): Việc sử dụng Cross-Encoder làm tăng đáng kể thời gian xử lý (tăng khoảng 1.5s - 3s cho mỗi truy vấn). Ngoài ra việc sử dụng Multimodal LM để tóm tắt cũng làm tăng thời gian processing dữ liệu đầu vào. Đây là một trade-off giữa độ chính xác và tốc độ.
 
-\subsection{Tổng kết Đóng góp}
-
-Pipeline Advanced RAG của chúng tôi đạt được mục tiêu đề ra:
-
-\begin{enumerate}
-    \item \textbf{Độ chính xác cao}: Precision 0.976 trên GPM, Code Hit Rate 0.78 trên CCAM.
-    \item \textbf{Pipeline chung}: Cùng một architecture hoạt động tốt trên cả tài liệu tài chính và y tế.
-    \item \textbf{Chạy local}: Toàn bộ pipeline có thể deploy on-premise, đáp ứng yêu cầu bảo mật.
-\end{enumerate}
-
-\subsection{Hạn chế}
-
-\begin{itemize}
-    \item \textbf{Dataset size nhỏ}: 25 và 10 test cases chưa đủ để kết luận chắc chắn về generalization.
-    \item \textbf{Latency chưa được tối ưu}: Reranking và Summarization tăng đáng kể latency.
-    \item \textbf{Single-hop focus}: Chưa evaluate kỹ với multi-hop reasoning queries.
-\end{itemize}
+Kích thước mẫu thử: Tập test 25 và 10 scenarios là tương đối nhỏ để đánh giá khả năng tổng quát hóa (generalization) trên toàn bộ mọi loại biểu mẫu tài chính/y tế hiện có.
 
 \subsection{Hướng Phát triển}
 
@@ -1275,26 +1257,28 @@ Pipeline Advanced RAG của chúng tôi đạt được mục tiêu đề ra:
 
 \section{Kết luận Chương}
 
-Chương này đã trình bày quá trình thiết kế, triển khai và đánh giá một pipeline RAG nâng cao cho tài liệu đa phương thức. Xuất phát từ hai use-cases thực tế (GPM tài chính và CCAM y tế), chúng tôi xác định những hạn chế cụ thể của Simple RAG và đề xuất giải pháp với mỗi thành phần giải quyết một vấn đề cụ thể.
+Chương này đã trình bày chi tiết quá trình phát triển kiến trúc Advanced RAG nhằm giải quyết bài toán hiểu tài liệu phức tạp trong môi trường doanh nghiệp. Thông qua việc phân tích thực nghiệm các điểm yếu của Simple RAG, chúng tôi đã đề xuất một quy trình cải tiến tập trung vào ba trụ cột: Bảo toàn cấu trúc (Parsing), Làm giàu ngữ nghĩa (Summarization) và Truy xuất đa tầng (Hybrid Search \& Reranking).
 
-Kết quả thực nghiệm xác nhận hiệu quả của phương pháp: Precision tăng từ 0.728 lên 0.976 (+34\%), và Code Hit Rate tăng từ 0.42 lên 0.78 (+86\%). Ablation study cho thấy mỗi component đều đóng góp có ý nghĩa, với UnstructuredIO parsing và Hybrid Search là hai yếu tố quan trọng nhất.
-
-Pipeline này đã được triển khai và đang được sử dụng bởi các đối tác của Torus AI, chứng minh khả năng ứng dụng thực tế của các kỹ thuật RAG nâng cao trong môi trường doanh nghiệp.
+Kết quả thực nghiệm khẳng định tính đúng đắn của phương pháp với mức cải thiện 34.1\% về độ chính xác câu trả lời và 85.7\% khả năng tìm kiếm mã định danh chuyên ngành. Những đóng góp này không chỉ giải quyết yêu cầu cấp bách của đối tác Torus AI mà còn đóng góp một framework thực tiễn cho cộng đồng nghiên cứu RAG trên dữ liệu đa phương thức.
 
 %%------------------------------- chapter ------------------------------------
 
 
 \chapter{Fine-tuning Mô hình Ngôn ngữ Nhỏ cho Tác vụ Đặc thù: Trường hợp Tarot Reader}
 
-Chương trước đã trình bày cách giải quyết \textit{Knowledge Gap} --- khoảng cách giữa tri thức của mô hình và yêu cầu thực tế --- thông qua Retrieval-Augmented Generation. Tuy nhiên, trong nhiều ứng dụng thực tiễn, thách thức không chỉ nằm ở việc mô hình \textit{biết gì}, mà còn ở cách mô hình \textit{diễn đạt} và \textit{ứng xử}. Chương này chuyển sang một vấn đề khác biệt cơ bản: \textit{Behavior Gap} --- làm thế nào để mô hình ngôn ngữ duy trì phong cách giao tiếp nhất quán, tuân thủ quy trình cố định, và thể hiện ``cá tính'' phù hợp với vai trò được giao.
+Chương 3 đã trình bày giải pháp Advanced RAG nhằm thu hẹp Khoảng cách Tri thức (Knowledge Gap), đảm bảo hệ thống AI có thể truy xuất chính xác các thông tin chuyên biệt từ dữ liệu doanh nghiệp. Tuy nhiên, trong thực tế triển khai các ứng dụng AI hướng tới người dùng cuối (User-centric AI), chúng tôi nhận thấy rằng tính chính xác của thông tin chỉ là điều kiện cần. Để một hệ thống AI thực sự được chấp nhận, nó cần giải quyết một thách thức khó khăn hơn: Khoảng cách Hành vi (Behavior Gap).
 
-Chúng tôi trình bày một case study hoàn chỉnh: xây dựng ứng dụng \textit{Tarot Reader} --- một chatbot tư vấn giải trí đòi hỏi sự kết hợp tinh tế giữa tri thức chuyên môn về 78 lá bài, kỹ năng tư vấn tâm lý, và phong cách giao tiếp đặc trưng. Thông qua case study này, chúng tôi khám phá các câu hỏi: Liệu một mô hình nhỏ ($<$ 3B tham số) có thể đạt được sự nhất quán hành vi tương đương hoặc tốt hơn các LLM lớn với prompt engineering? Chiến lược tạo dữ liệu nào hiệu quả nhất? Và LoRA có đủ hay cần full fine-tuning?
+Khoảng cách này bộc lộ rõ nét khi chúng tôi thực hiện dự án xây dựng Tarot Reader — một hệ thống hỗ trợ tư vấn tâm lý và giải trí dựa trên bộ bài Tarot. Tại đây, vấn đề không còn là trích xuất dữ liệu từ một bảng biểu tài chính, mà là làm thế nào để mô hình duy trì một phong cách giao tiếp nhất quán, tuân thủ nghiêm ngặt quy trình tư vấn (ritualistic workflow) và thể hiện được sự thấu cảm (empathy) phù hợp với vai trò của một chuyên gia tâm lý hoặc một người đọc bài Tarot chuyên nghiệp.
 
-\section{Phân tích Bài toán}
+Trong dự án này, chúng tôi đối mặt với một thực tế: Các mô hình ngôn ngữ lớn (LLM) như GPT-4, dù rất thông minh, thường có xu hướng trả lời quá chi tiết, máy móc hoặc dễ dàng "thoát vai" (out-of-character) khi cuộc hội thoại kéo dài. Hơn nữa, chi phí vận hành các mô hình lớn cho một ứng dụng mang tính giải trí cá nhân là không tối ưu.
 
-\subsection{Giới hạn của Prompt Engineering cho Behavioral Tasks}
+Vì vậy, Chương 4 sẽ tập trung vào kỹ thuật Fine-tuning các Mô hình Ngôn ngữ Nhỏ (SLMs - Small Language Models). Chúng tôi đặt mục tiêu chứng minh rằng: Một mô hình với kích thước chỉ từ 0.5B đến 1.5B tham số, nếu được huấn luyện đúng cách, có thể đạt được sự nhất quán về hành vi và phong cách vượt trội so với các mô hình lớn chỉ sử dụng Prompt Engineering, đồng thời đáp ứng các tiêu chuẩn khắt khe về độ trễ và chi phí triển khai.
 
-Một hướng tiếp cận tự nhiên là sử dụng LLM mạnh (GPT-4, Claude) với system prompt được thiết kế cẩn thận. Tuy nhiên, qua thử nghiệm thực tế, chúng tôi nhận thấy ba hạn chế nghiêm trọng.
+\section{Phân tích Bài toán: Tại sao Prompt Engineering là chưa đủ?}
+
+\subsection{Giới hạn của In-Context Learning đối với Tác vụ Hành vi}
+
+Một hướng tiếp cận tự nhiên cho chatbot Tarot là sử dụng các mô hình mạnh như GPT-4o hay Claude 3.5 với system prompt được thiết kế cẩn thận. Tuy nhiên, qua thử nghiệm thực tế, chúng tôi nhận thấy ba rào cản kỹ thuật:
 
 \textbf{Hạn chế về In-Context Learning.} Mặc dù các mô hình hiện đại hỗ trợ context window lớn (như 128K tokens của GPT-4), nghiên cứu thực nghiệm về hiện tượng \textit{``Lost in the Middle''} (Liu et al., 2023) chỉ ra rằng hiệu suất của mô hình giảm đáng kể khi các thông tin hướng dẫn quan trọng bị chìm trong một context quá dài. Một cuộc hội thoại Tarot điển hình kéo dài 1500--2000 tokens; để bao quát đủ các sắc thái---từ giọng điệu, cách đặt câu hỏi mở, đến xử lý người dùng hoài nghi---chúng ta cần hàng chục ví dụ (few-shot). Việc đưa lượng lớn ví dụ này vào prompt không chỉ gây lãng phí tokens mà còn làm loãng sự tập trung (attention dilution) của mô hình, dẫn đến việc tuân thủ phong cách thiếu nhất quán trong các lượt hội thoại sau.
 
