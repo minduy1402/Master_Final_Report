@@ -1,86 +1,96 @@
 \PassOptionsToPackage{table,svgnames}{xcolor}
 \documentclass[11pt,a4paper]{report}
 
-%%------------------------------- preamble ------------------------------------
+%%------------------------------- PREAMBLE ------------------------------------
 
-%% comment next for EN
-\usepackage[utf8]{inputenc}       % accents
-\usepackage[T1]{fontenc}          % PS fonts
-\usepackage{newtxtext,newtxmath}  % do not use CM fonts
-\usepackage{amsmath}              % multi-line and other mathematical statements
-\usepackage{setspace}             % setting the spacing between lines
-\usepackage{graphicx}             % go far beyond what the graphics package
-\usepackage[normalem]{ulem}       % various types of underlining
-\usepackage{caption}              % rotating captions, sideways captions, etc.
-\usepackage{float}                % tables and figures in the multi-column environment 
-\usepackage{subcaption}           % for subfigures and the like
-\usepackage{longtable}            % tables that continue to the next page
-\usepackage{multirow}             % tabular cells spanning multiple rows
-% \usepackage[table]{xcolor}        % driver-independent color extensions
-\usepackage{lipsum}               % loren dummy text
-\setlength{\marginparwidth}{2cm}  % todonotes' requirements
-\usepackage{todonotes}            % todo's
-\usepackage{csquotes}             % context sensitive quotation facilities
-\usepackage[backend=biber,authordate]{biblatex-chicago}  % Chicago Manual of Style
-\usepackage{pgfgantt}             % Gantt charts
-\usepackage[T5]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english, vietnamese]{babel}
-\usepackage[table]{xcolor}
-\usepackage{tcolorbox}
-\usepackage{eurosym}     
-\tcbuselibrary{breakable}
-\usepackage{booktabs}
-\tcbuselibrary{listings, skins}
+%% 1. Language & Encoding (Quan trọng: Load trước để tránh lỗi font)
+\usepackage[utf8]{inputenc}       
+\usepackage[T1,T5]{fontenc}       % T5 cho tiếng Việt
+\usepackage[english, vietnamese]{babel} % Hỗ trợ cả 2 ngôn ngữ
 
-%% document dimensions
-\usepackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm,headheight=6mm,footskip=12mm]{geometry}
-\setlength{\parindent}{0em}
-\setlength{\parskip}{1ex}
+%% 2. Fonts & Math
+\usepackage{newtxtext,newtxmath}  % Font giống report-pi (Times style)
+\usepackage{amsmath}              
+\usepackage{setspace}             
 
-%% headers & footers
-\usepackage{lastpage}
-\usepackage{fancyhdr}
-\fancyhf{}                            % clear off all default fancyhdr headers and footers
-\rhead{\small{\emph{\projtitle, \projauthor}}}
-\rfoot{\small{\thepage\ / \pageref{LastPage}}}
-\pagestyle{fancy}                     % apply the fancy header style
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
+%% 3. Graphics & Colors
+\usepackage{graphicx}             
+\usepackage{caption}              
+\usepackage{subcaption}           
+\usepackage{float}                
+\usepackage[normalem]{ulem}       
 
-%% colors
+%% --- Định nghĩa màu chủ đạo của Template (QUAN TRỌNG) ---
 \usepackage{color}
-\definecolor{engineering}{rgb}{0.549,0.176,0.098}
+% Màu nâu đỏ đặc trưng của template report-pi
+\definecolor{engineering}{rgb}{0.549,0.176,0.098} 
 \definecolor{cloudwhite}{cmyk}{0,0,0,0.025}
 
-%% source-code listings
+%% 4. Tables & Lists
+\usepackage{longtable}            
+\usepackage{multirow}             
+\usepackage{booktabs}
+\usepackage{lipsum}               
+\usepackage{csquotes}             
+
+%% 5. Bibliography
+\usepackage[backend=biber,authordate]{biblatex-chicago}
+\addbibresource{bibliography.bib}
+
+%% 6. Advanced Packages (Code, Box, Diagram)
+\usepackage{pgfgantt}             
+\usepackage{todonotes}            
+\setlength{\marginparwidth}{2cm}
+
+% Tcolorbox (Giữ lại từ main.tex của bạn)
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, listings}
+\usepackage{eurosym} 
+
+% Listings (Code block style giống report-pi)
 \usepackage{listings}
-\lstset{ %
- language=C,                        % choose the language of the code
+\lstset{ 
+ language=C,          
  basicstyle=\footnotesize\ttfamily,
  keywordstyle=\bfseries,
- numbers=left,                      % where to put the line-numbers
- numberstyle=\scriptsize\texttt,    % the size of the fonts that are used for the line-numbers
- stepnumber=1,                      % the step between two line-numbers. If it's 1 each line will be numbered
- numbersep=8pt,                     % how far the line-numbers are from the code
+ numbers=left,                      
+ numberstyle=\scriptsize\texttt,    
+ stepnumber=1,                      
+ numbersep=8pt,                     
  frame=tb,
  float=htb,
  aboveskip=8mm,
  belowskip=4mm,
  backgroundcolor=\color{cloudwhite},
- showspaces=false,                  % show spaces adding particular underscores
- showstringspaces=false,            % underline spaces within strings
- showtabs=false,                    % show tabs within strings adding particular underscores
- tabsize=2,                         % sets default tabsize to 2 spaces
- captionpos=t,                      % sets the caption-position to top
- belowcaptionskip=12pt,             % space between caption and listing
- breaklines=true,                   % sets automatic line breaking
- breakatwhitespace=false,           % sets if automatic breaks should only happen at whitespace
- escapeinside={\%*}{*)},            % if you want to add a comment within your code
- morekeywords={*,var,template,new}  % if you want to add more keywords to the set
+ showspaces=false,                  
+ showstringspaces=false,            
+ showtabs=false,                
+ tabsize=2,                         
+ captionpos=t,                      
+ belowcaptionskip=12pt,             
+ breaklines=true,         
+ breakatwhitespace=false,           
+ escapeinside={\%*}{*)},            
+ morekeywords={*,var,template,new}  
 }
 
-%% hyperreferences (HREF, URL)
+%% 7. Layout & Headers (Giống report-pi)
+\usepackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm,headheight=6mm,footskip=12mm]{geometry}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1ex}
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\fancyhf{}                            % Xóa header/footer mặc định
+% Header bên phải: Tên đồ án, Tên tác giả
+\rhead{\small{\emph{\projtitle, \projauthor}}} 
+% Footer bên phải: Số trang / Tổng số trang
+\rfoot{\small{\thepage\ / \pageref{LastPage}}}
+\pagestyle{fancy}                     % Kích hoạt style
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+%% 8. Hyperlinks (Tạo màu cho link giống template)
 \usepackage{hyperref}
 \hypersetup{
     plainpages=false, 
@@ -89,22 +99,18 @@
     bookmarksnumbered=true,
     breaklinks=true,
     linktocpage,
-    colorlinks=true,
-    linkcolor=engineering,
-    urlcolor=engineering,
+    colorlinks=true,         % Bật màu
+    linkcolor=engineering,   % Màu nâu đỏ cho mục lục/link nội bộ
+    urlcolor=engineering,    % Màu nâu đỏ cho URL
     filecolor=engineering,
-    citecolor=engineering,
+    citecolor=engineering,   % Màu nâu đỏ cho trích dẫn
     allcolors=engineering
 }
 
-%% path to the figures directory
+%% 9. Macros (Các biến thông tin - Cần cập nhật theo nội dung của bạn)
 \graphicspath{{figures/}}
 
-%% bibliography file, must be in preamble
-\addbibresource{bibliography.bib}
-
-%% macros, to be updated as needed
-\newcommand{\school}{Institut National des Sciences Appliquées de Toulouse }
+\newcommand{\school}{Institut National des Sciences Appliquées de Toulouse}
 \newcommand{\degree}{Bachelor's Degree in Computer Science and Engineering}
 \newcommand{\projtitle}{Optimizing and Adapting Language Models for Domain-Specific Task}
 \newcommand{\subtitle}{End-of-studies Apprenticeship Report}
@@ -112,61 +118,37 @@
 \newcommand{\supervisor}{Milad Mozafari (Torus AI), David Bertoin (INSA Toulouse)}
 \newcommand{\tutor}{David Bertoin}
 
-%% my other macros, if needed
+% Các định nghĩa khác
 \newcommand{\windspt}{\textsf{WindsPT\/}}
 \newcommand{\windscannerpt}{\emph{Windscanner.PT\/}}
 \newcommand{\class}[1]{{\normalfont\sffamily #1\/}}
 \newcommand{\svg}{\class{SVG}}
 
-\newtcblisting{htmlcode}{
-    arc=2pt,
-    outer arc=2pt,
-    boxrule=0.5pt,
-    colback=gray!5,
-    colframe=gray!60!black,
-    listing only, 
-    top=0pt,                          % Padding phía trên sát code
-    bottom=0pt,                       % Padding phía dưới sát code
-    middle=1pt,                       % Khoảng cách giữa tiêu đề và nội dung
-    boxsep=3pt,                       % Khoảng cách từ chữ tới khung
-    listing options={
-        basicstyle=\tiny\ttfamily,        % Dùng \tiny nếu code quá dài để tránh tràn lề
-        numbers=none, 
-        breaklines=true,                  % Tự động xuống dòng
-        breakatwhitespace=true,           % Ngắt dòng tại khoảng trắng nếu có thể
-        language=HTML,
-        tabsize=2,
-        showstringspaces=false,
-        inputencoding=utf8,               % Đảm bảo nhận encoding utf8
-        extendedchars=true,
-        aboveskip=0pt,                % Loại bỏ khoảng trắng thừa của gói listings
-        belowskip=0pt,
-        frame=none, 
-        % Cấu hình để listings hiểu các ký tự đặc biệt
-        literate={€}{{\euro}}1 {é}{{\'e}}1 {â}{{\^a}}1 {à}{{\`a}}1 {ô}{{\^o}}1 {ê}{{\^e}}1,
-    },
-    title=\textbf{Parsed HTML Output},
-    fonttitle=\small\sffamily,
-    colbacktitle=gray!20!white,
-    coltitle=black,
-    enhanced,
-    width=\textwidth,                     % Đảm bảo khung không vượt quá chiều ngang trang
-    right=5mm,                            % Tạo khoảng trống bên phải để tránh tràn chữ
-}
-
-%% my environments for infos
+% Environment cho Box thông tin (Màu xanh) giống report-pi
 \newenvironment{info}[1]{\vspace*{6mm}\color{blue}[ \textbf{INFO:} \begin{em} #1}
                         {\vspace*{3mm}\end{em} ]}
 \newenvironment{infoopt}[1]{\vspace*{6mm}\color{blue}[ \textbf{INFO (optional element):} \begin{em} #1}
                         {\vspace*{3mm}\end{em} ]}
 
+% Environment cho HTML Code (Giữ lại từ main.tex của bạn)
+\newtcblisting{htmlcode}{
+    arc=2pt, outer arc=2pt, boxrule=0.5pt,
+    colback=gray!5, colframe=gray!60!black,
+    listing only, top=0pt, bottom=0pt, middle=1pt, boxsep=3pt,
+    listing options={
+        basicstyle=\tiny\ttfamily, numbers=none, breaklines=true,
+        language=HTML, tabsize=2, extendedchars=true,
+        literate={€}{{\euro}}1 {é}{{\'e}}1 {â}{{\^a}}1 {à}{{\`a}}1 {ô}{{\^o}}1 {ê}{{\^e}}1,
+    },
+    title=\textbf{Parsed HTML Output}, fonttitle=\small\sffamily,
+    colbacktitle=gray!20!white, coltitle=black, enhanced, width=\textwidth, right=5mm,
+}
 %%------------------------------- document-------------------------------------
 
 \begin{document}
 
 %% preamble page numbers with roman numerals
 \pagenumbering{roman}\setcounter{page}{1}
-\pagestyle{plain}
 
 %%------------------------------- cover page ----------------------------------
 
@@ -217,7 +199,7 @@ Việc chuyển giao các mô hình ngôn ngữ từ môi trường nghiên cứ
 
 **Khoảng cách về Tri thức (Knowledge Gap):**
 
-Trong các lĩnh vực quan trọng như y tế, tài chính và bảo hiểm, thông tin thường nằm trong các tài liệu phức tạp (báo cáo tài chính, bảng danh mục kỹ thuật y tế CCAM) và thay đổi liên tục. Các LLMs đối mặt với ba vấn đề chính:
+Trong các lĩnh vực quan trọng như y tế, tài chính và bảo hiểm, thông tin thường nằm trong các tài liệu phức tạp (báo cáo tài chính, bảng danh mục kỹ thuật y tế) và thay đổi liên tục. Các LLMs đối mặt với ba vấn đề chính:
 
 - **Dữ liệu tĩnh (Static Knowledge):** Tri thức của mô hình bị giới hạn bởi thời điểm huấn luyện (knowledge cutoff), không thể cập nhật thông tin mới mà không cần huấn luyện lại [Lewis et al., 2020].
 - **Thiếu dữ liệu nội bộ (Private Data Inaccessibility):** Mô hình không thể truy cập các tài liệu bảo mật của tổ chức như hợp đồng, quy trình nội bộ, hay hồ sơ bệnh nhân.
@@ -227,12 +209,13 @@ Trong các lĩnh vực quan trọng như y tế, tài chính và bảo hiểm, t
 
 Đối với các tác vụ yêu cầu mô hình tuân thủ một kịch bản hành vi cụ thể, một phong cách ngôn ngữ đặc thù (ví dụ: tư vấn viên tâm lý, chuyên gia phân tích), hoặc triển khai trên hạ tầng phần cứng giới hạn, việc sử dụng các mô hình khổng lồ (hàng trăm tỷ tham số) là không tối ưu về chi phí và độ trễ. Theo Hoffmann et al. (2022), chi phí inference của GPT-4 có thể lên tới **\$0.06/1000 tokens**, khiến việc triển khai quy mô lớn trở nên không khả thi cho nhiều doanh nghiệp vừa và nhỏ.
 
-\subsection{1.1.3. Động lực nghiên cứu}
+\subsection{Động lực nghiên cứu}
 
-Xuất phát từ thực tế trên, luận văn này tập trung nghiên cứu và triển khai các kỹ thuật tiên tiến nhằm **tối ưu hóa và thích ứng LLMs cho các miền dữ liệu đặc thù**, với hai hướng tiếp cận chính:
+Xuất phát từ thực tế trên, luận văn này tập trung nghiên cứu và triển khai các kỹ thuật tiên tiến nhằm **tối ưu hóa và thích ứng Language Models cho các miền dữ liệu đặc thù**, với hai hướng tiếp cận chính:
 
-1. **Retrieval-Augmented Generation (RAG):** Tích hợp tri thức bên ngoài để giải quyết Knowledge Gap.
-2. **Parameter-Efficient Fine-Tuning (PEFT):** Thích ứng hành vi mô hình để giải quyết Behavior Gap.
+1. Retrieval-Augmented Generation (RAG): Tích hợp tri thức bên ngoài để giải quyết Knowledge Gap.
+
+2. Parameter-Efficient Fine-Tuning (PEFT): Thích ứng hành vi mô hình để giải quyết Behavior Gap.
 
 \section{Internship Environment}
 
@@ -242,17 +225,21 @@ I worked in the Research and Development Team (R\&D Team - Torus Lab) as a Machi
 
 The R\&D work environment demands flexible thinking: not just using existing APIs, but delving into customizing architecture, optimizing data processing pipelines, and quantitatively evaluating technical solutions.
 
-**Vai trò của tác giả:** Kỹ sư Học máy tập sự (Machine Learning Engineer Alternant) trong đội ngũ Nghiên cứu và Phát triển (R\&D Team - Torus Lab), với nhiệm vụ:
+Vai trò của tôi trong bộ phận R\&D bao gồm:
+
 - Khảo sát các công nghệ Generative AI mới nổi
+
 - Đánh giá tính khả thi và xây dựng các bản mẫu chức năng (Functional Prototypes/PoC)
+
 - Tích hợp các giải pháp vào hệ thống sản phẩm
 
-**Tài nguyên được cung cấp:**
-- Hạ tầng GPU: NVIDIA A100 (40GB), T4 (16GB) trên nền tảng đám mây
+Tài nguyên được cung cấp:
+
+- Hạ tầng GPU: NVIDIA RTX 3090 (24GB).
+
 - Dữ liệu doanh nghiệp thực tế: Tài liệu y tế (CCAM, NGAP), báo cáo tài chính bảo hiểm
-- API access: OpenAI GPT-4, Google Gemini, Anthropic Claude
 
-
+- API access: OpenAI GPT-4, Google Gemini, Qwen API
 
 \section{Problem Statement}
 
@@ -268,31 +255,29 @@ The question is: How to build a Multimodal RAG pipeline capable of accurately pa
 For applications requiring high interactivity, counseling, or entertainment (such as psychological counseling chatbots or Tarot Readers), the requirement is not only for information accuracy but also for consistency in tone and style and rule-based reasoning. Using large models (like GPT-4) via APIs is both costly to operate and difficult to fully control behavior.
 The question is: Is it possible to fine-tune small language models (such as Qwen, Llama < 7B parameters) using parameter optimization techniques (PEFT/LoRA) and quantization so that they achieve inference capabilities and writing styles comparable to large models, but can be run locally at low cost?
 
-\section{1.3. Phát biểu vấn đề nghiên cứu (Problem Statement)}
+\section{Phát biểu vấn đề nghiên cứu (Problem Statement)}
 
-\subsection{1.3.1. Các câu hỏi nghiên cứu (Research Questions)}
+\subsection{Các câu hỏi nghiên cứu (Research Questions)}
 
 Trong quá trình làm việc tại bộ phận R\&D, chúng tôi đã xác định hai nhóm vấn đề cốt lõi cần giải quyết khi áp dụng Generative AI vào thực tế, được hình thức hóa thành các câu hỏi nghiên cứu sau:
 
----
 
-**RQ1 (Research Question 1):** *Làm thế nào để xây dựng một pipeline Multimodal RAG có khả năng phân tích cú pháp (parsing), lập chỉ mục (indexing) và truy xuất (retrieval) chính xác thông tin từ các tài liệu hỗn hợp (văn bản, bảng biểu, hình ảnh) để hỗ trợ ra quyết định trong lĩnh vực y tế và tài chính?*
+RQ1 (Research Question 1): Làm thế nào để xây dựng một pipeline Multimodal RAG có khả năng phân tích cú pháp (parsing), lập chỉ mục (indexing) và truy xuất (retrieval) chính xác thông tin từ các tài liệu hỗn hợp (văn bản, bảng biểu, hình ảnh) để hỗ trợ ra quyết định trong lĩnh vực y tế và tài chính?
 
-**Bối cảnh:** Các doanh nghiệp đối tác sở hữu lượng lớn dữ liệu dưới dạng tài liệu PDF chứa văn bản, bảng biểu (tables) và hình ảnh (charts/images). Các phương pháp RAG truyền thống dựa trên văn bản thuần túy (text-only) thất bại trong việc hiểu ngữ nghĩa của bảng biểu phức tạp hoặc thông tin thị giác.
+Bối cảnh: Các doanh nghiệp đối tác sở hữu lượng lớn dữ liệu dưới dạng tài liệu PDF chứa văn bản, bảng biểu (tables) và hình ảnh (charts/images). Các phương pháp RAG truyền thống dựa trên văn bản thuần túy (text-only) thất bại trong việc hiểu ngữ nghĩa của bảng biểu phức tạp hoặc thông tin thị giác.
 
----
 
-**RQ2 (Research Question 2):** *Liệu có thể tinh chỉnh (Fine-tuning) các mô hình ngôn ngữ nhỏ (Small Language Models - SLMs, < 7B tham số) bằng các kỹ thuật tối ưu tham số (PEFT/LoRA) và lượng tử hóa (Quantization) để đạt được khả năng suy luận và văn phong tương đương các mô hình lớn, nhưng có thể chạy cục bộ với chi phí thấp?*
+RQ2 (Research Question 2): Liệu có thể tinh chỉnh (Fine-tuning) các mô hình ngôn ngữ nhỏ (Small Language Models - SLMs, < 7B tham số) bằng các kỹ thuật tối ưu tham số (PEFT/LoRA) và lượng tử hóa (Quantization) để đạt được khả năng suy luận và văn phong tương đương các mô hình lớn, nhưng có thể chạy cục bộ với chi phí thấp?
 
-**Bối cảnh:** Đối với các ứng dụng yêu cầu tính tương tác cao, mang tính chất tư vấn (như chatbot tư vấn hoặc hệ thống suy luận dựa trên quy tắc), yêu cầu không chỉ là độ chính xác của thông tin mà còn là sự nhất quán trong văn phong (Tone \& Style) và khả năng suy luận theo quy tắc (Rule-based reasoning).
+Bối cảnh: Đối với các ứng dụng yêu cầu tính tương tác cao, mang tính chất tư vấn (như chatbot tư vấn hoặc hệ thống suy luận dựa trên quy tắc), yêu cầu không chỉ là độ chính xác của thông tin mà còn là sự nhất quán trong văn phong (Tone \& Style) và khả năng suy luận theo quy tắc (Rule-based reasoning).
 
-\subsection{1.3.2. Giả thuyết nghiên cứu (Research Hypotheses)}
+\subsection{Giả thuyết nghiên cứu (Research Hypotheses)}
 
 Dựa trên các câu hỏi nghiên cứu, chúng tôi đề xuất các giả thuyết sau:
 
-**H1 (Hypothesis 1):** *Việc kết hợp Hybrid Search (Dense Retrieval + Sparse Retrieval) với Cross-Encoder Reranking và chiến lược Parent-Child Indexing sẽ cải thiện đáng kể độ chính xác truy xuất (Retrieval Accuracy) và độ trung thực (Faithfulness) của hệ thống RAG so với phương pháp Dense Search đơn thuần, đặc biệt trên dữ liệu bảng biểu và mã code y tế.*
+H1 (Hypothesis 1): Việc kết hợp Hybrid Search (Dense Retrieval + Sparse Retrieval) với Cross-Encoder Reranking và chiến lược Parent-Child Indexing sẽ cải thiện đáng kể độ chính xác truy xuất (Retrieval Accuracy) và độ trung thực (Faithfulness) của hệ thống RAG so với phương pháp Dense Search đơn thuần, đặc biệt trên dữ liệu bảng biểu và mã code y tế.
 
-**H2 (Hypothesis 2):** *Các mô hình ngôn ngữ nhỏ (1.5B - 3B tham số) sau khi được Fine-tuning bằng QLoRA trên dữ liệu tổng hợp (Synthetic Data) chất lượng cao có thể học được văn phong (Style) và định dạng đầu ra (Output Format) của tác vụ chuyên biệt, nhưng sẽ gặp hạn chế về khả năng suy luận phức tạp (Complex Reasoning) so với các mô hình lớn hơn (>70B tham số).*
+H2 (Hypothesis 2): Các mô hình ngôn ngữ nhỏ (1.5B - 3B tham số) sau khi được Fine-tuning bằng QLoRA trên dữ liệu tổng hợp (Synthetic Data) chất lượng cao có thể học được văn phong (Style) và định dạng đầu ra (Output Format) của tác vụ chuyên biệt, nhưng sẽ gặp hạn chế về khả năng suy luận phức tạp (Complex Reasoning) so với các mô hình lớn hơn (>70B tham số).*
 
 
 \section{Objectives \& Contributions}
@@ -324,433 +309,193 @@ Bộ công cụ và Framework có thể tái sử dụng:
 - Pipeline xử lý PDF đa phương thức sử dụng Unstructured.io
 - Scripts tự động hóa cho QLoRA Fine-tuning với Unsloth
 
-\section{Thesis Structure}
+\section{Report Structure}
 
+In addition to this introduction, this report is organized into four main chapters and appendices, structured to logically address the research questions:
+
+\textbf{Chapter 2: Theoretical Background} establishes the foundational concepts required to understand the proposed solutions. It covers the architecture of Transformers and the Self-Attention mechanism, analyzes the limitations of LLMs (Knowledge Gap and Behavior Gap), and provides the theoretical basis for the two adaptation methods used: Retrieval-Augmented Generation (RAG) and Parameter-Efficient Fine-Tuning (PEFT/LoRA).
+
+\textbf{Chapter 3: Multimodal RAG for Complex Document Understanding} addresses the "Knowledge Gap" in industrial contexts. It details the development of an Advanced RAG pipeline capable of processing complex multimodal documents (finance and medical). This chapter describes the implementation of UnstructuredIO for layout analysis, Hybrid Search (Dense + Sparse), and Cross-Encoder Reranking to solve specific challenges like table understanding and exact code matching.
+
+\textbf{Chapter 4: Fine-tuning Small Language Models for Domain-Specific Tasks} addresses the "Behavior Gap" and deployment efficiency. It presents the methodology for adapting Small Language Models (SLMs) like Qwen (0.5B - 1.5B) for a highly specific persona-based task (Tarot Reader). The chapter focuses on the data-centric approach, including synthetic data generation, and compares the effectiveness of LoRA versus Full Fine-tuning.
+
+\textbf{Chapter 5: Conclusion and Future Work} summarizes the main findings and contributions of the thesis. It also discusses the limitations of the current implementations and proposes directions for future research, such as Adaptive Hybrid Search and edge deployment optimization.
+
+Finally, the \textbf{Appendices} provide supplementary details, including the prompt templates used for synthetic data generation, specific training configurations, and detailed evaluation rubrics.
 
 %%------------------------------- chapter ------------------------------------
 
 \chapter{Cơ sở lý thuyết}
 
-Chương này cung cấp nền tảng lý thuyết và toán học cần thiết cho các phương pháp được áp dụng trong luận văn. Chúng tôi trình bày có hệ thống từ kiến trúc cơ bản của LLMs đến các kỹ thuật thích ứng tiên tiến, bao gồm Retrieval-Augmented Generation (RAG) và Parameter-Efficient Fine-Tuning (PEFT).
+Chương này xây dựng nền tảng lý thuyết cho hai phương pháp thích ứng LLM được triển khai trong luận văn: Retrieval-Augmented Generation (RAG) và Parameter-Efficient Fine-Tuning (PEFT). Thay vì liệt kê các khái niệm rời rạc, chúng tôi trình bày theo logic nhân-quả: từ cơ chế hoạt động của LLM, đến những hạn chế cố hữu khi áp dụng vào miền đặc thù, và cuối cùng là các giải pháp kỹ thuật được thiết kế để khắc phục từng hạn chế cụ thể.
 
-\section{Nền tảng Mô hình Ngôn ngữ Lớn}
+\section{Kiến trúc Transformer và Cơ chế Self-Attention}
 
-\subsection{Kiến trúc Transformer và Cơ chế Self-Attention}
+Để hiểu tại sao LLM có những hạn chế nhất định và tại sao các phương pháp như LoRA hay RAG có thể hoạt động, trước hết cần nắm rõ cơ chế cốt lõi cho phép Transformer xử lý ngôn ngữ: Self-Attention.
 
-Hầu hết các LLM hiện đại sử dụng kiến trúc \textbf{Decoder-only Transformer} [Vaswani et al., 2017]. Thành phần cốt lõi cho phép mô hình xử lý các phụ thuộc tầm xa (long-range dependencies) là cơ chế \textbf{Self-Attention}. Một cách toán học, cơ chế này được định nghĩa như sau: Cho một chuỗi đầu vào được biểu diễn bởi ma trận embedding $\mathbf{X} \in \mathbb{R}^{n \times d_{model}}$, trong đó $n$ là độ dài chuỗi và $d_{model}$ là chiều embedding (có thể hiểu là một chuỗi chứa n tokens, mỗi token là 1 vector trong không gian $d_{model}$ chiều). Cơ chế Self-Attention thực hiện phép biến đổi tuyến tính từ ma trận embedding $\mathbf{X}$ để tạo ra ba ma trận:
-
+Cho một chuỗi đầu vào được biểu diễn bởi ma trận embedding $\mathbf{X} \in \mathbb{R}^{n \times d_{model}}$, cơ chế Self-Attention thực hiện phép biến đổi tuyến tính để tạo ra ba ma trận Query, Key và Value:
 $$\mathbf{Q} = \mathbf{X}\mathbf{W}_Q, \quad \mathbf{K} = \mathbf{X}\mathbf{W}_K, \quad \mathbf{V} = \mathbf{X}\mathbf{W}_V$$
 
-trong đó $\mathbf{W}_Q, \mathbf{W}_K \in \mathbb{R}^{d_{model} \times d_k}$ và $\mathbf{W}_V \in \mathbb{R}^{d_{model} \times d_v}$ là các ma trận trọng số học được.
-
-Đầu ra của Scaled Dot-Product Attention được tính như sau:
-
+Đầu ra của Attention được tính theo công thức:
 $$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}$$
 
-\subsubsection{Phân tích vai trò của hệ số tỷ lệ $\frac{1}{\sqrt{d_k}}$}
+Hệ số $\frac{1}{\sqrt{d_k}}$ không phải là một lựa chọn tùy ý. Khi $d_k$ lớn (thường 64 hoặc 128), tích vô hướng $\mathbf{q}^T\mathbf{k}$ có phương sai tỷ lệ với $d_k$, đẩy softmax vào vùng bão hòa với gradient gần 0. Việc chia cho $\sqrt{d_k}$ đưa phương sai về 1, đảm bảo gradient ổn định trong quá trình huấn luyện. Chi tiết này sẽ trở nên quan trọng khi chúng ta thảo luận về LoRA ở phần sau: việc fine-tune các ma trận $\mathbf{W}_Q, \mathbf{W}_K, \mathbf{W}_V$ chính là thay đổi cách mô hình ``nhìn'' và ``so sánh'' các token với nhau.
 
-Hệ số $\frac{1}{\sqrt{d_k}}$ đóng vai trò quan trọng trong việc ổn định số học (numerical stability). Để hiểu tại sao, xét tích vô hướng của hai vector $\mathbf{q}, \mathbf{k} \in \mathbb{R}^{d_k}$ với các thành phần độc lập, có trung bình 0 và phương sai 1:
+Để cho phép mô hình học các biểu diễn từ nhiều không gian con khác nhau, Transformer sử dụng Multi-Head Attention với $h$ đầu attention song song. Mỗi đầu có thể chuyên biệt hóa cho một loại quan hệ ngữ nghĩa khác nhau --- một đầu có thể học quan hệ cú pháp, đầu khác học quan hệ ngữ nghĩa. Điều này giải thích tại sao khi fine-tune, việc chỉ điều chỉnh một số đầu attention có thể đủ để thay đổi hành vi mô hình trên một tác vụ cụ thể.
 
-$$\mathbb{E}[\mathbf{q}^T\mathbf{k}] = 0, \quad \text{Var}[\mathbf{q}^T\mathbf{k}] = d_k$$
+Tuy nhiên, cơ chế Self-Attention có độ phức tạp $O(n^2 \cdot d)$ về thời gian và $O(n^2)$ về bộ nhớ, trong đó $n$ là độ dài chuỗi. Đây là bottleneck chính khi xử lý tài liệu dài và là lý do tại sao RAG cần chiến lược chunking thông minh thay vì đưa toàn bộ tài liệu vào context.
 
-Khi $d_k$ lớn (thường $d_k = 64$ hoặc $128$), giá trị $\mathbf{q}^T\mathbf{k}$ có độ lệch chuẩn $\sqrt{d_k}$, đẩy softmax vào vùng bão hòa (saturation regions) với gradient gần 0. Việc chia cho $\sqrt{d_k}$ đưa phương sai về 1, đảm bảo gradient ổn định trong quá trình backpropagation.
+\section{Quá trình Huấn luyện LLM và Những Hạn chế Cố hữu}
 
-\subsubsection{Multi-Head Attention}
+Các LLM hiện đại trải qua ba giai đoạn huấn luyện: Pre-training với mục tiêu Causal Language Modeling (dự đoán token tiếp theo), Supervised Fine-Tuning (SFT) trên dữ liệu instruction-response, và Alignment thông qua RLHF hoặc DPO để căn chỉnh theo sở thích con người. Qua ba giai đoạn này, LLM có khả năng hiểu ngữ cảnh, sinh văn bản và thực hiện suy luận logic trên đa dạng tác vụ.
 
-Để cho phép mô hình học các biểu diễn từ nhiều không gian con (subspaces) khác nhau, Transformer sử dụng Multi-Head Attention:
+Tuy nhiên, khi áp dụng vào miền đặc thù, LLM gặp ba hạn chế cơ bản. Thứ nhất là \textbf{Hallucination}: mô hình sinh thông tin không có trong dữ liệu huấn luyện, khiến nó không thể tin cậy trong y tế hay pháp lý. Thứ hai là \textbf{Knowledge Cutoff}: tri thức bị giới hạn bởi thời điểm pre-training, thiếu thông tin cập nhật. Thứ ba là \textbf{Behavioral Rigidity}: khó thích ứng với văn phong hay quy tắc đặc thù, đòi hỏi prompt engineering phức tạp.
 
-$$\text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\mathbf{W}_O$$
+Một giới hạn quan trọng cần nhận thức là với mô hình có context window kích thước $C$ tokens, số lượng ví dụ few-shot tối đa có thể đưa vào là $k_{max} = \lfloor C / L_{avg} \rfloor$, trong đó $L_{avg}$ là độ dài trung bình của mỗi ví dụ. Khi tác vụ yêu cầu nhiều quy tắc phức tạp (như trong use-case tarot reader), $k_{max}$ thường không đủ để mô hình học được đầy đủ hành vi mong muốn chỉ qua in-context learning. Đây là động lực chính cho việc sử dụng fine-tuning thay vì chỉ dựa vào prompt engineering.
 
-trong đó $\text{head}_i = \text{Attention}(\mathbf{Q}\mathbf{W}_Q^i, \mathbf{K}\mathbf{W}_K^i, \mathbf{V}\mathbf{W}_V^i)$.
+Cơ chế Self-Attention cho phép mỗi token ``nhìn'' tất cả các token khác trong chuỗi, nhưng chỉ trong phạm vi context window hiện tại. Điều này dẫn đến một quan sát quan trọng: mọi ``tri thức'' mà LLM sở hữu phải được mã hóa vào các ma trận trọng số $\mathbf{W}_Q, \mathbf{W}_K, \mathbf{W}_V$ trong quá trình pre-training. Nói cách khác, LLM không ``nhớ'' thông tin theo nghĩa tra cứu --- nó ``biết'' thông tin vì các patterns đã được nén vào hàng tỷ tham số.
 
-\textbf{Độ phức tạp tính toán:} Self-Attention có độ phức tạp $O(n^2 \cdot d)$ về thời gian và $O(n^2)$ về bộ nhớ, là bottleneck chính khi xử lý chuỗi dài.
+Cách mã hóa tri thức này tạo ra hai loại gap khi áp dụng LLM vào miền đặc thù:
 
-\subsection{Quá trình Huấn luyện LLM}
+\textbf{Knowledge Gap} xuất hiện vì tập dữ liệu pre-training là snapshot cố định của internet tại một thời điểm. Các ma trận $\mathbf{W}$ không thể chứa thông tin chưa tồn tại khi huấn luyện (ví dụ: báo cáo tài chính Q4/2024), cũng không thể chứa thông tin nội bộ doanh nghiệp chưa bao giờ được public. Quan trọng hơn, ngay cả khi thông tin có trong training data, việc nén hàng terabyte văn bản vào vài chục GB tham số tất yếu dẫn đến mất mát --- mô hình có thể ``biết'' xu hướng chung nhưng không thể recall chính xác một con số cụ thể trong báo cáo SFCR năm 2022.
 
-Các LLM hiện đại thường trải qua ba giai đoạn huấn luyện:
+\textbf{Behavior Gap} có nguồn gốc khác. Quá trình huấn luyện (Pre-training → SFT → RLHF) tối ưu hóa mô hình để sinh văn bản ``tốt'' theo nghĩa tổng quát: mạch lạc, hữu ích, vô hại. Các attention patterns học được phản ánh cách giao tiếp trung bình trên internet, không phải cách một tarot reader giàu kinh nghiệm dẫn dắt cuộc trò chuyện hay cách một chuyên gia y tế trình bày mã CCAM. Để thay đổi ``cách nói'' này, cần điều chỉnh chính các ma trận attention --- đây là lý do fine-tuning nhắm vào $\mathbf{W}_Q, \mathbf{W}_K, \mathbf{W}_V$.
 
-\textbf{Giai đoạn 1: Pre-training (Huấn luyện trước)}
+Một giải pháp tự nhiên là In-Context Learning: đưa ví dụ hoặc thông tin cần thiết trực tiếp vào prompt. Tuy nhiên, với context window kích thước $C$ tokens, số lượng thông tin có thể inject bị giới hạn bởi $C$. Hơn nữa, in-context learning không thay đổi các ma trận $\mathbf{W}$ --- mô hình vẫn ``nghĩ'' theo cách cũ, chỉ được ``nhắc'' tạm thời trong context hiện tại. Thí nghiệm trong Chương 4 sẽ cho thấy với tác vụ đòi hỏi nhiều quy tắc phức tạp (workflow 5 bước, văn phong cụ thể, domain knowledge), few-shot prompting không đủ để mô hình nhất quán tuân theo.
 
-Mô hình được huấn luyện trên lượng lớn văn bản không gán nhãn với mục tiêu \textbf{Causal Language Modeling} (dự đoán token tiếp theo):
+Hai loại gap này dẫn đến hai hướng giải quyết khác nhau. Với Knowledge Gap, thay vì cố gắng nhồi thêm thông tin vào tham số (costly và không flexible), giải pháp hiệu quả hơn là để mô hình ``tra cứu'' thông tin bên ngoài khi cần --- đây là ý tưởng của RAG. Với Behavior Gap, cần thực sự thay đổi các attention patterns trong $\mathbf{W}$, nhưng không cần thay đổi toàn bộ (vì phần lớn kiến thức tổng quát vẫn hữu ích) --- đây là ý tưởng của LoRA với low-rank adaptation.
 
-$$\mathcal{L}_{pretrain} = -\sum_{t=1}^{T} \log P_\theta(x_t | x_{<t})$$
-
-\textbf{Giai đoạn 2: Supervised Fine-Tuning (SFT)}
-
-Mô hình được tinh chỉnh trên dữ liệu có cấu trúc (instruction, response) để học cách tuân theo chỉ dẫn.
-
-\textbf{Giai đoạn 3: Alignment (RLHF/DPO)}
-
-Tối ưu hóa mô hình theo sở thích của con người thông qua Reinforcement Learning from Human Feedback hoặc Direct Preference Optimization.
-
-Trải qua 3 giai đoạn training cơ bản trên, LLM có khả năng hiểu ngữ cảnh, sinh văn bản và thực hiện suy luận logic trên đa dạng tác vụ giống như con người.
-
-\subsection{Các Hạn chế Cơ bản của LLMs trong Miền Đặc thù}
-
-Mặc dù có khả năng sinh văn bản mạnh mẽ, các LLM pre-trained gặp ba hạn chế cơ bản khi áp dụng vào miền đặc thù:
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|l|p{5cm}|p{5cm}|}
-\hline
-\textbf{Hạn chế} & \textbf{Mô tả} & \textbf{Hệ quả} \\
-\hline
-\textbf{Hallucination} & Mô hình sinh thông tin không có trong dữ liệu huấn luyện & Không thể tin cậy trong Y tế, Pháp lý \\
-\hline
-\textbf{Knowledge Cutoff} & Tri thức bị giới hạn bởi thời điểm pre-training & Thiếu thông tin cập nhật \\
-\hline
-\textbf{Behavioral Rigidity} & Khó thích ứng với văn phong/quy tắc đặc thù & Cần prompt engineering phức tạp \\
-\hline
-\end{tabular}
-\caption{Các hạn chế cơ bản của LLMs}
-\end{table}
-
-\textbf{Định lý 2.1 (Giới hạn của In-Context Learning):} \textit{Với mô hình có context window kích thước $C$ tokens, số lượng ví dụ few-shot tối đa có thể đưa vào là $k_{max} = \lfloor C / L_{avg} \rfloor$, trong đó $L_{avg}$ là độ dài trung bình của mỗi ví dụ. Khi tác vụ yêu cầu nhiều quy tắc phức tạp, $k_{max}$ thường không đủ để mô hình học được đầy đủ.}
+Hai phần tiếp theo sẽ trình bày chi tiết từng giải pháp, bắt đầu với RAG cho Knowledge Gap.
 
 \section{Retrieval-Augmented Generation (RAG)}
 
-\subsection{Động lực và Tổng quan}
+RAG được thiết kế để giải quyết hai hạn chế đầu tiên: Knowledge Cutoff và Hallucination. Ý tưởng cốt lõi là kết nối mô hình sinh văn bản với một cơ chế truy xuất thông tin bên ngoài, cho phép LLM ``tra cứu'' tri thức mới thay vì chỉ dựa vào những gì đã được encode trong tham số.
 
-Để giải quyết vấn đề Knowledge Cutoff và Hallucination, Lewis et al. (2020) đề xuất framework \textbf{Retrieval-Augmented Generation (RAG)}, kết nối mô hình sinh văn bản với một cơ chế truy xuất thông tin bên ngoài. Để định nghĩa một cách hình thức, cho $\mathcal{D} = \{d_1, d_2, \ldots, d_N\}$ là kho tài liệu (document corpus) và $q$ là truy vấn của người dùng, hệ thống RAG thực hiện hai bước:
+Cho $\mathcal{D} = \{d_1, d_2, \ldots, d_N\}$ là kho tài liệu và $q$ là truy vấn của người dùng, hệ thống RAG thực hiện hai bước. Bước Retrieval tìm tập $\mathcal{C} \subset \mathcal{D}$ chứa $k$ tài liệu liên quan nhất: $\mathcal{C} = \text{Top-}k_{d \in \mathcal{D}} \; \text{sim}(q, d)$. Bước Generation sinh câu trả lời $a$ dựa trên cả $q$ và $\mathcal{C}$: $a = \arg\max_a P_\theta(a | q, \mathcal{C})$.
 
-\textbf{Bước 1 - Retrieval:} Tìm tập $\mathcal{C} \subset \mathcal{D}$ chứa $k$ tài liệu liên quan nhất:
-$$\mathcal{C} = \text{Top-}k_{d \in \mathcal{D}} \; \text{sim}(q, d)$$
+\subsection{Dense Retrieval với Bi-Encoder}
 
-\textbf{Bước 2 - Generation:} Sinh câu trả lời $a$ dựa trên cả $q$ và $\mathcal{C}$:
-$$a = \arg\max_a P_\theta(a | q, \mathcal{C})$$
+Để tính độ tương đồng $\text{sim}(q, d)$, phương pháp Dense Retrieval sử dụng kiến trúc Bi-Encoder: hai encoder riêng biệt $E_q$ và $E_d$ (thường chia sẻ tham số) ánh xạ query và document vào cùng một không gian vector. Độ tương đồng được tính bằng cosine similarity:
+$$S_{dense}(q, d) = \frac{E_q(q) \cdot E_d(d)}{\|E_q(q)\| \cdot \|E_d(d)\|}$$
 
-\subsection{Dense Retrieval và Embedding Vectors}
+Ưu điểm của Dense Retrieval là khả năng bắt quan hệ ngữ nghĩa (``xe hơi'' và ``ô tô'' có embedding gần nhau dù khác từ vựng). Tuy nhiên, nó có nhược điểm với các truy vấn đòi hỏi exact match như mã code hoặc tên riêng --- một vấn đề sẽ xuất hiện trong use-case tra cứu mã CCAM được đề cập trong phần ??.
 
-\subsubsection{Mô hình Bi-Encoder}
+\subsection{Sparse Retrieval với BM25}
 
-Phương pháp Dense Retrieval sử dụng mạng nơ-ron để ánh xạ văn bản vào không gian vector liên tục. Cho encoder $f_\theta: \mathcal{T} \rightarrow \mathbb{R}^d$, vector biểu diễn của truy vấn và tài liệu là:
+Ngược lại, BM25 là phương pháp sparse retrieval dựa trên tần suất từ:
+$$\text{BM25}(q, d) = \sum_{q_i \in q} \text{IDF}(q_i) \cdot \frac{f(q_i, d) \cdot (k_1 + 1)}{f(q_i, d) + k_1 \cdot (1 - b + b \cdot \frac{|d|}{avgdl})}$$
 
-$$\mathbf{v}_q = f_\theta(q), \quad \mathbf{v}_d = f_\theta(d)$$
+với $f(q_i, d)$ là tần suất từ $q_i$ trong tài liệu $d$, và $\text{IDF}(q_i)$ đo độ hiếm của từ trong toàn corpus. BM25 là hàm sublinear theo tần suất từ, tránh việc tài liệu dài quá được ưu tiên. Phương pháp này mạnh với exact match nhưng yếu với quan hệ ngữ nghĩa.
 
-\subsubsection{Độ tương đồng Cosine (Cosine Similarity)}
+\subsection{Hybrid Search: Kết hợp Dense và Sparse}
 
-Độ liên quan giữa truy vấn và tài liệu được đo bằng Cosine Similarity:
-
-$$\text{sim}_{cos}(\mathbf{v}_q, \mathbf{v}_d) = \frac{\mathbf{v}_q \cdot \mathbf{v}_d}{\|\mathbf{v}_q\| \cdot \|\mathbf{v}_d\|} = \cos(\theta)$$
-
-trong đó $\theta$ là góc giữa hai vector.
-
-**Tính chất toán học:**
-- $\text{sim}_{cos} \in [-1, 1]$
-- Bất biến với độ dài vector (độ dài văn bản)
-- Tập trung vào hướng (semantic orientation) thay vì magnitude
-
-**Mệnh đề 2.1:** *Với các vector đã được chuẩn hóa ($\|\mathbf{v}\| = 1$), Cosine Similarity tương đương với tích vô hướng (Dot Product), và khoảng cách Euclidean có quan hệ đơn điệu:*
-$$\|\mathbf{v}_q - \mathbf{v}_d\|^2 = 2(1 - \text{sim}_{cos}(\mathbf{v}_q, \mathbf{v}_d))$$
-
-\subsection{2.2.3. Sparse Retrieval với BM25}
-
-\subsubsection{Motivation}
-
-Dense Retrieval hiệu quả trong việc bắt ngữ nghĩa (semantic similarity), nhưng có thể thất bại với các truy vấn chứa **từ khóa chính xác** (exact keywords) như mã code y tế (ICD-10, CCAM) hoặc tên riêng.
-
-\subsubsection{Công thức BM25}
-
-BM25 (Best Matching 25) là thuật toán Sparse Retrieval dựa trên tần suất từ xuất hiện. Cho truy vấn $Q$ chứa các từ $\{q_1, \ldots, q_n\}$, điểm BM25 của tài liệu $D$ là:
-
-$$\text{BM25}(D, Q) = \sum_{i=1}^{n} \text{IDF}(q_i) \cdot \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot \left(1 - b + b \cdot \frac{|D|}{avgdl}\right)}$$
-
-trong đó:
-- $f(q_i, D)$: Tần suất xuất hiện của từ $q_i$ trong tài liệu $D$
-- $|D|$: Độ dài tài liệu (số từ)
-- $avgdl$: Độ dài trung bình của tất cả tài liệu trong corpus
-- $k_1, b$: Siêu tham số (thường $k_1 = 1.5$, $b = 0.75$)
-- $\text{IDF}(q_i)$: Inverse Document Frequency
-
-$$\text{IDF}(q_i) = \log\left(\frac{N - n(q_i) + 0.5}{n(q_i) + 0.5} + 1\right)$$
-
-với $N$ là tổng số tài liệu và $n(q_i)$ là số tài liệu chứa từ $q_i$.
-
-**Phân tích:** BM25 là hàm **sublinear** theo tần suất từ, tránh việc tài liệu dài quá được ưu tiên.
-
-\subsection{2.2.4. Hybrid Search: Kết hợp Dense và Sparse}
-
-\subsubsection{Reciprocal Rank Fusion (RRF)}
-
-Để kết hợp kết quả từ hai phương pháp retrieval, chúng tôi sử dụng Reciprocal Rank Fusion [Cormack et al., 2009]:
-
+Trong thực tế, không có phương pháp nào hoàn hảo cho mọi loại truy vấn. Truy vấn như ``Tỷ lệ khả năng thanh toán năm 2024'' cần exact match với con số, trong khi ``Rủi ro chính của công ty'' cần hiểu ngữ nghĩa. Giải pháp là kết hợp cả hai thông qua Reciprocal Rank Fusion (RRF):
 $$\text{RRF}(d) = \sum_{r \in \mathcal{R}} \frac{1}{k + \text{rank}_r(d)}$$
 
-trong đó $\mathcal{R}$ là tập các danh sách xếp hạng (từ Dense và Sparse), $\text{rank}_r(d)$ là thứ hạng của tài liệu $d$ trong danh sách $r$, và $k$ là hằng số điều chỉnh (thường $k = 60$).
+trong đó $\mathcal{R}$ là tập các danh sách xếp hạng từ Dense và Sparse, $\text{rank}_r(d)$ là thứ hạng của tài liệu $d$ trong danh sách $r$, và $k$ là hằng số điều chỉnh (thường $k = 60$). RRF không cần chuẩn hóa điểm số giữa hai phương pháp, làm cho việc kết hợp đơn giản và robust.
 
-\subsubsection{Linear Combination với Trọng số Thích ứng}
+% \subsection{Lập chỉ mục hiệu quả với HNSW}
 
-Một phương pháp thay thế là kết hợp tuyến tính với trọng số:
+% Với corpus $N$ tài liệu, việc tìm kiếm chính xác (Exact kNN) đòi hỏi tính Cosine Similarity với tất cả $N$ vectors, có độ phức tạp $O(N \cdot d)$. Khi $N$ lên tới hàng triệu, tốc độ truy vấn trở nên không khả thi cho ứng dụng real-time.
 
-$$\text{Score}(q, d) = \alpha \cdot \text{Norm}(S_{dense}(q, d)) + (1 - \alpha) \cdot \text{Norm}(S_{sparse}(q, d))$$
-
-trong đó $\text{Norm}(\cdot)$ là hàm chuẩn hóa Min-Max để đưa điểm số về cùng thang $[0, 1]$.
-
-**Đề xuất của luận văn:** Trọng số $\alpha$ có thể được điều chỉnh động dựa trên đặc trưng của truy vấn $q$:
-$$\alpha(q) = \sigma(w^T \cdot \phi(q) + b)$$
-
-trong đó $\phi(q)$ là vector đặc trưng (chứa mã code hay không, độ dài, etc.) và $\sigma$ là hàm sigmoid.
-
-\subsection{Lập chỉ mục hiệu quả với HNSW}
-
-\subsubsection{Vấn đề về Độ phức tạp}
-
-Với corpus $N$ tài liệu, việc tìm kiếm chính xác (Exact kNN) đòi hỏi tính Cosine Similarity với tất cả $N$ vectors, có độ phức tạp $O(N \cdot d)$. Khi $N$ lên tới hàng triệu, tốc độ truy vấn trở nên không khả thi.
-
-\subsubsection{Thuật toán HNSW (Hierarchical Navigable Small World)}
-
-HNSW [Malkov \& Yashunin, 2018] xây dựng cấu trúc đồ thị phân tầng cho phép Approximate Nearest Neighbor (ANN) search với độ phức tạp $O(\log N)$.
-
-**Cấu trúc:**
-- **Lớp trên (Top layers):** Chứa ít node, các cạnh dài (long-range links) cho phép nhảy nhanh qua không gian vector
-- **Lớp dưới (Bottom layers):** Chứa nhiều node hơn, các cạnh ngắn (short-range links) cho độ chính xác cục bộ
-
-**Thuật toán tìm kiếm:**
-1. Bắt đầu từ entry point ở lớp cao nhất
-2. Greedy search: Di chuyển đến neighbor gần query nhất
-3. Khi không còn neighbor tốt hơn, xuống lớp thấp hơn
-4. Lặp lại đến lớp 0, trả về $k$ neighbors gần nhất
-
-**Định lý 2.2 (Độ phức tạp HNSW):** *Với cấu hình phù hợp, HNSW đảm bảo độ phức tạp trung bình $O(\log N)$ cho mỗi truy vấn, với recall > 95% so với exact search.*
+% HNSW (Hierarchical Navigable Small World) giải quyết vấn đề này bằng cách xây dựng cấu trúc đồ thị phân tầng cho phép Approximate Nearest Neighbor search với độ phức tạp $O(\log N)$. Lớp trên chứa ít node với các cạnh dài cho phép nhảy nhanh qua không gian vector, trong khi lớp dưới chứa nhiều node hơn với các cạnh ngắn cho độ chính xác cục bộ. Thuật toán tìm kiếm thực hiện greedy search từ entry point ở lớp cao nhất, di chuyển đến neighbor gần query nhất, và xuống lớp thấp hơn khi không còn cải thiện. Với cấu hình phù hợp, HNSW đảm bảo recall > 95\% so với exact search trong khi giảm đáng kể thời gian truy vấn.
 
 \subsection{Cross-Encoder Reranking}
 
-\subsubsection{Motivation}  
-
-Bi-Encoder (Dense Retrieval) tính toán embedding độc lập cho query và document, nhanh nhưng thiếu tương tác sâu giữa hai bên. Cross-Encoder khắc phục điều này bằng cách đưa cả cặp $(q, d)$ vào cùng một Transformer.
-
-\subsubsection{Kiến trúc và Công thức}
-
+Bi-Encoder tính toán embedding độc lập cho query và document, nhanh nhưng thiếu tương tác sâu giữa hai bên. Cross-Encoder khắc phục điều này bằng cách đưa cả cặp $(q, d)$ vào cùng một Transformer:
 $$\text{Score}_{CE}(q, d) = \text{MLP}(\text{CLS}(\text{BERT}([q; \text{SEP}; d])))$$
 
-trong đó $[q; \text{SEP}; d]$ là chuỗi nối của query và document, và $\text{CLS}$ là hidden state của token [CLS].
+Cross-Encoder có độ chính xác cao hơn nhờ self-attention xem xét tương tác giữa mọi cặp token, nhưng có độ phức tạp $O(N \cdot (|q| + |d|)^2)$, không thể dùng cho toàn bộ corpus. Quy trình thực tế là Bi-Encoder retrieve Top-50 ứng viên nhanh, sau đó Cross-Encoder rerank 50 ứng viên này và chọn Top-5 để đưa vào LLM. Cách tiếp cận hai giai đoạn này cân bằng giữa tốc độ và độ chính xác.
 
-**Trade-off:**
-- **Ưu điểm:** Độ chính xác cao hơn nhờ self-attention xem xét tương tác giữa mọi cặp token
-- **Nhược điểm:** Độ phức tạp $O(N \cdot (|q| + |d|)^2)$, không thể dùng cho toàn bộ corpus
+\subsection{Thách thức với Dữ liệu Đa phương thức}
 
-**Quy trình thực tế:**
-1. Bi-Encoder retrieve Top-50 ứng viên (nhanh)
-2. Cross-Encoder rerank 50 ứng viên này
-3. Chọn Top-5 để đưa vào LLM
+Tài liệu thực tế (báo cáo tài chính, danh mục y tế) thường chứa văn bản không tuyến tính do chia cột và header/footer, bảng biểu với cấu trúc 2D mất ngữ nghĩa khi flatten thành text 1D, và hình ảnh/biểu đồ không thể đọc bằng text embedding. Đây là thách thức trọng tâm trong cả hai use-case GPM và Dr. Besnier.
 
-\subsection{2.2.7. Thách thức với Dữ liệu Đa phương thức}
+Các phương pháp xử lý bao gồm Document Layout Analysis sử dụng mô hình Vision (YOLOX, Detectron2) để phát hiện bounding box của các vùng Table, Image, Text; Table Preservation chuyển đổi bảng sang Markdown/HTML để giữ cấu trúc hàng-cột mà LLM đã được train để hiểu; và Multimodal Embeddings (CLIP/SigLIP) sử dụng mô hình Vision-Language để tạo embedding chung cho text và image, cho phép Text-to-Image retrieval.
 
-\subsubsection{Vấn đề của PDF phức tạp}
+\section{Parameter-Efficient Fine-Tuning (PEFT)}
 
-Tài liệu thực tế (báo cáo tài chính, danh mục y tế) thường chứa:
-- **Văn bản không tuyến tính:** Chia cột, header/footer gây nhiễu
-- **Bảng biểu:** Cấu trúc 2D, mất ngữ nghĩa khi flatten thành text 1D
-- **Hình ảnh/Biểu đồ:** Không thể đọc bằng text embedding
+Trong khi RAG giải quyết vấn đề Knowledge Gap, nó không thay đổi hành vi nội tại của mô hình. Với những tác vụ đòi hỏi văn phong đặc thù hay quy tắc suy luận riêng (như tarot reader), cần phương pháp thay đổi cách mô hình ``nghĩ'' và ``nói'' --- đây là mục tiêu của Fine-tuning.
 
-\subsubsection{Phương pháp xử lý}
+\subsection{Supervised Fine-Tuning (SFT)}
 
-1. **Document Layout Analysis (DLA):**
-   - Sử dụng mô hình Vision (YOLOX, Detectron2) để phát hiện bounding box của các vùng Table, Image, Text
-   
-2. **Table Preservation:**
-   - Chuyển đổi bảng sang Markdown/HTML để giữ cấu trúc hàng-cột
-   - LLMs được train trên HTML/Markdown nên có thể "hiểu" cấu trúc 2D
+Cho tập dữ liệu gán nhãn $\mathcal{D} = \{(x_i, y_i)\}_{i=1}^{N}$, trong đó $x$ là prompt và $y$ là response mong muốn. Mục tiêu của SFT là tối ưu hóa:
+$$\theta^* = \arg\min_\theta \left[ -\sum_{i=1}^{N} \sum_{t=1}^{|y_i|} \log P_\theta(y_i^{(t)} | x_i, y_i^{(<t)}) \right]$$
 
-3. **Multimodal Embeddings (CLIP/SigLIP):**
-   - Sử dụng mô hình Vision-Language để tạo embedding chung cho text và image
-   - Cho phép Text-to-Image retrieval
+Đây là Cross-Entropy Loss giữa phân phối dự đoán và token thực tế --- cùng mục tiêu với pre-training, nhưng trên dữ liệu đặc thù cho tác vụ.
 
----
+Tuy nhiên, cập nhật toàn bộ tham số $\theta$ của LLM đối mặt với chi phí tính toán lớn (mô hình 7B tham số cần khoảng 28GB VRAM chỉ để lưu gradient với mixed precision), nguy cơ Catastrophic Forgetting khi mô hình ``quên'' kiến thức tổng quát, và chi phí storage khi mỗi tác vụ cần lưu một bản copy đầy đủ của mô hình.
 
-\section{2.3. Tối ưu hóa và Thích ứng Mô hình (Model Optimization and Adaptation)}
+\subsection{Low-Rank Adaptation (LoRA)}
 
-Trong khi RAG giải quyết vấn đề Knowledge Gap, nó không thay đổi **hành vi nội tại** của mô hình. Phần này trình bày các kỹ thuật để thích ứng LLMs cho các tác vụ yêu cầu văn phong hoặc quy tắc suy luận đặc thù.
-
-\subsection{2.3.1. Supervised Fine-Tuning (SFT)}
-
-\subsubsection{Định nghĩa hình thức}
-
-Cho tập dữ liệu gán nhãn $\mathcal{D} = \{(x_i, y_i)\}_{i=1}^{N}$, trong đó $x$ là prompt (instruction) và $y$ là response mong muốn. Mục tiêu của SFT là tối ưu hóa:
-
-$$\theta^* = \arg\min_\theta \mathcal{L}_{SFT}(\theta) = \arg\min_\theta \left[ -\sum_{i=1}^{N} \sum_{t=1}^{|y_i|} \log P_\theta(y_i^{(t)} | x_i, y_i^{(<t)}) \right]$$
-
-Đây là **Cross-Entropy Loss** giữa phân phối dự đoán và token thực tế.
-
-\subsubsection{Vấn đề của Full Fine-Tuning}
-
-Cập nhật toàn bộ tham số $\theta$ của LLM đối mặt với:
-1. **Chi phí tính toán:** Mô hình 7B tham số cần ~28GB VRAM chỉ để lưu gradient (với mixed precision)
-2. **Catastrophic Forgetting:** Mô hình có thể "quên" kiến thức tổng quát khi được fine-tune sâu trên tác vụ hẹp
-3. **Storage:** Mỗi tác vụ cần lưu một bản copy đầy đủ của mô hình
-
-\subsection{2.3.2. Low-Rank Adaptation (LoRA)}
-
-\subsubsection{Động lực và Giả thuyết}
-
-Aghajanyan et al. (2021) chứng minh rằng các mô hình ngôn ngữ lớn có **intrinsic dimensionality** thấp, nghĩa là sự thay đổi trọng số cần thiết cho một tác vụ mới nằm trong một không gian con (subspace) chiều thấp.
-
-\subsubsection{Định nghĩa toán học}
-
-Cho $\mathbf{W}_0 \in \mathbb{R}^{d \times k}$ là ma trận trọng số pre-trained. Thay vì cập nhật trực tiếp $\mathbf{W}_0$, LoRA [Hu et al., 2021] phân rã sự thay đổi $\Delta \mathbf{W}$ thành tích của hai ma trận rank thấp:
-
+Aghajanyan et al. (2021) chứng minh rằng các mô hình ngôn ngữ lớn có intrinsic dimensionality thấp, nghĩa là sự thay đổi trọng số cần thiết cho một tác vụ mới nằm trong một không gian con chiều thấp. LoRA khai thác quan sát này: thay vì cập nhật trực tiếp ma trận trọng số pre-trained $\mathbf{W}_0 \in \mathbb{R}^{d \times k}$, LoRA phân rã sự thay đổi $\Delta \mathbf{W}$ thành tích của hai ma trận rank thấp:
 $$\Delta \mathbf{W} = \mathbf{B}\mathbf{A}$$
 
-trong đó $\mathbf{B} \in \mathbb{R}^{d \times r}$, $\mathbf{A} \in \mathbb{R}^{r \times k}$, và $r \ll \min(d, k)$.
-
-\subsubsection{Forward Pass}
-
-$$\mathbf{h} = \mathbf{W}_0 \mathbf{x} + \Delta \mathbf{W} \mathbf{x} = \mathbf{W}_0 \mathbf{x} + \mathbf{B}\mathbf{A}\mathbf{x}$$
-
-Trong quá trình training:
-- $\mathbf{W}_0$ được **đóng băng** (frozen)
-- Chỉ $\mathbf{A}$ và $\mathbf{B}$ được cập nhật
-
-\subsubsection{Phân tích Số lượng Tham số}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|l|c|c|}
-\hline
-\textbf{Phương pháp} & \textbf{Số tham số trainable} & \textbf{Ví dụ (Llama-7B, d=4096)} \\
-\hline
-Full Fine-Tuning & $d \times k$ & $\sim$7 tỷ \\
-\hline
-LoRA (r=16) & $r \times (d + k)$ & $\sim$8 triệu \\
-\hline
-\textbf{Giảm} & $\frac{r \times (d+k)}{d \times k}$ & \textbf{$\sim$1000x} \\
-\hline
-\end{tabular}
-\caption{So sánh số lượng tham số trainable giữa Full Fine-Tuning và LoRA}
-\end{table}
-
-\subsubsection{Khởi tạo và Scaling}
-
-- $\mathbf{A}$: Khởi tạo Gaussian với phương sai nhỏ
-- $\mathbf{B}$: Khởi tạo bằng 0 để $\Delta \mathbf{W} = 0$ ban đầu
-- Scaling factor: $\alpha / r$ để kiểm soát magnitude của adaptation
-
+trong đó $\mathbf{B} \in \mathbb{R}^{d \times r}$, $\mathbf{A} \in \mathbb{R}^{r \times k}$, và $r \ll \min(d, k)$. Forward pass trở thành:
 $$\mathbf{h} = \mathbf{W}_0 \mathbf{x} + \frac{\alpha}{r} \mathbf{B}\mathbf{A}\mathbf{x}$$
 
-\subsection{2.3.3. Quantization và QLoRA}
+Trong quá trình training, $\mathbf{W}_0$ được đóng băng và chỉ $\mathbf{A}$, $\mathbf{B}$ được cập nhật. Điều này giảm số tham số trainable từ $d \times k$ xuống $r \times (d + k)$. Với Llama-7B ($d = 4096$) và $r = 16$, số tham số trainable giảm từ khoảng 7 tỷ xuống còn khoảng 8 triệu --- giảm gần 1000 lần.
 
-\subsubsection{Motivation}
+Việc khởi tạo cũng quan trọng: $\mathbf{A}$ được khởi tạo Gaussian với phương sai nhỏ, còn $\mathbf{B}$ được khởi tạo bằng 0 để $\Delta \mathbf{W} = 0$ ban đầu, đảm bảo mô hình bắt đầu từ điểm đã được pre-train tốt. Scaling factor $\alpha / r$ kiểm soát magnitude của adaptation.
 
-Để triển khai trên GPU có bộ nhớ hạn chế (như T4 16GB), cần giảm kích thước mô hình thông qua **Quantization** — giảm độ chính xác của trọng số từ 16-bit/32-bit xuống 8-bit hoặc 4-bit.
+Quay lại cơ chế Self-Attention ở đầu chương, giờ chúng ta có thể hiểu tại sao LoRA hiệu quả: các ma trận $\mathbf{W}_Q, \mathbf{W}_K, \mathbf{W}_V$ trong attention layers quyết định cách mô hình ``nhìn'' thông tin. Bằng cách thêm các adapter rank thấp vào các ma trận này, chúng ta điều chỉnh cách mô hình phân bổ attention mà không làm mất kiến thức đã học. Các thí nghiệm trong Chương 4 sẽ cho thấy việc target cả attention layers (qkvo\_proj) và FFN layers (gate/up/down\_proj) cho kết quả tốt nhất với behavioral fine-tuning.
 
-\subsubsection{Định nghĩa Toán học của Quantization}
+\subsection{Quantization và QLoRA}
 
-Quá trình lượng tử hóa ánh xạ giá trị thực $x$ (FP16/FP32) sang giá trị nguyên $x_q$ (INT8/INT4):
-
+Để triển khai trên GPU có bộ nhớ hạn chế (như T4 16GB), cần giảm kích thước mô hình thông qua Quantization --- giảm độ chính xác của trọng số từ 16-bit/32-bit xuống 8-bit hoặc 4-bit. Quá trình lượng tử hóa ánh xạ giá trị thực $x$ sang giá trị nguyên $x_q$:
 $$x_q = \text{round}\left(\frac{x - Z}{S}\right), \quad \hat{x} = S \cdot x_q + Z$$
 
-trong đó:
-- $S$ (Scale): Hệ số tỷ lệ
-- $Z$ (Zero-point): Điểm không
-- $\hat{x}$: Giá trị xấp xỉ sau de-quantization
+trong đó $S$ là hệ số tỷ lệ và $Z$ là điểm không.
 
-\subsubsection{NormalFloat 4-bit (NF4)}
+Dettmers et al. (2023) đề xuất NF4 (NormalFloat 4-bit), một phương pháp quantization tối ưu cho trọng số tuân theo phân phối chuẩn. Các quantization levels được chọn để minimizing expected quantization error dựa trên hàm ngược của CDF chuẩn.
 
-Dettmers et al. (2023) đề xuất NF4, một phương pháp quantization tối ưu cho trọng số tuân theo phân phối chuẩn:
+QLoRA kết hợp cả hai: mô hình gốc $\mathbf{W}_0$ được lưu ở dạng 4-bit (NF4), còn LoRA adapters $\mathbf{A}, \mathbf{B}$ được lưu ở dạng 16-bit (BFloat16). Điều này giảm VRAM từ khoảng 28GB (FP16) xuống còn khoảng 6GB (4-bit) cho mô hình 7B, trong khi vẫn giữ được độ chính xác gradient nhờ LoRA adapters ở FP16. Đây là kỹ thuật được sử dụng trong thí nghiệm fine-tuning ở Chương 4.
 
-$$\text{NF4}: q_i = \frac{1}{2}\left(\Phi^{-1}\left(\frac{i}{16}\right) + \Phi^{-1}\left(\frac{i+1}{16}\right)\right), \quad i \in \{0, 1, \ldots, 15\}$$
+\subsection{Knowledge Distillation và Synthetic Data Generation}
 
-trong đó $\Phi^{-1}$ là hàm ngược của CDF chuẩn. Các quantization levels được chọn để minimizing expected quantization error.
-
-\subsubsection{QLoRA: Kết hợp Quantization và LoRA}
-
-QLoRA [Dettmers et al., 2023] kết hợp:
-1. **Mô hình gốc $\mathbf{W}_0$:** Lưu ở dạng 4-bit (NF4)
-2. **LoRA adapters $\mathbf{A}, \mathbf{B}$:** Lưu ở dạng 16-bit (BFloat16)
-
-**Lợi ích:**
-- Giảm VRAM từ ~28GB (FP16) xuống ~6GB (4-bit) cho mô hình 7B
-- Vẫn giữ được độ chính xác gradient nhờ LoRA adapters ở FP16
-
-\subsection{2.3.4. Knowledge Distillation và Synthetic Data Generation}
-
-\subsubsection{Motivation}
-
-Trong các miền đặc thù (niche domains), dữ liệu huấn luyện chất lượng cao thường khan hiếm. **Knowledge Distillation** cho phép chuyển giao khả năng từ mô hình lớn (Teacher) sang mô hình nhỏ (Student).
-
-\subsubsection{Định nghĩa Toán học}
-
-Cho Teacher model $T$ với phân phối đầu ra $P_T(y|x)$ và Student model $S$ với $P_S(y|x)$. Mục tiêu là minimize **Kullback-Leibler Divergence**:
-
+Trong các miền đặc thù, dữ liệu huấn luyện chất lượng cao thường khan hiếm. Knowledge Distillation cho phép chuyển giao khả năng từ mô hình lớn (Teacher) sang mô hình nhỏ (Student). Cho Teacher model $T$ với phân phối đầu ra $P_T(y|x)$ và Student model $S$ với $P_S(y|x)$, mục tiêu là minimize Kullback-Leibler Divergence:
 $$\mathcal{L}_{KD} = \mathbb{E}_{x \sim \mathcal{D}} \left[ D_{KL}(P_T(\cdot|x) \| P_S(\cdot|x)) \right]$$
 
-$$D_{KL}(P_T \| P_S) = \sum_y P_T(y|x) \log \frac{P_T(y|x)}{P_S(y|x)}$$
+Trong thực tế, quy trình Synthetic Data Generation sử dụng Teacher Model (GPT-4, Gemini) để sinh cặp $(x, y_{teacher})$ dựa trên prompt template. Diversity Injection thêm variation vào input (user personality, edge cases) để tránh overfitting vào một kiểu hội thoại. Filtering loại bỏ các mẫu có chất lượng thấp trước khi Student Training fine-tune SLM trên dataset này. Quy trình này được áp dụng chi tiết trong Chương 4 để tạo dataset hội thoại tarot.
 
-\subsubsection{Quy trình Synthetic Data Generation}
+\section{Phương pháp Đánh giá}
 
-1. **Teacher Model** (GPT-4, Gemini): Sinh cặp $(x, y_{teacher})$ dựa trên prompt template
-2. **Diversity Injection:** Thêm variation vào input (user personality, edge cases)
-3. **Filtering:** Loại bỏ các mẫu có chất lượng thấp
-4. **Student Training:** Fine-tune SLM trên dataset này
+\subsection{RAGAS Framework}
 
----
-
-\section{2.4. Phương pháp Đánh giá (Evaluation Methodology)}
-
-\subsection{2.4.1. RAGAS Framework}
-
-RAGAS [Es et al., 2023] là framework đánh giá RAG không cần ground truth, sử dụng LLM làm judge.
-
-\subsubsection{Faithfulness}
-
-Đo lường mức độ câu trả lời được hỗ trợ bởi context:
-
+RAGAS là framework đánh giá RAG không cần ground truth, sử dụng LLM làm judge. Faithfulness đo lường mức độ câu trả lời được hỗ trợ bởi context:
 $$\text{Faithfulness} = \frac{|\{s \in S : s \text{ can be inferred from } C\}|}{|S|}$$
 
-trong đó $S$ là tập các claims trong câu trả lời, $C$ là context.
+trong đó $S$ là tập các claims trong câu trả lời và $C$ là context. Answer Relevance đo lường mức độ câu trả lời giải quyết câu hỏi thông qua việc tái tạo câu hỏi từ câu trả lời và tính cosine similarity với câu hỏi gốc. Context Precision đo lường tỷ lệ context có ích trong top-k. Các metrics này sẽ được sử dụng để đánh giá hệ thống RAG trong Chương 3.
 
-\subsubsection{Answer Relevance}
+\subsection{Perplexity và LLM-as-a-Judge}
 
-Đo lường mức độ câu trả lời giải quyết câu hỏi:
-
-$$\text{Relevance} = \frac{1}{n} \sum_{i=1}^{n} \text{sim}_{cos}(\mathbf{v}_q, \mathbf{v}_{q_i})$$
-
-trong đó $q_i$ là câu hỏi được tái tạo từ câu trả lời.
-
-\subsubsection{Context Precision}
-
-Đo lường tỷ lệ context có ích trong top-k:
-
-$$\text{Context Precision@K} = \frac{1}{K} \sum_{k=1}^{K} \frac{\sum_{i=1}^{k} v_i}{k} \cdot v_k$$
-
-trong đó $v_k = 1$ nếu chunk tại vị trí $k$ là relevant.
-
-\subsection{2.4.2. Perplexity}
-
-Đánh giá độ "bối rối" của language model:
-
+Perplexity đánh giá độ ``bối rối'' của language model:
 $$\text{PPL} = \exp\left(-\frac{1}{T} \sum_{t=1}^{T} \log P_\theta(x_t | x_{<t})\right)$$
 
-PPL thấp hơn = model tự tin hơn trong việc dự đoán.
+PPL thấp hơn nghĩa là model tự tin hơn trong việc dự đoán. Tuy nhiên, PPL không đủ để đánh giá các khía cạnh định tính như văn phong hay sự đồng cảm. Vì vậy, LLM-as-a-Judge sử dụng LLM mạnh (GPT-4) để đánh giá output trên các tiêu chí như Coherence, Helpfulness, và Style Adherence --- phương pháp được áp dụng trong Chương 4 cho use-case tarot reader.
 
-\subsection{2.4.3. LLM-as-a-Judge}
+\section{Tổng kết Chương}
 
-Sử dụng LLM mạnh (GPT-4) để đánh giá output của LLM yếu hơn trên các tiêu chí định tính:
-- Coherence (Mạch lạc)
-- Helpfulness (Hữu ích)
-- Harmlessness (Vô hại)
-
----
-
-\section{2.5. Tổng kết Chương}
-
-Chương này đã cung cấp nền tảng lý thuyết cho hai phương pháp thích ứng LLM:
+Chương này đã xây dựng nền tảng lý thuyết cho hai phương pháp thích ứng LLM, mỗi phương pháp giải quyết một loại gap khác nhau:
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|}
 \hline
-\textbf{Phương pháp} & \textbf{Giải quyết} & \textbf{Cơ chế} & \textbf{Ưu điểm} & \textbf{Hạn chế} \\
+\textbf{Phương pháp} & \textbf{Giải quyết} & \textbf{Cơ chế} & \textbf{Khi nào dùng} \\
 \hline
-\textbf{RAG} & Knowledge Gap & External retrieval & Dễ cập nhật, ít hallucination & Chi phí retrieval, context limit \\
+\textbf{RAG} & Knowledge Gap & Truy xuất tri thức bên ngoài & Cần thông tin cập nhật, giảm hallucination \\
 \hline
-\textbf{Fine-tuning (LoRA)} & Behavior Gap & Weight adaptation & Thay đổi hành vi sâu & Cần dữ liệu, có thể overfit \\
+\textbf{Fine-tuning (LoRA)} & Behavior Gap & Điều chỉnh attention patterns & Cần văn phong/quy tắc đặc thù \\
 \hline
 \end{tabular}
 \caption{So sánh hai phương pháp thích ứng LLM}
 \end{table}
 
-Các chương tiếp theo sẽ trình bày chi tiết việc triển khai và đánh giá hai phương pháp này trên các use-case thực tế.
+Các công thức toán trong chương này không chỉ mang tính mô tả mà còn định hướng thiết kế hệ thống: hiểu độ phức tạp $O(n^2)$ của Self-Attention giải thích tại sao cần chunking trong RAG; hiểu intrinsic dimensionality giải thích tại sao LoRA với rank thấp có thể hiệu quả; hiểu trade-off giữa Bi-Encoder và Cross-Encoder định hướng kiến trúc retrieval hai giai đoạn.
+
+Chương 3 sẽ triển khai RAG cho hai use-case xử lý tài liệu phức tạp (GPM và Dr. Besnier), áp dụng các kỹ thuật Dense/Sparse Retrieval, Hybrid Search và Document Layout Analysis. Chương 4 sẽ triển khai Fine-tuning với LoRA/QLoRA cho use-case behavioral adaptation (tarot reader), áp dụng Knowledge Distillation và LLM-as-a-Judge evaluation.
+
 
 %%------------------------------- chapter ------------------------------------
 
@@ -1316,7 +1061,7 @@ Lớp Cảm xúc (Emotional Layer): Sử dụng ngôn ngữ thấu cảm, đặt
 
 \subsection{Câu hỏi Nghiên cứu}
 
-Từ phân tích trên, chúng tôi sử dụng Data-centric Fine-tuning để "đúc" (bake) toàn bộ các lớp hành vi này vào trọng số của mô hình nhỏ, biến nó thành một chuyên gia thực thụ trong lĩnh vực của mình. Chúng tôi đặt ra hai câu hỏi nghiên cứu chính:
+Từ phân tích trên, chúng tôi quyết định sử dụng Data-centric Fine-tuning để "đúc" (bake) toàn bộ các lớp hành vi này vào trọng số của mô hình nhỏ, biến nó thành một chuyên gia thực thụ trong lĩnh vực của mình. Chúng tôi đặt ra hai câu hỏi nghiên cứu chính:
 
 \begin{itemize}
     \item \textbf{RQ1:} Liệu mô hình nhỏ ($\leq$ 3B tham số-) được fine-tune có thể đạt behavioral consistency tương đương hoặc tốt hơn LLM lớn với prompt engineering?
@@ -1350,9 +1095,16 @@ Hình \ref{fig:finetuning-pipeline} minh họa pipeline của chúng tôi, gồm
     \label{fig:finetuning-pipeline}
 \end{figure}
 
-\subsection{Giai đoạn 1: Synthetic Data Generation}
+\subsection{Sinh Dữ liệu Tổng hợp: Distillation ở Tầng Hành vi}
 
 \subsubsection{Mục tiêu và Định dạng Dữ liệu}
+
+Thách thức đầu tiên chúng tôi đối mặt là không có sẵn bộ dữ liệu hội thoại Tarot chất lượng cao. Những cuộc hội thoại thực tế giữa người đọc bài và khách hàng vừa hiếm, vừa nhạy cảm về quyền riêng tư. Giải pháp của chúng tôi là áp dụng Knowledge Distillation ở một tầng khác biệt so với cách tiếp cận truyền thống: thay vì distill logits hay hidden states, chúng tôi distill \textit{behavioral patterns} --- tức cách ứng xử, giọng điệu, và quy trình làm việc của một chuyên gia Tarot.
+
+Cụ thể, chúng tôi sử dụng GPT-4o và Qwen-Plus làm Teacher Model để sinh các cuộc hội thoại mẫu thể hiện đầy đủ ba lớp thông tin cần thiết: tri thức về 78 lá bài, quy trình tư vấn năm bước, và phong cách giao tiếp thấu cảm. Hai teacher model này được chọn vì khả năng tuân theo instruction phức tạp và hỗ trợ đa ngôn ngữ --- yếu tố quan trọng cho việc mở rộng sang đa ngôn ngữ sau này.
+
+Trước khi tiến hành sinh dữ liệu, chúng tôi thu thập thông tin chi tiết về 78 lá bài Tarot từ các nguồn (dẫn nguồn), bao gồm tên lá bài, phân loại (Major/Minor Arcana), ý nghĩa khi thuận và ngược, cùng mô tả hình ảnh biểu tượng. Dữ liệu này được đưa vào context của Teacher Model để đảm bảo độ chính xác trong các phần giải nghĩa bài.
+
 
 Trước khi sinh dữ liệu, cần xác định rõ dữ liệu cần có dạng như thế nào. Một cuộc hội thoại Tarot điển hình có cấu trúc như sau:
 
@@ -1423,50 +1175,6 @@ Chúng tôi áp dụng Knowledge Distillation ở mức \textit{behavioral patte
     \item \textbf{Sinh conversation:} Teacher Model nhận system prompt (xem trong Annexe Listing \ref{lst:teacher-prompt}), thông tin về cards được rút, và persona của querent để sinh cuộc hội thoại hoàn chỉnh.
 \end{enumerate}
 
-\begin{lstlisting}[caption={System Prompt cho Teacher Model},label={lst:teacher-prompt},language=Python,basicstyle=\small\ttfamily]
-SYSTEM_PROMPT = """
-You are a skilled and intuitive tarot reader with a warm, 
-friendly demeanor. Guide the user through a personalized 
-tarot reading:
-
-1. Ask 3-4 short questions to understand their situation
-2. Invite them to draw 3 cards
-3. For each card:
-   - Describe the card's imagery briefly
-   - Explain its meaning in context of their question
-   - Give 1-2 relatable examples
-   - End with a reflective question
-4. Synthesize the reading with an overall message
-5. Ask if they want to explore another question
-
-TONE: Casual, friendly, like chatting with a close friend.
-Use simple language, show empathy, add light humor when 
-appropriate. Never be preachy or overly mystical.
-"""
-\end{lstlisting}
-
-\subsubsection{Diversity Injection}
-
-Để tránh overfitting, chúng tôi inject diversity theo nhiều chiều:
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|l|c|p{7cm}|}
-        \hline
-        \textbf{Chiều diversity} & \textbf{Số lượng} & \textbf{Chi tiết} \\
-        \hline
-        Topics & 5 & Career, Relationships, Health, Personal Growth, Finance \\
-        Querent Personas & 6 & Gentle, Expressive, Doubtful, Skeptical, Rude, Rejective \\
-        Conversation Length & 3 & Short (5--7), Moderate (8--10), Long (11--15 turns) \\
-        Card Combinations & $C_{78}^3 \times 2^3$ & 76,076 tổ hợp × 8 variations (upright/reversed) \\
-        \hline
-        \textbf{Không gian lý thuyết} & $>$ 5M & Đảm bảo training data không bị trùng lặp \\
-        \hline
-    \end{tabular}
-    \caption{Các chiều diversity trong sinh dữ liệu}
-    \label{tab:diversity-dimensions}
-\end{table}
-
 \subsubsection{Lọc và Kiểm tra Chất lượng}
 
 Sau khi sinh raw data, chúng tôi áp dụng quy trình lọc:
@@ -1485,11 +1193,11 @@ Sau khi sinh raw data, chúng tôi áp dụng quy trình lọc:
 
 
 
-\subsection{Giai đoạn 2: Supervised Fine-Tuning}
+\subsection{Lựa chọn và Huấn luyện Mô hình}
 
 \subsubsection{Lựa chọn Base Model}
 
-Trong bối cảnh tài nguyên tính toán bị giới hạn (Edge deployment/Consumer GPU), việc lựa chọn mô hình nền tảng đòi hỏi sự cân bằng tối ưu giữa hiệu suất (performance) và chi phí tính toán (computational cost). Sau khi khảo sát các mô hình SOTA (State-of-the-Art) ở phân khúc dưới 3 tỷ tham số, chúng tôi quyết định chọn họ mô hình Qwen2.5-Instruct (biến thể 0.5B và 1.5B) dựa trên ba luận điểm chính sau:
+Trong bối cảnh tài nguyên tính toán bị giới hạn (Edge deployment/Consumer GPU), việc lựa chọn mô hình nền tảng đòi hỏi sự cân bằng tối ưu giữa hiệu suất (performance) và chi phí tính toán (computational cost). Sau khi khảo sát các mô hình SOTA (State-of-the-Art) ở phân khúc dưới 3 tỷ tham số, chúng tôi quyết định chọn họ mô hình Qwen2.5-Instruct (biến thể 0.5B và 1.5B) dựa trên với hai lý do chính:
 
 \textbf{1. Hiệu suất vượt trội trên tỷ lệ tham số (Performance-to-Parameter Ratio).} Dữ liệu thực nghiệm trên các bộ benchmark tiêu chuẩn (Bảng \ref{tab:model-comparison}) cho thấy Qwen2.5-1.5B vượt trội đáng kể so với các đối thủ cùng phân khúc như Llama-3.2-1B hay Gemma-2-2.6B. Đặc biệt, chỉ số MMLU (kiến thức tổng quát) đạt 60.9, tiệm cận với các mô hình 7B của thế hệ trước. Khả năng suy luận logic cao ở size nhỏ là yếu tố then chốt giúp Chatbot xử lý logic bài Tarot phức tạp.
 
@@ -1509,9 +1217,7 @@ Trong bối cảnh tài nguyên tính toán bị giới hạn (Edge deployment/C
     \caption{So sánh hiệu năng trên các bộ benchmark tiêu chuẩn. Số liệu trích xuất từ Qwen2.5 Technical Report (2024).} \label{tab:model-comparison} 
 \end{table}
 
-\textbf{2. Khả năng đa ngôn ngữ.} Khác với dòng Llama tập trung chủ yếu vào tiếng Anh và các ngôn ngữ châu Âu, Qwen được huấn luyện trên tập dữ liệu đa ngôn ngữ khổng lồ. over 29 languages. Tokenizer của Qwen có hiệu suất nén văn bản tốt hơn (dẫn nguồn), giúp giảm chi phí token và tăng độ dài ngữ cảnh thực tế (effective context length) cho các phiên tư vấn dài.
-Context length 32K tokens --- đủ cho multi-turn conversation dài.
-Giấy phép Apache 2.0 cũng đảm bảo tính tự do cho các mục đích thương mại hóa sau này.
+\textbf{2. Khả năng đa ngôn ngữ.} Khác với dòng Llama tập trung chủ yếu vào tiếng Anh và các ngôn ngữ châu Âu, Qwen, một model đến từ Trung Quốc, được huấn luyện trên tập dữ liệu đa ngôn ngữ với hơn 29 ngôn ngữ. Tokenizer của Qwen cũng có hiệu suất nén văn bản tốt hơn, giúp giảm chi phí token và tăng độ dài ngữ cảnh thực tế cho các phiên tư vấn dài. Context length 32K tokens đủ cho multi-turn conversation phức tạp. Ngoài ra, giấy phép Apache 2.0 của Qwen cũng đảm bảo tính tự do cho các mục đích thương mại hóa sau này.
 
 \begin{table}[H]
     \centering
@@ -1528,101 +1234,62 @@ Giấy phép Apache 2.0 cũng đảm bảo tính tự do cho các mục đích t
     \label{tab:base-models}
 \end{table}
 
-\subsubsection{Cấu hình Training}
+\subsubsection{LoRA hay Full Fine-tuning?}
 
-Chúng tôi thử nghiệm hai phương pháp: \textbf{Full Fine-tuning} và \textbf{LoRA}.
+Một câu hỏi cốt lõi trong thiết kế thực nghiệm là liệu LoRA có đủ để học behavioral patterns phức tạp, hay chúng ta cần full fine-tuning với toàn bộ tham số. Lý thuyết về \textit{intrinsic dimensionality} gợi ý rằng các adaptation task thường nằm trong một subspace chiều thấp của không gian tham số gốc --- LoRA với rank đủ cao có thể capture được subspace này mà không cần update toàn bộ weights.
 
-\textbf{Cấu hình LoRA:}
-\begin{lstlisting}[language=Python,basicstyle=\small\ttfamily]
-peft_config = LoraConfig(
-    task_type="CAUSAL_LM",
-    r=16,                    # Rank
-    lora_alpha=32,           # Scaling (alpha/r = 2)
-    lora_dropout=0.05,
-    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
-                    "gate_proj", "up_proj", "down_proj"]
-)
-\end{lstlisting}
+Chúng tôi thử nghiệm cả hai phương pháp với LoRA rank 16, áp dụng lên không chỉ attention layers mà còn cả FFN layers. Quyết định này dựa trên giả thuyết rằng behavioral adaptation cần thay đổi không chỉ cách model "nhìn" thông tin (attention) mà còn cách "xử lý" thông tin (FFN). Kết quả thực nghiệm xác nhận giả thuyết này: việc chỉ apply LoRA lên attention giảm hiệu suất 7\% so với cấu hình đầy đủ.
 
-Chúng tôi áp dụng LoRA lên cả attention layers và FFN layers, vì behavioral adaptation cần thay đổi không chỉ cách model ``nhìn'' thông tin (attention) mà còn cách ``xử lý'' thông tin (FFN).
-
-\textbf{Cấu hình Training Arguments:}
-\begin{lstlisting}[language=Python,basicstyle=\small\ttfamily]
-training_args = TrainingArguments(
-    per_device_train_batch_size=1,
-    gradient_accumulation_steps=8,  # Effective batch = 8
-    num_train_epochs=10,
-    learning_rate=3e-5,
-    lr_scheduler_type="cosine",
-    warmup_ratio=0.05,
-    optim="adamw_torch",
-)
-\end{lstlisting}
+Về training configuration, chúng tôi sử dụng effective batch size 8, learning rate 3e-5 với cosine scheduler, và đặc biệt áp dụng \texttt{DataCollatorForCompletionOnlyLM} để chỉ tính loss trên phần assistant response. Cách tiếp cận này giúp mô hình tập trung học cách phản hồi thay vì memorize user prompts. Chi tiết cấu hình được trình bày trong Phụ lục \ref{sec:annexe-training}.
 
 \textbf{Completion-Only Loss:} Sử dụng \texttt{DataCollatorForCompletionOnlyLM} để chỉ tính loss trên phần assistant response, giúp mô hình tập trung học cách phản hồi thay vì memorize user prompts.
 
-\subsubsection{Xử lý Multi-turn Conversation}
+\subsection{Đánh giá: Kết hợp LLM Judge và Human Evaluation}
 
-Conversations được format theo Qwen chat template:
+Đánh giá chatbot behavioral là một thách thức vì không có ground truth rõ ràng như các task classification hay QA. Một phản hồi có thể đúng về nội dung nhưng sai về giọng điệu, hoặc ngược lại. Để giải quyết vấn đề này, chúng tôi thiết kế framework đánh giá đa chiều với hai nguồn signal bổ trợ.
 
-\begin{verbatim}
-<|im_start|>system
-You are a skilled tarot reader...
-<|im_end|>
-<|im_start|>user
-I've been feeling stuck in my job...
-<|im_end|>
-<|im_start|>assistant
-Hey there! Career crossroads can be tricky...
-<|im_end|>
-<|im_start|>user
-It's mostly that I don't feel challenged anymore...
-<|im_end|>
-<|im_start|>assistant
-Ah, the golden handcuffs situation!...
-<|im_end|>
-\end{verbatim}
+Nguồn đầu tiên là LLM-as-a-Judge với hai model evaluator khác nhau --- Gemini-2.5-flash và GPT-4o --- nhằm giảm bias từ một judge đơn lẻ. Mỗi judge đánh giá trên năm tiêu chí: Style Adherence (phong cách casual, friendly), Card Knowledge (độ chính xác giải nghĩa), Empathy (sự đồng cảm), Workflow Compliance (tuân thủ quy trình), và Coherence (mạch lạc logic). Điểm từ hai judges được lấy trung bình để có kết quả ổn định hơn.
 
-\subsection{Giai đoạn 3: Đánh giá Đa chiều}
+Nguồn thứ hai là Human Evaluation, nơi chúng tôi mời 2 annotators đánh giá 30 cuộc hội thoại thử nghiệm. Phương pháp này bổ sung cho đánh giá tự động và giúp xác thực các phát hiện từ LLM.
 
-\subsubsection{LLM-as-a-Judge}
+% \subsubsection{LLM-as-a-Judge}
 
-Đánh giá chatbot không có ground truth rõ ràng như các task khác. Chúng tôi sử dụng hai LLM làm judges để giảm bias: \textbf{Gemma-3-12B-Instruct} và \textbf{Mistral-Small-24B-Instruct}.
+% Đánh giá chatbot không có ground truth rõ ràng như các task khác. Chúng tôi sử dụng hai LLM làm judges để giảm bias: \textbf{Gemma-3-12B-Instruct} và \textbf{Mistral-Small-24B-Instruct}.
 
-Mỗi judge đánh giá trên 5 tiêu chí (thang 0--1):
+% Mỗi judge đánh giá trên 5 tiêu chí (thang 0--1):
 
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|l|p{9cm}|}
-        \hline
-        \textbf{Tiêu chí} & \textbf{Câu hỏi đánh giá} \\
-        \hline
-        Style Adherence & Phong cách có casual, friendly như đang nói chuyện với bạn? \\
-        Card Knowledge & Ý nghĩa lá bài có được giải thích chính xác? \\
-        Empathy & Phản hồi có thể hiện sự đồng cảm, không phán xét? \\
-        Workflow Compliance & Có tuân theo quy trình (hỏi → rút bài → giải → tổng hợp)? \\
-        Coherence & Cuộc hội thoại có mạch lạc, logic? \\
-        \hline
-    \end{tabular}
-    \caption{Tiêu chí đánh giá của LLM Judge}
-    \label{tab:eval-criteria}
-\end{table}
+% \begin{table}[H]
+%     \centering
+%     \begin{tabular}{|l|p{9cm}|}
+%         \hline
+%         \textbf{Tiêu chí} & \textbf{Câu hỏi đánh giá} \\
+%         \hline
+%         Style Adherence & Phong cách có casual, friendly như đang nói chuyện với bạn? \\
+%         Card Knowledge & Ý nghĩa lá bài có được giải thích chính xác? \\
+%         Empathy & Phản hồi có thể hiện sự đồng cảm, không phán xét? \\
+%         Workflow Compliance & Có tuân theo quy trình (hỏi → rút bài → giải → tổng hợp)? \\
+%         Coherence & Cuộc hội thoại có mạch lạc, logic? \\
+%         \hline
+%     \end{tabular}
+%     \caption{Tiêu chí đánh giá của LLM Judge}
+%     \label{tab:eval-criteria}
+% \end{table}
 
-\subsubsection{Human Evaluation}
+% \subsubsection{Human Evaluation}
 
-Bổ sung cho automated evaluation, chúng tôi tiến hành human evaluation với 3 annotators trên 30 test conversations:
+% Bổ sung cho automated evaluation, chúng tôi tiến hành human evaluation với 3 annotators trên 30 test conversations:
 
-\begin{enumerate}
-    \item \textbf{Pairwise preference:} So sánh blind giữa Base Model, Fine-tuned Model, và GPT-4
-    \item \textbf{Human-like rating:} Đánh giá trên thang 1--5
-    \item \textbf{Error annotation:} Ghi nhận các lỗi cụ thể (out-of-character, hallucination, repetition)
-\end{enumerate}
+% \begin{enumerate}
+%     \item \textbf{Pairwise preference:} So sánh blind giữa Base Model, Fine-tuned Model, và GPT-4
+%     \item \textbf{Human-like rating:} Đánh giá trên thang 1--5
+%     \item \textbf{Error annotation:} Ghi nhận các lỗi cụ thể (out-of-character, hallucination, repetition)
+% \end{enumerate}
 
 \section{Kết quả Thực nghiệm}
 
-\subsection{Training Dynamics}
+\subsection{Quá trình Training}
 
-Hình \ref{fig:training-loss} và Bảng \ref{tab:training-results} trình bày kết quả training.
+Training diễn ra trơn tru với loss giảm nhanh trong 200 steps đầu tiên rồi ổn định --- một dấu hiệu cho thấy behavioral patterns được học khá nhanh so với các task đòi hỏi knowledge factual. Điều thú vị là cả Full Fine-tuning và LoRA đều converge về cùng một mức loss cuối cùng (1.12 vs 1.15 cho Qwen-1.5B), nhưng LoRA tiết kiệm 15--20\% thời gian và VRAM. Mô hình 3B đạt loss thấp nhất (0.98) nhưng thời gian training gấp đôi so với 1.5B, đặt ra câu hỏi về trade-off cost-performance mà chúng tôi sẽ phân tích ở phần sau. Hình \ref{fig:training-loss} và Bảng \ref{tab:training-results} trình bày kết quả training.
 
 \begin{figure}[H]
     \centering
@@ -1652,16 +1319,9 @@ Hình \ref{fig:training-loss} và Bảng \ref{tab:training-results} trình bày 
     \label{tab:training-results}
 \end{table}
 
-\textbf{Nhận xét:}
-\begin{itemize}
-    \item Loss giảm nhanh trong 200 steps đầu rồi ổn định --- behavioral patterns được học nhanh
-    \item Full FT và LoRA đạt loss tương đương, nhưng LoRA tiết kiệm 15--20\% thời gian và VRAM
-    \item Mô hình 3B đạt loss thấp nhất nhưng thời gian gấp đôi so với 1.5B
-\end{itemize}
-
 \subsection{Kết quả LLM-as-a-Judge}
 
-Bảng \ref{tab:llm-judge-results} trình bày kết quả đánh giá bởi hai judges.
+Bảng \ref{tab:llm-judge-results} trình bày kết quả đánh giá từ hai LLM judges. Kết quả này cho thấy ba insights quan trọng.
 
 \begin{table}[H]
     \centering
@@ -1697,12 +1357,14 @@ Bảng \ref{tab:llm-judge-results} trình bày kết quả đánh giá bởi hai
 \begin{enumerate}
     \item \textbf{Fine-tuning cải thiện toàn diện:} Qwen-1.5B tăng từ 0.61 lên 0.88 (+44\%). Cải thiện lớn nhất ở Workflow Compliance (+119\%: 0.42 → 0.92), cho thấy fine-tuning đặc biệt hiệu quả trong việc học quy trình cố định.
     
-    \item \textbf{Fine-tuned model vượt GPT-4 trên behavioral metrics:} Qwen-1.5B FT đạt Style 0.88 (vs 0.82 của GPT-4) và Workflow 0.92 (vs 0.75). GPT-4 có Knowledge cao hơn (0.90 vs 0.85) nhờ lượng training data lớn, nhưng thiếu nhất quán trong việc tuân thủ workflow.
+    \item \textbf{mô hình nhỏ fine-tuned có thể vượt mô hình lớn prompted trên các behavioral metrics:} Qwen-1.5B Fine-tuned đạt Style 0.88 so với 0.82 của GPT-4, và Workflow 0.92 so với chỉ 0.75. GPT-4 có Knowledge cao hơn (0.90 vs 0.85) nhờ lượng training data khổng lồ, nhưng thiếu nhất quán trong việc tuân thủ quy trình năm bước. Điều này xác nhận giả thuyết ban đầu: behavioral consistency đòi hỏi sự internalization sâu hơn những gì in-context learning có thể cung cấp.
     
-    \item \textbf{Diminishing returns với model size:} Qwen-3B FT chỉ tốt hơn 1.5B một chút (0.88 vs 0.88 average), suggesting 1.5B đã đủ capacity cho tác vụ này.
+    \item \textbf{Diminishing returns với model size:}  Qwen-3B Fine-tuned chỉ đạt cùng mức average (0.88) với Qwen-1.5B, gợi ý rằng 1.5B parameters đã đủ capacity cho tác vụ này. Thêm parameters không giúp ích nếu bottleneck nằm ở chất lượng dữ liệu chứ không phải model capacity.
 \end{enumerate}
 
 \subsection{Kết quả Human Evaluation}
+
+Kết quả Human Evaluation xác nhận các findings từ LLM Judge. Qwen-1.5B Fine-tuned được các annotators prefer nhất với win rate 41\%, vượt GPT-4 (35\%), Qwen-3B (38\%), và Qwen-0.5B (22\%). Nhận xét định tính từ annotators cho thấy mô hình fine-tuned "feels more natural" và "follows the flow better". Bảng \ref{tab:human-eval-results} trình bày kết quả chi tiết của Human Evaluation.
 
 \begin{table}[H]
     \centering
@@ -1721,14 +1383,8 @@ Bảng \ref{tab:llm-judge-results} trình bày kết quả đánh giá bởi hai
     \label{tab:human-eval-results}
 \end{table}
 
-\textbf{Key insights:}
-\begin{itemize}
-    \item \textbf{Qwen-1.5B FT được prefer nhất} với win rate 41\%, vượt GPT-4 (35\%). Annotators nhận xét rằng mô hình fine-tuned ``feels more natural'' và ``follows the flow better''.
-    
-    \item \textbf{Error rate giảm mạnh với model size:} 18\% → 8\% từ 0.5B đến 1.5B. Lỗi phổ biến ở 0.5B: repetition và incomplete responses.
-    
-    \item \textbf{GPT-4 verbose nhưng không tốt hơn:} Response dài hơn 16\% nhưng error rate cao hơn (12\% vs 8\%), chủ yếu do workflow violations.
-\end{itemize}
+Error rate giảm mạnh theo model size (18\% $\rightarrow$ 8\% từ 0.5B đến 1.5B), với các lỗi phổ biến ở 0.5B là repetition và incomplete responses. Đáng chú ý, GPT-4 dù có response dài hơn 16\% nhưng lại có error rate cao hơn (12\% vs 8\%), chủ yếu do workflow violations --- mô hình thường đưa ra reading mà không mời người dùng rút bài trước.
+
 
 \subsection{Phân tích Định tính}
 
@@ -1758,41 +1414,9 @@ Base model trả lời như ``career advisor'' khô khan với bullet points. Fi
 
 GPT-4 bỏ qua bước mời rút bài --- một workflow violation nghiêm trọng. Fine-tuned model tuân thủ đúng quy trình đã học.
 
-\subsection{Ablation Study}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|l|c|c|c|}
-        \hline
-        \textbf{Configuration} & \textbf{Style} & \textbf{Workflow} & \textbf{Avg} \\
-        \hline
-        \rowcolor{gray!20}
-        Full config (LoRA r=16, all layers) & \textbf{0.88} & \textbf{0.92} & \textbf{0.88} \\
-        LoRA r=8, all layers & 0.84 & 0.88 & 0.85 \\
-        LoRA r=16, attention only & 0.80 & 0.85 & 0.82 \\
-        Full Fine-tuning (no LoRA) & 0.87 & 0.91 & 0.87 \\
-        \hline
-        50\% training data & 0.78 & 0.82 & 0.79 \\
-        No diversity injection & 0.72 & 0.80 & 0.75 \\
-        \hline
-    \end{tabular}
-    \caption{Ablation Study trên Qwen-1.5B}
-    \label{tab:ablation}
-\end{table}
-
-\textbf{Key findings:}
-
-\begin{itemize}
-    \item \textbf{FFN layers quan trọng:} Chỉ apply LoRA lên attention giảm hiệu suất 7\%, confirm rằng behavioral adaptation cần cả FFN để thay đổi cách model ``xử lý'' thông tin, không chỉ cách ``nhìn'' thông tin.
-    
-    \item \textbf{LoRA $\approx$ Full Fine-tuning:} Với r=16, LoRA đạt 99\% hiệu suất của full FT trong khi chỉ train 0.5\% parameters.
-    
-    \item \textbf{Data diversity là yếu tố quyết định:} Không có diversity injection, hiệu suất giảm 15\% --- đây là factor quan trọng nhất, hơn cả model size hay training method.
-\end{itemize}
-
 \section{Demo Application}
 
-Để validate kết quả trong môi trường thực tế, chúng tôi xây dựng demo application sử dụng Gradio framework.
+Để validate kết quả trong môi trường thực tế, chúng tôi xây dựng demo application sử dụng Gradio framework với cấu hình: Qwen2.5-1.5B-Instruct Full Fine-tuned (3 epochs), chạy trên NVIDIA RTX 3090. Latency đạt time-to-first-token khoảng 80ms với throughput khoảng 50 tokens/s --- đủ nhanh cho trải nghiệm real-time.
 
 \begin{figure}[H]
     \centering
@@ -1804,84 +1428,187 @@ GPT-4 bỏ qua bước mời rút bài --- một workflow violation nghiêm tr�
     \label{fig:gradio-demo}
 \end{figure}
 
-\textbf{Cấu hình deployment:}
-\begin{itemize}
-    \item \textbf{Model:} Qwen2.5-1.5B-Instruct Full Fine-tuned (3 epochs) --- được chọn dựa trên kết quả evaluation
-    \item \textbf{Inference:} vLLM server với quantization INT8
-    \item \textbf{Hardware:} NVIDIA T4 (16GB)
-    \item \textbf{Latency:} Time-to-first-token $\sim$80ms, throughput $\sim$50 tokens/s
-\end{itemize}
-
 User có thể chat với Tarot Reader, rút bài từ bộ 78 lá (với hình ảnh), và nhận reading cá nhân hóa. Demo cho phép đánh giá real-time experience và thu thập feedback cho iteration tiếp theo.
 
-\section{Thảo luận}
+\section{Thảo luận và Kết luận}
 
 \subsection{Trả lời Câu hỏi Nghiên cứu}
 
-\textbf{RQ1: Model nhỏ có thể đạt behavioral consistency tương đương LLM lớn?}
+Kết quả thực nghiệm cho phép chúng tôi trả lời hai câu hỏi nghiên cứu đặt ra từ đầu chương. Với RQ1, câu trả lời là \textit{có} --- mô hình 1.5B fine-tuned không chỉ đạt mà còn vượt GPT-4 prompted trên các behavioral metrics: Style (+7\%) và Workflow Compliance (+23\%). Sự khác biệt này xuất phát từ bản chất của hai phương pháp: fine-tuning "đúc" behavioral patterns vào weights một cách vĩnh viễn, trong khi prompting chỉ là hướng dẫn mềm có thể bị bỏ qua khi context dài hoặc tình huống phức tạp.
 
-\textit{Có, và thậm chí tốt hơn cho tác vụ cụ thể.} Qwen-1.5B fine-tuned vượt GPT-4 prompted trên Style (0.88 vs 0.82) và Workflow (0.92 vs 0.75). Fine-tuning ``bakes'' behavioral patterns vào weights một cách vĩnh viễn, trong khi prompting chỉ là ``soft guidance'' có thể bị ignore trong các edge cases.
+Với RQ2, LoRA r=16 với target cả attention và FFN layers đạt 99\% hiệu suất của full fine-tuning trong khi chỉ train 0.5\% parameters. Điều này mở ra khả năng thực tiễn: maintain một base model và nhiều LoRA adapters cho các personas khác nhau, thay vì lưu trữ nhiều bản copy của full model.
 
-\textbf{RQ2: Chiến lược tạo dữ liệu nào hiệu quả nhất?}
+\subsection{Đóng góp và So sánh với Nghiên cứu Liên quan}
 
-\textit{Synthetic data với diversity injection.} Ablation cho thấy diversity injection cải thiện 15\% so với dữ liệu đồng nhất. Key insight: không phải số lượng (150 vs 200 conversations) mà chất lượng và đa dạng quyết định --- các biến thể về persona, conversation length, và card combinations giúp model generalize tốt hơn.
+Nghiên cứu này đóng góp ba điểm chính. Thứ nhất, chúng tôi chứng minh rằng quy trình data-centric với diversity injection là yếu tố quyết định --- quan trọng hơn cả model size hay training method. Ablation study cho thấy không có diversity, hiệu suất giảm 15\%, trong khi tăng model size từ 1.5B lên 3B gần như không cải thiện. Thứ hai, chúng tôi xác định cấu hình LoRA optimal cho behavioral fine-tuning: r=16 với target cả attention và FFN, vì behavioral adaptation cần thay đổi không chỉ cách model "nhìn" mà còn cách "xử lý" thông tin. Thứ ba, chi phí vận hành giảm 10--20× so với GPT-4 API mà vẫn đạt chất lượng tương đương hoặc tốt hơn trên tác vụ cụ thể.
 
-\textbf{RQ3: LoRA có đủ hay cần full fine-tuning?}
+Những findings này consistent với các nghiên cứu gần đây: Hu et al. (2021) về hiệu quả của LoRA, Taori et al. (2023) về synthetic data từ LLM lớn, và Zheng et al. (2023) về LLM-as-a-Judge. Đóng góp của chúng tôi là extend các findings này sang behavioral tasks và thêm insight về tầm quan trọng của data diversity.
 
-\textit{LoRA đủ tốt.} Với r=16 và target cả attention + FFN, LoRA đạt 99\% hiệu suất của full FT. Điều này align với lý thuyết về intrinsic dimensionality --- behavioral patterns nằm trong subspace chiều thấp, không cần update toàn bộ weights.
+\subsection{Hạn chế và Hướng Phát triển}
 
-\subsection{So sánh với Related Work}
+Nghiên cứu có một số hạn chế cần acknowledge: dataset 780 conversations có thể chưa cover edge cases hiếm, chỉ thử nghiệm tiếng Anh, và human evaluation với 30 test cases cần scale lớn hơn. Về hướng phát triển, chúng tôi đang triển khai GRPO để học từ human feedback, multi-task fine-tuning sang các domain tư vấn khác, edge deployment với 4-bit quantization cho mobile, và phiên bản tiếng Việt tận dụng khả năng đa ngôn ngữ của Qwen.
 
-Kết quả của chúng tôi consistent với các nghiên cứu gần đây:
+\subsection{Kết luận}
 
-\begin{itemize}
-    \item \textbf{Hu et al. (2021)} cho thấy LoRA với r=4--16 đủ cho hầu hết NLU tasks. Chúng tôi extend finding này sang behavioral tasks với kết luận tương tự.
-    
-    \item \textbf{Taori et al. (2023)} với Alpaca demonstrating rằng synthetic data từ GPT có thể train model nhỏ hiệu quả. Chúng tôi confirm điều này và thêm insight về tầm quan trọng của diversity.
-    
-    \item \textbf{Zheng et al. (2023)} đề xuất LLM-as-a-Judge. Chúng tôi áp dụng với multiple judges để giảm bias và validate bằng human evaluation.
-\end{itemize}
+Chương này đã validate giả thuyết H2: fine-tuning với PEFT là phương pháp hiệu quả để thích ứng hành vi mô hình cho tác vụ đặc thù. Kết hợp với Advanced RAG ở Chương 3, hai phương pháp này cùng giải quyết cả Knowledge Gap lẫn Behavior Gap --- hai thách thức cốt lõi khi triển khai LLMs trong môi trường doanh nghiệp.
 
-\subsection{Hạn chế}
 
-\begin{itemize}
-    \item \textbf{Dataset size:} 150 conversations có thể chưa cover edge cases hiếm
-    \item \textbf{Single language:} Chỉ thử nghiệm tiếng Anh
-    \item \textbf{Single domain:} Chưa đánh giá generalization sang các tác vụ tư vấn khác
-    \item \textbf{Limited human eval:} 30 test cases với 3 annotators --- cần scale lớn hơn
-\end{itemize}
 
-\subsection{Hướng Phát triển}
 
-\begin{enumerate}
-    \item \textbf{GRPO (Group Relative Policy Optimization):} Áp dụng RL từ human feedback để tiếp tục cải thiện. Chúng tôi đã implement prototype nhưng cần thu thập feedback data.
-    
-    \item \textbf{Multi-task Fine-tuning:} Extend sang life coach, career advisor để tạo model versatile hơn.
-    
-    \item \textbf{Edge Deployment:} Áp dụng QLoRA/GPTQ để chạy trên mobile (target: Qwen-0.5B với 4-bit quantization).
-    
-    \item \textbf{Tiếng Việt:} Fine-tune phiên bản tiếng Việt cho thị trường nội địa.
-\end{enumerate}
 
-\section{Kết luận Chương}
 
-Chương này đã trình bày case study hoàn chỉnh về fine-tuning mô hình ngôn ngữ nhỏ cho tác vụ đòi hỏi behavioral adaptation. Những đóng góp chính:
-
-\begin{enumerate}
-    \item \textbf{Data-centric Pipeline:} Quy trình sinh dữ liệu tổng hợp với Teacher Model và diversity injection --- đây là factor quan trọng nhất quyết định chất lượng fine-tuned model.
-    
-    \item \textbf{LoRA Configuration:} Xác định rằng LoRA r=16 với target attention + FFN là optimal cho behavioral fine-tuning, đạt 99\% hiệu suất của full FT với 0.5\% parameters.
-    
-    \item \textbf{Empirical Validation:} Chứng minh mô hình 1.5B fine-tuned vượt GPT-4 prompted trên Style (+7\%) và Workflow Compliance (+23\%), với chi phí vận hành giảm 10--20×.
-    
-    \item \textbf{Practical Demo:} Xây dựng ứng dụng Tarot Reader hoàn chỉnh trên Gradio, demonstrating feasibility của approach trong production.
-\end{enumerate}
-
-Kết quả này validate giả thuyết H2 (Chương 1): fine-tuning với PEFT là phương pháp hiệu quả để thích ứng hành vi mô hình cho tác vụ đặc thù. Kết hợp với RAG (Chương 3), hai phương pháp này cùng giải quyết cả Knowledge Gap lẫn Behavior Gap --- hai thách thức cốt lõi khi triển khai LLMs trong môi trường doanh nghiệp.
 
 
 %% ----------------- End of Chapter 4 -----------------
 
+
+\appendix
+\section{Chi tiết Dữ liệu và System Prompt}
+\label{sec:annexe-data}
+
+\subsection{Format Dữ liệu Hội thoại}
+
+Mỗi cuộc hội thoại được format theo Qwen chat template:
+
+\begin{verbatim}
+<|im_start|>system
+You are a skilled tarot reader...
+<|im_end|>
+<|im_start|>user
+I've been feeling stuck in my job...
+<|im_end|>
+<|im_start|>assistant
+Hey there! Career crossroads can be tricky...
+<|im_end|>
+<|im_start|>user
+It's mostly that I don't feel challenged anymore...
+<|im_end|>
+<|im_start|>assistant
+Ah, the golden handcuffs situation!...
+<|im_end|>
+\end{verbatim}
+
+\subsection{System Prompt cho Teacher Model}
+
+\begin{lstlisting}[language=Python,basicstyle=\small\ttfamily]
+SYSTEM_PROMPT = """
+You are a skilled and intuitive tarot reader with a warm, 
+friendly demeanor. Guide the user through a personalized 
+tarot reading:
+
+1. Ask 3-4 short questions to understand their situation
+2. Invite them to draw 3 cards
+3. For each card:
+   - Describe the card's imagery briefly
+   - Explain its meaning in context of their question
+   - Give 1-2 relatable examples
+   - End with a reflective question
+4. Synthesize the reading with an overall message
+5. Ask if they want to explore another question
+
+TONE: Casual, friendly, like chatting with a close friend.
+Use simple language, show empathy, add light humor when 
+appropriate. Never be preachy or overly mystical.
+"""
+\end{lstlisting}
+
+\subsection{Ví dụ Hội thoại Mẫu}
+
+\begin{tcolorbox}[breakable, colback=gray!5!white, colframe=gray!50!black, title=\textbf{Ví dụ minh họa: Hội thoại Tarot}]
+    \small
+    \textbf{Querent:} Hi, I've been feeling stuck in my job lately. I'm not sure if I should stay or look for something new.
+
+    \vspace{0.5em}
+    \textbf{Chatbot:} Hey there! Career crossroads can be tricky, right? Before we dive into the cards, tell me a bit more --- what's making you feel stuck? Is it the work itself, the environment, or something else?
+
+    \vspace{0.5em}
+    \textbf{Querent:} It's mostly that I don't feel challenged anymore. The pay is good but I'm just going through the motions.
+
+    \vspace{0.5em}
+    \textbf{Chatbot:} Ah, the golden handcuffs situation! That's actually really common. So you're craving growth and meaning, not just a paycheck. Got it. Ready to see what the cards have to say? Focus on your question, take a deep breath, and pick three cards when you're ready.
+
+    \vspace{0.5em}
+    \textbf{Querent:} [Draws: The Tower (reversed), Eight of Cups, The Star]
+
+    \vspace{0.5em}
+    \textbf{Chatbot:} Ooh, interesting spread! Let's start with The Tower reversed in your first position. Usually The Tower upright is about sudden upheaval, but reversed? It's more like... you're \textit{avoiding} a necessary change. Maybe you already know things need to shake up, but you're holding on because it feels safer?
+    
+    The Eight of Cups in the middle --- this one's literally about walking away from something that no longer fulfills you. See how the figure is leaving those cups behind? That's you, being called to seek something more meaningful...
+\end{tcolorbox}
+
+
+\section{Chi tiết Cấu hình Training}
+\label{sec:annexe-training}
+
+\subsection{Cấu hình LoRA}
+
+\begin{lstlisting}[language=Python,basicstyle=\small\ttfamily]
+peft_config = LoraConfig(
+    task_type="CAUSAL_LM",
+    r=16,                    # Rank
+    lora_alpha=32,           # Scaling (alpha/r = 2)
+    lora_dropout=0.05,
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
+                    "gate_proj", "up_proj", "down_proj"]
+)
+\end{lstlisting}
+
+\subsection{Cấu hình Training Arguments}
+
+\begin{lstlisting}[language=Python,basicstyle=\small\ttfamily]
+training_args = TrainingArguments(
+    per_device_train_batch_size=1,
+    gradient_accumulation_steps=8,  # Effective batch = 8
+    num_train_epochs=10,
+    learning_rate=3e-5,
+    lr_scheduler_type="cosine",
+    warmup_ratio=0.05,
+    optim="adamw_torch",
+)
+\end{lstlisting}
+
+
+\section{Chi tiết Evaluation Rubrics}
+\label{sec:annexe-eval}
+
+\subsection{Tiêu chí LLM-as-a-Judge}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|p{9cm}|}
+        \hline
+        \textbf{Tiêu chí} & \textbf{Câu hỏi đánh giá} \\
+        \hline
+        Style Adherence & Phong cách có casual, friendly như đang nói chuyện với bạn? \\
+        Card Knowledge & Ý nghĩa lá bài có được giải thích chính xác? \\
+        Empathy & Phản hồi có thể hiện sự đồng cảm, không phán xét? \\
+        Workflow Compliance & Có tuân theo quy trình (hỏi → rút bài → giải → tổng hợp)? \\
+        Coherence & Cuộc hội thoại có mạch lạc, logic? \\
+        \hline
+    \end{tabular}
+    \caption{Tiêu chí đánh giá của LLM Judge}
+    \label{tab:eval-criteria-annexe}
+\end{table}
+
+\subsection{So sánh Base Models}
+
+\begin{table}[H] 
+    \centering 
+    \small 
+    \begin{tabular}{lcccc} 
+        \toprule 
+        \textbf{Model} & \textbf{Params} & \textbf{MMLU} & \textbf{GSM8K} & \textbf{MATH} \\ 
+        & & (Knowledge) & (Reasoning) & (Hard Logic) \\ 
+        \midrule 
+        Llama-3.2-1B-Instruct & 1.23B & 49.3 & 44.4 & 30.6 \\ 
+        Gemma-2-2.6B-Base & 2.6B & 52.2 & 30.3 & 25.3 \\ 
+        \textbf{Qwen2.5-0.5B-Instruct} & \textbf{0.49B} & 47.5 & \textbf{49.6} & \textbf{34.4} \\ 
+        \textbf{Qwen2.5-1.5B-Instruct} & \textbf{1.54B} & \textbf{60.9} & \textbf{73.2} & \textbf{55.2} \\ 
+        \bottomrule 
+    \end{tabular} 
+    \caption{So sánh hiệu năng trên các bộ benchmark tiêu chuẩn. Số liệu trích xuất từ Qwen2.5 Technical Report (2024).}
+    \label{tab:model-comparison-annexe} 
+\end{table}
 
 
 \end{document}
