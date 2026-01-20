@@ -1280,79 +1280,48 @@ Vì vậy, Chương 4 sẽ tập trung vào kỹ thuật Fine-tuning các Mô h�
 
 Một hướng tiếp cận tự nhiên cho chatbot Tarot là sử dụng các mô hình mạnh như GPT-4o hay Claude 3.5 với system prompt được thiết kế cẩn thận. Tuy nhiên, qua thử nghiệm thực tế, chúng tôi nhận thấy ba rào cản kỹ thuật:
 
-\textbf{Hạn chế về In-Context Learning.} Mặc dù các mô hình hiện đại hỗ trợ context window lớn (như 128K tokens của GPT-4), nghiên cứu thực nghiệm về hiện tượng \textit{``Lost in the Middle''} (Liu et al., 2023) chỉ ra rằng hiệu suất của mô hình giảm đáng kể khi các thông tin hướng dẫn quan trọng bị chìm trong một context quá dài. Một cuộc hội thoại Tarot điển hình kéo dài 1500--2000 tokens; để bao quát đủ các sắc thái---từ giọng điệu, cách đặt câu hỏi mở, đến xử lý người dùng hoài nghi---chúng ta cần hàng chục ví dụ (few-shot). Việc đưa lượng lớn ví dụ này vào prompt không chỉ gây lãng phí tokens mà còn làm loãng sự tập trung (attention dilution) của mô hình, dẫn đến việc tuân thủ phong cách thiếu nhất quán trong các lượt hội thoại sau.
+\textbf{Attention Dilution} Mặc dù các mô hình hiện đại hỗ trợ context window lớn (như 128K tokens của GPT-4), nghiên cứu thực nghiệm về hiện tượng \textit{``Lost in the Middle''} (Liu et al., 2023) chỉ ra rằng hiệu suất của mô hình giảm đáng kể khi các thông tin hướng dẫn quan trọng bị chìm trong một context quá dài. Một cuộc hội thoại Tarot điển hình kéo dài 1500--2000 tokens; để bao quát đủ các sắc thái---từ giọng điệu, cách đặt câu hỏi mở, đến xử lý người dùng hoài nghi---chúng ta cần hàng chục ví dụ (few-shot), ý nghĩa các lá bài cũng như định hình phong cách ngôn ngữ, kỹ thuật đặt câu hỏi cũng như quy trình. Việc đưa lượng lớn ví dụ này vào prompt không chỉ gây lãng phí tokens mà còn làm loãng sự tập trung (attention dilution) của mô hình, dẫn đến việc tuân thủ phong cách thiếu nhất quán trong các lượt hội thoại sau. Ngoài ra, việc model chỉ làm theo một cách máy móc và rập khuôn theo các ví dụ mà không có sự sáng tạo cũng là một vấn đề của in context learning.
 
 \textbf{Hạn chế về chi phí vận hành.} Bảng \ref{tab:cost-comparison} so sánh chi phí giữa các phương án. Với một ứng dụng xử lý 10.000 cuộc hội thoại/tháng (quy mô nhỏ-vừa), chi phí API của GPT-4 dao động \$300--900/tháng. Mô hình fine-tuned chạy trên GPU cloud chỉ tốn 10--20\% con số đó, đồng thời cho phép kiểm soát hoàn toàn về dữ liệu và hành vi.
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|c|c|c|}
+    \begin{tabular}{|l|c|c|}
         \hline
-        \textbf{Phương án} & \textbf{Chi phí/1K tokens} & \textbf{Chi phí/tháng*} & \textbf{Mức kiểm soát} \\
+        \textbf{Phương án} & \textbf{Chi phí/1K tokens} & \textbf{Chi phí/tháng*} \\
         \hline
-        GPT-4-turbo API & \$0.01--0.03 & \$300--900 & Phụ thuộc prompt \\
-        Claude 3 Sonnet API & \$0.003--0.015 & \$90--450 & Phụ thuộc prompt \\
-        Qwen-1.5B Fine-tuned (T4) & \$0.0005** & \$50--100 & Cao \\
-        Qwen-0.5B Fine-tuned (Edge) & \$0.0001** & \$10--30 & Rất cao \\
+        GPT-4-turbo API & \$0.01--0.03 & \$300--900 \\
+        Claude 3 Sonnet API & \$0.003--0.015 & \$90--450 \\
+        Qwen-1.5B Fine-tuned (T4) & \$0.0005** & \$50--100 \\
+        Qwen-0.5B Fine-tuned (Edge) & \$0.0001** & \$10--30  \\
         \hline
     \end{tabular}
     \caption{So sánh chi phí vận hành. *Giả định 10K cuộc hội thoại × 3K tokens/cuộc. **Chi phí GPU amortized.}
     \label{tab:cost-comparison}
 \end{table}
 
-\begin{table}[H]
-    \centering
-    \small % Thu nhỏ chữ một chút để bảng gọn hơn
-    \begin{tabular}{|l|c|c|c|}
-        \hline
-        \textbf{Phương án} & \textbf{Đơn giá/1M tokens} & \textbf{Chi phí tháng (30M)} & \textbf{Ghi chú} \\
-        \hline
-        GPT-4o API & $\sim$\$8.00\textsuperscript{[1]} & \$240 & Phụ thuộc prompt \\
-        Claude 3.5 Sonnet API & $\sim$\$12.00\textsuperscript{[2]} & \$360 & Latency cao \\
-        \hline
-        \textbf{Qwen-1.5B (T4 GPU)} & \textbf{$\sim$\$0.55}\textsuperscript{[3]} & \textbf{\$16 -- \$50} & \textbf{Tối ưu nhất} \\
-        Qwen-0.5B (CPU/Edge) & $<\$0.10$ & $<\$5$ & Chạy local device \\
-        \hline
-    \end{tabular}
-    \caption{Phân tích chi phí vận hành (Operational Cost Analysis).
-    \textsuperscript{[1]}Dựa trên OpenAI Pricing: \$2.5 In / \$10 Out.
-    \textsuperscript{[2]}Dựa trên Anthropic Pricing: \$3 In / \$15 Out.
-    \textsuperscript{[3]}Tính toán dựa trên GPU T4 (\$0.2/h) với tốc độ suy luận 100 tok/s (vLLM backend).}
-    \label{tab:cost-comparison}
-\end{table}
-
-Để tối ưu chi phí GPU, chúng tôi sử dụng engine suy luận vLLM với kỹ thuật PagedAttention, cho phép đạt throughput trên 100 tokens/s ngay cả với GPU dòng cũ như NVIDIA T4
+% Để tối ưu chi phí GPU, chúng tôi sử dụng engine suy luận vLLM với kỹ thuật PagedAttention, cho phép đạt throughput trên 100 tokens/s ngay cả với GPU dòng cũ như NVIDIA T4
 
 \textbf{Hạn chế về độ trễ.} API cloud thường có latency 500ms--2s cho token đầu tiên, tạo cảm giác ``chờ đợi'' không phù hợp với trải nghiệm real-time của ứng dụng tư vấn. Mô hình nhỏ chạy local có thể đạt time-to-first-token dưới 100ms, mang lại cảm giác phản hồi tức thì.
 
 \subsection{Đặc thù của Tác vụ Tarot Reader}
 
-Tarot Reader không phải là một chatbot thông tin thông thường mà là một ứng dụng tư vấn giải trí với các yêu cầu đặc biệt:
+Tarot Reader không phải là một chatbot thông tin, mà là một thực thể có "Character". Tác vụ này đòi hỏi sự tích hợp chặt chẽ giữa ba lớp thông tin:
 
-\begin{enumerate}
-    \item \textbf{Tri thức chuyên môn:} Hiểu ý nghĩa của 78 lá bài Tarot --- 22 lá Major Arcana (The Fool, The Magician, The High Priestess...) và 56 lá Minor Arcana (chia thành 4 bộ: Wands, Cups, Swords, Pentacles) --- cả ở vị trí thuận (upright) và ngược (reversed). Mỗi lá có ý nghĩa phức tạp, phụ thuộc vào ngữ cảnh câu hỏi.
-    
-    \item \textbf{Kỹ năng tư vấn:} Đặt câu hỏi mở để tìm hiểu tình huống; lắng nghe tích cực (active listening); phản hồi với sự đồng cảm mà không phán xét; không đưa ra ``phán quyết'' mà hướng dẫn người hỏi tự suy ngẫm.
-    
-    \item \textbf{Phong cách giao tiếp:} Thân thiện, casual --- như đang trò chuyện với một người bạn hiểu biết, không formal hay ``robot''. Sử dụng ngôn ngữ đơn giản, gần gũi; thêm một chút hài hước khi phù hợp.
-    
-    \item \textbf{Quy trình chuẩn (Workflow):} Tuân theo trình tự cố định: (1) Chào hỏi và tìm hiểu tình huống, (2) Mời người hỏi rút 3 lá bài, (3) Giải thích từng lá trong bối cảnh câu hỏi, (4) Tổng hợp và đưa ra thông điệp chung, (5) Hỏi xem có muốn khám phá thêm không.
-    
-    \item \textbf{Tính nhất quán:} Duy trì ``character'' xuyên suốt --- không đột nhiên chuyển sang giọng điệu formal hay đưa ra lời khuyên kiểu ``advisor'' khô khan.
-\end{enumerate}
+Lớp Tri thức (Knowledge Layer): Ý nghĩa của 78 lá bài trong cả hai trạng thái xuôi và ngược.
 
-Các yêu cầu này tạo thành một \textit{behavioral specification} phức tạp. Prompt engineering có thể mô tả các yêu cầu này, nhưng không đảm bảo mô hình tuân thủ nhất quán --- đặc biệt với các tình huống không được cover trong prompt.
+Lớp Quy trình (Operational Layer): Tuân thủ workflow nghiêm ngặt: Chào hỏi → Khám phá vấn đề → Mời rút bài → Diễn giải từng lá → Tổng hợp thông điệp.
+
+Lớp Cảm xúc (Emotional Layer): Sử dụng ngôn ngữ thấu cảm, đặt câu hỏi gợi mở thay vì khẳng định cứng nhắc.
 
 \subsection{Câu hỏi Nghiên cứu}
 
-Từ phân tích trên, chúng tôi đặt ra ba câu hỏi nghiên cứu:
+Từ phân tích trên, chúng tôi sử dụng Data-centric Fine-tuning để "đúc" (bake) toàn bộ các lớp hành vi này vào trọng số của mô hình nhỏ, biến nó thành một chuyên gia thực thụ trong lĩnh vực của mình. Chúng tôi đặt ra hai câu hỏi nghiên cứu chính:
 
 \begin{itemize}
-    \item \textbf{RQ1:} Liệu mô hình nhỏ ($\leq$ 3B tham số) được fine-tune có thể đạt behavioral consistency tương đương hoặc tốt hơn LLM lớn với prompt engineering?
-    
-    \item \textbf{RQ2:} Chiến lược tạo dữ liệu huấn luyện nào hiệu quả nhất cho tác vụ đòi hỏi phong cách đặc thù?
-    
-    \item \textbf{RQ3:} LoRA có đủ để học behavioral patterns hay cần full fine-tuning?
+    \item \textbf{RQ1:} Liệu mô hình nhỏ ($\leq$ 3B tham số-) được fine-tune có thể đạt behavioral consistency tương đương hoặc tốt hơn LLM lớn với prompt engineering?
+        
+    \item \textbf{RQ2:} LoRA có đủ để học behavioral patterns hay cần full fine-tuning?
 \end{itemize}
 
 \section{Phương pháp: Data-Centric Fine-tuning Pipeline}
@@ -1912,5 +1881,7 @@ Kết quả này validate giả thuyết H2 (Chương 1): fine-tuning với PEFT
 
 
 %% ----------------- End of Chapter 4 -----------------
+
+
 
 \end{document}
