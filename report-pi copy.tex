@@ -236,97 +236,45 @@ They can be done on a separate page or included in the introduction.
 %% main page numbers with arabic numerals
 \pagenumbering{arabic}\setcounter{page}{1}
 
-\section{General Context}
-
-\subsection{Evolution of Large Language Model}
-
-Over the past decade, the fields of Artificial Intelligence (AI) and Natural Language Processing (NLP) have witnessed groundbreaking advances, particularly since the emergence of the Transformer architecture [Vaswani et al., 2017]. Large Language Models (LLMs) such as GPT-5 [OpenAI, 2025], Claude 4 [Anthropic, 2025], Gemini 2.5 [Google, 2025], and open-source models like Llama 3 [Meta, 2024] and Qwen 2.5 [Alibaba, 2024] have demonstrated superior capabilities in understanding context, generating text, and performing logical inference across a variety of tasks.
-
-According to a McKinsey Global Institute report (2024), the generative AI market is expected to reach a value of \$4.4 trillion by 2030. However, a Gartner survey (2024) indicates that 67\% of businesses struggle to deploy LLMs for specialized tasks due to accuracy limitations and operating costs.
-
-\subsection{The Research-Industrial Application Gap}
-
-Transferring language models from the research environment to practical industrial applications (Industrial Deployment) faces significant challenges. Although Foundation Models possess a vast amount of general knowledge, they often encounter two serious limitations when solving domain-specific tasks:
-
-\subsubsection{Knowledge Gap}
-
-In critical fields such as healthcare, finance, and insurance, information is often contained in complex documents (financial reports, medical technical catalogs) and changes constantly. LLMs face three main problems:
-
-\begin{itemize}
-\item Static Knowledge: Model knowledge is limited by the training time (knowledge cutoff), making it impossible to update new information without retraining [Lewis et al., 2020].
-\item  Private Data Inaccessibility: The model cannot access confidential organizational documents such as contracts, internal procedures, or patient records.
-\item Hallucination: LLMs tend to confidently generate false information [Ji et al., 2023], which is unacceptable in medical or financial decisions where near-absolute accuracy is required.
-\end{itemize}
-
-\subsubsection{Efficiency \& Behavior Gap}
-
-For tasks requiring the model to adhere to a specific behavioral scenario, a particular language style (e.g., psychological counselor, analyst), or deployment on limited hardware infrastructure, using massive models (hundreds of billions of parameters) is not cost-effective and prone to latency. According to Hoffmann et al. (2022), the inference cost of GPT-4 can reach \$0.06/1K tokens, making large-scale deployment unfeasible for many small and medium-sized enterprises.
-
-\subsection{Research motivation}
-
-Based on the above reality, this thesis focuses on researching and implementing advanced techniques to \textbf{optimize and adapt Language Models for specific data domains}, with two main approaches:
-
-\begin{itemize}
-  \item Retrieval-Augmented Generation (RAG): Integrating external knowledge bases to address the Knowledge Gap.
-  \item Parameter-Efficient Fine-Tuning (PEFT): Adapting model behavior to address the Behavior Gap.
-\end{itemize}
+\begin{info}
+Succinct contextualization of the report subject, making
+reference to the scope and objectives.
+Here the motivation of the presented work is clarified and the
+adopted approach and its relationship with similar works is explained,
+from a generic perspective.
+Details about what is explained in the following sections
+should not be anticipated.
+If relevant, the target audience can also be indicated
+\footnote{%
+For more information, consult the online tutorial
+``\href{https://docs.google.com/document/d/1TDC1behVq8x7fQL4CcPEEh_np5GXviJevQxnQ9gbiJs/edit}
+{Publication Support Guide}''.}.
+\end{info}
 
 
-\section{Internship Environment}
+\section{Context}
 
-This master's thesis was completed at Torus AI, a technology company with the mission \textit{Intelligence for Life}, specializing in providing advanced AI solutions to improve quality of life and business efficiency.
-
-I worked in the Research and Development Team (R\&D Team - Torus Lab) as a Machine Learning Engineer Alternant. At Torus AI, the R\&D department acts as a bridge between the latest academic research (State-of-the-Art) and commercial products. The team's main task is to continuously explore emerging Generative AI technologies, assess their feasibility, and build functional prototypes (PoCs) to verify their effectiveness before integration into the main product system.
-
-The R\&D work environment demands flexible thinking: not just using existing APIs, but delving into customizing architecture, optimizing data processing pipelines, and quantitatively evaluating technical solutions.
-
-My role in the R\&D department includes:
-
-\begin{itemize}
-  \item Researching emerging Generative AI technologies
-  \item Evaluating feasibility and building functional prototypes (PoCs)
-  \item Integrating solutions into product systems
-\end{itemize}
-
-Resources provided:
-
-\begin{itemize}
-  \item GPU infrastructure: NVIDIA RTX 3090 (24GB)
-  \item Real-world enterprise data: Medical documents (CCAM, NGAP), insurance financial reports
-  \item API access: OpenAI GPT-4, Google Gemini, Qwen API
-\end{itemize}
-
-\section{Problem Statement}
-
-During our work in the R\&D department, we identified two core problems that needed to be addressed when applying GenAI in practice, corresponding to two main technical approaches:
-
-\subsubsection{Problem 1: Integration of External Knowledge from Complex Unstructured Data}
-
-Partner businesses (such as insurance companies, healthcare facilities) possess large amounts of data in the form of PDF documents containing text, tables, and images. Traditional RAG (Retrieval-Augmented Generation) methods based on plain text (text-only) fail to understand the semantics of complex tables or visual information.
-The question is: How to build a Multimodal RAG pipeline capable of accurately parsing, indexing, and retrievaling information from these mixed documents to support decision-making (e.g., medical refund code lookup, financial data analysis)?
-
-\subsubsection{Problem 2: Behavioral Adaptation and Resource Optimization for Small Models (Behavioral Adaptation \& Efficiency)}
-
-For applications requiring high interactivity, counseling, or entertainment (such as psychological counseling chatbots or Tarot Readers), the requirement is not only for information accuracy but also for consistency in tone and style and rule-based reasoning. Using large models (like GPT-4) via APIs is both costly to operate and difficult to fully control behavior.
-The question is: Is it possible to fine-tune small language models (such as Qwen, Llama < 7B parameters) using parameter optimization techniques (PEFT/LoRA) and quantization so that they achieve inference capabilities and writing styles comparable to large models, but can be run locally at low cost?
+\begin{info}
+   Present the organizational context in which the project/internship took place (company, institution, research unit, research laboratory, etc.).
+   Present the problem addressed and the motivation for the work carried out (what is the problem addressed and why is it important).
+\end{info}
 
 \section{Objectives and expected results}
 
+\begin{info}
+  Indicate the objectives of the work and the expected results.
+\end{info}
 
 \section{Report structure}
 	
-In addition to this introduction, this report is organized into four main chapters and appendices, structured to logically address the research questions:
+\begin{info}
+  Briefly describe the structure of the report.
 
-\textbf{Chapter 2: Theoretical Background} establishes the foundational concepts required to understand the proposed solutions. It covers the architecture of Transformers and the Self-Attention mechanism, analyzes the limitations of LLMs (Knowledge Gap and Behavior Gap), and provides the theoretical basis for the two adaptation methods used: Retrieval-Augmented Generation (RAG) and Parameter-Efficient Fine-Tuning (PEFT/LoRA).
+  It is expected that the report will have between 10 to 25 pages (in A4 format, single column, with a font size not exceeding 12pt in paragraph text), already including appendices.
+\end{info}
 
-\textbf{Chapter 3: Multimodal RAG for Complex Document Understanding} addresses the "Knowledge Gap" in industrial contexts. It details the development of an Advanced RAG pipeline capable of processing complex multimodal documents (finance and medical). This chapter describes the implementation of UnstructuredIO for layout analysis, Hybrid Search (Dense + Sparse), and Cross-Encoder Reranking to solve specific challenges like table understanding and exact code matching.
-
-\textbf{Chapter 4: Fine-tuning Small Language Models for Domain-Specific Tasks} addresses the "Behavior Gap" and deployment efficiency. It presents the methodology for adapting Small Language Models (SLMs) like Qwen (0.5B - 1.5B) for a highly specific persona-based task (Tarot Reader). The chapter focuses on the data-centric approach, including synthetic data generation, and compares the effectiveness of LoRA versus Full Fine-tuning.
-
-\textbf{Chapter 5: Conclusion and Future Work} summarizes the main findings and contributions of the thesis. It also discusses the limitations of the current implementations and proposes directions for future research, such as Adaptive Hybrid Search and edge deployment optimization.
-
-Finally, the \textbf{Appendices} provide supplementary details, including the prompt templates used for synthetic data generation, specific training configurations, and detailed evaluation rubrics.
-
+In addition to the introduction, this report is organized into 4 more chapters.
+In Chapter~\ref{chap:metodo} \ldots
 
 %%------------------------------- DELETEME ----------------------------------
 

@@ -40,7 +40,7 @@
       \field{sortinit}{B}
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Como realizar um projeto de investigação}
@@ -64,9 +64,9 @@
       \field{sortinit}{D}
       \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
+      \field{labeltitlesource}{title}
       \field{journaltitle}{Database Systems Journal}
       \field{number}{3}
       \field{title}{Comparative study on software development methodologies}
@@ -74,28 +74,6 @@
       \field{year}{2014}
       \field{pages}{37\bibrangedash 56}
       \range{pages}{20}
-    \endentry
-    \entry{kn:figura}{misc}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=259f1d9f3078e4d0e3becfb307010ee7}{%
-           family={{Espaço de Arquitetura}},
-           familyi={E\bibinitperiod}}}%
-      }
-      \strng{namehash}{259f1d9f3078e4d0e3becfb307010ee7}
-      \strng{fullhash}{259f1d9f3078e4d0e3becfb307010ee7}
-      \strng{bibnamehash}{259f1d9f3078e4d0e3becfb307010ee7}
-      \strng{authorbibnamehash}{259f1d9f3078e4d0e3becfb307010ee7}
-      \strng{authornamehash}{259f1d9f3078e4d0e3becfb307010ee7}
-      \strng{authorfullhash}{259f1d9f3078e4d0e3becfb307010ee7}
-      \field{sortinit}{E}
-      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{Disponível em \url{https://espacodearquitetura.com/noticias/faculdade-de-engenharia-celebra-20-anos-no-polo-da-asprela/}}
-      \field{title}{{Faculdade de Engenharia celebra 20 anos no Polo da Asprela}}
-      \field{year}{2020}
     \endentry
     \entry{kn:tabela}{misc}{}
       \name{author}{1}{}{%
@@ -112,7 +90,7 @@
       \field{sortinit}{F}
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Disponível em \url{https://sigarra.up.pt/feup/pt/web_base.gera_pagina?p_pagina=258031}}
@@ -146,7 +124,7 @@
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{TORQUE2022 (EAW's Science of Making Torque from Wind)}
@@ -186,9 +164,9 @@
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
-      \field{labeltitlesource}{author}
+      \field{labeltitlesource}{title}
       \field{issn}{17426596}
       \field{journaltitle}{Journal of Physics: Conference Series}
       \field{number}{The Science of Making Torque from Wind 2014 (TORQUE 2014) 18–20 June 2014, Copenhagen, Denmark}
@@ -219,7 +197,7 @@
       \field{sortinit}{I}
       \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{number}{ISO 19156:2011}
@@ -242,7 +220,7 @@
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Lorem Ipsum}
@@ -276,7 +254,7 @@
       \field{sortinit}{M}
       \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the International Conference on Wind Energy: Materials, Engineering, and Policies (WEMEP-2012)}
@@ -310,7 +288,7 @@
       \field{sortinit}{O}
       \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Platform for monitoring and treat depression}
@@ -350,7 +328,7 @@
       \field{sortinit}{V}
       \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{{e-WindLidar: making wind lidar data FAIR}}
@@ -375,7 +353,7 @@
       \field{sortinit}{w}
       \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Gantt chart}

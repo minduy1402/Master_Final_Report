@@ -1,16 +1,16 @@
-[0] Config.pm:307> INFO - This is Biber 2.19
-[0] Config.pm:310> INFO - Logfile is 'build/report-pi copy.blg'
-[37] biber:340> INFO - === Wed Dec 31, 2025, 16:04:59
-[47] Biber.pm:419> INFO - Reading 'build/report-pi copy.bcf'
-[98] Biber.pm:979> INFO - Found 12 citekeys in bib section 0
-[104] Biber.pm:4419> INFO - Processing section 0
-[109] Biber.pm:4610> INFO - Looking for bibtex file 'bibliography.bib' for section 0
-[109] bibtex.pm:1713> INFO - LaTeX decoding ...
-[114] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliography.bib'
-[157] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[157] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[157] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'level = 4' with 'level = 2'
-[157] Biber.pm:4239> INFO - Sorting list 'cms/global//global/global' of type 'entry' with template 'cms' and locale 'en-US'
-[157] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[164] bbl.pm:660> INFO - Writing 'build/report-pi copy.bbl' with encoding 'UTF-8'
-[166] bbl.pm:763> INFO - Output to build/report-pi copy.bbl
+[0] Config.pm:307> INFO - This is Biber 2.17
+[1] Config.pm:310> INFO - Logfile is 'build/report-pi copy.blg'
+[122] biber:340> INFO - === mar. janv. 20, 2026, 23:32:45
+[156] Biber.pm:418> INFO - Reading 'build/report-pi copy.bcf'
+[474] Biber.pm:972> INFO - Found 11 citekeys in bib section 0
+[508] Biber.pm:4383> INFO - Processing section 0
+[545] Biber.pm:4574> INFO - Looking for bibtex file 'bibliography.bib' for section 0
+[549] bibtex.pm:1713> INFO - LaTeX decoding ...
+[578] bibtex.pm:1518> INFO - Found BibTeX data source 'bibliography.bib'
+[793] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[794] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[794] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'level = 4' with 'level = 2'
+[794] Biber.pm:4203> INFO - Sorting list 'cms/global//global/global' of type 'entry' with template 'cms' and locale 'en-US'
+[794] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[822] bbl.pm:654> INFO - Writing 'build/report-pi copy.bbl' with encoding 'UTF-8'
+[835] bbl.pm:757> INFO - Output to build/report-pi copy.bbl

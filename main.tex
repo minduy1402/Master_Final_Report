@@ -309,6 +309,22 @@ Bộ công cụ và Framework có thể tái sử dụng:
 - Pipeline xử lý PDF đa phương thức sử dụng Unstructured.io
 - Scripts tự động hóa cho QLoRA Fine-tuning với Unsloth
 
+\section{Objectives \& Contributions}
+
+Trước những thách thức đã nêu, luận văn này đặt ra mục tiêu nghiên cứu, triển khai và đánh giá định lượng hai phương pháp thích ứng LLM cho các bài toán miền cụ thể: Retrieval-Augmented Generation (RAG) và Parameter-Efficient Fine-Tuning (PEFT). Cả hai hướng tiếp cận đều được thực nghiệm trong môi trường công nghiệp thực tế tại Torus AI, với dữ liệu doanh nghiệp và hạ tầng sản xuất.
+
+\subsection{Đóng góp về mặt thực nghiệm}
+
+Đóng góp đầu tiên của luận văn nằm ở việc \textbf{đánh giá định lượng khả năng của các Small Language Models (SLMs) trên tác vụ Persona-based Reasoning}. Cụ thể, chúng tôi tiến hành so sánh có hệ thống hiệu năng của các mô hình Qwen (0.5B, 1.5B, 3B) và Llama 3.2 (1B, 3B) sau khi Fine-tuning. Từ kết quả này, chúng tôi phân tích các failure modes đặc trưng và xác định ngưỡng tham số tối thiểu cần thiết cho các tác vụ suy luận phức tạp.
+
+Bên cạnh đó, luận văn cũng đóng góp vào hiểu biết về \textbf{Scaling Laws và Reasoning Gap} trong ngữ cảnh Fine-tuning. Thông qua các thực nghiệm, chúng tôi chứng minh mối quan hệ giữa kích thước mô hình và khả năng instruction following, đồng thời phân tích hiện tượng Catastrophic Forgetting --- một thách thức thường gặp khi tinh chỉnh các SLMs trên dữ liệu miền hẹp.
+
+\subsection{Đóng góp về mặt ứng dụng}
+
+Về phương diện ứng dụng, luận văn triển khai \textbf{hai hệ thống RAG ở mức production-ready}. Hệ thống thứ nhất phục vụ tra cứu mã y tế (Medical Reimbursement), đạt chỉ số Faithfulness trên 0.9 --- đảm bảo câu trả lời được grounded hoàn toàn từ tài liệu nguồn. Hệ thống thứ hai hướng đến bài toán hỏi đáp tài liệu tài chính bảo mật (Confidential Financial QA), với Table QA Accuracy đạt 92\%, cho thấy khả năng xử lý hiệu quả các bảng biểu phức tạp trong báo cáo Solvabilité II.
+
+Song song với các hệ thống trên, luận văn cũng đóng góp \textbf{bộ công cụ và framework có thể tái sử dụng}. Cụ thể, chúng tôi phát triển một pipeline xử lý PDF đa phương thức sử dụng Unstructured.io, cùng với các scripts tự động hóa cho quy trình QLoRA Fine-tuning với Unsloth. Những công cụ này được thiết kế để dễ dàng adapt cho các use case tương tự trong tương lai.
+
 \section{Report Structure}
 
 In addition to this introduction, this report is organized into four main chapters and appendices, structured to logically address the research questions:
