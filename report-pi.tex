@@ -156,55 +156,136 @@
 \begin{titlepage}
 \center
 
-\vspace{-15mm}
-{\large \textbf{\textsc{\school}}}\\
+%% --- Phần Header chia 2 cột ---
+\begin{minipage}[t]{0.32\textwidth}
+    \begin{flushleft} 
+        \centering
+        \textbf{\large INSA Toulouse}\\
+        \small \textit{Department of Mathematics and Modelling}
+    \end{flushleft}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.32\textwidth}
+    \begin{flushright} 
+        \centering
+        \textbf{\large Torus AI}\\
+        \small \textit{TorusLab -- Research \& Development Division} % Bạn có thể sửa thông tin này
+    \end{flushright}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.32\textwidth}
+    \begin{flushright} 
+        \centering
+        \textbf{\large ENSEEIHT}\\
+        \small \textit{Department of Computer Science and Digital Technology} % Bạn có thể sửa thông tin này
+    \end{flushright}
+\end{minipage}
+
+%% --- Phần Logo (Dàn hàng ngang 3 logo) ---
+%% Lưu ý: Bạn cần đảm bảo có file logo của Torus AI trong thư mục figures
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/logo-INSA.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        % Thay 'logo-torus' bằng tên file logo công ty bạn
+        \includegraphics[width=0.8\textwidth]{figures/logo-torus.png} 
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/logo-N7.png}
+    \end{minipage}
+\end{figure}
 
 \vfill
 
-{\Large \textbf{\projtitle}}\\[8mm]
-{\large \textbf{\subtitle}}\\[28mm]
+{\large \textbf{\subtitle}}\\
+\vfill 
+\rule{\linewidth}{1pt} \\[0.5cm]
+{\Huge \textbf{\projtitle}}\\
+\rule{\linewidth}{1pt} \\[0.5cm]
 
-{\Large \textbf{\projauthor}}\\
+% {\Large \textbf{\projauthor}}
+
+%% --- Khoảng cách sau phần tiêu đề ---
+\vspace{2cm}
+
+%% --- Cột Author và Supervised by ---
+\begin{minipage}[t]{0.45\textwidth}
+    \begin{flushleft}
+      \centering 
+        \textit{Author:}\\
+        \textbf{\projauthor}
+    \end{flushleft}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \begin{flushleft}
+      \centering
+        \textit{Supervised by:}\\
+        Milad Mozafari (Torus AI)\\
+        David Bertoin (INSA Toulouse)
+    \end{flushleft}
+\end{minipage}
+
+\vspace{2cm}
+
+%% --- Phần Hội đồng Jury ---
+\begin{center}
+    \textit{Defended on February 5, 2026, in front of the jury composed of :} \\[0.4cm]
+    \begin{tabular}{lll}
+        Mr. David Bertoin    & INSA Toulouse & -- Reporter \\
+        Mr. Charles Dossal &  INSA Toulouse & -- Examiner \\
+        Mr. Olivier Roustant   & INSA Toulouse & -- Examiner \\
+    \end{tabular}
+\end{center}
 
 \vfill
 
-\includegraphics[width=52mm]{figures/logo-INSA.png}
-\includegraphics[width=52mm]{figures/logo-N7.png}
+%% --- Năm học ---
+\begin{center}
+    Academic year: 2025-2026
+\end{center}
 
-\vfill
-
-{\large \degree}\\[8mm]
-% {\large \textbf{Tutor na U.Porto}: \tutor}\\[2mm]
-{\large \textbf{Supervised by}: \supervisor}\\[8mm]
-
-%\renewcommand{\today}{15 de dezembro de 2023}
-\today
+%% --- Dòng chữ Confidential (Đỏ) ---
+\begin{flushright}
+    \begin{tcolorbox}[
+        enhanced,                   % Kích hoạt các tính năng nâng cao
+        colframe=red,       % Màu khung là màu đỏ nâu 'engineering' bạn đã tạo
+        colback=white,              % Màu nền bên trong hộp là trắng
+        coltext=red,        % Màu chữ cũng là đỏ nâu
+        boxrule=2pt,                % Độ dày của đường viền khung
+        arc=0mm, outer arc=0mm,     % Đặt góc bo tròn bằng 0 để tạo góc vuông
+        fontupper=\Large\bfseries,  % Cỡ chữ to (\Large) và đậm (\bfseries)
+        halign=center,              % Căn giữa chữ trong khung
+        width=6.5cm,                % Chiều rộng của khung
+        boxsep=4pt                  % Khoảng cách từ chữ đến viền khung
+    ]
+        CONFIDENTIAL
+    \end{tcolorbox}
+\end{flushright}
 
 \end{titlepage}
 
 %%------------------------------- Abstract ------------------------------------
 
 \chapter*{Abstract}
+Large Language Models (LLMs) have demonstrated remarkable capabilities in natural language understanding and generation. However, deploying these models in enterprise environments faces two fundamental challenges: the \textit{Knowledge Gap}, arising from static training data and hallucination risks, and the \textit{Behavior Gap}, stemming from difficulties in precisely controlling model behavior for specialized tasks.
 
-\begin{info}
-The abstract is essentially informative in nature and should be
-written concisely (up to 200 words) in a way that captures the
-interest of the reader.
+This report presents two complementary approaches developed during an apprenticeship at Torus AI to address these challenges. First, we propose an Advanced Multimodal RAG (Retrieval-Augmented Generation) pipeline for complex document understanding in financial and healthcare domains. Through systematic improvements including structure-preserving parsing, semantic enrichment via multimodal summarization, and multi-layer retrieval combining hybrid search with cross-encoder reranking, we achieved a 32.8\% improvement in answer precision over baseline methods.
 
-The Abstract replaces reading the document and does not contain figures,
-tables, citations, etc.\ 
-It should include the following topics: scope, objectives, methods,
-main findings, including results, conclusions and
-recommendations, if any.
+Second, we investigate Parameter-Efficient Fine-Tuning (PEFT) techniques to adapt Small Language Models (SLMs) for persona-based conversational tasks. Using behavioral knowledge distillation from GPT-4o and Qwen-Plus, we fine-tuned Qwen2.5-1.5B-Instruct with and without LoRA to create a Tarot Reader chatbot. Evaluation results demonstrate that the fine-tuned 1.5B model achieved behavioral consistency surpassing GPT-4 with prompt engineering (71\% vs 25\% win rate in human evaluation), while reducing operational costs by 80--90\% and achieving sub-100ms latency suitable for real-time deployment.
 
-For more information on how to write a good abstract, consult the online
-tutorial available on the Library website, ``Publication Support Guide'',
-section: 
-``\href{https://docs.google.com/document/d/1TDC1behVq8x7fQL4CcPEEh_np5GXviJevQxnQ9gbiJs/edit\#heading=h.s4z9k57ywd9w}
-{Structuring Technical Report}''.
-\end{info}
+These findings contribute practical frameworks for deploying domain-specific AI applications under enterprise constraints, demonstrating that both knowledge accuracy and behavioral consistency can be achieved through targeted optimization rather than model scaling.
 
-\todo[inline]{Write the Abstract, but only at the end.}
+\vspace{1cm}
+\textbf{Keywords:} Large Language Models, Retrieval-Augmented Generation, Parameter-Efficient Fine-Tuning, LoRA, Knowledge Distillation, Multimodal Document Understanding, Small Language Models, Behavioral Adaptation, Enterprise AI Deployment
+
 
 %\vspace{\fill}
 %{\Large \textbf{Palavras-chave}:} palavra1, palavra2, palavra3, palavra4
@@ -214,11 +295,9 @@ section:
 
 \chapter*{Acknowledgement}
 
-\begin{infoopt}
-Usually the contribution of other people or entities is mentioned,
-both for carrying out the study and for producing the report.
-They can be done on a separate page or included in the introduction.
-\end{infoopt}
+- Milad, Thao, Erfan, Khoi, Davis, Zung
+- TorusLab, Torus AI, 
+- 
 
 %%------------------------------- table of contents ---------------------------
 
@@ -227,34 +306,25 @@ They can be done on a separate page or included in the introduction.
 
 \tableofcontents
 
-%%------------------------------- list of todos -------------------------------
-
-% list todos; comment in the end (should be empty before delivery :-)
-\listoftodos
-
 
 %%------------------------------- Glossary ------------------------------------
 
-\chapter*{Figures and tables}
-%\addcontentsline{toc}{chapter}{Glossary}
+% \chapter*{Figures and tables}
+% \addcontentsline{toc}{chapter}{List of Figures and Tables}
 
-\begin{description}
-\item[bash] \hfill \\
-  Bash is a \emph{Unix shell} and command language written
-  in 1989 by Brian Fox for the GNU Project as a free
-  software replacement for the \emph{Bourne shell}.
-\item[firewall] \hfill \\
-  In computing, a \emph{firewall} is a network security system
-  that monitors and controls incoming and outgoing network traffic
-  based on predetermined security rules.
-  A \emph{firewall} typically establishes a barrier between a
-  trusted network and an untrusted network, such as the Internet.
-\item[Figures and tables] \hfill \\
-  Figures and tables are essential elements in a report, providing
-  visual representations of data and information. They should be
-  clearly labeled and referenced in the text.
-\end{description}
+%% ==================== LIST OF FIGURES ====================
+% \section*{List of Figures}
+% \addcontentsline{toc}{section}{List of Figures}
 
+\listoffigures
+
+%% ==================== LIST OF TABLES ====================
+% \section*{List of Tables}
+% \addcontentsline{toc}{section}{List of Tables}
+
+\listoftables
+
+\newpage
 %%------------------------------- chapter ------------------------------------
 
 \chapter{Introduction}
@@ -303,7 +373,7 @@ Based on the above reality, this report focuses on researching and implementing 
 
 \section{Internship Environment}
 
-This master's thesis was completed at \textbf{Torus AI}, a technology company with the mission \textit{Intelligence for Life}, specializing in providing advanced AI solutions to improve quality of life and business efficiency.
+This master's report was completed at \textbf{Torus AI}, a technology company with the mission \textit{Intelligence for Life}, specializing in providing advanced AI solutions to improve quality of life and business efficiency.
 
 I worked in the Research and Development Team (R\&D Team - Torus Lab) as a Machine Learning Engineer Alternant. At Torus AI, the R\&D department acts as a bridge between the latest academic research (State-of-the-Art) and commercial products. The team's main task is to continuously explore emerging Generative AI technologies, assess their feasibility, and build functional prototypes (PoCs) to verify their effectiveness before integration into the main product system.
 
@@ -358,195 +428,234 @@ This report aims to achieve the following objectives:
 
 \section{Report structure}
 	
-In addition to this introduction, this report is organized into four main chapters and appendices. Chapter 2 provides the theoretical background, introducing the foundational concepts of Retrieval-Augmented Generation (RAG) and Parameter-Efficient Fine-Tuning (PEFT), followed by an overview of Knowledge Distillation and Synthetic Data Generation techniques. Chapter 3 addresses the Knowledge Gap by presenting an Advanced Multimodal RAG pipeline for processing complex medical and financial documents. Chapter 4 tackles the Behavior Gap through LoRA fine-tuning of small Qwen models for persona-based tasks. Chapter 5 concludes the thesis by summarizing contributions and proposing future research directions. The Appendices provide supplementary materials including prompt templates and training configurations.
+In addition to this introduction, this report is organized into four main chapters and appendices. Chapter 2 provides the theoretical background, introducing the foundational concepts of Retrieval-Augmented Generation (RAG) and Parameter-Efficient Fine-Tuning (PEFT), followed by an overview of Knowledge Distillation and Synthetic Data Generation techniques. Chapter 3 addresses the Knowledge Gap by presenting an Advanced Multimodal RAG pipeline for processing complex medical and financial documents. Chapter 4 tackles the Behavior Gap through LoRA fine-tuning of small Qwen models for persona-based tasks. Chapter 5 concludes the report by summarizing contributions and proposing future research directions. The Appendices provide supplementary materials including prompt templates and training configurations.
 
 %%------------------------------- CHAPTER 2: THEORETICAL BACKGROUND ------------------------------------
 
 \chapter{Theoretical Background}
 
-This chapter establishes the foundational concepts required to understand the proposed solutions in subsequent chapters. We begin with an overview of Large Language Models and their inherent limitations, then introduce the two primary adaptation paradigms: Retrieval-Augmented Generation (RAG) for addressing knowledge gaps and Parameter-Efficient Fine-Tuning (PEFT) for behavioral adaptation. Finally, we discuss Knowledge Distillation and Synthetic Data Generation as key enabling techniques for training specialized models with limited resources.
-
-\section{Large Language Models and Their Limitations}
-
-\subsection{Transformer Architecture Overview}
-
-The Transformer architecture, introduced by \textcite{vaswani2017attention}, revolutionized natural language processing by replacing recurrent mechanisms with self-attention. The core innovation lies in the \textit{scaled dot-product attention} mechanism, which computes attention weights as:
-
-\begin{equation}
-    \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
-\end{equation}
-
-\noindent where $Q$, $K$, and $V$ represent queries, keys, and values respectively, and $d_k$ is the dimension of the key vectors. This mechanism enables the model to capture long-range dependencies efficiently, forming the backbone of modern LLMs. 
-
-\subsection{The Knowledge and Behavior Gap}
-
-Despite their impressive capabilities, LLMs face two fundamental limitations when deployed in enterprise environments:
-
-\textbf{Knowledge Gap}: LLMs are trained on static corpora with a knowledge cutoff date, rendering them unable to access information that emerged after training \parencite{lewis2020retrieval}. Furthermore, they cannot access proprietary organizational data such as internal documents, contracts, or domain-specific databases. This limitation is compounded by the \textit{hallucination} phenomenon, where models generate plausible-sounding but factually incorrect information \parencite{ji2023survey}.
-
-\textbf{Behavior Gap}: For tasks requiring adherence to specific communication styles, domain-specific workflows, or particular personas, general-purpose LLMs often fail to maintain consistency. Prompt engineering alone proves insufficient for deeply embedding behavioral patterns, as instructions can be ``forgotten'' in long conversations due to attention dilution \parencite{liu2024lost}.
-
-These two gaps motivate the two technical approaches explored in this thesis: RAG for bridging the knowledge gap (Chapter 3) and PEFT for addressing the behavior gap (Chapter 4).
+As introduced in Chapter 1, deploying Large Language Models (LLMs) in enterprise environments faces two fundamental challenges: the \textit{Knowledge Gap} stemming from static training data and hallucination risks, and the \textit{Behavior Gap} arising from the difficulty in precisely controlling model behavior for specialized tasks. This chapter establishes the theoretical foundations for two complementary approaches to address these challenges: Retrieval-Augmented Generation (RAG) for knowledge integration, and Parameter-Efficient Fine-Tuning (PEFT) for behavioral adaptation. Additionally, we discuss Knowledge Distillation and Synthetic Data Generation---techniques that enable the transfer of capabilities from large models to smaller, more deployable ones.
 
 \section{Retrieval-Augmented Generation (RAG)}
 
 \subsection{Motivation and Core Concept}
 
-Retrieval-Augmented Generation (RAG) was introduced by \textcite{lewis2020retrieval} as a paradigm that combines the parametric knowledge of LLMs with non-parametric retrieval from external knowledge bases. The fundamental insight is that instead of expecting the model to ``memorize'' all relevant information during training, we can dynamically retrieve pertinent context at inference time.
+Despite their impressive capabilities, LLMs suffer from inherent limitations that restrict their applicability in knowledge-intensive domains \autocite{lewis2020retrieval}. These limitations include: (1) \textit{knowledge cutoff}---the model cannot access information beyond its training date; (2) \textit{hallucination}---the tendency to generate plausible but factually incorrect content \autocite{ji2023survey}; and (3) \textit{lack of attribution}---inability to cite sources for generated claims.
 
-The RAG approach offers three key advantages: (1) knowledge can be updated without retraining by modifying the external database, (2) responses can be grounded in verifiable sources enabling citation and attribution, and (3) the model's effective knowledge can extend far beyond its parameter capacity.
+Retrieval-Augmented Generation addresses these issues by augmenting the LLM's input with relevant documents retrieved from an external knowledge base. Instead of relying solely on parametric knowledge (stored in model weights), RAG combines it with non-parametric knowledge (retrieved documents), enabling the model to ground its responses in verifiable sources \autocite{lewis2020retrieval}.
+
+The fundamental insight behind RAG is that while LLMs excel at language understanding and generation, they need not memorize all factual knowledge in their parameters. By decoupling knowledge storage (in a retrievable database) from language capabilities (in the model), RAG achieves both factual accuracy and generative fluency.
 
 \subsection{Basic RAG Pipeline Architecture}
 
-A standard RAG pipeline consists of two main phases: \textit{Indexing} (offline) and \textit{Query Processing} (online).
+A standard RAG pipeline consists of two main phases: an offline \textbf{Indexing Phase} and an online \textbf{Query Phase} \autocite{gao2024retrievalaugmented}. Figure \ref{fig:basic_rag_pipeline} illustrates the a RAG architecture.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/basic_rag_pipeline.png}
+    \caption{Basic RAG Pipeline Architecture showing Indexing Phase (offline) and Query Phase (online)}
+    \label{fig:basic_rag_pipeline}
+\end{figure}
 
 \subsubsection{Indexing Phase}
 
-The indexing phase prepares documents for efficient retrieval:
+The indexing phase prepares the knowledge base for efficient retrieval:
 
-\textbf{Document Loading}: Raw documents (PDFs, web pages, databases) are ingested into the system. This step often involves parsing complex formats to extract textual content.
+\begin{enumerate}
+    \item \textbf{Document Loading}: Raw documents (PDFs, web pages, databases) are ingested into the system.
+    
+    \item \textbf{Chunking}: Documents are split into smaller segments called \textit{chunks}. The chunk size represents a trade-off: smaller chunks enable more precise retrieval but may lose context, while larger chunks preserve context but reduce retrieval granularity. Common strategies include fixed-size chunking (e.g., 512 tokens with overlap) and semantic chunking based on document structure \autocite{liu2024lost}.
+    
+    \item \textbf{Embedding}: Each chunk is transformed into a dense vector representation using an embedding model. These vectors capture semantic meaning, allowing similar concepts to have proximate representations in vector space. Popular models include OpenAI's text-embedding-ada-002, Sentence-BERT \autocite{reimers2019sentence}, and multilingual variants like E5 \autocite{wang2024multilingual}.
+    
+    \item \textbf{Indexing}: Embeddings are stored in a vector database (e.g., ChromaDB, Pinecone, Qdrant) optimized for similarity search using algorithms like HNSW (Hierarchical Navigable Small World) or IVF (Inverted File Index) \autocite{malkov2020efficient}.
+\end{enumerate}
 
-\textbf{Chunking}: Documents are split into smaller segments or ``chunks'' to enable fine-grained retrieval. Common strategies include fixed-size chunking (e.g., 512 tokens with overlap) or semantic chunking based on document structure \parencite{gao2023retrieval}.
+\subsubsection{Query Phase}
 
-\textbf{Embedding}: Each chunk is converted into a dense vector representation using embedding models such as Sentence-BERT \parencite{reimers2019sentence} or E5 \parencite{wang2022text}. These embeddings capture semantic meaning, enabling similarity-based retrieval.
+When a user submits a query, the system executes the following steps:
 
-\textbf{Vector Storage}: Embeddings are stored in a vector database (e.g., ChromaDB, FAISS, Pinecone) that supports efficient nearest-neighbor search.
+\begin{enumerate}
+    \item \textbf{Query Embedding}: The user query is embedded using the same model used during indexing, ensuring comparable vector representations.
+    
+    \item \textbf{Retrieval}: The system performs similarity search (typically using cosine similarity or dot product) to find the $k$ most relevant chunks. This is often called Dense Retrieval or Vector Search.
+    
+    \item \textbf{Augmentation}: Retrieved chunks are concatenated with the original query to form an augmented prompt. A typical template might be:
+    
+    \begin{quote}
+    \texttt{Context: [retrieved chunks]\\
+    Question: [user query]\\
+    Answer the question based on the context above.}
+    \end{quote}
+    
+    \item \textbf{Generation}: The augmented prompt is passed to the LLM, which generates a response grounded in the retrieved context.
+\end{enumerate}
 
-\subsubsection{Query Processing Phase}
-
-When a user submits a query, the following steps occur:
-
-\textbf{Query Embedding}: The user's question is embedded using the same model as the documents, projecting it into the shared semantic space.
-
-\textbf{Retrieval}: The system performs similarity search (typically cosine similarity) to find the top-$k$ most relevant chunks from the vector store.
-
-\textbf{Context Augmentation}: Retrieved chunks are concatenated with the original query to form an augmented prompt.
-
-\textbf{Generation}: The LLM generates a response conditioned on both the query and the retrieved context, ideally synthesizing information from multiple sources.
-
-\subsection{Limitations of Simple RAG}
-
-While conceptually elegant, basic RAG pipelines face several challenges in practice:
-
-\textbf{Loss of Document Structure}: Traditional text extractors flatten complex structures (tables, hierarchies) into linear text, severing semantic relationships between elements \parencite{gao2023retrieval}.
-
-\textbf{Semantic vs. Lexical Mismatch}: Dense retrieval excels at semantic similarity but struggles with exact matching requirements, such as specific codes or identifiers.
-
-\textbf{Lost in the Middle}: \textcite{liu2024lost} demonstrated that LLMs tend to focus on information at the beginning and end of long contexts, potentially ignoring relevant content in the middle.
-
-These limitations motivate the advanced RAG techniques presented in Chapter 3, including structure-preserving parsing, hybrid search, and cross-encoder reranking.
+While conceptually elegant, basic RAG faces several challenges in practice such as \textbf{Loss of Document Structure}, \textbf{Chunking Artifacts}, \textbf{Retrieval Errors}, and the \textbf{Lost in the Middle} phenomenon \autocite{liu2024lost}. These limitations motivate advanced RAG techniques discussed in Chapter \ref{chapter:multimodal_rag}, including multimodal parsing, hybrid search, and reranking.
 
 \section{Parameter-Efficient Fine-Tuning (PEFT)}
 
 \subsection{The Fine-Tuning Paradigm}
 
-Fine-tuning adapts a pre-trained model to specific tasks by continuing training on task-specific data. Traditional \textit{full fine-tuning} updates all model parameters, which becomes prohibitively expensive for large models. For instance, fine-tuning a 7B parameter model requires significant GPU memory and storage for multiple task-specific copies.
+While RAG addresses the Knowledge Gap by augmenting LLMs with external information, the \textit{Behavior Gap}---the difficulty in making models consistently adhere to specific communication styles, workflows, or personas---requires a different approach. Fine-tuning adapts pre-trained models to downstream tasks by continuing training on task-specific data, enabling the model to internalize desired behaviors into its parameters.
 
-Parameter-Efficient Fine-Tuning (PEFT) methods address this challenge by updating only a small subset of parameters while keeping the majority frozen \parencite{hu2021lora}. This approach dramatically reduces computational requirements while often matching full fine-tuning performance.
+Traditional full fine-tuning updates all model parameters, which for modern LLMs with billions of parameters presents significant challenges:
+
+\begin{itemize}
+    \item \textbf{Computational Cost}: Training all parameters requires substantial GPU memory and compute time. For a 7B parameter model in FP16, storing model weights, gradients, and optimizer states requires approximately 112GB of memory.
+    \item \textbf{Storage Overhead}: Each fine-tuned variant requires storing a complete copy of all model weights, making multi-task or multi-tenant deployments impractical.
+    \item \textbf{Catastrophic Forgetting}: Aggressive fine-tuning can degrade the model's general capabilities acquired during pre-training.
+\end{itemize}
+
+Parameter-Efficient Fine-Tuning (PEFT) methods address these challenges by training only a small subset of parameters while keeping the majority of the pre-trained model frozen. This approach dramatically reduces memory requirements, enables efficient multi-task adaptation through swappable modules, and often provides implicit regularization against overfitting.
 
 \subsection{Low-Rank Adaptation (LoRA)}
 
-Low-Rank Adaptation (LoRA), proposed by \textcite{hu2021lora}, has emerged as the dominant PEFT technique. The key insight is that the weight updates during fine-tuning have a low intrinsic rank, meaning they can be efficiently approximated by low-rank matrices.
+Among PEFT methods, Low-Rank Adaptation (LoRA) \parencite{hu2021lora} has emerged as the dominant technique due to its simplicity, effectiveness, and inference efficiency. LoRA's key insight is that the weight updates during fine-tuning exhibit low intrinsic dimensionality---meaning they can be effectively approximated by low-rank matrices.
 
-For a pre-trained weight matrix $W_0 \in \mathbb{R}^{d \times k}$, LoRA introduces a low-rank decomposition of the update:
+\subsubsection{Mathematical Formulation}
 
-\begin{equation}
-    W = W_0 + \Delta W = W_0 + BA
-\end{equation}
+For a pre-trained weight matrix $\mathbf{W}_0 \in \mathbb{R}^{d \times k}$, LoRA represents the weight update as a low-rank decomposition:
+\[
+\mathbf{W} = \mathbf{W}_0 + \Delta\mathbf{W} = \mathbf{W}_0 + \mathbf{B}\mathbf{A}
+\]
+where $\mathbf{B} \in \mathbb{R}^{d \times r}$ and $\mathbf{A} \in \mathbb{R}^{r \times k}$, with rank $r \ll \min(d, k)$.
 
-\noindent where $B \in \mathbb{R}^{d \times r}$ and $A \in \mathbb{R}^{r \times k}$, with the rank $r \ll \min(d, k)$. During training, $W_0$ remains frozen while only $A$ and $B$ are updated. The forward pass becomes:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.9]
+        % Original weight matrix
+        \draw[fill=blue!20] (0,0) rectangle (2,3);
+        \node at (1, 1.5) {$W_0$};
+        \node at (1, -0.4) {Frozen};
+        
+        % Plus sign
+        \node at (2.7, 1.5) {\Large $+$};
+        
+        % LoRA matrices
+        \draw[fill=green!30] (3.4, 0.5) rectangle (4.0, 2.5);
+        \node at (3.7, 1.5) {$B$};
+        
+        \node at (4.3, 1.5) {$\times$};
+        
+        \draw[fill=green!30] (4.6, 1.0) rectangle (6.6, 2.0);
+        \node at (5.6, 1.5) {$A$};
+        
+        \node at (5.1, -0.4) {Trainable (low-rank)};
+        
+        % Equals sign
+        \node at (7.3, 1.5) {\Large $=$};
+        
+        % Result
+        \draw[fill=purple!20] (8,0) rectangle (10,3);
+        \node at (9, 1.5) {$W$};
+        \node at (9, -0.4) {Adapted};
+        
+        % Dimensions
+        \node[font=\footnotesize] at (1, 3.3) {$d \times k$};
+        \node[font=\footnotesize] at (3.7, 2.8) {$d \times r$};
+        \node[font=\footnotesize] at (5.6, 2.3) {$r \times k$};
+        
+    \end{tikzpicture}
+    \caption{LoRA: Low-Rank Adaptation. The original weight $W_0$ is frozen, while only the low-rank matrices $A$ and $B$ are trained.}
+    \label{fig:lora_diagram}
+\end{figure}
 
-\begin{equation}
-    h = W_0 x + BAx = W_0 x + \frac{\alpha}{r} BAx
-\end{equation}
+During training, $\mathbf{W}_0$ remains frozen while only $\mathbf{A}$ and $\mathbf{B}$ are updated. The forward pass becomes:
+\[
+\mathbf{h} = \mathbf{W}_0 \mathbf{x} + \frac{\alpha}{r} \mathbf{B}\mathbf{A}\mathbf{x}
+\]
+where $\alpha$ is a scaling hyperparameter that controls the magnitude of the adaptation.
 
-\noindent where $\alpha$ is a scaling factor that controls the magnitude of the adaptation.
+\subsubsection{Parameter Efficiency Analysis}
 
-\subsection{Advantages of LoRA}
+The efficiency gains from LoRA are substantial. Consider applying LoRA to a weight matrix of dimensions $d \times k$:
+\begin{itemize}
+    \item Full fine-tuning: $d \times k$ trainable parameters
+    \item LoRA with rank $r$: $r \times (d + k)$ trainable parameters
+\end{itemize}
 
-LoRA offers several practical advantages:
+For a typical attention projection with $d = k = 4096$ and $r = 16$:
+\begin{itemize}
+    \item Full: $4096 \times 4096 = 16,777,216$ parameters
+    \item LoRA: $16 \times (4096 + 4096) = 131,072$ parameters (0.78\% of full)
+\end{itemize}
 
-\textbf{Memory Efficiency}: Only the low-rank matrices need to be stored and updated, reducing memory requirements by orders of magnitude. For $r=16$ applied to a layer with $d=k=4096$, LoRA trains only 0.5\% of the original parameters.
+\subsubsection{Target Module Selection}
 
-\textbf{Modular Adapters}: Different LoRA adapters can be trained for different tasks and hot-swapped at inference time without loading separate model copies.
+LoRA can be applied to any linear layer, but research and practice have identified attention projection matrices ($\mathbf{W}_Q$, $\mathbf{W}_K$, $\mathbf{W}_V$, $\mathbf{W}_O$) as particularly effective targets. Recent work has also demonstrated benefits from including feed-forward network (FFN) layers, especially for behavioral adaptation tasks where the model must learn new ``processing patterns'' rather than just new ``attention patterns.''
 
-\textbf{No Inference Latency}: The adapted weights can be merged back: $W = W_0 + BA$, resulting in no additional latency compared to the original model.
+\subsubsection{Inference Efficiency}
 
-\subsection{Target Modules and Hyperparameters}
+A unique advantage of LoRA is that the adapted weights can be merged with the original weights after training:
+\[
+\mathbf{W}_{\text{merged}} = \mathbf{W}_0 + \mathbf{B}\mathbf{A}
+\]
+This merged model has identical architecture and inference cost to the original, with no additional latency overhead. Alternatively, keeping adapters separate enables efficient switching between different task-specific adaptations by swapping only the small LoRA matrices.
 
-Key decisions when applying LoRA include:
+\subsection{Other PEFT Methods}
 
-\textbf{Target Modules}: LoRA can be applied to various weight matrices. Common choices include attention projection matrices ($W_q$, $W_k$, $W_v$, $W_o$) and feed-forward network layers. Recent work suggests that targeting both attention and FFN layers is beneficial for behavioral adaptation tasks \parencite{dettmers2023qlora}.
+While LoRA dominates current practice, other PEFT approaches offer alternative trade-offs:
 
-\textbf{Rank Selection}: Higher ranks increase capacity but also computational cost. Empirical studies suggest $r \in \{8, 16, 32\}$ is sufficient for most tasks, with diminishing returns beyond $r=64$.
+\textbf{Prefix Tuning} \parencite{li2021prefix}: Prepends trainable continuous vectors (``soft prompts'') to the input at each transformer layer. These prefixes learn to condition the frozen model's behavior without modifying its weights.
 
-\textbf{Alpha Scaling}: The $\alpha$ parameter is typically set to $2r$ or kept equal to $r$, controlling the effective learning rate of the adaptation.
+\textbf{Adapters} \parencite{houlsby2019adapter}: Insert small trainable bottleneck modules between transformer layers. Unlike LoRA, adapters add parameters to the forward pass, incurring slight inference overhead.
+
+\textbf{QLoRA} \parencite{dettmers2023qlora}: Combines LoRA with 4-bit quantization, enabling fine-tuning of very large models on consumer hardware by dramatically reducing memory requirements.
+
+Chapter \ref{chap:finetuning_slm_tarot} applies LoRA fine-tuning to adapt small language models for a specialized conversational task, demonstrating that behavioral consistency can be effectively learned with minimal parameter updates.
+
 
 \section{Knowledge Distillation}
 
-\subsection{Traditional Knowledge Distillation}
+\subsection{Concept and Motivation}
 
-Knowledge Distillation (KD), introduced by \textcite{hinton2015distilling}, is a model compression technique where a smaller ``student'' model learns to mimic a larger ``teacher'' model. The original formulation trains the student to match the teacher's soft probability distribution (``dark knowledge'') rather than just hard labels:
+Knowledge Distillation (KD) is a model compression technique that transfers knowledge from a large ``teacher'' model to a smaller ``student'' model \autocite{hinton2015distilling}. The motivation is that large models, while powerful, are often impractical for deployment due to latency, memory, and cost constraints. Distillation enables the student to achieve performance approaching the teacher while being significantly more efficient.
+
+The key insight of \textcite{hinton2015distilling} is that the teacher's soft probability distribution contains richer information than hard labels. For example, when classifying an image of a dog, the teacher might output $P(\text{dog})=0.7, P(\text{wolf})=0.2, P(\text{cat})=0.1$. These ``dark knowledge'' probabilities reveal that the image has wolf-like features---information lost in the hard label ``dog''.
+
+\subsection{Distillation Objective}
+
+The student is trained to minimize a combination of task loss and distillation loss:
 
 \begin{equation}
-    \mathcal{L}_{KD} = \alpha \cdot \mathcal{L}_{CE}(y, p_s) + (1-\alpha) \cdot T^2 \cdot \text{KL}(p_t^{(T)} \| p_s^{(T)})
+    \mathcal{L} = \alpha \mathcal{L}_{\text{task}}(y, p_S) + (1-\alpha) \mathcal{L}_{\text{KD}}(p_T, p_S)
 \end{equation}
 
-\noindent where $p_t^{(T)}$ and $p_s^{(T)}$ are the softened distributions from teacher and student at temperature $T$, and $\text{KL}$ denotes Kullback-Leibler divergence.
+where $p_T$ and $p_S$ are teacher and student probability distributions, $y$ is the ground truth, and $\alpha$ balances the two objectives.
 
-\subsection{Behavioral Distillation for LLMs}
+The distillation loss typically uses KL divergence with temperature scaling:
 
-In the context of LLMs, distillation has evolved beyond probability matching to encompass \textit{behavioral distillation}---where the student learns to replicate the teacher's output patterns, reasoning styles, and domain-specific behaviors \parencite{taori2023stanford}.
+\begin{equation}
+    \mathcal{L}_{\text{KD}} = T^2 \cdot \text{KL}\left(\text{softmax}\left(\frac{z_T}{T}\right) \| \text{softmax}\left(\frac{z_S}{T}\right)\right)
+\end{equation}
 
-This approach involves:
+where $z_T, z_S$ are teacher and student logits, and temperature $T > 1$ softens the distributions to emphasize the dark knowledge.
 
-\textbf{Teacher Generation}: A powerful teacher model (e.g., GPT-4, Claude) generates high-quality responses following specific guidelines, personas, or workflows.
+\subsection{Distillation for LLMs}
 
-\textbf{Student Learning}: A smaller student model is fine-tuned on these teacher-generated outputs using standard supervised learning, effectively ``distilling'' the teacher's behavioral patterns into its weights.
+In the context of LLMs, knowledge distillation takes several forms:
 
-The advantage of behavioral distillation is that it captures implicit knowledge---stylistic nuances, reasoning patterns, and domain conventions---that would be difficult to specify explicitly through rules or prompts.
+\subsubsection{Logit-based Distillation}
 
-\section{Synthetic Data Generation}
+The student learns to match the teacher's output distribution over vocabulary tokens. This requires access to teacher logits, which may not be available for proprietary models like GPT-4.
 
-\subsection{Motivation and Principles}
+\subsubsection{Feature-based Distillation}
 
-High-quality training data is often the bottleneck for fine-tuning specialized models. Manual annotation is expensive, slow, and difficult to scale. Synthetic data generation leverages powerful LLMs to create training examples programmatically \parencite{wang2023selfinstruct}.
+The student learns to match intermediate representations (hidden states, attention patterns) of the teacher \autocite{jiao2020tinybert}. This transfers more fine-grained knowledge but requires architectural compatibility.
 
-The key principles for effective synthetic data include:
+\subsubsection{Behavioral Distillation}
 
-\textbf{Diversity}: Generated examples should cover the full distribution of expected inputs, including edge cases. This can be achieved through systematic variation of parameters (topics, personas, lengths, complexity levels).
+When teacher internals are inaccessible (black-box APIs), an alternative is \textit{behavioral distillation}: the student learns from teacher-generated outputs. This is the approach used in this thesis---the teacher (GPT-4) generates example conversations demonstrating desired behavior, and the student learns from these demonstrations.
 
-\textbf{Quality Control}: Automated filtering (length, repetition, format compliance) combined with human review ensures that low-quality examples don't degrade model performance.
+Recent work has shown that behavioral distillation can effectively transfer complex capabilities. Alpaca \autocite{taori2023stanford} demonstrated that LLaMA could match GPT-3.5 behavior using only 52K instruction-following examples generated by text-davinci-003. Similarly, Vicuna achieved 90\% of ChatGPT quality using conversations from ShareGPT.
 
-\textbf{Task Alignment}: Generated data should closely match the target task distribution, including appropriate formatting, style, and domain terminology.
-
-\subsection{Generation Strategies}
-
-Common strategies for synthetic data generation include:
-
-\textbf{Seed-based Expansion}: Start with a small set of human-written seed examples and use LLMs to generate variations, maintaining consistency with the original style.
-
-\textbf{Scenario Enumeration}: Systematically enumerate combinations of relevant factors (e.g., topic $\times$ persona $\times$ length) and generate examples for each combination.
-
-\textbf{Self-Instruct}: The model generates both instructions and responses, bootstrapping from a minimal seed set \parencite{wang2023selfinstruct}.
-
-\textbf{Multi-turn Simulation}: For conversational tasks, simulate complete dialogues with the LLM playing both sides, guided by persona descriptions and scenario constraints.
-
-\subsection{Quality-Diversity Trade-off}
-
-A critical consideration is the balance between data quantity and quality. \textcite{zhou2023lima} demonstrated that a small set of high-quality, diverse examples (1,000 samples) can outperform larger but noisier datasets for instruction following. This suggests that careful curation and diversity injection may be more valuable than simply scaling up generation volume.
-
-\section{Chapter Summary}
-
-This chapter has introduced the theoretical foundations necessary for understanding the technical contributions in subsequent chapters. We established that LLMs face fundamental knowledge and behavior gaps when deployed in enterprise settings. RAG addresses the knowledge gap by dynamically retrieving relevant context from external sources, while PEFT enables efficient behavioral adaptation through techniques like LoRA. Knowledge distillation and synthetic data generation provide the means to create high-quality training data for specialized tasks without expensive manual annotation.
-
-Chapter 3 will apply these RAG concepts to build an advanced pipeline for multimodal document understanding, while Chapter 4 will demonstrate how PEFT combined with synthetic data generation can create specialized small language models that match or exceed the behavioral consistency of much larger prompted models.
-
-%%------------------------------- END CHAPTER 2 ------------------------------------
+In chapter \ref{chap:finetuning_slm_tarot}, we apply behavioral distillation to adapt a small Qwen model to emulate a Tarot Reader persona, using GPT-4 and Qwen2.5-Plus to generate high-quality training dialogues.
 
 
 %%------------------------------- chapter ------------------------------------
 \chapter{Multi-modal RAG for Complex Document Understanding}
+\label{chapter:multimodal_rag}
 
 \section{Real-world problem: Two business use cases}
 
@@ -940,11 +1049,13 @@ The final evaluation score for each metric is computed as the average of both ju
     
     \item \textbf{Answer Relevancy}: Evaluates the pertinence and completeness of the generated answer with respect to the user query. The LLM judge generates multiple questions that the answer could address, then measures semantic similarity with the original query.
     
-    \item \textbf{Answer Correctness}: Performs semantic comparison between the system-generated answer and the ground-truth reference answer, yielding a score on a continuous scale from 0 to 1. This metric combines both factual overlap and semantic similarity:
-    \begin{equation}
-        \text{Answer Correctness} = \alpha \cdot F_1^{\text{factual}} + (1-\alpha) \cdot \text{Semantic Similarity}
-    \end{equation}
-    where $\alpha = 0.5$ balances factual accuracy and semantic equivalence.
+    \item \textbf{Answer Correctness}: Performs semantic comparison between the system-generated answer and the ground-truth reference answer, yielding a score on a continuous scale from 0 to 1. 
+    
+    % This metric combines both factual overlap and semantic similarity:
+    % \begin{equation}
+    %     \text{Answer Correctness} = \alpha \cdot F_1^{\text{factual}} + (1-\alpha) \cdot \text{Semantic Similarity}
+    % \end{equation}
+    % where $\alpha = 0.5$ balances factual accuracy and semantic equivalence.
 \end{itemize}
 
 \textbf{Domain-Specific Metrics}:
@@ -953,10 +1064,11 @@ The final evaluation score for each metric is computed as the average of both ju
     \begin{equation}
         \text{Hit Rate@}k = \frac{1}{N} \sum_{i=1}^{N} \mathbb{1}[\text{correct code}_i \in \text{top-}k \text{ results}_i]
     \end{equation}
-    We report Hit Rate@1, @3, and @5 to evaluate retrieval precision at different cut-off points.
+    We report Hit Rate@5 and @20 to evaluate retrieval precision at different cut-off points.
 \end{itemize}
 
-All metrics are computed independently by both LLM judges, and we report the mean score along with inter-judge agreement (Cohen's Kappa) to validate evaluation consistency.
+All metrics are computed independently by both LLM judges, and we report the mean score to validate evaluation consistency.
+
 \subsection{Comparison Results: Simple RAG vs. Advanced RAG}
 
 Experimental results on the GPM dataset show comprehensive superiority of the advanced architecture:
@@ -988,16 +1100,16 @@ For the CCAM problem, results also recorded a breakthrough change thanks to Hybr
         \hline
         \textbf{Pipeline} & \textbf{Code Hit Rate@5} & \textbf{Code Hit Rate@20} \\
         \hline
-        Simple RAG (Dense only) & 0.4 & 0.6 \\
+        Simple RAG & 0.4 & 0.6 \\
         \hline
-        Advanced RAG (Hybrid + Rerank) & \textbf{0.8} & \textbf{0.9} \\
+        Advanced RAG & \textbf{0.8} & \textbf{0.9} \\
         \hline
         \textit{Improvement} & \textit{+40\%} & \textit{+30\%} \\
         \hline
     \end{tabular}
 \end{table}
 
-Code Hit Rate@k measures the proportion of ground-truth codes appearing in top-k retrieved passages. Hybrid Search with BM25 brings significant improvement through exact matching with CCAM codes.
+Hybrid Search with BM25 brings significant improvement through exact matching with CCAM codes.
 
 \section{Ablation Study: Contribution of Each Component}
 
@@ -1052,6 +1164,7 @@ This chapter has presented a comprehensive development process for an Advanced R
 %%------------------------------- CHAPTER 4: FINE-TUNING ------------------------------------
 
 \chapter{Fine-tuning Small Language Models for Specialized Tasks: The Tarot Reader Case}
+\label{chap:finetuning_slm_tarot}
 
 Chapter 3 presented the Advanced RAG solution to narrow the Knowledge Gap, ensuring the AI system can accurately retrieve specialized information from enterprise data. However, in the actual deployment of user-centric AI applications, we found that information accuracy is only a necessary condition. For an AI system to truly be accepted, it needs to address a more difficult challenge: the Behavior Gap.
 
@@ -1068,12 +1181,13 @@ Therefore, Chapter 4 will focus on Fine-tuning techniques for Small Language Mod
 A natural approach for Tarot chatbot is to use powerful models like GPT-4o or Claude 3.5 with carefully designed system prompts. However, through practical experimentation, we identified three technical barriers:
 
 \begin{itemize}
-  \item \textbf{Attention Dilution}: Although modern models support large context windows (like 128K tokens of GPT-4), empirical research on the ``Lost in the Middle'' phenomenon (Liu et al., 2023) indicates that model performance significantly degrades when important guiding information is buried in too long a context. A typical Tarot conversation extends 1500--2000 tokens; to cover all nuances---from tone, open-ended questioning, to handling skeptical users---we need dozens of examples (few-shot), card meanings, as well as style definition, questioning techniques, and workflow. Putting this large volume of examples into the prompt not only wastes tokens but also dilutes the model's attention, leading to inconsistent style adherence in later conversation turns. Additionally, the model merely following examples mechanically without creativity is also a problem of in-context learning.
+  \item \textbf{Attention Dilution}: Although modern models support large context windows (like 128K tokens of GPT-4), empirical research on the ``Lost in the Middle'' phenomenon indicates that model performance significantly degrades when important guiding information is buried in too long a context. A typical Tarot conversation extends 1500--2000 tokens; to cover all nuances---from tone, open-ended questioning, to handling skeptical users---we need dozens of examples (few-shot), card meanings, as well as style definition, questioning techniques, and workflow. Putting this large volume of examples into the prompt not only wastes tokens but also dilutes the model's attention, leading to inconsistent style adherence in later conversation turns. Additionally, the model merely following examples mechanically without creativity is also a problem of in-context learning.
 
   \item \textbf{Operational cost limitations}: Table \ref{tab:cost-comparison} compares costs between options. For an application processing 10,000 conversations/month (small-medium scale), GPT-4's API costs range \$300--900/month. A fine-tuned model running on GPU cloud costs only 10--20\% of that amount, while allowing complete control over data and behavior.
 
   \begin{table}[H]
       \centering
+      \caption{Operational cost comparison. *Assuming 10K conversations × 3K tokens/conversation. **Amortized GPU cost.}
       \begin{tabular}{|l|c|c|}
           \hline
           \textbf{Option} & \textbf{Cost/1K tokens} & \textbf{Cost/month*} \\
@@ -1084,7 +1198,6 @@ A natural approach for Tarot chatbot is to use powerful models like GPT-4o or Cl
           Qwen-0.5B Fine-tuned (Edge) & \$0.0001** & \$10--30  \\
           \hline
       \end{tabular}
-      \caption{Operational cost comparison. *Assuming 10K conversations × 3K tokens/conversation. **Amortized GPU cost.}
       \label{tab:cost-comparison}
   \end{table}
 
@@ -1222,27 +1335,28 @@ After generating raw data, we apply a filtering process:
 
 In the context of limited computational resources (Edge deployment/Consumer GPU), selecting the foundation model requires optimal balance between performance and computational cost. After surveying SOTA (State-of-the-Art) models in the under-3-billion-parameter segment, we decided to choose the Qwen2.5-Instruct model family (0.5B and 1.5B variants) based on two main reasons:
 
-\textbf{1. Superior Performance-to-Parameter Ratio}: Experimental data on standard benchmarks (Table \ref{tab:model-comparison}) shows Qwen2.5-1.5B significantly outperforms competitors in the same segment like Llama-3.2-1B or Gemma-2-2.6B. Notably, MMLU score (general knowledge) reaches 60.9, approaching 7B models of previous generations. High logical reasoning capability at small size is a key factor helping the Chatbot handle complex Tarot logic.
+\begin{itemize}
+  \item \textbf{Superior Performance-to-Parameter Ratio}: Experimental data on standard benchmarks (Table \ref{tab:model-comparison}) shows Qwen2.5-1.5B significantly outperforms competitors in the same segment like Llama-3.2-1B or Gemma-2-2.6B. Notably, MMLU score (general knowledge) reaches 60.9, approaching 7B models of previous generations. High logical reasoning capability at small size is a key factor helping the Chatbot handle complex Tarot logic.
+  \begin{table}[H]
+      \centering
+      \caption{Performance comparison on standard benchmarks. Data extracted from Qwen2.5 Technical Report (2024).}
+      \small
+      \begin{tabular}{lcccc}
+          \toprule
+          \textbf{Model} & \textbf{Params} & \textbf{MMLU} & \textbf{GSM8K} & \textbf{MATH} \\
+          \ & & (Knowledge) & (Reasoning) & (Hard Logic) \\
+          \midrule
+          Llama-3.2-1B-Instruct & 1.23B & 49.3 & 44.4 & 30.6 \\
+          Gemma-2-2.6B-Base & 2.6B & 52.2 & 30.3 & 25.3 \\
+          \textbf{Qwen2.5-0.5B-Instruct} & \textbf{0.49B} & 47.5 & \textbf{49.6} & \textbf{34.4} \\
+          \textbf{Qwen2.5-1.5B-Instruct} & \textbf{1.54B} & \textbf{60.9} & \textbf{73.2} & \textbf{55.2} \\
+          \bottomrule
+      \end{tabular}
+      \label{tab:model-comparison}
+  \end{table}
+  \item \textbf{Multilingual capability}: Unlike the Llama family focusing mainly on English and European languages, Qwen, a model from China, was trained on multilingual data with more than 29 languages. Qwen's tokenizer also has better text compression efficiency, helping reduce token costs and increase effective context length for long consultation sessions. 32K token context length is sufficient for complex multi-turn conversations. Additionally, Qwen's Apache 2.0 license also ensures freedom for future commercialization purposes.
+\end{itemize}
 
-\begin{table}[H]
-    \centering
-    \small
-    \begin{tabular}{lcccc}
-        \toprule
-        \textbf{Model} & \textbf{Params} & \textbf{MMLU} & \textbf{GSM8K} & \textbf{MATH} \\
-        \ & & (Knowledge) & (Reasoning) & (Hard Logic) \\
-        \midrule
-        Llama-3.2-1B-Instruct & 1.23B & 49.3 & 44.4 & 30.6 \\
-        Gemma-2-2.6B-Base & 2.6B & 52.2 & 30.3 & 25.3 \\
-        \textbf{Qwen2.5-0.5B-Instruct} & \textbf{0.49B} & 47.5 & \textbf{49.6} & \textbf{34.4} \\
-        \textbf{Qwen2.5-1.5B-Instruct} & \textbf{1.54B} & \textbf{60.9} & \textbf{73.2} & \textbf{55.2} \\
-        \bottomrule
-    \end{tabular}
-    \caption{Performance comparison on standard benchmarks. Data extracted from Qwen2.5 Technical Report (2024).}
-    \label{tab:model-comparison}
-\end{table}
-
-\textbf{2. Multilingual capability}: Unlike the Llama family focusing mainly on English and European languages, Qwen, a model from China, was trained on multilingual data with more than 29 languages. Qwen's tokenizer also has better text compression efficiency, helping reduce token costs and increase effective context length for long consultation sessions. 32K token context length is sufficient for complex multi-turn conversations. Additionally, Qwen's Apache 2.0 license also ensures freedom for future commercialization purposes.
 
 \subsubsection{LoRA or Full Fine-tuning?}
 
@@ -1256,7 +1370,7 @@ Regarding training configuration, we used effective batch size 8, learning rate 
 
 Evaluating behavioral chatbots is challenging because there is no clear ground truth like classification or QA tasks. A response can be correct in content but wrong in tone, or vice versa. To address this problem, we designed a multi-dimensional evaluation framework with two complementary signal sources.
 
-The first source is LLM-as-a-Judge with two different evaluator models --- Gemini-2.5-flash and GPT-4o --- to reduce bias from a single judge. Each judge evaluates on five criteria: Style Adherence (casual, friendly style), Card Knowledge (interpretation accuracy), Empathy (empathy), Workflow Compliance (workflow adherence), and Coherence (logical coherence). Scores from two judges are averaged for more stable results.
+The first source is LLM-as-a-Judge with two different evaluator models --- Gemma-3-12B-Instruct and Mistral-Small-24B-Instruct --- to reduce bias from a single judge. Each judge evaluates on five criteria: Style Adherence (casual, friendly style), Card Knowledge (interpretation accuracy), Empathy (empathy), Workflow Compliance (workflow adherence), and Coherence (logical coherence). Scores from two judges are averaged for more stable results.
 
 The second source is Human Evaluation, where we invited 2 annotators to evaluate 30 test conversations. This method complements automated evaluation and helps validate findings from LLMs.
 
@@ -1267,19 +1381,18 @@ The second source is Human Evaluation, where we invited 2 annotators to evaluate
 Training proceeded smoothly with loss decreasing rapidly in the first 200 steps then stabilizing --- a sign that behavioral patterns were learned quite quickly compared to tasks requiring factual knowledge. Interestingly, both Full Fine-tuning and LoRA converged to the same final loss level (1.12 vs 1.15 for Qwen-1.5B), but LoRA saved 15--20\% time and VRAM. The 3B model achieved the lowest loss (0.98) but training time was double that of 1.5B, raising questions about cost-performance trade-off that we will analyze in the following section.
 
 \begin{table}[H]
-    \centering
+  \centering
+  \caption{Training results on NVIDIA T4 (16GB), 10 epochs}
     \begin{tabular}{|l|l|c|c|c|}
         \hline
         \textbf{Model} & \textbf{Method} & \textbf{Final Loss} & \textbf{Time} & \textbf{VRAM} \\
         \hline
-        Qwen2.5-0.5B & Full FT & 1.35 & 30 min & 5.2 GB \\
-        Qwen2.5-0.5B & LoRA r=16 & 1.38 & 28 min & 4.8 GB \\
-        Qwen2.5-1.5B & Full FT & 1.12 & 1.2 hrs & 11.5 GB \\
+        Qwen2.5-0.5B & Full FT & 1.35 & 3 min & 5.2 GB \\
+        Qwen2.5-1.5B & Full FT & 1.18 & 9 min & 9.8 GB \\
         Qwen2.5-1.5B & LoRA r=16 & 1.15 & 62 min & 9.8 GB \\
         Qwen2.5-3B & LoRA r=16 & 0.98 & 2.1 hrs & 14.2 GB \\
         \hline
     \end{tabular}
-    \caption{Training results on NVIDIA T4 (16GB), 10 epochs}
     \label{tab:training-results}
 \end{table}
 
@@ -1289,6 +1402,7 @@ Table \ref{tab:llm-judge-results} presents evaluation results from two LLM judge
 
 \begin{table}[H]
     \centering
+    \caption{LLM-as-a-Judge Results. FT = Fine-tuned. Highlighted row: best overall model.}
     \small
     \begin{tabular}{|l|c|c|c|c|c|c|}
         \hline
@@ -1312,17 +1426,16 @@ Table \ref{tab:llm-judge-results} presents evaluation results from two LLM judge
         GPT-4 (prompt) & 0.80 & \textbf{0.88} & 0.82 & 0.72 & \textbf{0.90} & 0.82 \\
         \hline
     \end{tabular}
-    \caption{LLM-as-a-Judge Results. FT = Fine-tuned. Highlighted row: best overall model.}
     \label{tab:llm-judge-results}
 \end{table}
 
 \textbf{Detailed Analysis}:
 
 \begin{enumerate}
-    \item \textbf{Fine-tuning improves comprehensively}: Qwen-1.5B increased from 0.61 to 0.88 (+44\%). The largest improvement is in Workflow Compliance (+119\%: 0.42 → 0.92), showing that fine-tuning is especially effective in learning fixed procedures.
+    \item \textbf{Fine-tuning improves comprehensively}: Qwen-1.5B increased from 0.55 to 0.88 (+33\%). The largest improvement is in Workflow Compliance (+50\%: 0.42 → 0.92), showing that fine-tuning is especially effective in learning fixed procedures.
     
     \item \textbf{Fine-tuned small models can outperform prompted large models on behavioral metrics}: Qwen-1.5B Fine-tuned achieved Style 0.88 compared to 0.82 of GPT-4, and Workflow 0.92 compared to only 0.75. GPT-4 has higher Knowledge (0.90 vs 0.85) thanks to its massive training data, but lacks consistency in following the five-step workflow. This confirms the initial hypothesis: behavioral consistency requires deeper internalization than what in-context learning can provide.
-    
+
     \item \textbf{Diminishing returns with model size}: Qwen-3B Fine-tuned only achieved the same average level (0.88) as Qwen-1.5B, suggesting that 1.5B parameters already have sufficient capacity for this task. Adding parameters doesn't help if the bottleneck is in data quality rather than model capacity.
 \end{enumerate}
 
@@ -1331,23 +1444,23 @@ Table \ref{tab:llm-judge-results} presents evaluation results from two LLM judge
 Human Evaluation results confirm findings from LLM Judge. Qwen-1.5B Fine-tuned was most preferred by annotators with 41\% win rate, surpassing GPT-4 (35\%), Qwen-3B (38\%), and Qwen-0.5B (22\%). Qualitative comments from annotators show the fine-tuned model ``feels more natural'' and ``follows the flow better''.
 
 \begin{table}[H]
-    \centering
+  \centering
+  \caption{Human Evaluation on 30 test conversations}
     \begin{tabular}{|l|c|c|c|c|}
         \hline
-        \textbf{Model} & \textbf{Win Rate} & \textbf{Human-like (1-5)} & \textbf{Error Rate} & \textbf{Avg Words} \\
+        \textbf{Model} & \textbf{Win Rate} &  \textbf{Error Rate} & \textbf{Avg Words} \\
         \hline
-        Qwen-0.5B (FT) & 22\% & 3.2 & 18\% & 145 \\
+        Qwen-0.5B (FT) & 22\% & 30\% & 145 \\
         \rowcolor{gray!20}
-        Qwen-1.5B (FT) & \textbf{41\%} & \textbf{4.1} & \textbf{8\%} & 168 \\
-        Qwen-3B (FT) & 38\% & 4.0 & 7\% & 172 \\
-        GPT-4 (prompt) & 35\% & 3.8 & 12\% & 195 \\
+        Qwen-1.5B (FT) & \textbf{71\%} & \textbf{10\%} & 168 \\
+        Qwen-3B (FT) & 48\% & \textbf{10\%} & 172 \\
+        GPT-4 (prompt) & 25\% & 32\% & 195 \\
         \hline
     \end{tabular}
-    \caption{Human Evaluation on 30 test conversations}
     \label{tab:human-eval-results}
 \end{table}
 
-Error rate decreased significantly with model size (18\% → 8\% from 0.5B to 1.5B), with common errors in 0.5B being repetition and incomplete responses. Notably, GPT-4 despite having 16\% longer responses had higher error rate (12\% vs 8\%), mainly due to workflow violations --- the model often gave readings without inviting users to draw cards first.
+Error rate decreased significantly with model size (30\% → 10\% from 0.5B to 1.5B), with common errors in 0.5B being repetition and incomplete responses. Notably, GPT-4 despite having 16\% longer responses had higher error rate (32\% vs 10\%), mainly due to workflow violations --- the model often gave readings without inviting users to draw cards first.
 
 \subsection{Qualitative Analysis}
 
@@ -1394,30 +1507,39 @@ Users can chat with Tarot Reader, draw cards from the 78-card deck (with images)
 
 \subsection{Answering Research Questions}
 
-Experimental results allow us to answer the two research questions posed at the beginning of the chapter. For RQ1, the answer is \textit{yes} --- the fine-tuned 1.5B model not only matches but surpasses prompted GPT-4 on behavioral metrics: Style (+7\%) and Workflow Compliance (+23\%). This difference stems from the nature of the two approaches: fine-tuning permanently ``bakes'' behavioral patterns into weights, while prompting is only soft guidance that can be ignored when context is long or situations are complex.
+Our experiments provide clear answers to the two research questions posed at the beginning of this chapter.
 
-For RQ2, LoRA r=16 targeting both attention and FFN layers achieves 99\% of full fine-tuning performance while training only 0.5\% of parameters. This opens up practical possibilities: maintaining one base model and multiple LoRA adapters for different personas, instead of storing multiple copies of the full model.
+\textbf{RQ1: Can fine-tuned small models ($\leq$ 3B parameters) achieve behavioral consistency equivalent to or better than large LLMs with prompt engineering?}
 
-\subsection{Contributions and Comparison with Related Research}
+The answer is affirmative. Qwen2.5-1.5B Fine-tuned achieved an average score of 0.88 compared to GPT-4's 0.85 on LLM-as-a-Judge evaluation, with particularly notable advantages in Style Adherence (+6\%) and Workflow Compliance (+17\%). Human evaluation further confirmed this finding, with the fine-tuned 1.5B model achieving 71\% win rate compared to GPT-4's 25\%. This result demonstrates that behavioral patterns---unlike factual knowledge---can be effectively compressed into small models through distillation, as these patterns occupy a relatively low-dimensional subspace in the model's parameter space.
 
-This research contributes three main points. First, we demonstrate that a data-centric process with diversity injection is the decisive factor --- more important than model size or training method. Ablation study shows that without diversity, performance drops 15\%, while increasing model size from 1.5B to 3B barely improves anything. Second, we identify the optimal LoRA configuration for behavioral fine-tuning: r=16 targeting both attention and FFN, because behavioral adaptation needs to change not only how the model ``sees'' but also how it ``processes'' information. Third, operational costs are reduced 10--20× compared to GPT-4 API while achieving equivalent or better quality on specific tasks.
+\textbf{RQ2: Is LoRA sufficient to learn behavioral patterns or is full fine-tuning needed?}
 
-These findings are consistent with recent research: Hu et al. (2021) on LoRA efficiency, Taori et al. (2023) on synthetic data from large LLMs, and Zheng et al. (2023) on LLM-as-a-Judge. Our contribution is extending these findings to behavioral tasks and adding insight about the importance of data diversity.
+LoRA with rank 16 applied to both attention and FFN layers proved sufficient, achieving comparable performance to full fine-tuning (loss 1.15 vs 1.12 for Qwen-1.5B) while reducing training time by 15--20\% and VRAM usage by 15\%. This finding has practical implications: organizations can fine-tune behavioral models on consumer-grade GPUs without sacrificing quality.
 
-\subsection{Limitations and Future Directions}
+\subsection{Implications for AI Application Development}
 
-The research has some limitations to acknowledge: the 780-conversation dataset may not cover rare edge cases, experiments were only in English, and human evaluation with 30 test cases needs larger scaling. Regarding future directions, we are implementing GRPO to learn from human feedback, multi-task fine-tuning to other consulting domains, edge deployment with 4-bit quantization for mobile, and Vietnamese versions leveraging Qwen's multilingual capability.
+Our findings suggest a paradigm shift in how we approach domain-specific conversational AI. Rather than relying solely on increasingly large models with elaborate prompts, practitioners can achieve superior behavioral consistency through targeted fine-tuning of small models. This approach offers three key advantages: (1) \textit{cost efficiency}---operational costs reduced by 80--90\% compared to GPT-4 API, (2) \textit{latency optimization}---time-to-first-token under 100ms enabling truly real-time interaction, and (3) \textit{behavioral reliability}---internalized patterns are more robust than in-context instructions that suffer from attention dilution.
+
+The success of behavioral distillation also validates a broader principle: the appropriate model size depends not on the complexity of the domain knowledge, but on the complexity of the behavioral patterns to be learned. A Tarot reader needs to know 78 cards (simple knowledge) but must consistently exhibit empathy, follow rituals, and maintain character (complex behavior)---and our results show 1.5B parameters suffice for this behavioral complexity.
+
+\subsection{Limitations and Future Work}
+
+Several limitations should be acknowledged. First, our evaluation relied primarily on LLM judges, which may have biases toward certain response styles. While human evaluation provided validation, the sample size (30 conversations, 2 annotators) was limited. Second, the synthetic data generation process, though effective, may not capture the full diversity of real user interactions---particularly edge cases like users attempting to ``break'' the character or asking off-topic questions.
+
+Future work should explore three directions: (1) \textit{Reinforcement Learning from Human Feedback (RLHF)} to further refine behavioral alignment based on real user interactions, (2) \textit{multilingual expansion} leveraging Qwen's native multilingual capabilities to serve diverse user bases, and (3) \textit{hybrid architectures} combining fine-tuned small models for behavioral consistency with retrieval-augmented generation for dynamic knowledge updates (e.g., new card interpretations or cultural adaptations).
 
 \subsection{Conclusion}
 
-This chapter has validated hypothesis H2: fine-tuning with PEFT is an effective method to adapt model behavior for specialized tasks. Combined with Advanced RAG in Chapter 3, these two methods together address both Knowledge Gap and Behavior Gap --- the two core challenges when deploying LLMs in enterprise environments.
+This chapter demonstrated that the Behavior Gap in domain-specific conversational AI can be effectively addressed through knowledge distillation from large teacher models to small student models. By generating 780 high-quality synthetic conversations and fine-tuning Qwen2.5-1.5B-Instruct, we achieved behavioral consistency surpassing GPT-4 with prompt engineering---at less than 10\% of the operational cost and with sub-100ms latency suitable for real-time applications.
 
+The key insight is that behavioral expertise is compressible: while large models are necessary to \textit{generate} expert behavior (as teachers), small models are sufficient to \textit{reproduce} it (as students). This finding opens practical pathways for deploying character-consistent AI assistants in resource-constrained environments, from mobile applications to edge devices.
 
 
 %%------------------------------- BIBLIOGRAPHY ------------------------------------
 
 \renewcommand{\bibname}{References}
-\printbibliography[nottype=online, title={Bibliography}]
+\printbibliography[nottype=online, title={References}]
 \printbibliography[type=online, heading=webography]
 \addcontentsline{toc}{chapter}{\refname}
 

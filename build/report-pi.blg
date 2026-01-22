@@ -1,28 +1,19 @@
-[0] Config.pm:307> INFO - This is Biber 2.17
-[1] Config.pm:310> INFO - Logfile is 'build/report-pi.blg'
-[215] biber:340> INFO - === jeu. janv. 22, 2026, 01:05:28
-[265] Biber.pm:418> INFO - Reading 'build/report-pi.bcf'
-[352] Biber.pm:972> INFO - Found 32 citekeys in bib section 0
-[358] Biber.pm:4383> INFO - Processing section 0
-[364] Biber.pm:4574> INFO - Looking for bibtex file 'bibliography.bib' for section 0
-[365] bibtex.pm:1713> INFO - LaTeX decoding ...
-[385] bibtex.pm:1518> INFO - Found BibTeX data source 'bibliography.bib'
-[560] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[560] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'level = 4' with 'level = 2'
-[560] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[560] Biber.pm:4203> INFO - Sorting list 'cms/global//global/global' of type 'entry' with template 'cms' and locale 'en-US'
-[560] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
-[606] bbl.pm:654> INFO - Writing 'build/report-pi.bbl' with encoding 'UTF-8'
-[645] bbl.pm:757> INFO - Output to build/report-pi.bbl
-[645] Biber.pm:130> WARN - I didn't find a database entry for 'lewis2020retrieval' (section 0)
-[645] Biber.pm:130> WARN - I didn't find a database entry for 'ji2023survey' (section 0)
-[645] Biber.pm:130> WARN - I didn't find a database entry for 'liu2024lost' (section 0)
-[645] Biber.pm:130> WARN - I didn't find a database entry for 'gao2023retrieval' (section 0)
-[645] Biber.pm:130> WARN - I didn't find a database entry for 'reimers2019sentence' (section 0)
-[646] Biber.pm:130> WARN - I didn't find a database entry for 'wang2022text' (section 0)
-[646] Biber.pm:130> WARN - I didn't find a database entry for 'hu2021lora' (section 0)
-[646] Biber.pm:130> WARN - I didn't find a database entry for 'dettmers2023qlora' (section 0)
-[646] Biber.pm:130> WARN - I didn't find a database entry for 'hinton2015distilling' (section 0)
-[646] Biber.pm:130> WARN - I didn't find a database entry for 'taori2023stanford' (section 0)
-[646] Biber.pm:130> WARN - I didn't find a database entry for 'zhou2023lima' (section 0)
-[646] Biber.pm:132> INFO - WARNINGS: 11
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'build/report-pi.blg'
+[34] biber:340> INFO - === Thu Jan 22, 2026, 11:48:27
+[43] Biber.pm:419> INFO - Reading 'build/report-pi.bcf'
+[95] Biber.pm:979> INFO - Found 36 citekeys in bib section 0
+[100] Biber.pm:4419> INFO - Processing section 0
+[104] Biber.pm:4610> INFO - Looking for bibtex file 'bibliography.bib' for section 0
+[106] bibtex.pm:1713> INFO - LaTeX decoding ...
+[126] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliography.bib'
+[332] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[332] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[332] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'level = 4' with 'level = 2'
+[332] Biber.pm:4239> INFO - Sorting list 'cms/global//global/global' of type 'entry' with template 'cms' and locale 'en-US'
+[332] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[353] bbl.pm:660> INFO - Writing 'build/report-pi.bbl' with encoding 'UTF-8'
+[364] bbl.pm:763> INFO - Output to build/report-pi.bbl
+[364] Biber.pm:131> WARN - Duplicate entry key: 'wang2023selfinstruct' in file 'bibliography.bib', skipping ...
+[364] Biber.pm:131> WARN - I didn't find a database entry for 'houlsby2019adapter' (section 0)
+[364] Biber.pm:133> INFO - WARNINGS: 2
