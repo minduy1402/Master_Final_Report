@@ -112,6 +112,15 @@
 
 %% bibliography file, must be in preamble
 \addbibresource{bibliography.bib}
+\defbibheading{webography}{\section*{Webography}}
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[typesource=online, typetarget=online, final]
+      \step[fieldset=keywords, fieldvalue=webography]
+    }
+  }
+}
 
 %% macros, to be updated as needed
 \newcommand{\school}{Institut National des Sciences Appliquées de Toulouse }
@@ -259,31 +268,32 @@ They can be done on a separate page or included in the introduction.
 
 \subsection{Evolution of Large Language Model}
 
-Over the past decade, the fields of Artificial Intelligence (AI) and Natural Language Processing (NLP) have witnessed groundbreaking advances, particularly since the emergence of the Transformer architecture [Vaswani et al., 2017]. Large Language Models (LLMs) such as GPT-5 [OpenAI, 2025], Claude 4 [Anthropic, 2025], Gemini 2.5 [Google, 2025], and open-source models like Llama 3 [Meta, 2024] and Qwen 2.5 [Alibaba, 2024] have demonstrated superior capabilities in understanding context, generating text, and performing logical inference across a variety of tasks.
-
-According to a McKinsey Global Institute report (2024), the generative AI market is expected to reach a value of \$4.4 trillion by 2030. However, a Gartner survey (2024) indicates that 67\% of businesses struggle to deploy LLMs for specialized tasks due to accuracy limitations and operating costs.
+Over the past decade, the fields of Artificial Intelligence (AI) and Natural Language Processing (NLP) have witnessed groundbreaking advances, particularly since the emergence of the Transformer architecture \parencite{vaswani2017attention}. Large Language Models (LLMs) such as GPT-4 \parencite{achiam2023gpt}, Claude \parencite{anthropic2024claude}, Gemini \parencite{comanici2025gemini}, and open-source models like Llama 3 \parencite{grattafiori2024llama} and Qwen 2 \parencite{team2024qwen2} have demonstrated superior capabilities in understanding context, generating text, and performing logical inference across a variety of tasks.
 
 \subsection{The Research-Industrial Application Gap}
 
-Transferring language models from the research environment to practical industrial applications (Industrial Deployment) faces significant challenges. Although Foundation Models possess a vast amount of general knowledge, they often encounter two serious limitations when solving domain-specific tasks:
+Transferring language models from the research environment to practical industrial applications faces significant challenges. Indeed, according to an MIT survey, up to 95\% of AI generation/LLM projects in enterprises do not generate significant profit and loss (P\&L) impact---reflecting that the majority of businesses struggle to move LLMs from pilot to production deployment \parencite{tomshardware2024mit}. Additionally, other surveys show that approximately 72\% of businesses encounter at least one barrier to adopting GenAI (including operating costs, governance, and model accuracy), and over 50\% consider accuracy a major barrier to LLM deployment \parencite{writer2024survey}.
+
+Although Foundation Models possess a vast amount of general knowledge, they often encounter two serious limitations when solving domain-specific tasks:
+
 
 \subsubsection{Knowledge Gap}
 
 In critical fields such as healthcare, finance, and insurance, information is often contained in complex documents (financial reports, medical technical catalogs) and changes constantly. LLMs face three main problems:
 
 \begin{itemize}
-\item Static Knowledge: Model knowledge is limited by the training time (knowledge cutoff), making it impossible to update new information without retraining [Lewis et al., 2020].
+\item Static Knowledge: Model knowledge is limited by the training time (knowledge cutoff), making it impossible to update new information without retraining. 
 \item  Private Data Inaccessibility: The model cannot access confidential organizational documents such as contracts, internal procedures, or patient records.
-\item Hallucination: LLMs tend to confidently generate false information [Ji et al., 2023], which is unacceptable in medical or financial decisions where near-absolute accuracy is required.
+\item Hallucination: LLMs tend to confidently generate false information \parencite{ji2023hallucination, huang2023hallucination_survey} which is unacceptable in medical or financial decisions where near-absolute accuracy is required.
 \end{itemize}
 
 \subsubsection{Efficiency \& Behavior Gap}
 
-For tasks requiring the model to adhere to a specific behavioral scenario, a particular language style (e.g., psychological counselor, analyst), or deployment on limited hardware infrastructure, using massive models (hundreds of billions of parameters) is not cost-effective and prone to latency. According to Hoffmann et al. (2022), the inference cost of GPT-4 can reach \$0.06/1K tokens, making large-scale deployment unfeasible for many small and medium-sized enterprises.
+For tasks that require strict adherence to a predefined behavioral scenario, a specific linguistic style (e.g., psychological counselor or analyst), or deployment under constrained hardware environments, extremely large language models with hundreds of billions of parameters are often neither cost-effective nor latency-efficient. As shown by the compute-optimal scaling analysis of \textcite{hoffmann2022chinchilla}, increasing model size without proportionally increasing training data leads to inefficient use of compute, resulting in substantially higher training and inference costs. Furthermore, the scaling laws identified by \textcite{kaplan2020scaling} demonstrate that model performance improves as a power-law function of compute, implying that compute—and consequently deployment cost and latency—grows rapidly with model size, limiting the practicality of massive models for many real-world enterprise settings.
 
 \subsection{Research motivation}
 
-Based on the above reality, this thesis focuses on researching and implementing advanced techniques to \textbf{optimize and adapt Language Models for specific data domains}, with two main approaches:
+Based on the above reality, this report focuses on researching and implementing advanced techniques to \textbf{optimize and adapt Language Models for specific data domains}, with two main approaches:
 
 \begin{itemize}
   \item Retrieval-Augmented Generation (RAG): Integrating external knowledge bases to address the Knowledge Gap.
@@ -311,7 +321,7 @@ Resources provided:
 
 \begin{itemize}
   \item GPU infrastructure: NVIDIA RTX 3090 (24GB)
-  \item Real-world enterprise data: Medical documents (CCAM, NGAP), insurance financial reports
+  \item Real-world enterprise data: Medical documents (CCAM), insurance financial reports
   \item API access: OpenAI GPT-4, Google Gemini, Qwen API
 \end{itemize}
 
@@ -321,24 +331,28 @@ During our work in the R\&D department, we identified two core problems that nee
 
 \subsubsection{Problem 1: Integration of External Knowledge from Complex Unstructured Data}
 
-Partner businesses (such as insurance companies, healthcare facilities) possess large amounts of data in the form of PDF documents containing text, tables, and images. Traditional RAG (Retrieval-Augmented Generation) methods based on plain text (text-only) fail to understand the semantics of complex tables or visual information.
+Partner businesses (such as insurance companies, healthcare facilities) possess large amounts of data in the form of PDF documents containing text, tables, and images. Traditional RAG methods based on plain text (text-only) fail to understand the semantics of complex tables or visual information \parencite{gao2023rag_survey, li2024multimodal_rag}.
 The question is: How to build a Multimodal RAG pipeline capable of accurately parsing, indexing, and retrievaling information from these mixed documents to support decision-making (e.g., medical refund code lookup, financial data analysis)?
 
 \subsubsection{Problem 2: Behavioral Adaptation and Resource Optimization for Small Models (Behavioral Adaptation \& Efficiency)}
 
 For applications requiring high interactivity, counseling, or entertainment (such as psychological counseling chatbots or Tarot Readers), the requirement is not only for information accuracy but also for consistency in tone and style and rule-based reasoning. Using large models (like GPT-4) via APIs is both costly to operate and difficult to fully control behavior.
+
+Recent research has shown that small language models can achieve competitive performance through efficient fine-tuning techniques like LoRA \parencite{hu2022lora} and QLoRA \parencite{dettmers2024qlora}, combined with synthetic data generation approaches \parencite{taori2023alpaca, wang2023selfinstruct}.
+
 The question is: Is it possible to fine-tune small language models (such as Qwen, Llama < 7B parameters) using parameter optimization techniques (PEFT/LoRA) and quantization so that they achieve inference capabilities and writing styles comparable to large models, but can be run locally at low cost?
 
 \section{Objectives and expected results}
 
-This thesis aims to achieve the following objectives:
+This report aims to achieve the following objectives:
 
 \begin{enumerate}
   \item Design and implement an Advanced Multimodal RAG pipeline capable of accurately extracting and retrieving information from complex documents containing text, tables, and images in the medical and financial domains.
 
   \item Develop a methodology for fine-tuning Small Language Models (< 2B parameters) using PEFT/LoRA techniques to achieve domain-specific behavior adaptation while enabling cost-effective local deployment.
 
-  \item Establish systematic evaluation frameworks for both RAG retrieval quality and fine-tuned model performance, enabling reproducible benchmarking.
+  \item Establish \textbf{systematic evaluation frameworks} for both RAG retrieval quality using RAGAS metrics \parencite{es2024ragas} and fine-tuned model performance using LLM-as-a-Judge approaches \parencite{zheng2023llmjudge}, enabling reproducible benchmarking.
+
 \end{enumerate}
 
 
@@ -346,180 +360,189 @@ This thesis aims to achieve the following objectives:
 	
 In addition to this introduction, this report is organized into four main chapters and appendices. Chapter 2 provides the theoretical background, introducing the foundational concepts of Retrieval-Augmented Generation (RAG) and Parameter-Efficient Fine-Tuning (PEFT), followed by an overview of Knowledge Distillation and Synthetic Data Generation techniques. Chapter 3 addresses the Knowledge Gap by presenting an Advanced Multimodal RAG pipeline for processing complex medical and financial documents. Chapter 4 tackles the Behavior Gap through LoRA fine-tuning of small Qwen models for persona-based tasks. Chapter 5 concludes the thesis by summarizing contributions and proposing future research directions. The Appendices provide supplementary materials including prompt templates and training configurations.
 
-%%------------------------------- chapter ------------------------------------
+%%------------------------------- CHAPTER 2: THEORETICAL BACKGROUND ------------------------------------
 
 \chapter{Theoretical Background}
 
-This chapter presents the fundamental concepts and techniques that underpin the research conducted in subsequent chapters. We begin with an overview of the Transformer architecture and Large Language Models (LLMs), then proceed to discuss Retrieval-Augmented Generation (RAG) pipelines, embedding techniques, and conclude with Parameter-Efficient Fine-Tuning methods. Understanding these concepts is essential for comprehending the advanced techniques and experimental results presented in following chapters.
+This chapter establishes the foundational concepts required to understand the proposed solutions in subsequent chapters. We begin with an overview of Large Language Models and their inherent limitations, then introduce the two primary adaptation paradigms: Retrieval-Augmented Generation (RAG) for addressing knowledge gaps and Parameter-Efficient Fine-Tuning (PEFT) for behavioral adaptation. Finally, we discuss Knowledge Distillation and Synthetic Data Generation as key enabling techniques for training specialized models with limited resources.
 
-\section{Transformer Architecture and Large Language Models}
+\section{Large Language Models and Their Limitations}
 
-\subsection{The Transformer Revolution}
+\subsection{Transformer Architecture Overview}
 
-The Transformer architecture, introduced by Vaswani et al. (2017), marked a paradigm shift in natural language processing. Unlike recurrent neural networks (RNNs) that process sequences sequentially, Transformers leverage a self-attention mechanism that allows parallel processing of all positions in a sequence simultaneously. This fundamental change enables both faster training and better capture of long-range dependencies in text.
+The Transformer architecture, introduced by \textcite{vaswani2017attention}, revolutionized natural language processing by replacing recurrent mechanisms with self-attention. The core innovation lies in the \textit{scaled dot-product attention} mechanism, which computes attention weights as:
 
-The core innovation of the Transformer is the \textit{scaled dot-product attention} mechanism, defined as:
 \begin{equation}
     \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 \end{equation}
-where $Q$, $K$, and $V$ represent query, key, and value matrices respectively, and $d_k$ is the dimension of the keys. This mechanism allows the model to dynamically focus on relevant parts of the input when generating each output token.
 
-The Transformer encoder-decoder structure consists of stacked layers, each containing multi-head attention and feed-forward neural network (FFN) sublayers. The multi-head attention allows the model to attend to information from different representation subspaces:
-\begin{equation}
-    \text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, ..., \text{head}_h)W^O
-\end{equation}
-where each $\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$.
+\noindent where $Q$, $K$, and $V$ represent queries, keys, and values respectively, and $d_k$ is the dimension of the key vectors. This mechanism enables the model to capture long-range dependencies efficiently, forming the backbone of modern LLMs. 
 
-\subsection{Large Language Models}
+\subsection{The Knowledge and Behavior Gap}
 
-Building upon the Transformer foundation, Large Language Models (LLMs) are trained on massive text corpora using self-supervised learning objectives, primarily next-token prediction. Models such as GPT-4 [OpenAI, 2023], Claude [Anthropic, 2024], and open-source alternatives like Llama [Touvron et al., 2023] and Qwen [Bai et al., 2023] have demonstrated remarkable capabilities in understanding context, generating coherent text, and performing complex reasoning tasks.
+Despite their impressive capabilities, LLMs face two fundamental limitations when deployed in enterprise environments:
 
-Despite their impressive capabilities, LLMs face two fundamental limitations when deployed for domain-specific tasks:
+\textbf{Knowledge Gap}: LLMs are trained on static corpora with a knowledge cutoff date, rendering them unable to access information that emerged after training \parencite{lewis2020retrieval}. Furthermore, they cannot access proprietary organizational data such as internal documents, contracts, or domain-specific databases. This limitation is compounded by the \textit{hallucination} phenomenon, where models generate plausible-sounding but factually incorrect information \parencite{ji2023survey}.
 
-\textbf{Knowledge Gap}: LLM knowledge is frozen at training time (knowledge cutoff), preventing access to recent information or proprietary organizational data. Additionally, LLMs exhibit a tendency to generate plausible-sounding but factually incorrect information---a phenomenon known as ``hallucination'' [Ji et al., 2023].
+\textbf{Behavior Gap}: For tasks requiring adherence to specific communication styles, domain-specific workflows, or particular personas, general-purpose LLMs often fail to maintain consistency. Prompt engineering alone proves insufficient for deeply embedding behavioral patterns, as instructions can be ``forgotten'' in long conversations due to attention dilution \parencite{liu2024lost}.
 
-\textbf{Behavior Gap}: For applications requiring specific communication styles, workflows, or domain expertise, generic LLMs often fail to maintain consistency, especially over extended conversations.
+These two gaps motivate the two technical approaches explored in this thesis: RAG for bridging the knowledge gap (Chapter 3) and PEFT for addressing the behavior gap (Chapter 4).
 
-These limitations motivate the two main technical approaches explored in this thesis: Retrieval-Augmented Generation (Chapter 3) and Fine-tuning (Chapter 4).
+\section{Retrieval-Augmented Generation (RAG)}
 
-\section{Retrieval-Augmented Generation}
+\subsection{Motivation and Core Concept}
 
-\subsection{Motivation and Basic Architecture}
+Retrieval-Augmented Generation (RAG) was introduced by \textcite{lewis2020retrieval} as a paradigm that combines the parametric knowledge of LLMs with non-parametric retrieval from external knowledge bases. The fundamental insight is that instead of expecting the model to ``memorize'' all relevant information during training, we can dynamically retrieve pertinent context at inference time.
 
-Retrieval-Augmented Generation (RAG), introduced by Lewis et al. (2020), addresses the Knowledge Gap by combining the parametric knowledge of LLMs with non-parametric retrieval from external knowledge bases. Instead of relying solely on information encoded in model weights, RAG systems retrieve relevant documents at inference time and incorporate them into the generation context.
+The RAG approach offers three key advantages: (1) knowledge can be updated without retraining by modifying the external database, (2) responses can be grounded in verifiable sources enabling citation and attribution, and (3) the model's effective knowledge can extend far beyond its parameter capacity.
 
-A basic RAG pipeline consists of two main phases:
+\subsection{Basic RAG Pipeline Architecture}
 
-\textbf{Indexing Phase} (offline): Documents are processed, chunked into manageable segments, converted to vector embeddings, and stored in a vector database.
+A standard RAG pipeline consists of two main phases: \textit{Indexing} (offline) and \textit{Query Processing} (online).
 
-\textbf{Query Phase} (online): When a user submits a query, the system retrieves relevant document chunks, augments the prompt with this context, and generates an answer using the LLM.
+\subsubsection{Indexing Phase}
 
-Figure \ref{fig:rag_basic_architecture} illustrates the standard RAG pipeline architecture.
+The indexing phase prepares documents for efficient retrieval:
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{figures/basic_rag_pipeline.png}
-    \caption{Basic RAG Pipeline Architecture}
-    \label{fig:rag_basic_architecture}
-\end{figure}
+\textbf{Document Loading}: Raw documents (PDFs, web pages, databases) are ingested into the system. This step often involves parsing complex formats to extract textual content.
 
-The RAG approach offers several advantages: it enables access to up-to-date information without retraining, provides transparent attribution through cited sources, and reduces hallucination by grounding responses in retrieved evidence.
+\textbf{Chunking}: Documents are split into smaller segments or ``chunks'' to enable fine-grained retrieval. Common strategies include fixed-size chunking (e.g., 512 tokens with overlap) or semantic chunking based on document structure \parencite{gao2023retrieval}.
 
-\subsection{Document Processing and Chunking}
+\textbf{Embedding}: Each chunk is converted into a dense vector representation using embedding models such as Sentence-BERT \parencite{reimers2019sentence} or E5 \parencite{wang2022text}. These embeddings capture semantic meaning, enabling similarity-based retrieval.
 
-The quality of a RAG system heavily depends on how documents are processed during indexing. Raw documents---particularly PDFs containing complex layouts with tables, images, and mixed formatting---must be parsed and segmented appropriately.
+\textbf{Vector Storage}: Embeddings are stored in a vector database (e.g., ChromaDB, FAISS, Pinecone) that supports efficient nearest-neighbor search.
 
-\textbf{Chunking strategies} determine how documents are divided into retrievable units. Common approaches include:
-\begin{itemize}
-    \item \textbf{Fixed-size chunking}: Dividing text into segments of predetermined token length with optional overlap. Simple but may break semantic units.
-    \item \textbf{Semantic chunking}: Using natural boundaries (paragraphs, sections) to preserve semantic coherence.
-    \item \textbf{Recursive chunking}: Hierarchically splitting documents using multiple delimiters.
-\end{itemize}
+\subsubsection{Query Processing Phase}
 
-The chunk size represents a critical trade-off: smaller chunks enable more precise retrieval but may lack sufficient context, while larger chunks provide more context but reduce retrieval precision and consume more of the LLM's context window.
+When a user submits a query, the following steps occur:
 
-\section{Text Embeddings and Vector Search}
+\textbf{Query Embedding}: The user's question is embedded using the same model as the documents, projecting it into the shared semantic space.
 
-\subsection{Embedding Models}
+\textbf{Retrieval}: The system performs similarity search (typically cosine similarity) to find the top-$k$ most relevant chunks from the vector store.
 
-Text embeddings are dense vector representations that capture semantic meaning, enabling similarity-based retrieval. Modern embedding models, typically based on the Transformer architecture, map text sequences to fixed-dimensional vectors in a learned semantic space where similar texts are positioned closer together.
+\textbf{Context Augmentation}: Retrieved chunks are concatenated with the original query to form an augmented prompt.
 
-Notable embedding models include Sentence-BERT [Reimers and Gurevych, 2019], which adapts BERT for sentence-level representations, and more recent models like E5 [Wang et al., 2022] and BGE [Xiao et al., 2023] that achieve state-of-the-art performance on retrieval benchmarks. For multilingual applications, models like Multilingual-E5 support cross-lingual retrieval by mapping texts from different languages into a shared semantic space.
+\textbf{Generation}: The LLM generates a response conditioned on both the query and the retrieved context, ideally synthesizing information from multiple sources.
 
-The embedding process can be formalized as a function $f: \mathcal{T} \rightarrow \mathbb{R}^d$ that maps text $t \in \mathcal{T}$ to a $d$-dimensional vector. Semantic similarity between texts $t_1$ and $t_2$ is then computed using metrics such as cosine similarity:
-\begin{equation}
-    \text{sim}(t_1, t_2) = \frac{f(t_1) \cdot f(t_2)}{\|f(t_1)\| \|f(t_2)\|}
-\end{equation}
+\subsection{Limitations of Simple RAG}
 
-\subsection{Vector Databases and Approximate Nearest Neighbor Search}
+While conceptually elegant, basic RAG pipelines face several challenges in practice:
 
-Vector databases are specialized storage systems optimized for similarity search over high-dimensional embeddings. Given a query embedding, these systems efficiently retrieve the $k$ most similar vectors from potentially millions of stored embeddings.
+\textbf{Loss of Document Structure}: Traditional text extractors flatten complex structures (tables, hierarchies) into linear text, severing semantic relationships between elements \parencite{gao2023retrieval}.
 
-Exact nearest neighbor search has $O(n)$ complexity, which becomes prohibitive for large-scale applications. Vector databases therefore employ Approximate Nearest Neighbor (ANN) algorithms that trade slight accuracy reduction for dramatic speed improvements. Popular techniques include:
-\begin{itemize}
-    \item \textbf{HNSW} (Hierarchical Navigable Small World): Constructs a multi-layer graph structure enabling logarithmic search complexity [Malkov and Yashunin, 2018].
-    \item \textbf{IVF} (Inverted File Index): Partitions the vector space into clusters and searches only relevant partitions.
-    \item \textbf{Product Quantization}: Compresses vectors to reduce memory footprint while maintaining search quality.
-\end{itemize}
+\textbf{Semantic vs. Lexical Mismatch}: Dense retrieval excels at semantic similarity but struggles with exact matching requirements, such as specific codes or identifiers.
 
-Common vector database implementations include Chroma, Pinecone, Milvus, and Qdrant, each offering different trade-offs between performance, scalability, and ease of use.
+\textbf{Lost in the Middle}: \textcite{liu2024lost} demonstrated that LLMs tend to focus on information at the beginning and end of long contexts, potentially ignoring relevant content in the middle.
 
-\section{Parameter-Efficient Fine-Tuning}
+These limitations motivate the advanced RAG techniques presented in Chapter 3, including structure-preserving parsing, hybrid search, and cross-encoder reranking.
 
-\subsection{Fine-Tuning Fundamentals}
+\section{Parameter-Efficient Fine-Tuning (PEFT)}
 
-Fine-tuning adapts a pre-trained model to specific downstream tasks by continuing training on task-specific data. While effective, traditional full fine-tuning---updating all model parameters---presents challenges for large models: it requires storing separate copies of the full model for each task and demands substantial computational resources.
+\subsection{The Fine-Tuning Paradigm}
+
+Fine-tuning adapts a pre-trained model to specific tasks by continuing training on task-specific data. Traditional \textit{full fine-tuning} updates all model parameters, which becomes prohibitively expensive for large models. For instance, fine-tuning a 7B parameter model requires significant GPU memory and storage for multiple task-specific copies.
+
+Parameter-Efficient Fine-Tuning (PEFT) methods address this challenge by updating only a small subset of parameters while keeping the majority frozen \parencite{hu2021lora}. This approach dramatically reduces computational requirements while often matching full fine-tuning performance.
 
 \subsection{Low-Rank Adaptation (LoRA)}
 
-Low-Rank Adaptation (LoRA), introduced by Hu et al. (2021), addresses these challenges by freezing pre-trained weights and injecting trainable low-rank decomposition matrices into each layer. The key insight is that weight updates during fine-tuning have low intrinsic rank, meaning they can be effectively approximated by low-rank matrices.
+Low-Rank Adaptation (LoRA), proposed by \textcite{hu2021lora}, has emerged as the dominant PEFT technique. The key insight is that the weight updates during fine-tuning have a low intrinsic rank, meaning they can be efficiently approximated by low-rank matrices.
 
-For a pre-trained weight matrix $W_0 \in \mathbb{R}^{d \times k}$, LoRA represents the update as:
+For a pre-trained weight matrix $W_0 \in \mathbb{R}^{d \times k}$, LoRA introduces a low-rank decomposition of the update:
+
 \begin{equation}
     W = W_0 + \Delta W = W_0 + BA
 \end{equation}
-where $B \in \mathbb{R}^{d \times r}$ and $A \in \mathbb{R}^{r \times k}$ with rank $r \ll \min(d, k)$.
 
-During training, $W_0$ is frozen while $A$ and $B$ are optimized. This reduces trainable parameters from $d \times k$ to $r \times (d + k)$---a dramatic reduction when $r$ is small (typically 8--64). For example, with $r = 16$ and $d = k = 4096$, trainable parameters decrease from 16.7M to 131K per matrix.
+\noindent where $B \in \mathbb{R}^{d \times r}$ and $A \in \mathbb{R}^{r \times k}$, with the rank $r \ll \min(d, k)$. During training, $W_0$ remains frozen while only $A$ and $B$ are updated. The forward pass becomes:
 
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}[scale=0.9]
-        % Original weight matrix
-        \draw[fill=blue!20] (0,0) rectangle (2,3);
-        \node at (1, 1.5) {$W_0$};
-        \node at (1, -0.4) {Frozen};
-        
-        % Plus sign
-        \node at (2.7, 1.5) {\Large $+$};
-        
-        % LoRA matrices
-        \draw[fill=green!30] (3.4, 0.5) rectangle (4.0, 2.5);
-        \node at (3.7, 1.5) {$B$};
-        
-        \node at (4.3, 1.5) {$\times$};
-        
-        \draw[fill=green!30] (4.6, 1.0) rectangle (6.6, 2.0);
-        \node at (5.6, 1.5) {$A$};
-        
-        \node at (5.1, -0.4) {Trainable (low-rank)};
-        
-        % Equals sign
-        \node at (7.3, 1.5) {\Large $=$};
-        
-        % Result
-        \draw[fill=purple!20] (8,0) rectangle (10,3);
-        \node at (9, 1.5) {$W$};
-        \node at (9, -0.4) {Adapted};
-        
-        % Dimensions
-        \node[font=\footnotesize] at (1, 3.3) {$d \times k$};
-        \node[font=\footnotesize] at (3.7, 2.8) {$d \times r$};
-        \node[font=\footnotesize] at (5.6, 2.3) {$r \times k$};
-        
-    \end{tikzpicture}
-    \caption{LoRA: Low-Rank Adaptation. The original weight $W_0$ is frozen, while only the low-rank matrices $A$ and $B$ are trained.}
-    \label{fig:lora_diagram}
-\end{figure}
+\begin{equation}
+    h = W_0 x + BAx = W_0 x + \frac{\alpha}{r} BAx
+\end{equation}
+
+\noindent where $\alpha$ is a scaling factor that controls the magnitude of the adaptation.
+
+\subsection{Advantages of LoRA}
 
 LoRA offers several practical advantages:
-\begin{itemize}
-    \item \textbf{Memory efficiency}: Only low-rank matrices require gradient storage.
-    \item \textbf{No inference latency}: Matrices can be merged with base weights post-training.
-    \item \textbf{Task switching}: Multiple LoRA adapters can share a single base model.
-\end{itemize}
 
-\subsection{Target Modules for Adaptation}
+\textbf{Memory Efficiency}: Only the low-rank matrices need to be stored and updated, reducing memory requirements by orders of magnitude. For $r=16$ applied to a layer with $d=k=4096$, LoRA trains only 0.5\% of the original parameters.
 
-An important design choice in LoRA is selecting which layers to adapt. The original work focused on attention projection matrices ($W_Q$, $W_K$, $W_V$, $W_O$). However, subsequent research has shown that including feed-forward network (FFN) layers can improve performance for certain tasks.
+\textbf{Modular Adapters}: Different LoRA adapters can be trained for different tasks and hot-swapped at inference time without loading separate model copies.
 
-For behavioral fine-tuning---where the goal is to adapt not just what the model attends to but how it processes information---applying LoRA to both attention and FFN layers proves beneficial. This comprehensive approach enables the model to learn both new attention patterns and new transformation functions.
+\textbf{No Inference Latency}: The adapted weights can be merged back: $W = W_0 + BA$, resulting in no additional latency compared to the original model.
+
+\subsection{Target Modules and Hyperparameters}
+
+Key decisions when applying LoRA include:
+
+\textbf{Target Modules}: LoRA can be applied to various weight matrices. Common choices include attention projection matrices ($W_q$, $W_k$, $W_v$, $W_o$) and feed-forward network layers. Recent work suggests that targeting both attention and FFN layers is beneficial for behavioral adaptation tasks \parencite{dettmers2023qlora}.
+
+\textbf{Rank Selection}: Higher ranks increase capacity but also computational cost. Empirical studies suggest $r \in \{8, 16, 32\}$ is sufficient for most tasks, with diminishing returns beyond $r=64$.
+
+\textbf{Alpha Scaling}: The $\alpha$ parameter is typically set to $2r$ or kept equal to $r$, controlling the effective learning rate of the adaptation.
+
+\section{Knowledge Distillation}
+
+\subsection{Traditional Knowledge Distillation}
+
+Knowledge Distillation (KD), introduced by \textcite{hinton2015distilling}, is a model compression technique where a smaller ``student'' model learns to mimic a larger ``teacher'' model. The original formulation trains the student to match the teacher's soft probability distribution (``dark knowledge'') rather than just hard labels:
+
+\begin{equation}
+    \mathcal{L}_{KD} = \alpha \cdot \mathcal{L}_{CE}(y, p_s) + (1-\alpha) \cdot T^2 \cdot \text{KL}(p_t^{(T)} \| p_s^{(T)})
+\end{equation}
+
+\noindent where $p_t^{(T)}$ and $p_s^{(T)}$ are the softened distributions from teacher and student at temperature $T$, and $\text{KL}$ denotes Kullback-Leibler divergence.
+
+\subsection{Behavioral Distillation for LLMs}
+
+In the context of LLMs, distillation has evolved beyond probability matching to encompass \textit{behavioral distillation}---where the student learns to replicate the teacher's output patterns, reasoning styles, and domain-specific behaviors \parencite{taori2023stanford}.
+
+This approach involves:
+
+\textbf{Teacher Generation}: A powerful teacher model (e.g., GPT-4, Claude) generates high-quality responses following specific guidelines, personas, or workflows.
+
+\textbf{Student Learning}: A smaller student model is fine-tuned on these teacher-generated outputs using standard supervised learning, effectively ``distilling'' the teacher's behavioral patterns into its weights.
+
+The advantage of behavioral distillation is that it captures implicit knowledge---stylistic nuances, reasoning patterns, and domain conventions---that would be difficult to specify explicitly through rules or prompts.
+
+\section{Synthetic Data Generation}
+
+\subsection{Motivation and Principles}
+
+High-quality training data is often the bottleneck for fine-tuning specialized models. Manual annotation is expensive, slow, and difficult to scale. Synthetic data generation leverages powerful LLMs to create training examples programmatically \parencite{wang2023selfinstruct}.
+
+The key principles for effective synthetic data include:
+
+\textbf{Diversity}: Generated examples should cover the full distribution of expected inputs, including edge cases. This can be achieved through systematic variation of parameters (topics, personas, lengths, complexity levels).
+
+\textbf{Quality Control}: Automated filtering (length, repetition, format compliance) combined with human review ensures that low-quality examples don't degrade model performance.
+
+\textbf{Task Alignment}: Generated data should closely match the target task distribution, including appropriate formatting, style, and domain terminology.
+
+\subsection{Generation Strategies}
+
+Common strategies for synthetic data generation include:
+
+\textbf{Seed-based Expansion}: Start with a small set of human-written seed examples and use LLMs to generate variations, maintaining consistency with the original style.
+
+\textbf{Scenario Enumeration}: Systematically enumerate combinations of relevant factors (e.g., topic $\times$ persona $\times$ length) and generate examples for each combination.
+
+\textbf{Self-Instruct}: The model generates both instructions and responses, bootstrapping from a minimal seed set \parencite{wang2023selfinstruct}.
+
+\textbf{Multi-turn Simulation}: For conversational tasks, simulate complete dialogues with the LLM playing both sides, guided by persona descriptions and scenario constraints.
+
+\subsection{Quality-Diversity Trade-off}
+
+A critical consideration is the balance between data quantity and quality. \textcite{zhou2023lima} demonstrated that a small set of high-quality, diverse examples (1,000 samples) can outperform larger but noisier datasets for instruction following. This suggests that careful curation and diversity injection may be more valuable than simply scaling up generation volume.
 
 \section{Chapter Summary}
 
-This chapter has established the theoretical foundation for the technical contributions presented in this thesis. We introduced the Transformer architecture and its evolution into Large Language Models, explained how RAG systems address knowledge limitations through retrieval-augmented generation, discussed embedding techniques and hybrid search strategies for effective retrieval, presented LoRA as an efficient method for model adaptation, and outlined evaluation methodologies for both retrieval and generation quality.
+This chapter has introduced the theoretical foundations necessary for understanding the technical contributions in subsequent chapters. We established that LLMs face fundamental knowledge and behavior gaps when deployed in enterprise settings. RAG addresses the knowledge gap by dynamically retrieving relevant context from external sources, while PEFT enables efficient behavioral adaptation through techniques like LoRA. Knowledge distillation and synthetic data generation provide the means to create high-quality training data for specialized tasks without expensive manual annotation.
 
-With this foundation, Chapter 3 will demonstrate how these concepts are integrated into an Advanced RAG pipeline for enterprise document understanding, while Chapter 4 will apply fine-tuning techniques to adapt small language models for specialized behavioral tasks.
+Chapter 3 will apply these RAG concepts to build an advanced pipeline for multimodal document understanding, while Chapter 4 will demonstrate how PEFT combined with synthetic data generation can create specialized small language models that match or exceed the behavioral consistency of much larger prompted models.
+
+%%------------------------------- END CHAPTER 2 ------------------------------------
 
 
 %%------------------------------- chapter ------------------------------------
@@ -673,7 +696,7 @@ Additionally, there is the embedding model issue: \texttt{all-MiniLM-L6-v2} was 
 
 \subsection{Quantitative Results: Simple RAG vs. Ground Truth}
 
-We evaluated Simple RAG on 25 questions from the GPM test set (which will be discussed later) using Gemini-2.5-flash as a LLM-as-a-Judge with two metrics: Precision and Relevancy. The results are shown in Table~\ref{tab:simple_rag_performance}.
+We evaluated Simple RAG on 25 questions from the GPM test set (which will be discussed later) using \texttt{Gemma-3-12b-it} as a LLM-as-a-Judge with two metrics: Correctness and Relevancy. The results are shown in Table~\ref{tab:simple_rag_performance}.
 
 \begin{table}[H]
     \centering
@@ -682,7 +705,7 @@ We evaluated Simple RAG on 25 questions from the GPM test set (which will be dis
         \hline
         \textbf{Metric} & \textbf{Score} & \textbf{Interpretation} \\
         \hline
-        Precision & 0.66 & 66\% answers correct with respect to contexts \\
+        Correctness & 0.66 & 66\% answers correct with respect to contexts \\
         \hline
         Relevancy & 0.73 & 73\% answers relevant to the question \\
         \hline
@@ -709,9 +732,9 @@ The Pipeline is organized into two phases: \textbf{Indexing Phase} (offline, run
 
 \subsubsection{Preserving Structure with UnstructuredIO and Table Transformer}
 
-To solve the problem of losing table structure during parsing, we use UnstructuredIO---a powerful library for Document Layout Analysis. Instead of PyPDF which only extracts raw text, UnstructuredIO uses computer vision to detect regions in PDFs: Text blocks, Table regions, and Image regions. Specifically, for tables, UnstructuredIO preserves the 2D structure by converting to HTML.
+To solve the problem of losing table structure during parsing, we use UnstructuredIO \parencite{unstructured_io}---a powerful library for Document Layout Analysis. Instead of PyPDF which only extracts raw text, UnstructuredIO uses computer vision to detect regions in PDFs: Text blocks, Table regions, and Image regions. Specifically, for tables, UnstructuredIO preserves the 2D structure by converting to HTML.
 
-We use the \texttt{hi\_res} strategy of UnstructuredIO. With this strategy, UnstructuredIO treats each document page as an image and passes it through Object Detection models like YoloX or Detectron2 to classify regions in the page as Title, Text, List, Table, Image and predict ``bounding boxes'' around each component. Particularly, for regions marked as ``Table'', UnstructuredIO not only extracts text but also needs to understand the row/column structure using Table Transformer (TATR). The process works as: 
+We use the \texttt{hi\_res} strategy of UnstructuredIO. With this strategy, UnstructuredIO treats each document page as an image and passes it through Object Detection models like YoloX or Detectron2 to classify regions in the page as Title, Text, List, Table, Image and predict ``bounding boxes'' around each component. Particularly, for regions marked as ``Table'', UnstructuredIO not only extracts text but also needs to understand the row/column structure using Table Transformer (TATR) \parencite{smock2021pubtables}. The process works as: 
 \begin{enumerate}
     \item \textbf{Table Detection}: Identify table positions. 
     \item \textbf{Table Structure Recognition}: Recognize lines (cells), merged cells, and classify headers vs. body. 
@@ -893,7 +916,7 @@ To demonstrate the effectiveness of the proposed Advanced RAG architecture, we c
 
 \subsubsection{Evaluation Metrics System}
 
-We employ the RAGAS (Retrieval-Augmented Generation Assessment) evaluation framework \cite{es2023ragas} combined with the LLM-as-a-Judge methodology to ensure objective and reproducible assessment of our RAG pipeline.
+We employ the RAGAS (Retrieval-Augmented Generation Assessment) evaluation framework combined with the LLM-as-a-Judge methodology to ensure objective and reproducible assessment of our RAG pipeline.
 
 \textbf{LLM Judge Selection}: To mitigate potential bias from relying on a single evaluator model, we utilize two open-weight LLMs as judges: \textbf{Gemma-3-12B-Instruct} and \textbf{Mistral-Small-24B-Instruct-2501}.
 
@@ -1390,6 +1413,13 @@ The research has some limitations to acknowledge: the 780-conversation dataset m
 This chapter has validated hypothesis H2: fine-tuning with PEFT is an effective method to adapt model behavior for specialized tasks. Combined with Advanced RAG in Chapter 3, these two methods together address both Knowledge Gap and Behavior Gap --- the two core challenges when deploying LLMs in enterprise environments.
 
 
+
+%%------------------------------- BIBLIOGRAPHY ------------------------------------
+
+\renewcommand{\bibname}{References}
+\printbibliography[nottype=online, title={Bibliography}]
+\printbibliography[type=online, heading=webography]
+\addcontentsline{toc}{chapter}{\refname}
 
 %%------------------------------- the end. ------------------------------------
 
