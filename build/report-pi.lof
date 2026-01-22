@@ -1,0 +1,14 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Basic RAG Pipeline Architecture showing Indexing Phase (offline) and Query Phase (online)}}{6}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces LoRA: Low-Rank Adaptation. The original weight $W_0$ is frozen, while only the low-rank matrices $A$ and $B$ are trained.}}{8}{figure.caption.15}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Illustrating CCAM and GPM documentation.}}{13}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Dense Search results for the query ``HAFA006''}}{15}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Advanced RAG Pipeline Architecture Diagram}}{17}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Table extraction process using UnstructuredIO and TATR}}{18}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Comparison of the performance of embedding models on MTEB Multilingual}}{21}{figure.caption.32}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Pipeline Knowledge Distillation for Tarot Readers. The Teacher Model generates sample data, the Student Model learns from this data, and the results are evaluated by an LLM Judge and human evaluators.}}{30}{figure.caption.42}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Tarot Reader Demo Application}}{37}{figure.caption.52}%

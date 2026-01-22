@@ -4953,4 +4953,118 @@
       </bcf:constraint>
     </bcf:constraints>
     <bcf:constraints>
-    
+      <bcf:constraint type="data" datatype="isbn">
+        <bcf:field>isbn</bcf:field>
+      </bcf:constraint>
+      <bcf:constraint type="data" datatype="issn">
+        <bcf:field>issn</bcf:field>
+      </bcf:constraint>
+      <bcf:constraint type="data" datatype="ismn">
+        <bcf:field>ismn</bcf:field>
+      </bcf:constraint>
+      <bcf:constraint type="data" datatype="pattern" pattern="(?:sf|sm|sn|pf|pm|pn|pp)">
+        <bcf:field>gender</bcf:field>
+      </bcf:constraint>
+    </bcf:constraints>
+  </bcf:datamodel>
+  <!-- CITATION DATA -->
+  <!-- SECTION 0 -->
+  <bcf:bibdata section="0">
+    <bcf:datasource type="file" datatype="bibtex" glob="false">bibliography.bib</bcf:datasource>
+  </bcf:bibdata>
+  <bcf:section number="0">
+    <bcf:citekey order="1" intorder="1">vaswani2017attention</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">achiam2023gpt</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">anthropic2024claude</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">comanici2025gemini</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">grattafiori2024llama</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">team2024qwen2</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">tomshardware2024mit</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">writer2024survey</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">ji2023hallucination</bcf:citekey>
+    <bcf:citekey order="9" intorder="2">huang2023hallucination_survey</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">hoffmann2022chinchilla</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">hoffmann2022chinchilla</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">kaplan2020scaling</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">kaplan2020scaling</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">gao2023rag_survey</bcf:citekey>
+    <bcf:citekey order="14" intorder="2">li2024multimodal_rag</bcf:citekey>
+    <bcf:citekey order="15" intorder="1">hu2022lora</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">dettmers2024qlora</bcf:citekey>
+    <bcf:citekey order="17" intorder="1">taori2023alpaca</bcf:citekey>
+    <bcf:citekey order="17" intorder="2">wang2023selfinstruct</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">es2024ragas</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">zheng2023llmjudge</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">lewis2020retrieval</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">ji2023survey</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">lewis2020retrieval</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">gao2024retrievalaugmented</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">liu2024lost</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">reimers2019sentence</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">wang2024multilingual</bcf:citekey>
+    <bcf:citekey order="27" intorder="1">malkov2020efficient</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">liu2024lost</bcf:citekey>
+    <bcf:citekey order="29" intorder="1">hu2021lora</bcf:citekey>
+    <bcf:citekey order="30" intorder="1">li2021prefix</bcf:citekey>
+    <bcf:citekey order="31" intorder="1">houlsby2019adapter</bcf:citekey>
+    <bcf:citekey order="32" intorder="1">dettmers2023qlora</bcf:citekey>
+    <bcf:citekey order="33" intorder="1">hinton2015distilling</bcf:citekey>
+    <bcf:citekey order="34" intorder="1">hinton2015distilling</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">hinton2015distilling</bcf:citekey>
+    <bcf:citekey order="36" intorder="1">jiao2020tinybert</bcf:citekey>
+    <bcf:citekey order="37" intorder="1">taori2023stanford</bcf:citekey>
+    <bcf:citekey order="38" intorder="1">unstructured_io</bcf:citekey>
+    <bcf:citekey order="39" intorder="1">smock2021pubtables</bcf:citekey>
+  </bcf:section>
+  <!-- SORTING TEMPLATES -->
+  <bcf:sortingtemplate name="cms">
+    <bcf:sort order="1">
+      <bcf:sortitem order="1">presort</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="2" final="1">
+      <bcf:sortitem order="1">sortkey</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="3">
+      <bcf:sortitem order="1">sortname</bcf:sortitem>
+      <bcf:sortitem order="2">author</bcf:sortitem>
+      <bcf:sortitem order="3">namea</bcf:sortitem>
+      <bcf:sortitem order="4">editor</bcf:sortitem>
+      <bcf:sortitem order="5">nameb</bcf:sortitem>
+      <bcf:sortitem order="6">translator</bcf:sortitem>
+      <bcf:sortitem order="7">namec</bcf:sortitem>
+      <bcf:sortitem order="8">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="9">journaltitle</bcf:sortitem>
+      <bcf:sortitem order="10">organization</bcf:sortitem>
+      <bcf:sortitem order="11">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="4">
+      <bcf:sortitem order="1">sortyear</bcf:sortitem>
+      <bcf:sortitem order="2">labelyear</bcf:sortitem>
+      <bcf:sortitem order="3">year</bcf:sortitem>
+      <bcf:sortitem order="4">origyear</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="5">
+      <bcf:sortitem order="1">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="2">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="6">
+      <bcf:sortitem order="1">endyear</bcf:sortitem>
+      <bcf:sortitem order="2">eventendyear</bcf:sortitem>
+      <bcf:sortitem order="3">origendyear</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="7">
+      <bcf:sortitem order="1" pad_side="left" pad_width="4" pad_char="0">volume</bcf:sortitem>
+      <bcf:sortitem literal="1" order="2">0000</bcf:sortitem>
+    </bcf:sort>
+  </bcf:sortingtemplate>
+  <!-- DATALISTS -->
+  <bcf:datalist section="0"
+                name="cms/global//global/global"
+                type="entry"
+                sortingtemplatename="cms"
+                sortingnamekeytemplatename="global"
+                labelprefix=""
+                uniquenametemplatename="global"
+                labelalphanametemplatename="global">
+  </bcf:datalist>
+</bcf:controlfile>

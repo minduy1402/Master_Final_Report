@@ -1512,4 +1512,158 @@ Overfull \hbox (2.69142pt too wide) in paragraph at lines 701--702
 []\T1/XCharter-TLF/b/n/12 Strict Data Se-cu-rity Re-quire-ments\T1/XCharter-TLF/m/n/12 : Both fi-nan-cial doc-u-ments and med-i-cal records
  []
 
-[13 <./figures/ccam_example.png> <./figures/gpm_report_example.png>] [
+[13 <./figures/ccam_example.png> <./figures/gpm_report_example.png>] [14]
+LaTeX Font Info:    Font shape `TS1/XCharter-TLF/b/n' will be
+(Font)              scaled to size 12.0pt on input line 765.
+LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 771.
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 773.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+<figures/ccam_dense_search_failure.png, id=621, 627.34375pt x 289.08pt>
+File: figures/ccam_dense_search_failure.png Graphic file (type png)
+<use figures/ccam_dense_search_failure.png>
+Package pdftex.def Info: figures/ccam_dense_search_failure.png  used on input line 793.
+(pdftex.def)             Requested size: 364.19667pt x 167.82971pt.
+ [15{/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch1_z3wvjz.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./figures/ccam_dense_search_failure.png>]
+<figures/rag_pipeline_diagram.png, id=633, 1702.36pt x 2537.48pt>
+File: figures/rag_pipeline_diagram.png Graphic file (type png)
+<use figures/rag_pipeline_diagram.png>
+Package pdftex.def Info: figures/rag_pipeline_diagram.png  used on input line 833.
+(pdftex.def)             Requested size: 273.14923pt x 407.12794pt.
+ [16] [17 <./figures/rag_pipeline_diagram.png>]
+<figures/unstructuredio_table_detection.png, id=652, 840.13875pt x 368.37625pt>
+File: figures/unstructuredio_table_detection.png Graphic file (type png)
+<use figures/unstructuredio_table_detection.png>
+Package pdftex.def Info: figures/unstructuredio_table_detection.png  used on input line 857.
+(pdftex.def)             Requested size: 364.19667pt x 159.69151pt.
+\g__tcobox_out_iow=\write9
+\openout9 = `report-pi.listing'.
+
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 899.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
+File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
+) (build/report-pi.listing
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1.
+) [18 <./figures/unstructuredio_table_detection.png>]
+LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
+(Font)              scaled to size 10.0pt on input line 928.
+LaTeX Font Info:    Font shape `TS1/XCharter-TLF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 928.
+ [19]
+Overfull \hbox (77.66121pt too wide) in paragraph at lines 945--946
+\T1/XCharter-TLF/m/n/12 ram-e-ters). Based on the MTEB leader-board, we se-lected \T1/cmtt/m/n/12 intfloat/multilingual-e5-large-instruct\T1/XCharter-TLF/m/n/12 . 
+ []
+
+<figures/mteb_multilingual_comparison.png, id=710, 1496.59125pt x 487.8225pt>
+File: figures/mteb_multilingual_comparison.png Graphic file (type png)
+<use figures/mteb_multilingual_comparison.png>
+Package pdftex.def Info: figures/mteb_multilingual_comparison.png  used on input line 949.
+(pdftex.def)             Requested size: 364.19667pt x 118.70993pt.
+[20]
+Overfull \hbox (21.19193pt too wide) in paragraph at lines 962--963
+\T1/XCharter-TLF/m/n/12 As an-a-lyzed in sec-tion [][]3.2.3[][], queries con-tain-ing iden-ti-fier codes (like CCAM code "HAFA008")
+ []
+
+
+Overfull \hbox (18.83488pt too wide) in paragraph at lines 966--967
+\T1/XCharter-TLF/m/n/12 cap-ture spe-cific key-words (ex-act match) and Dense Search with the \T1/cmtt/m/n/12 multilingual-e5-large
+ []
+
+[21 <./figures/mteb_multilingual_comparison.png>]
+Overfull \hbox (4.29561pt too wide) in paragraph at lines 978--979
+\T1/XCharter-TLF/m/n/12 into a shared vec-tor space us-ing neu-ral en-coders. We em-ploy the \T1/cmtt/m/n/12 multilingual-e5-large
+ []
+
+[22] [23]
+Overfull \hbox (1.26167pt too wide) in paragraph at lines 1030--1031
+\T1/XCharter-TLF/m/n/12 model, we uti-lize two open-weight LLMs as judges: \T1/XCharter-TLF/b/n/12 Gemma-3-12B-Instruct \T1/XCharter-TLF/m/n/12 and \T1/XCharter-TLF/b/n/12 Mistral-
+ []
+
+[24]
+Overfull \hbox (6.44745pt too wide) in paragraph at lines 1052--1053
+[]\T1/XCharter-TLF/b/n/12 Answer Cor-rect-ness\T1/XCharter-TLF/m/n/12 : Per-forms se-man-tic com-par-i-son be-tween the system-generated
+ []
+
+[25] [26] [27]
+Chapter 4.
+[28
+
+] [29] [30]
+LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
+(Font)              scaled to size 10.95pt on input line 1271.
+ [31]
+Overfull \hbox (0.93747pt too wide) in paragraph at lines 1313--1314
+[]\T1/XCharter-TLF/b/n/12 Generate con-ver-sa-tion\T1/XCharter-TLF/m/n/12 : Teacher Model re-ceives sys-tem prompt, in-for-ma-tion about
+ []
+
+LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
+(Font)              scaled to size 10.95pt on input line 1344.
+LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 1344.
+LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
+(Font)              scaled to size 6.1pt on input line 1344.
+LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
+(Font)              scaled to size 10.95pt on input line 1344.
+LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
+(Font)              scaled to size 8.0pt on input line 1344.
+LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
+(Font)              scaled to size 6.1pt on input line 1344.
+
+Overfull \hbox (5.60388pt too wide) in paragraph at lines 1339--1356
+[]\T1/XCharter-TLF/b/n/12 Superior Performance-to-Parameter Ra-tio\T1/XCharter-TLF/m/n/12 : Ex-per-i-men-tal data on stan-dard bench-
+ []
+
+[32] [33] [34] [35]
+<figures/demo_tarot_application.png, id=830, 1137.24875pt x 814.04124pt>
+File: figures/demo_tarot_application.png Graphic file (type png)
+<use figures/demo_tarot_application.png>
+Package pdftex.def Info: figures/demo_tarot_application.png  used on input line 1499.
+(pdftex.def)             Requested size: 364.19667pt x 260.69725pt.
+ [36] [37 <./figures/demo_tarot_application.png>] [38] [39] [40
+
+]
+Overfull \hbox (27.619pt too wide) in paragraph at lines 1542--1542
+\T1/XCharter-TLF/m/n/12 Prin-ci-ples, Tax-on-omy, Chal-lenges, and Open Ques-tions.^^Q \T1/XCharter-TLF/m/it/12 arXiv preprint arXiv:2311.05232. 
+ []
+
+[41]
+Overfull \hbox (11.65685pt too wide) in paragraph at lines 1542--1542
+[][]\T1/XCharter-TLF/m/n/12 Wang, Yizhong, Yeganeh Ko-rdi, Swa-roop Mishra, Al-isa Liu, Noah A. Smith, Daniel Khashabi,
+ []
+
+[42] 
+enddocument/afterlastpage: lastpage setting LastPage.
+(build/report-pi.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+ ***********
+Package rerunfilecheck Info: File `report-pi.out' has not changed.
+(rerunfilecheck)             Checksum: 38F07D9469282F3874A627BCCE5740A8;16850.
+Package logreq Info: Writing requests to 'report-pi.run.xml'.
+\openout1 = `report-pi.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 45963 strings out of 474222
+ 900359 string characters out of 5748732
+ 2256765 words of memory out of 5000000
+ 67205 multiletter control sequences out of 15000+600000
+ 764711 words of font info for 219 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 99i,24n,117p,1058b,4039s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Roman.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharterMathMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharterMathRM.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/eurosym/feymr10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on build/report-pi.pdf (50 pages, 8537014 bytes).
+PDF statistics:
+ 1021 PDF objects out of 1200 (max. 8388607)
+ 904 compressed objects within 10 object streams
+ 276 named destinations out of 1000 (max. 500000)
+ 596 words of extra memory for PDF output out of 10000 (max. 10000000)
+

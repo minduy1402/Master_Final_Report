@@ -1,0 +1,15 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Structure Comparison: Original Table vs. Text Extracted by PyPDF}}{15}{table.caption.23}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Simple RAG Performance on GPM Test Set (25 questions)}}{16}{table.caption.25}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Results on GPM Test Set (25 questions)}}{25}{table.caption.38}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces Results on CCAM Test Set (10 scenarios)}}{25}{table.caption.39}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces Ablation Study on GPM Test Set}}{26}{table.caption.40}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Operational cost comparison. *Assuming 10K conversations × 3K tokens/conversation. **Amortized GPU cost.}}{29}{table.caption.41}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Performance comparison on standard benchmarks. Data extracted from Qwen2.5 Technical Report (2024).}}{33}{table.caption.47}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Training results on NVIDIA T4 (16GB), 10 epochs}}{34}{table.caption.49}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces LLM-as-a-Judge Results. FT = Fine-tuned. Highlighted row: best overall model.}}{35}{table.caption.50}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Human Evaluation on 30 test conversations}}{35}{table.caption.51}%

@@ -1,14 +1,14 @@
 # Fdb version 4
-["biber build/report-pi"] 1769078906.77903 "build/report-pi.bcf" "build/report-pi.bbl" "build/report-pi" 1769101714.83587 0
+["biber build/report-pi"] 1769078906.77903 "build/report-pi.bcf" "build/report-pi.bbl" "build/report-pi" 1769102706.37797 0
   "bibliography.bib" 1769070288.47203 28666 6c4ff0ae4b6ab14f0800305920175f40 ""
-  "build/report-pi.bcf" 1769101714.73639 206644 01f10f71ddc128fea6f3833022e5f75e "pdflatex"
+  "build/report-pi.bcf" 1769102706.2733 206644 01f10f71ddc128fea6f3833022e5f75e "pdflatex"
   (generated)
   "build/report-pi.bbl"
   "build/report-pi.blg"
   (rewritten before read)
-["pdflatex"] 1769101704.1424 "/home/minhduy/Documents/Projects/Master_Final_Report/report-pi.tex" "build/report-pi.pdf" "report-pi" 1769101714.83622 0
+["pdflatex"] 1769102695.58857 "/home/minhduy/Documents/Projects/Master_Final_Report/report-pi.tex" "build/report-pi.pdf" "report-pi" 1769102706.37831 0
   "/etc/texmf/web2c/texmf.cnf" 1759430234.41919 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/minhduy/Documents/Projects/Master_Final_Report/report-pi.tex" 1769101703.93225 105670 5c395d2c1a8314631429fa5a3c919157 ""
+  "/home/minhduy/Documents/Projects/Master_Final_Report/report-pi.tex" 1769102695.375 105681 e1657b8b1b60ea86efa4c4cfec229406 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch1_co4ru4.enc" 1690487475 4020 91498a27e387d1fb0a696939684f1ed8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch1_z3wvjz.enc" 1690487475 3873 383db21d454266e7a4f0cc343cbb8c64 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_3gllts.enc" 1690487475 3042 af0528c9b5197417a8fa141f64f46d39 ""
@@ -307,14 +307,14 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1767176506.15359 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1767176575 8213879 d16424704dd7bce93b09b80383a617c6 ""
-  "build/report-pi.aux" 1769101714.73039 27235 5f93b3a48f75e85cdaf5b201663dd371 "pdflatex"
+  "build/report-pi.aux" 1769102706.2683 27235 5f93b3a48f75e85cdaf5b201663dd371 "pdflatex"
   "build/report-pi.bbl" 1769078907.43768 85068 cb7f35d21c1ac82d6f47e94d81176ce8 "biber build/report-pi"
-  "build/report-pi.listing" 1769101714.25804 868 f2c544c74632b4c717405789793b1f40 "pdflatex"
-  "build/report-pi.lof" 1769101714.73823 1537 c67f87ae47cd08a820ec9dfa77e54c73 "pdflatex"
-  "build/report-pi.lot" 1769101714.73823 1503 064b8576a686517407bf906f24f0c1c1 "pdflatex"
-  "build/report-pi.out" 1769101714.73495 16850 38f07d9469282f3874a627bcce5740a8 "pdflatex"
-  "build/report-pi.run.xml" 1769101714.73823 2444 96766506c643d336b7f64b9001e074f2 "pdflatex"
-  "build/report-pi.toc" 1769101714.73823 8839 ef5e319c3a3ac23c06793682b81cb51c "pdflatex"
+  "build/report-pi.listing" 1769102705.79347 868 f2c544c74632b4c717405789793b1f40 "pdflatex"
+  "build/report-pi.lof" 1769102706.2752 1537 c67f87ae47cd08a820ec9dfa77e54c73 "pdflatex"
+  "build/report-pi.lot" 1769102706.2752 1503 064b8576a686517407bf906f24f0c1c1 "pdflatex"
+  "build/report-pi.out" 1769102706.2713 16850 38f07d9469282f3874a627bcce5740a8 "pdflatex"
+  "build/report-pi.run.xml" 1769102706.2752 2444 96766506c643d336b7f64b9001e074f2 "pdflatex"
+  "build/report-pi.toc" 1769102706.2752 8839 ef5e319c3a3ac23c06793682b81cb51c "pdflatex"
   "figures/basic_rag_pipeline.png" 1769009665.20107 4907593 3b025a22f9f52cbf3d449ae5b0588b91 ""
   "figures/ccam_dense_search_failure.png" 1768574652.55557 49560 f3eee5f52b1eb8a6a01b2b55c0757b3c ""
   "figures/ccam_example.png" 1768568967.30665 139470 530b1d1c3ac9b438724761d0d498178b ""
@@ -326,7 +326,7 @@
   "figures/mteb_multilingual_comparison.png" 1768811559.00122 136166 5c14ecfc33b3162c2261fa473f3a1a61 ""
   "figures/rag_pipeline_diagram.png" 1768832007.96927 6114498 2ea57435e302cbec40715e6caa54b651 ""
   "figures/unstructuredio_table_detection.png" 1768811559.00174 116748 39206ffe71363a366bad14dab3ef8050 ""
-  "report-pi.tex" 1769101703.93225 105670 5c395d2c1a8314631429fa5a3c919157 ""
+  "report-pi.tex" 1769102695.375 105681 e1657b8b1b60ea86efa4c4cfec229406 ""
   (generated)
   "build/report-pi.aux"
   "build/report-pi.bcf"

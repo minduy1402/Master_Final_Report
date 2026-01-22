@@ -1,0 +1,94 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}General Context}{1}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Evolution of Large Language Model}{1}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}The Research-Industrial Application Gap}{1}{subsection.1.1.2}%
+\contentsline {subsubsection}{Knowledge Gap}{1}{section*.7}%
+\contentsline {subsubsection}{Efficiency \& Behavior Gap}{2}{section*.8}%
+\contentsline {subsection}{\numberline {1.1.3}Research motivation}{2}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Internship Environment}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Problem Statement}{3}{section.1.3}%
+\contentsline {subsubsection}{Problem 1: Integration of External Knowledge from Complex Unstructured Data}{3}{section*.9}%
+\contentsline {subsubsection}{Problem 2: Behavioral Adaptation and Resource Optimization for Small Models (Behavioral Adaptation \& Efficiency)}{3}{section*.10}%
+\contentsline {section}{\numberline {1.4}Objectives and expected results}{4}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Report structure}{4}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Theoretical Background}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Retrieval-Augmented Generation (RAG)}{5}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Motivation and Core Concept}{5}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Basic RAG Pipeline Architecture}{6}{subsection.2.1.2}%
+\contentsline {subsubsection}{Indexing Phase}{6}{section*.12}%
+\contentsline {subsubsection}{Query Phase}{7}{section*.13}%
+\contentsline {section}{\numberline {2.2}Parameter-Efficient Fine-Tuning (PEFT)}{7}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}The Fine-Tuning Paradigm}{7}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Low-Rank Adaptation (LoRA)}{8}{subsection.2.2.2}%
+\contentsline {subsubsection}{Mathematical Formulation}{8}{section*.14}%
+\contentsline {subsubsection}{Parameter Efficiency Analysis}{8}{section*.16}%
+\contentsline {subsubsection}{Target Module Selection}{9}{section*.17}%
+\contentsline {subsubsection}{Inference Efficiency}{9}{section*.18}%
+\contentsline {subsection}{\numberline {2.2.3}Other PEFT Methods}{9}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Knowledge Distillation}{10}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Concept and Motivation}{10}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Distillation Objective}{10}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Distillation for LLMs}{10}{subsection.2.3.3}%
+\contentsline {subsubsection}{Logit-based Distillation}{10}{section*.19}%
+\contentsline {subsubsection}{Feature-based Distillation}{10}{section*.20}%
+\contentsline {subsubsection}{Behavioral Distillation}{11}{section*.21}%
+\contentsline {chapter}{\numberline {3}Multi-modal RAG for Complex Document Understanding}{12}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Real-world problem: Two business use cases}{12}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Finance use case: Q\&A System for SFCR Reports (GPM)}{12}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Healthcare use case: CCAM Catalog Coding Lookup (Dr. Besnier)}{12}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Technical barriers and the need for an in-house pipeline}{13}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Objective: A Unified Pipeline for All Documents}{14}{subsection.3.1.4}%
+\contentsline {section}{\numberline {3.2}Why Simple RAG Fails: An Empirical Analysis}{14}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Simple RAG Baseline Configuration}{14}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Issue 1: Loss of Table Structure}{15}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Issue 2: Failure with Exact Code Matching}{15}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Other Issues}{16}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Quantitative Results: Simple RAG vs. Ground Truth}{16}{subsection.3.2.5}%
+\contentsline {section}{\numberline {3.3}Advanced RAG Pipeline Architecture}{16}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Indexing Phase: Restructuring Knowledge}{17}{subsection.3.3.1}%
+\contentsline {subsubsection}{Preserving Structure with UnstructuredIO and Table Transformer}{17}{section*.27}%
+\contentsline {subsubsection}{Semantic Bridge: Summarization Mechanism for Multimodal Data}{19}{section*.29}%
+\contentsline {subsubsection}{Parent-Child Indexing Strategy}{20}{section*.30}%
+\contentsline {subsubsection}{Multilingual Embedding Model}{20}{section*.31}%
+\contentsline {subsection}{\numberline {3.3.2}Query Phase: Multi-modal Knowledge Query and Synthesis Mechanism}{21}{subsection.3.3.2}%
+\contentsline {subsubsection}{Hybrid Search: Combining Semantic and Keyword}{21}{section*.33}%
+\contentsline {subsubsection}{Cross-Encoder Reranking: Solving the ``Lost in the Middle'' Phenomenon}{23}{section*.34}%
+\contentsline {subsubsection}{Multimodal Generation: Synthesizing Knowledge from Text, Tables and Images}{23}{section*.35}%
+\contentsline {section}{\numberline {3.4}Experimental Evaluation}{24}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Experimental Setup}{24}{subsection.3.4.1}%
+\contentsline {subsubsection}{Test Datasets (Testbeds)}{24}{section*.36}%
+\contentsline {subsubsection}{Evaluation Metrics System}{24}{section*.37}%
+\contentsline {subsection}{\numberline {3.4.2}Comparison Results: Simple RAG vs. Advanced RAG}{25}{subsection.3.4.2}%
+\contentsline {section}{\numberline {3.5}Ablation Study: Contribution of Each Component}{26}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Detailed Analysis of Each Component}{26}{subsection.3.5.1}%
+\contentsline {section}{\numberline {3.6}Discussion and Conclusions}{26}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Contributions}{26}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Limitations and Future Directions}{27}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Conclusion}{27}{subsection.3.6.3}%
+\contentsline {chapter}{\numberline {4}Fine-tuning Small Language Models for Specialized Tasks: The Tarot Reader Case}{28}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Problem Analysis: Why is Prompt Engineering Not Enough?}{29}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Limitations of In-Context Learning for Behavioral Tasks}{29}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Specifics of the Tarot Reader Task}{29}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Research Questions}{30}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Knowledge Distillation Pipeline}{30}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Synthetic Data Generation: Distillation at the Behavioral Level}{30}{subsection.4.2.1}%
+\contentsline {subsubsection}{Objectives and Data Format}{30}{section*.43}%
+\contentsline {subsubsection}{Data Generation Strategy with Teacher Model}{31}{section*.44}%
+\contentsline {subsubsection}{Filtering and Quality Control}{32}{section*.45}%
+\contentsline {subsection}{\numberline {4.2.2}Model Selection and Training}{32}{subsection.4.2.2}%
+\contentsline {subsubsection}{Base Model Selection}{32}{section*.46}%
+\contentsline {subsubsection}{LoRA or Full Fine-tuning?}{33}{section*.48}%
+\contentsline {subsection}{\numberline {4.2.3}Evaluation: Combining LLM Judge and Human Evaluation}{33}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Experimental Results}{34}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Training Process}{34}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}LLM-as-a-Judge Results}{34}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Human Evaluation Results}{35}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Qualitative Analysis}{36}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Demo Application}{36}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Discussion and Conclusion}{37}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Answering Research Questions}{37}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Implications for AI Application Development}{38}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Limitations and Future Work}{38}{subsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.5.4}Conclusion}{38}{subsection.4.5.4}%
+\contentsline {chapter}{References}{42}{section*.54}%
