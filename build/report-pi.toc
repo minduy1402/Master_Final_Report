@@ -6,11 +6,11 @@
 \contentsline {subsubsection}{Knowledge Gap}{1}{section*.7}%
 \contentsline {subsubsection}{Efficiency \& Behavior Gap}{2}{section*.8}%
 \contentsline {subsection}{\numberline {1.1.3}Research motivation}{2}{subsection.1.1.3}%
-\contentsline {section}{\numberline {1.2}Internship Environment}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.2}Apprenticeship Environment}{2}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Problem Statement}{3}{section.1.3}%
 \contentsline {subsubsection}{Problem 1: Integration of External Knowledge from Complex Unstructured Data}{3}{section*.9}%
 \contentsline {subsubsection}{Problem 2: Behavioral Adaptation and Resource Optimization for Small Models (Behavioral Adaptation \& Efficiency)}{3}{section*.10}%
-\contentsline {section}{\numberline {1.4}Objectives and expected results}{4}{section.1.4}%
+\contentsline {section}{\numberline {1.4}Objectives of my apprenticeship}{4}{section.1.4}%
 \contentsline {section}{\numberline {1.5}Report structure}{4}{section.1.5}%
 \contentsline {chapter}{\numberline {2}Theoretical Background}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Retrieval-Augmented Generation (RAG)}{5}{section.2.1}%
@@ -67,28 +67,57 @@
 \contentsline {subsection}{\numberline {3.6.2}Limitations and Future Directions}{27}{subsection.3.6.2}%
 \contentsline {subsection}{\numberline {3.6.3}Conclusion}{27}{subsection.3.6.3}%
 \contentsline {chapter}{\numberline {4}Fine-tuning Small Language Models for Specialized Tasks: The Tarot Reader Case}{28}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Problem Analysis: Why is Prompt Engineering Not Enough?}{29}{section.4.1}%
+\contentsline {section}{\numberline {4.1}Problem Analysis: Why is Prompt Engineering Not Enough?}{28}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Limitations of In-Context Learning for Behavioral Tasks}{29}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Specifics of the Tarot Reader Task}{29}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.2}Specifics of the Tarot Reader Task}{30}{subsection.4.1.2}%
 \contentsline {subsection}{\numberline {4.1.3}Research Questions}{30}{subsection.4.1.3}%
 \contentsline {section}{\numberline {4.2}Knowledge Distillation Pipeline}{30}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Synthetic Data Generation: Distillation at the Behavioral Level}{30}{subsection.4.2.1}%
-\contentsline {subsubsection}{Objectives and Data Format}{30}{section*.43}%
-\contentsline {subsubsection}{Data Generation Strategy with Teacher Model}{31}{section*.44}%
+\contentsline {subsection}{\numberline {4.2.1}Synthetic Data Generation: Distillation at the Behavioral Level}{31}{subsection.4.2.1}%
+\contentsline {subsubsection}{Objectives and Data Format}{31}{section*.43}%
+\contentsline {subsubsection}{Data Generation Strategy with Teacher Model}{32}{section*.44}%
 \contentsline {subsubsection}{Filtering and Quality Control}{32}{section*.45}%
-\contentsline {subsection}{\numberline {4.2.2}Model Selection and Training}{32}{subsection.4.2.2}%
-\contentsline {subsubsection}{Base Model Selection}{32}{section*.46}%
+\contentsline {subsection}{\numberline {4.2.2}Model Selection and Training}{33}{subsection.4.2.2}%
+\contentsline {subsubsection}{Base Model Selection}{33}{section*.46}%
 \contentsline {subsubsection}{LoRA or Full Fine-tuning?}{33}{section*.48}%
-\contentsline {subsection}{\numberline {4.2.3}Evaluation: Combining LLM Judge and Human Evaluation}{33}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.3}Evaluation: Combining LLM Judge and Human Evaluation}{34}{subsection.4.2.3}%
 \contentsline {section}{\numberline {4.3}Experimental Results}{34}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}Training Process}{34}{subsection.4.3.1}%
 \contentsline {subsection}{\numberline {4.3.2}LLM-as-a-Judge Results}{34}{subsection.4.3.2}%
 \contentsline {subsection}{\numberline {4.3.3}Human Evaluation Results}{35}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Qualitative Analysis}{36}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.4}Qualitative Analysis with Examples}{36}{subsection.4.3.4}%
 \contentsline {section}{\numberline {4.4}Demo Application}{36}{section.4.4}%
 \contentsline {section}{\numberline {4.5}Discussion and Conclusion}{37}{section.4.5}%
 \contentsline {subsection}{\numberline {4.5.1}Answering Research Questions}{37}{subsection.4.5.1}%
 \contentsline {subsection}{\numberline {4.5.2}Implications for AI Application Development}{38}{subsection.4.5.2}%
 \contentsline {subsection}{\numberline {4.5.3}Limitations and Future Work}{38}{subsection.4.5.3}%
 \contentsline {subsection}{\numberline {4.5.4}Conclusion}{38}{subsection.4.5.4}%
-\contentsline {chapter}{References}{42}{section*.54}%
+\contentsline {chapter}{\numberline {5}Conclusion and Perspectives}{40}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Work Summary}{40}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Perspectives}{41}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Personal Appreciation}{41}{section.5.3}%
+\contentsline {chapter}{References}{45}{section*.54}%
+\contentsline {chapter}{\numberline {A}Synthetic Data Generation}{46}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Conversation Parameters}{46}{section.A.1}%
+\contentsline {section}{\numberline {A.2}System Prompt for Standard Conversations}{46}{section.A.2}%
+\contentsline {section}{\numberline {A.3}System Prompt for Doubtful Users}{47}{section.A.3}%
+\contentsline {section}{\numberline {A.4}User Prompt Template}{48}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Personality Prompt Templates}{49}{section.A.5}%
+\contentsline {chapter}{\numberline {B}Fine-tuning Configurations}{50}{appendix.B}%
+\contentsline {section}{\numberline {B.1}System Prompt for Tarot Reader Model}{50}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Training Hyperparameters}{51}{section.B.2}%
+\contentsline {section}{\numberline {B.3}LoRA Configuration}{51}{section.B.3}%
+\contentsline {section}{\numberline {B.4}Data Collator Configuration}{51}{section.B.4}%
+\contentsline {section}{\numberline {B.5}Model Checkpoints}{52}{section.B.5}%
+\contentsline {chapter}{\numberline {C}RAG Pipeline Configurations}{53}{appendix.C}%
+\contentsline {section}{\numberline {C.1}UnstructuredIO Configuration}{53}{section.C.1}%
+\contentsline {section}{\numberline {C.2}Embedding Model Configuration}{54}{section.C.2}%
+\contentsline {section}{\numberline {C.3}Summarization Prompt}{54}{section.C.3}%
+\contentsline {section}{\numberline {C.4}Image Summarization Prompt}{54}{section.C.4}%
+\contentsline {section}{\numberline {C.5}RAG System Prompt}{55}{section.C.5}%
+\contentsline {section}{\numberline {C.6}Evaluation Prompt (LLM-as-a-Judge)}{55}{section.C.6}%
+\contentsline {chapter}{\numberline {D}Tarot Card Dataset Structure}{56}{appendix.D}%
+\contentsline {section}{\numberline {D.1}Dataset Schema}{56}{section.D.1}%
+\contentsline {section}{\numberline {D.2}Card Distribution}{56}{section.D.2}%
+\contentsline {section}{\numberline {D.3}Sample Card Entry}{57}{section.D.3}%
+\contentsline {chapter}{\numberline {E}LLM-as-a-Judge Evaluation Prompts}{58}{appendix.E}%
+\contentsline {section}{\numberline {E.1}Multi-dimensional Evaluation Prompt}{58}{section.E.1}%

@@ -10,6 +10,20 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {4.1}{\ignorespaces Operational cost comparison. *Assuming 10K conversations × 3K tokens/conversation. **Amortized GPU cost.}}{29}{table.caption.41}%
 \contentsline {table}{\numberline {4.2}{\ignorespaces Performance comparison on standard benchmarks. Data extracted from Qwen2.5 Technical Report (2024).}}{33}{table.caption.47}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Training results on NVIDIA T4 (16GB), 10 epochs}}{34}{table.caption.49}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Training results on NVIDIA RTX 3090 (24GB), 10 epochs}}{34}{table.caption.49}%
 \contentsline {table}{\numberline {4.4}{\ignorespaces LLM-as-a-Judge Results. FT = Fine-tuned. Highlighted row: best overall model.}}{35}{table.caption.50}%
 \contentsline {table}{\numberline {4.5}{\ignorespaces Human Evaluation on 30 test conversations}}{35}{table.caption.51}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {A.1}{\ignorespaces Conversation Generation Parameters}}{46}{table.caption.55}%
+\contentsline {table}{\numberline {A.2}{\ignorespaces Personality-specific Prompt Templates}}{49}{table.caption.56}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {B.1}{\ignorespaces Training Configuration}}{51}{table.caption.57}%
+\contentsline {table}{\numberline {B.2}{\ignorespaces LoRA Hyperparameters}}{51}{table.caption.58}%
+\contentsline {table}{\numberline {B.3}{\ignorespaces Tested Model Configurations}}{52}{table.caption.59}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {C.1}{\ignorespaces Embedding Model Specifications}}{54}{table.caption.60}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {D.1}{\ignorespaces Tarot Card Dataset Schema}}{56}{table.caption.61}%
+\contentsline {table}{\numberline {D.2}{\ignorespaces Tarot Deck Composition}}{56}{table.caption.62}%
+\addvspace {10\p@ }

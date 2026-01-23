@@ -186,10 +186,64 @@
 @article{team2024qwen2,
   title   = {Qwen2 technical report},
   author  = {Team, Qwen and others},
-  journal = {arXiv preprint arXiv:2407.10671},
+  journal = {arXiv preprint arXiv:2412.15115v2},
   volume  = {2},
   number  = {3},
   year    = {2024}
+}
+@article{team2024qwen2.5,
+  author     = {An Yang and
+                Baosong Yang and
+                Beichen Zhang and
+                Binyuan Hui and
+                Bo Zheng and
+                Bowen Yu and
+                Chengyuan Li and
+                Dayiheng Liu and
+                Fei Huang and
+                Haoran Wei and
+                Huan Lin and
+                Jian Yang and
+                Jianhong Tu and
+                Jianwei Zhang and
+                Jianxin Yang and
+                Jiaxi Yang and
+                Jingren Zhou and
+                Junyang Lin and
+                Kai Dang and
+                Keming Lu and
+                Keqin Bao and
+                Kexin Yang and
+                Le Yu and
+                Mei Li and
+                Mingfeng Xue and
+                Pei Zhang and
+                Qin Zhu and
+                Rui Men and
+                Runji Lin and
+                Tianhao Li and
+                Tingyu Xia and
+                Xingzhang Ren and
+                Xuancheng Ren and
+                Yang Fan and
+                Yang Su and
+                Yichang Zhang and
+                Yu Wan and
+                Yuqiong Liu and
+                Zeyu Cui and
+                Zhenru Zhang and
+                Zihan Qiu},
+  title      = {Qwen2.5 Technical Report},
+  journal    = {CoRR},
+  volume     = {abs/2412.15115},
+  year       = {2024},
+  url        = {https://doi.org/10.48550/arXiv.2412.15115},
+  doi        = {10.48550/ARXIV.2412.15115},
+  eprinttype = {arXiv},
+  eprint     = {2412.15115},
+  timestamp  = {Sat, 15 Nov 2025 16:38:56 +0100},
+  biburl     = {https://dblp.org/rec/journals/corr/abs-2412-15115.bib},
+  bibsource  = {dblp computer science bibliography, https://dblp.org}
 }
 
 %% ============================================
@@ -204,14 +258,6 @@
   pages     = {9459--9474},
   year      = {2020}
 }
-
-@article{gao2023rag_survey,
-  author  = {Gao, Yunfan and Xiong, Yun and Gao, Xinyu and Jia, Kangxiang and Pan, Jinliu and Bi, Yuxi and Dai, Yi and Sun, Jiawei and Wang, Haofen},
-  title   = {Retrieval-Augmented Generation for Large Language Models: A Survey},
-  journal = {arXiv preprint arXiv:2312.10997},
-  year    = {2023}
-}
-
 @article{asai2024selfrag,
   author  = {Asai, Akari and Wu, Zeqiu and Wang, Yizhong and Sil, Avi and Hajishirzi, Hannaneh},
   title   = {Self-{RAG}: Learning to Retrieve, Generate, and Critique through Self-Reflection},
@@ -385,6 +431,25 @@
   year    = {2009}
 }
 
+@article{robertson2004understanding,
+  title     = {Understanding inverse document frequency: on theoretical arguments for IDF},
+  author    = {Robertson, Stephen},
+  journal   = {Journal of documentation},
+  volume    = {60},
+  number    = {5},
+  pages     = {503--520},
+  year      = {2004},
+  publisher = {Emerald Group Publishing Limited}
+}
+
+@inproceedings{cormack2009reciprocal,
+  title     = {Reciprocal rank fusion outperforms condorcet and individual rank learning methods},
+  author    = {Cormack, Gordon V and Clarke, Charles LA and Buettcher, Stefan},
+  booktitle = {Proceedings of the 32nd international ACM SIGIR conference on Research and development in information retrieval},
+  pages     = {758--759},
+  year      = {2009}
+}
+
 %% ============================================
 %% VECTOR DATABASES
 %% ============================================
@@ -488,7 +553,6 @@
   title        = {95 Percent of Generative {AI} Implementations in Enterprise Have No Measurable Impact on {P\&L}, Says {MIT}},
   year         = {2024},
   url          = {https://www.tomshardware.com/tech-industry/artificial-intelligence/95-percent-of-generative-ai-implementations-in-enterprise-have-no-measurable-impact-on-p-and-l-says-mit-flawed-integration-key-reason-why-ai-projects-underperform},
-  urldate      = {2025-01-15},
   organization = {Tom's Hardware}
 }
 
@@ -497,9 +561,34 @@
   title        = {Enterprise {AI} Adoption Survey: 72\% of Businesses Face Barriers to {GenAI} Adoption},
   year         = {2024},
   url          = {https://writer.com/blog/enterprise-ai-adoption-survey-press-release/},
-  urldate      = {2025-01-15},
   organization = {Writer.com}
 }
+
+@online{chromadb,
+  title = {Chroma - the open-source embedding database.},
+  url   = {https://github.com/chroma-core/chroma}
+}
+
+@online{pinecone,
+  title = {The vector database for scale in production},
+  url   = {https://www.pinecone.io/}
+}
+
+@online{qdrant,
+  title = {High-Performance Vector Search at Scale},
+  url   = {https://qdrant.tech/}
+}
+
+@online{openai2022embeddings,
+  title = {New and improved embedding model},
+  url   = {https://openai.com/blog/new-and-improved-embedding-model}
+}
+
+@online{mteb,
+  title = {Embedding Leaderboard},
+  url   = {https://huggingface.co/spaces/mteb/leaderboard}
+}
+
 
 % ===========================================================================
 % UnstructuredIO and TABLE TRANSFORMER
@@ -628,13 +717,6 @@
   year      = {2021}
 }
 
-@inproceedings{hu2021lora,
-  title     = {LoRA: Low-rank adaptation of large language models},
-  author    = {Hu, Edward J and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
-  booktitle = {International Conference on Learning Representations (ICLR)},
-  year      = {2022}
-}
-
 @article{dettmers2023qlora,
   title   = {QLoRA: Efficient finetuning of quantized LLMs},
   author  = {Dettmers, Tim and Pagnoni, Artidoro and Holtzman, Ari and Zettlemoyer, Luke},
@@ -695,4 +777,13 @@
   journal = {Advances in Neural Information Processing Systems},
   volume  = {36},
   year    = {2023}
+}
+
+@inproceedings{houlsby2019parameter,
+  title        = {Parameter-efficient transfer learning for NLP},
+  author       = {Houlsby, Neil and Giurgiu, Andrei and Jastrzebski, Stanislaw and Morrone, Bruna and De Laroussilhe, Quentin and Gesmundo, Andrea and Attariyan, Mona and Gelly, Sylvain},
+  booktitle    = {International conference on machine learning},
+  pages        = {2790--2799},
+  year         = {2019},
+  organization = {PMLR}
 }

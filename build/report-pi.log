@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.31)  22 JAN 2026 18:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.31)  23 JAN 2026 16:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -607,83 +607,74 @@ Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
 Package csquotes Info: ... configuration file loaded successfully.
  (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.cfg
 File: csquotes.cfg 
-)) (/usr/share/texlive/texmf-dist/tex/latex/biblatex-chicago/biblatex-chicago.sty
-Package: biblatex-chicago 2022/07/02 v 3.18 biblatex style
- (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
- (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
-Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
- (/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-) (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
-Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
- (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
- (/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
-Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-)))
-\c@section@level=\count332
-) (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
  (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-) (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+ (/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)) (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count333
+\lrq@indent=\count332
  (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 )) (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-\c@tabx@nest=\count334
-\c@listtotal=\count335
-\c@listcount=\count336
-\c@liststart=\count337
-\c@liststop=\count338
-\c@citecount=\count339
-\c@citetotal=\count340
-\c@multicitecount=\count341
-\c@multicitetotal=\count342
-\c@instcount=\count343
-\c@maxnames=\count344
-\c@minnames=\count345
-\c@maxitems=\count346
-\c@minitems=\count347
-\c@citecounter=\count348
-\c@maxcitecounter=\count349
-\c@savedcitecounter=\count350
-\c@uniquelist=\count351
-\c@uniquename=\count352
-\c@refsection=\count353
-\c@refsegment=\count354
-\c@maxextratitle=\count355
-\c@maxextratitleyear=\count356
-\c@maxextraname=\count357
-\c@maxextradate=\count358
-\c@maxextraalpha=\count359
-\c@abbrvpenalty=\count360
-\c@highnamepenalty=\count361
-\c@lownamepenalty=\count362
-\c@maxparens=\count363
-\c@parenlevel=\count364
-\blx@tempcnta=\count365
-\blx@tempcntb=\count366
-\blx@tempcntc=\count367
-\c@blx@maxsection=\count368
-\blx@maxsegment@0=\count369
-\blx@notetype=\count370
-\blx@parenlevel@text=\count371
-\blx@parenlevel@foot=\count372
-\blx@sectionciteorder@0=\count373
-\blx@sectionciteorderinternal@0=\count374
-\blx@entrysetcounter=\count375
-\blx@biblioinstance=\count376
+\c@tabx@nest=\count333
+\c@listtotal=\count334
+\c@listcount=\count335
+\c@liststart=\count336
+\c@liststop=\count337
+\c@citecount=\count338
+\c@citetotal=\count339
+\c@multicitecount=\count340
+\c@multicitetotal=\count341
+\c@instcount=\count342
+\c@maxnames=\count343
+\c@minnames=\count344
+\c@maxitems=\count345
+\c@minitems=\count346
+\c@citecounter=\count347
+\c@maxcitecounter=\count348
+\c@savedcitecounter=\count349
+\c@uniquelist=\count350
+\c@uniquename=\count351
+\c@refsection=\count352
+\c@refsegment=\count353
+\c@maxextratitle=\count354
+\c@maxextratitleyear=\count355
+\c@maxextraname=\count356
+\c@maxextradate=\count357
+\c@maxextraalpha=\count358
+\c@abbrvpenalty=\count359
+\c@highnamepenalty=\count360
+\c@lownamepenalty=\count361
+\c@maxparens=\count362
+\c@parenlevel=\count363
+\blx@tempcnta=\count364
+\blx@tempcntb=\count365
+\blx@tempcntc=\count366
+\c@blx@maxsection=\count367
+\blx@maxsegment@0=\count368
+\blx@notetype=\count369
+\blx@parenlevel@text=\count370
+\blx@parenlevel@foot=\count371
+\blx@sectionciteorder@0=\count372
+\blx@sectionciteorderinternal@0=\count373
+\blx@entrysetcounter=\count374
+\blx@biblioinstance=\count375
 \labelnumberwidth=\skip66
 \labelalphawidth=\skip67
 \biblabelsep=\skip68
@@ -695,86 +686,86 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@bcfin=\read5
 \blx@bcfout=\write4
 \blx@langwohyphens=\language90
-\c@mincomprange=\count377
-\c@maxcomprange=\count378
-\c@mincompwidth=\count379
+\c@mincomprange=\count376
+\c@maxcomprange=\count377
+\c@mincompwidth=\count378
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
 File: blx-dm.def 2023/03/05 v3.19 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
-Package biblatex Info: ... file 'chicago-authordate.dbx' not found.
+Package biblatex Info: ... file 'numeric.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count380
-\c@savedafterword=\count381
-\c@annotator=\count382
-\c@savedannotator=\count383
-\c@author=\count384
-\c@savedauthor=\count385
-\c@bookauthor=\count386
-\c@savedbookauthor=\count387
-\c@commentator=\count388
-\c@savedcommentator=\count389
-\c@editor=\count390
-\c@savededitor=\count391
-\c@editora=\count392
-\c@savededitora=\count393
-\c@editorb=\count394
-\c@savededitorb=\count395
-\c@editorc=\count396
-\c@savededitorc=\count397
-\c@foreword=\count398
-\c@savedforeword=\count399
-\c@holder=\count400
-\c@savedholder=\count401
-\c@introduction=\count402
-\c@savedintroduction=\count403
-\c@namea=\count404
-\c@savednamea=\count405
-\c@nameb=\count406
-\c@savednameb=\count407
-\c@namec=\count408
-\c@savednamec=\count409
-\c@translator=\count410
-\c@savedtranslator=\count411
-\c@shortauthor=\count412
-\c@savedshortauthor=\count413
-\c@shorteditor=\count414
-\c@savedshorteditor=\count415
-\c@labelname=\count416
-\c@savedlabelname=\count417
-\c@institution=\count418
-\c@savedinstitution=\count419
-\c@lista=\count420
-\c@savedlista=\count421
-\c@listb=\count422
-\c@savedlistb=\count423
-\c@listc=\count424
-\c@savedlistc=\count425
-\c@listd=\count426
-\c@savedlistd=\count427
-\c@liste=\count428
-\c@savedliste=\count429
-\c@listf=\count430
-\c@savedlistf=\count431
-\c@location=\count432
-\c@savedlocation=\count433
-\c@organization=\count434
-\c@savedorganization=\count435
-\c@origlocation=\count436
-\c@savedoriglocation=\count437
-\c@origpublisher=\count438
-\c@savedorigpublisher=\count439
-\c@publisher=\count440
-\c@savedpublisher=\count441
-\c@language=\count442
-\c@savedlanguage=\count443
-\c@origlanguage=\count444
-\c@savedoriglanguage=\count445
-\c@pageref=\count446
-\c@savedpageref=\count447
+\c@afterword=\count379
+\c@savedafterword=\count380
+\c@annotator=\count381
+\c@savedannotator=\count382
+\c@author=\count383
+\c@savedauthor=\count384
+\c@bookauthor=\count385
+\c@savedbookauthor=\count386
+\c@commentator=\count387
+\c@savedcommentator=\count388
+\c@editor=\count389
+\c@savededitor=\count390
+\c@editora=\count391
+\c@savededitora=\count392
+\c@editorb=\count393
+\c@savededitorb=\count394
+\c@editorc=\count395
+\c@savededitorc=\count396
+\c@foreword=\count397
+\c@savedforeword=\count398
+\c@holder=\count399
+\c@savedholder=\count400
+\c@introduction=\count401
+\c@savedintroduction=\count402
+\c@namea=\count403
+\c@savednamea=\count404
+\c@nameb=\count405
+\c@savednameb=\count406
+\c@namec=\count407
+\c@savednamec=\count408
+\c@translator=\count409
+\c@savedtranslator=\count410
+\c@shortauthor=\count411
+\c@savedshortauthor=\count412
+\c@shorteditor=\count413
+\c@savedshorteditor=\count414
+\c@labelname=\count415
+\c@savedlabelname=\count416
+\c@institution=\count417
+\c@savedinstitution=\count418
+\c@lista=\count419
+\c@savedlista=\count420
+\c@listb=\count421
+\c@savedlistb=\count422
+\c@listc=\count423
+\c@savedlistc=\count424
+\c@listd=\count425
+\c@savedlistd=\count426
+\c@liste=\count427
+\c@savedliste=\count428
+\c@listf=\count429
+\c@savedlistf=\count430
+\c@location=\count431
+\c@savedlocation=\count432
+\c@organization=\count433
+\c@savedorganization=\count434
+\c@origlocation=\count435
+\c@savedoriglocation=\count436
+\c@origpublisher=\count437
+\c@savedorigpublisher=\count438
+\c@publisher=\count439
+\c@savedpublisher=\count440
+\c@language=\count441
+\c@savedlanguage=\count442
+\c@origlanguage=\count443
+\c@savedoriglanguage=\count444
+\c@pageref=\count445
+\c@savedpageref=\count446
 \shorthandwidth=\skip74
 \shortjournalwidth=\skip75
 \shortserieswidth=\skip76
@@ -798,54 +789,47 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
-\c@textcitecount=\count448
-\c@textcitetotal=\count449
-\c@textcitemaxnames=\count450
-\c@biburlbigbreakpenalty=\count451
-\c@biburlbreakpenalty=\count452
-\c@biburlnumpenalty=\count453
-\c@biburlucpenalty=\count454
-\c@biburllcpenalty=\count455
+\c@textcitecount=\count447
+\c@textcitetotal=\count448
+\c@textcitemaxnames=\count449
+\c@biburlbigbreakpenalty=\count450
+\c@biburlbreakpenalty=\count451
+\c@biburlnumpenalty=\count452
+\c@biburlucpenalty=\count453
+\c@biburllcpenalty=\count454
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count456
+\c@smartand=\count455
 )
-Package biblatex Info: Trying to load bibliography style 'chicago-authordate'...
-Package biblatex Info: ... file 'chicago-authordate.bbx' found.
- (/usr/share/texlive/texmf-dist/tex/latex/biblatex-chicago/chicago-authordate.bbx
-File: chicago-authordate.bbx 2022/11/17 v 3.18b biblatex bibliography style
-\lositemsep=\skip88
-Package biblatex Info: Delimiter 'revsdnamedelim' in context '' already defined, overwriting.
-\cms@tempcnta=\count457
-\cms@tempcntb=\count458
-\c@bbx:relatedcount=\count459
-\c@bbx:relatedtotal=\count460
-)
-Package biblatex Info: Trying to load citation style 'chicago-authordate'...
-Package biblatex Info: ... file 'chicago-authordate.cbx' found.
- (/usr/share/texlive/texmf-dist/tex/latex/biblatex-chicago/chicago-authordate.cbx
-File: chicago-authordate.cbx 2022/07/02 v 3.18 biblatex citation style
-Package biblatex Info: Trying to load citation style 'chicago-dates-common'...
-Package biblatex Info: ... file 'chicago-dates-common.cbx' found.
- (/usr/share/texlive/texmf-dist/tex/latex/biblatex-chicago/chicago-dates-common.cbx
-File: chicago-dates-common.cbx 2022/11/17 v 3.18b biblatex citation style
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count456
+\c@bbx:relatedtotal=\count457
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+File: numeric.cbx 2023/03/05 v3.19 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
 Package biblatex Info: Redefining '\footcitetext'.
-Package biblatex Info: Redefining '\footfullcite'.
-Package biblatex Info: Redefining '\fullcite'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
 Package biblatex Info: Redefining '\textcite'.
 Package biblatex Info: Redefining '\textcites'.
 Package biblatex Info: Redefining '\cites'.
 Package biblatex Info: Redefining '\parencites'.
-Package biblatex Info: Redefining '\footcites'.
-Package biblatex Info: Redefining '\footcitetexts'.
-\c@cms@punct=\count461
-Package biblatex Info: Delimiter 'dateeradelim' in context '' already defined, overwriting.
-))
+Package biblatex Info: Redefining '\smartcites'.
+)
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
@@ -861,7 +845,7 @@ Package biblatex Info: ... and expl3
 Package: xparse 2023-10-10 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
-))) (/usr/share/texlive/texmf-dist/tex/latex/pgfgantt/pgfgantt.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/pgfgantt/pgfgantt.sty
 Package: pgfgantt 2018/01/10 v5.0 Draw Gantt diagrams with TikZ
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
 File: tikzlibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
@@ -884,34 +868,34 @@ File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfcalendar.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfcalendar.code.tex
 File: pgfcalendar.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfcalendarcurrentjulian=\count462
-\pgf@cal@easter@Y=\count463
-\pgf@cal@easter@G=\count464
-\pgf@cal@easter@C=\count465
-\pgf@cal@easter@X=\count466
-\pgf@cal@easter@Z=\count467
-\pgf@cal@easter@D=\count468
-\pgf@cal@easter@E=\count469
-\pgf@cal@easter@N=\count470
-\pgf@cal@easter@M=\count471
-\pgf@cal@easter@julianday=\count472
+\pgfcalendarcurrentjulian=\count458
+\pgf@cal@easter@Y=\count459
+\pgf@cal@easter@G=\count460
+\pgf@cal@easter@C=\count461
+\pgf@cal@easter@X=\count462
+\pgf@cal@easter@Z=\count463
+\pgf@cal@easter@D=\count464
+\pgf@cal@easter@E=\count465
+\pgf@cal@easter@N=\count466
+\pgf@cal@easter@M=\count467
+\pgf@cal@easter@julianday=\count468
 ))
-\gtt@currentline=\count473
-\gtt@lasttitleline=\count474
-\gtt@currgrid=\count475
-\gtt@chartwidth=\count476
-\gtt@lasttitleslot=\count477
-\gtt@elementid=\count478
-\gtt@today@slot=\count479
-\gtt@startjulian=\count480
-\gtt@endjulian=\count481
-\gtt@chartid=\count482
-\gtt@vrule@slot=\count483
-\gtt@calendar@slots=\count484
-\gtt@calendar@weeknumber=\count485
-\gtt@calendar@startofweek=\count486
-\gtt@left@slot=\count487
-\gtt@right@slot=\count488
+\gtt@currentline=\count469
+\gtt@lasttitleline=\count470
+\gtt@currgrid=\count471
+\gtt@chartwidth=\count472
+\gtt@lasttitleslot=\count473
+\gtt@elementid=\count474
+\gtt@today@slot=\count475
+\gtt@startjulian=\count476
+\gtt@endjulian=\count477
+\gtt@chartid=\count478
+\gtt@vrule@slot=\count479
+\gtt@calendar@slots=\count480
+\gtt@calendar@weeknumber=\count481
+\gtt@calendar@startofweek=\count482
+\gtt@left@slot=\count483
+\gtt@right@slot=\count484
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2024/01/10 version 6.2.0 text color boxes
  (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
@@ -928,9 +912,9 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@upperbox=\box80
 \tcb@lowerbox=\box81
 \tcb@phantombox=\box82
-\c@tcbbreakpart=\count489
-\c@tcblayer=\count490
-\c@tcolorbox@number=\count491
+\c@tcbbreakpart=\count485
+\c@tcblayer=\count486
+\c@tcolorbox@number=\count487
 \l__tcobox_tmpa_box=\box83
 \l__tcobox_tmpa_dim=\dimen277
 \tcb@temp=\box84
@@ -949,22 +933,22 @@ Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcblistings.code.tex
 Library (tcolorbox): 'tcblistings.code.tex' version '6.2.0'
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count492
+\lst@mode=\count488
 \lst@gtempboxa=\box91
 \lst@token=\toks50
-\lst@length=\count493
+\lst@length=\count489
 \lst@currlwidth=\dimen278
-\lst@column=\count494
-\lst@pos=\count495
+\lst@column=\count490
+\lst@pos=\count491
 \lst@lostspace=\dimen279
 \lst@width=\dimen280
-\lst@newlines=\count496
-\lst@lineno=\count497
+\lst@newlines=\count492
+\lst@lineno=\count493
 \lst@maxwidth=\dimen281
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count498
-\lst@skipnumbers=\count499
+\c@lstnumber=\count494
+\lst@skipnumbers=\count495
 \lst@framebox=\box92
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
@@ -975,7 +959,7 @@ Library (tcolorbox): 'tcblistingscore.code.tex' version '6.2.0'
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbprocessing.code.tex
 Library (tcolorbox): 'tcbprocessing.code.tex' version '6.2.0'
 )
-\c@tcblisting=\count500
+\c@tcblisting=\count496
 )) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '6.2.0'
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
@@ -1002,37 +986,46 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen289
 \cmidrulekern=\dimen290
 \defaultaddspace=\dimen291
-\@cmidla=\count501
-\@cmidlb=\count502
+\@cmidla=\count497
+\@cmidlb=\count498
 \@aboverulesep=\dimen292
 \@belowrulesep=\dimen293
-\@thisruleclass=\count503
-\@lastruleclass=\count504
+\@thisruleclass=\count499
+\@lastruleclass=\count500
 \@thisrulewidth=\dimen294
+) (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\enitkv@toks@=\toks51
+\labelindent=\skip88
+\enit@outerparindent=\dimen295
+\enit@toks=\toks52
+\enit@inbox=\box95
+\enit@count@id=\count501
+\enitdp@description=\count502
 ) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count505
-\Gm@cntv=\count506
-\c@Gm@tempcnt=\count507
-\Gm@bindingoffset=\dimen295
-\Gm@wd@mp=\dimen296
-\Gm@odd@mp=\dimen297
-\Gm@even@mp=\dimen298
-\Gm@layoutwidth=\dimen299
-\Gm@layoutheight=\dimen300
-\Gm@layouthoffset=\dimen301
-\Gm@layoutvoffset=\dimen302
-\Gm@dimlist=\toks51
+\Gm@cnth=\count503
+\Gm@cntv=\count504
+\c@Gm@tempcnt=\count505
+\Gm@bindingoffset=\dimen296
+\Gm@wd@mp=\dimen297
+\Gm@odd@mp=\dimen298
+\Gm@even@mp=\dimen299
+\Gm@layoutwidth=\dimen300
+\Gm@layoutheight=\dimen301
+\Gm@layouthoffset=\dimen302
+\Gm@layoutvoffset=\dimen303
+\Gm@dimlist=\toks53
 ) (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2023/10/14 v2.0e lastpage: 2.09 or 2e? (HMM)
  (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage2e.sty
 Package: lastpage2e 2023/10/14 v2.0e Decide which 2e lastpage version to use (HMM)
  (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
 Package: lastpagemodern 2023-10-14 v2.0e Refers to last page's name (HMM; JPG)
-\c@lastpagecount=\count508
+\c@lastpagecount=\count506
 ) 
 )) (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
@@ -1059,10 +1052,18 @@ Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 ) (/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+ (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\@linkdim=\dimen303
-\Hy@linkcounter=\count509
-\Hy@pagecounter=\count510
+\c@section@level=\count507
+)
+\@linkdim=\dimen304
+\Hy@linkcounter=\count508
+\Hy@pagecounter=\count509
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -1070,7 +1071,7 @@ Now handling font encoding PD1 ...
 ) (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count511
+\Hy@SavedSpaceFactor=\count510
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -1083,17 +1084,17 @@ Package hyperref Info: Plain pages OFF on input line 4194.
 Package hyperref Info: Backreferencing OFF on input line 4199.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4446.
-\c@Hy@tempcnt=\count512
+\c@Hy@tempcnt=\count511
 LaTeX Info: Redefining \url on input line 4784.
-\XeTeXLinkMargin=\dimen304
+\XeTeXLinkMargin=\dimen305
  (/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count513
-\Field@Width=\dimen305
-\Fld@charsize=\dimen306
+\Fld@menulength=\count512
+\Field@Width=\dimen306
+\Fld@charsize=\dimen307
 Package hyperref Info: Hyper figures OFF on input line 6063.
 Package hyperref Info: Link nesting OFF on input line 6068.
 Package hyperref Info: Hyper index ON on input line 6071.
@@ -1105,9 +1106,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6093.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count514
-\c@Item=\count515
-\c@Hfootnote=\count516
+\Hy@abspage=\count513
+\c@Item=\count514
+\c@Hfootnote=\count515
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -1116,8 +1117,8 @@ File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count517
-\c@bookmark@seq@number=\count518
+\Fld@listcount=\count516
+\c@bookmark@seq@number=\count517
  (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
  (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -1127,19 +1128,19 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip98
 )
-Package hyperref Info: Option `plainpages' set `false' on input line 95.
-Package hyperref Info: Option `bookmarksopen' set `false' on input line 95.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 95.
-Package hyperref Info: Option `breaklinks' set `true' on input line 95.
-Package hyperref Info: Option `linktocpage' set `true' on input line 95.
-Package hyperref Info: Option `colorlinks' set `true' on input line 95.
-LaTeX Info: Redefining \oldstylenums on input line 148.
-LaTeX Font Info:    Trying to load font information for T1+XCharter-TLF on input line 148.
+Package hyperref Info: Option `plainpages' set `false' on input line 96.
+Package hyperref Info: Option `bookmarksopen' set `false' on input line 96.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 96.
+Package hyperref Info: Option `breaklinks' set `true' on input line 96.
+Package hyperref Info: Option `linktocpage' set `true' on input line 96.
+Package hyperref Info: Option `colorlinks' set `true' on input line 96.
+LaTeX Info: Redefining \oldstylenums on input line 159.
+LaTeX Font Info:    Trying to load font information for T1+XCharter-TLF on input line 159.
  (/usr/share/texlive/texmf-dist/tex/latex/xcharter/T1XCharter-TLF.fd
 File: T1XCharter-TLF.fd 2017/06/25 (autoinst) Font definitions for T1/XCharter-TLF.
 )
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 148.
+(Font)              scaled to size 12.0pt on input line 159.
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
@@ -1147,61 +1148,61 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
  (build/report-pi.aux)
 \openout1 = `report-pi.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/zchmi/m/it on input line 148.
-LaTeX Font Info:    Trying to load font information for OML+zchmi on input line 148.
+LaTeX Font Info:    Checking defaults for OML/zchmi/m/it on input line 159.
+LaTeX Font Info:    Trying to load font information for OML+zchmi on input line 159.
  (/usr/share/texlive/texmf-dist/tex/latex/xcharter/omlzchmi.fd
 File: omlzchmi.fd 2019/11/21 Fontinst v1.933 font definitions for OML/zchmi.
 )
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 148.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 148.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 159.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 159.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 148.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 148.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 159.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 159.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 148.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 148.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 159.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 159.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-\c@mv@tabular=\count519
-\c@mv@boldtabular=\count520
-LaTeX Info: Command `\dddot' is already robust on input line 148.
-LaTeX Info: Command `\ddddot' is already robust on input line 148.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+\c@mv@tabular=\count518
+\c@mv@boldtabular=\count519
+LaTeX Info: Command `\dddot' is already robust on input line 159.
+LaTeX Info: Command `\ddddot' is already robust on input line 159.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count521
-\scratchdimen=\dimen307
-\scratchbox=\box95
-\nofMPsegments=\count522
-\nofMParguments=\count523
-\everyMPshowfont=\toks52
-\MPscratchCnt=\count524
-\MPscratchDim=\dimen308
-\MPnumerator=\count525
-\makeMPintoPDFobject=\count526
-\everyMPtoPDFconversion=\toks53
+\scratchcounter=\count520
+\scratchdimen=\dimen308
+\scratchbox=\box96
+\nofMPsegments=\count521
+\nofMParguments=\count522
+\everyMPshowfont=\toks54
+\MPscratchCnt=\count523
+\MPscratchDim=\dimen309
+\MPnumerator=\count524
+\makeMPintoPDFobject=\count525
+\everyMPtoPDFconversion=\toks55
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1217,24 +1218,11 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-Package biblatex Info: Trying to load language 'english' -> 'cms-american'...
-Package biblatex Info: ... file 'cms-american.lbx' found.
- (/usr/share/texlive/texmf-dist/tex/latex/biblatex-chicago/cms-american.lbx
-File: cms-american.lbx 2022/07/02 v 3.18 biblatex localization
-Package biblatex Info: Trying to load language 'american'...
-Package biblatex Info: ... file 'american.lbx' found.
- (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/american.lbx
-File: american.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
-))
-Package biblatex Info: Trying to load language 'english'...
-Package biblatex Info: ... file 'english.lbx' found.
- (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
-File: english.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
-))
+)
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
@@ -1242,18 +1230,10 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'report-pi.bbl' found.
- (build/report-pi.bbl
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                houlsby2019adapter
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-)
-Package biblatex Info: Reference section=0 on input line 148.
-Package biblatex Info: Reference segment=0 on input line 148.
-\c@lstlisting=\count527
+ (build/report-pi.bbl)
+Package biblatex Info: Reference section=0 on input line 159.
+Package biblatex Info: Reference segment=0 on input line 159.
+\c@lstlisting=\count526
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1289,90 +1269,90 @@ Package biblatex Info: Reference segment=0 on input line 148.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 148.
+Package hyperref Info: Link coloring ON on input line 159.
 (build/report-pi.out) (build/report-pi.out)
 \@outlinefile=\write5
 \openout5 = `report-pi.out'.
 
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 163.
+(Font)              scaled to size 12.0pt on input line 174.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 163.
+(Font)              scaled to size 14.4pt on input line 174.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 164.
+(Font)              scaled to size 10.95pt on input line 175.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/it' will be
-(Font)              scaled to size 10.95pt on input line 164.
-<figures/logo-INSA.png, id=272, 2546.51375pt x 552.0625pt>
+(Font)              scaled to size 10.95pt on input line 175.
+<figures/logo-INSA.png, id=388, 2546.51375pt x 552.0625pt>
 File: figures/logo-INSA.png Graphic file (type png)
 <use figures/logo-INSA.png>
-Package pdftex.def Info: figures/logo-INSA.png  used on input line 190.
+Package pdftex.def Info: figures/logo-INSA.png  used on input line 201.
 (pdftex.def)             Requested size: 136.57462pt x 29.60117pt.
-LaTeX Font Info:    Trying to load font information for OT1+XCharter-TLF on input line 191.
+LaTeX Font Info:    Trying to load font information for OT1+XCharter-TLF on input line 202.
  (/usr/share/texlive/texmf-dist/tex/latex/xcharter/OT1XCharter-TLF.fd
 File: OT1XCharter-TLF.fd 2017/06/25 (autoinst) Font definitions for OT1/XCharter-TLF.
 )
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 191.
+(Font)              scaled to size 12.0pt on input line 202.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 8.8pt on input line 191.
+(Font)              scaled to size 8.8pt on input line 202.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 6.6pt on input line 191.
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 191.
+(Font)              scaled to size 6.6pt on input line 202.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 202.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 191.
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 202.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 191.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 202.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-<figures/logo-torus.png, id=274, 301.125pt x 301.8778pt>
+<figures/logo-torus.png, id=390, 301.125pt x 301.8778pt>
 File: figures/logo-torus.png Graphic file (type png)
 <use figures/logo-torus.png>
-Package pdftex.def Info: figures/logo-torus.png  used on input line 196.
+Package pdftex.def Info: figures/logo-torus.png  used on input line 207.
 (pdftex.def)             Requested size: 109.2601pt x 109.53268pt.
-<figures/logo-N7.png, id=275, 567.11874pt x 205.76875pt>
+<figures/logo-N7.png, id=391, 567.11874pt x 205.76875pt>
 File: figures/logo-N7.png Graphic file (type png)
 <use figures/logo-N7.png>
-Package pdftex.def Info: figures/logo-N7.png  used on input line 201.
+Package pdftex.def Info: figures/logo-N7.png  used on input line 212.
 (pdftex.def)             Requested size: 136.57462pt x 49.55191pt.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 207.
+(Font)              scaled to size 14.4pt on input line 218.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 24.88pt on input line 210.
+(Font)              scaled to size 24.88pt on input line 221.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 24.88pt on input line 210.
+(Font)              scaled to size 24.88pt on input line 221.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/it' will be
-(Font)              scaled to size 12.0pt on input line 222.
+(Font)              scaled to size 12.0pt on input line 233.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 268.
+(Font)              scaled to size 17.28pt on input line 279.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 17.28pt on input line 268.
+(Font)              scaled to size 17.28pt on input line 279.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_rydp4l.enc} <./figures/logo-INSA.png> <./figures/logo-torus.png
 
 pdfTeX warning: pdflatex (file ./figures/logo-torus.png): large interlaced PNG might cause out of memory (use non-interlaced PNG to fix this)
 > <./figures/logo-N7.png>]
-Overfull \hbox (1.69313pt too wide) in paragraph at lines 282--283
+Overfull \hbox (1.69313pt too wide) in paragraph at lines 293--294
 []\T1/XCharter-TLF/m/n/12 Second, we in-ves-ti-gate Parameter-Efficient Fine-Tuning (PEFT) tech-niques to adapt Small
  []
 
 
-Overfull \hbox (4.80888pt too wide) in paragraph at lines 282--283
+Overfull \hbox (4.80888pt too wide) in paragraph at lines 293--294
 \T1/XCharter-TLF/m/n/12 Lan-guage Mod-els (SLMs) for persona-based con-ver-sa-tional tasks. Us-ing be-hav-ioral knowl-
  []
 
 
-Overfull \hbox (8.74182pt too wide) in paragraph at lines 287--288
+Overfull \hbox (8.74182pt too wide) in paragraph at lines 298--299
 []\T1/XCharter-TLF/b/n/12 Keywords: \T1/XCharter-TLF/m/n/12 Large Lan-guage Mod-els, Retrieval-Augmented Gen-er-a-tion, Parameter-Efficient
  []
 
 
-Overfull \hbox (1.05202pt too wide) in paragraph at lines 287--288
+Overfull \hbox (1.05202pt too wide) in paragraph at lines 298--299
 \T1/XCharter-TLF/m/n/12 Fine-Tuning, LoRA, Knowl-edge Dis-til-la-tion, Mul-ti-modal Doc-u-ment Un-der-stand-ing, Small
  []
 
@@ -1380,22 +1360,22 @@ Overfull \hbox (1.05202pt too wide) in paragraph at lines 287--288
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.296 \chapter
+l.307 \chapter
               *{Acknowledgement} [1
 
 ] [2
 
 ] (build/report-pi.toc [3
 
-] [4])
+] [4] [5])
 \tf@toc=\write6
 \openout6 = `report-pi.toc'.
 
- [5] (build/report-pi.lof)
+ [6] (build/report-pi.lof)
 \tf@lof=\write7
 \openout7 = `report-pi.lof'.
 
- [6
+ [7
 
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_3gllts.enc}] (build/report-pi.lot
 LaTeX Font Info:    Trying to load font information for TS1+XCharter-TLF on input line 11.
@@ -1408,140 +1388,137 @@ LaTeX Font Info:    Font shape `TS1/XCharter-TLF/m/n' will be
 \tf@lot=\write8
 \openout8 = `report-pi.lot'.
 
- [7
+ [8
 
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch1_co4ru4.enc}]
 Chapter 1.
 [1
 
-] [2] [3] [4]
+] [2]
+Overfull \hbox (17.11772pt too wide) in paragraph at lines 425--427
+\T1/XCharter-TLF/m/n/12 Clients busi-nesses (such as in-sur-ance com-pa-nies, health-care fa-cil-i-ties) pos-sess large amounts
+ []
+
+[3] [4]
 Chapter 2.
 
-Overfull \hbox (12.246pt too wide) in paragraph at lines 437--438
+Overfull \hbox (12.246pt too wide) in paragraph at lines 460--461
 \T1/XCharter-TLF/m/n/12 Retrieval-Augmented Gen-er-a-tion (RAG) for knowl-edge in-te-gra-tion, and Parameter-Efficient
  []
 
-<figures/basic_rag_pipeline.png, id=503, 2665.96pt x 1606.0pt>
+<figures/basic_rag_pipeline.png, id=671, 2665.96pt x 1606.0pt>
 File: figures/basic_rag_pipeline.png Graphic file (type png)
 <use figures/basic_rag_pipeline.png>
-Package pdftex.def Info: figures/basic_rag_pipeline.png  used on input line 455.
+Package pdftex.def Info: figures/basic_rag_pipeline.png  used on input line 478.
 (pdftex.def)             Requested size: 386.96027pt x 233.09683pt.
 [5
 
 ] [6 <./figures/basic_rag_pipeline.png>]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 488.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 511.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ) [7{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 518.
+(Font)              scaled to size 12.0pt on input line 541.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 8.8pt on input line 518.
+(Font)              scaled to size 8.8pt on input line 541.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 6.6pt on input line 518.
+(Font)              scaled to size 6.6pt on input line 541.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 533.
+(Font)              scaled to size 17.28pt on input line 556.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 12.5pt on input line 533.
+(Font)              scaled to size 12.5pt on input line 556.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 9.4pt on input line 533.
+(Font)              scaled to size 9.4pt on input line 556.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 17.28pt on input line 533.
+(Font)              scaled to size 17.28pt on input line 556.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 12.5pt on input line 533.
+(Font)              scaled to size 12.5pt on input line 556.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 9.4pt on input line 533.
+(Font)              scaled to size 9.4pt on input line 556.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 555.
+(Font)              scaled to size 10.0pt on input line 578.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 555.
+(Font)              scaled to size 10.0pt on input line 578.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 555.
+(Font)              scaled to size 7.3pt on input line 578.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 555.
+(Font)              scaled to size 5.5pt on input line 578.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 555.
+(Font)              scaled to size 10.0pt on input line 578.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 7.3pt on input line 555.
+(Font)              scaled to size 7.3pt on input line 578.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 5.5pt on input line 555.
+(Font)              scaled to size 5.5pt on input line 578.
  [8{/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_uaipw4.enc}]
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 8.8pt on input line 592.
+(Font)              scaled to size 8.8pt on input line 615.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 6.6pt on input line 592.
-
-Overfull \hbox (10.01508pt too wide) in paragraph at lines 600--601
-[]\T1/XCharter-TLF/b/n/12 Prefix Tun-ing \T1/XCharter-TLF/m/n/12 ([]Li and Liang [][]2021[][]): Prepends train-able con-tin-u-ous vec-tors (``soft prompts'')
- []
-
-
-LaTeX Warning: Citation 'houlsby2019adapter' on page 9 undefined on input line 602.
-
-[9] [10] [11]
+(Font)              scaled to size 6.6pt on input line 615.
+ [9] [10] [11]
 Chapter 3.
 
-Overfull \hbox (1.49802pt too wide) in paragraph at lines 670--671
+Overfull \hbox (1.49802pt too wide) in paragraph at lines 693--694
 []\T1/XCharter-TLF/m/n/12 Crucial knowl-edge is of-ten not found in plain text but is con-densed into multi-dimensional
  []
 
 
-Overfull \hbox (14.57056pt too wide) in paragraph at lines 672--672
+Overfull \hbox (14.57056pt too wide) in paragraph at lines 695--695
 []\T1/XCharter-TLF/b/n/14.4 Healthcare use case: CCAM Cat-a-log Cod-ing Lookup (Dr. Besnier) 
  []
 
-<figures/ccam_example.png, id=598, 550.055pt x 719.68875pt>
+<figures/ccam_example.png, id=773, 550.055pt x 719.68875pt>
 File: figures/ccam_example.png Graphic file (type png)
 <use figures/ccam_example.png>
-Package pdftex.def Info: figures/ccam_example.png  used on input line 679.
+Package pdftex.def Info: figures/ccam_example.png  used on input line 702.
 (pdftex.def)             Requested size: 204.85846pt x 268.03772pt.
-<figures/gpm_report_example.png, id=599, 550.055pt x 719.68875pt>
+<figures/gpm_report_example.png, id=774, 550.055pt x 719.68875pt>
 File: figures/gpm_report_example.png Graphic file (type png)
 <use figures/gpm_report_example.png>
-Package pdftex.def Info: figures/gpm_report_example.png  used on input line 685.
+Package pdftex.def Info: figures/gpm_report_example.png  used on input line 708.
 (pdftex.def)             Requested size: 204.85846pt x 268.03772pt.
 [12
 
 ]
-Overfull \hbox (0.86699pt too wide) in paragraph at lines 698--699
+Overfull \hbox (0.86699pt too wide) in paragraph at lines 721--722
 \T1/XCharter-TLF/m/n/12 The com-mon-al-i-ties be-tween these two use-cases iden-ti-fied three main bar-ri-ers that forced
  []
 
 
-Overfull \hbox (2.69142pt too wide) in paragraph at lines 701--702
+Overfull \hbox (2.69142pt too wide) in paragraph at lines 724--725
 []\T1/XCharter-TLF/b/n/12 Strict Data Se-cu-rity Re-quire-ments\T1/XCharter-TLF/m/n/12 : Both fi-nan-cial doc-u-ments and med-i-cal records
  []
 
 [13 <./figures/ccam_example.png> <./figures/gpm_report_example.png>] [14]
 LaTeX Font Info:    Font shape `TS1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 765.
+(Font)              scaled to size 12.0pt on input line 788.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 771.
-LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 773.
+(Font)              scaled to size 8.0pt on input line 794.
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 796.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-<figures/ccam_dense_search_failure.png, id=621, 627.34375pt x 289.08pt>
+<figures/ccam_dense_search_failure.png, id=796, 627.34375pt x 289.08pt>
 File: figures/ccam_dense_search_failure.png Graphic file (type png)
 <use figures/ccam_dense_search_failure.png>
-Package pdftex.def Info: figures/ccam_dense_search_failure.png  used on input line 793.
+Package pdftex.def Info: figures/ccam_dense_search_failure.png  used on input line 816.
 (pdftex.def)             Requested size: 364.19667pt x 167.82971pt.
  [15{/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch1_z3wvjz.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./figures/ccam_dense_search_failure.png>]
-<figures/rag_pipeline_diagram.png, id=633, 1702.36pt x 2537.48pt>
+<figures/rag_pipeline_diagram.png, id=809, 1702.36pt x 2537.48pt>
 File: figures/rag_pipeline_diagram.png Graphic file (type png)
 <use figures/rag_pipeline_diagram.png>
-Package pdftex.def Info: figures/rag_pipeline_diagram.png  used on input line 833.
+Package pdftex.def Info: figures/rag_pipeline_diagram.png  used on input line 856.
 (pdftex.def)             Requested size: 273.14923pt x 407.12794pt.
  [16] [17 <./figures/rag_pipeline_diagram.png>]
-<figures/unstructuredio_table_detection.png, id=652, 840.13875pt x 368.37625pt>
+<figures/unstructuredio_table_detection.png, id=827, 840.13875pt x 368.37625pt>
 File: figures/unstructuredio_table_detection.png Graphic file (type png)
 <use figures/unstructuredio_table_detection.png>
-Package pdftex.def Info: figures/unstructuredio_table_detection.png  used on input line 857.
+Package pdftex.def Info: figures/unstructuredio_table_detection.png  used on input line 880.
 (pdftex.def)             Requested size: 364.19667pt x 159.69151pt.
 \g__tcobox_out_iow=\write9
 \openout9 = `report-pi.listing'.
 
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 899.
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 922.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -1553,92 +1530,210 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1.
 ) [18 <./figures/unstructuredio_table_detection.png>]
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 928.
+(Font)              scaled to size 10.0pt on input line 951.
 LaTeX Font Info:    Font shape `TS1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 928.
+(Font)              scaled to size 10.0pt on input line 951.
  [19]
-Overfull \hbox (77.66121pt too wide) in paragraph at lines 945--946
+Overfull \hbox (77.66121pt too wide) in paragraph at lines 968--969
 \T1/XCharter-TLF/m/n/12 ram-e-ters). Based on the MTEB leader-board, we se-lected \T1/cmtt/m/n/12 intfloat/multilingual-e5-large-instruct\T1/XCharter-TLF/m/n/12 . 
  []
 
-<figures/mteb_multilingual_comparison.png, id=710, 1496.59125pt x 487.8225pt>
+<figures/mteb_multilingual_comparison.png, id=885, 1496.59125pt x 487.8225pt>
 File: figures/mteb_multilingual_comparison.png Graphic file (type png)
 <use figures/mteb_multilingual_comparison.png>
-Package pdftex.def Info: figures/mteb_multilingual_comparison.png  used on input line 949.
+Package pdftex.def Info: figures/mteb_multilingual_comparison.png  used on input line 972.
 (pdftex.def)             Requested size: 364.19667pt x 118.70993pt.
 [20]
-Overfull \hbox (21.19193pt too wide) in paragraph at lines 962--963
+LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
+(Font)              scaled to size 7.3pt on input line 977.
+
+Overfull \hbox (21.19193pt too wide) in paragraph at lines 985--986
 \T1/XCharter-TLF/m/n/12 As an-a-lyzed in sec-tion [][]3.2.3[][], queries con-tain-ing iden-ti-fier codes (like CCAM code "HAFA008")
  []
 
 
-Overfull \hbox (18.83488pt too wide) in paragraph at lines 966--967
-\T1/XCharter-TLF/m/n/12 cap-ture spe-cific key-words (ex-act match) and Dense Search with the \T1/cmtt/m/n/12 multilingual-e5-large
+Overfull \hbox (45.82645pt too wide) in paragraph at lines 987--988
+\T1/XCharter-TLF/m/n/12 actly cap-ture spe-cific key-words (ex-act match) and Dense Search with the \T1/cmtt/m/n/12 multilingual-e5-large
  []
 
 [21 <./figures/mteb_multilingual_comparison.png>]
-Overfull \hbox (4.29561pt too wide) in paragraph at lines 978--979
+Overfull \hbox (4.29561pt too wide) in paragraph at lines 999--1000
 \T1/XCharter-TLF/m/n/12 into a shared vec-tor space us-ing neu-ral en-coders. We em-ploy the \T1/cmtt/m/n/12 multilingual-e5-large
  []
 
 [22] [23]
-Overfull \hbox (1.26167pt too wide) in paragraph at lines 1030--1031
+Overfull \hbox (1.26167pt too wide) in paragraph at lines 1051--1052
 \T1/XCharter-TLF/m/n/12 model, we uti-lize two open-weight LLMs as judges: \T1/XCharter-TLF/b/n/12 Gemma-3-12B-Instruct \T1/XCharter-TLF/m/n/12 and \T1/XCharter-TLF/b/n/12 Mistral-
  []
 
 [24]
-Overfull \hbox (6.44745pt too wide) in paragraph at lines 1052--1053
+Overfull \hbox (6.44745pt too wide) in paragraph at lines 1073--1074
 []\T1/XCharter-TLF/b/n/12 Answer Cor-rect-ness\T1/XCharter-TLF/m/n/12 : Per-forms se-man-tic com-par-i-son be-tween the system-generated
  []
 
 [25] [26] [27]
 Chapter 4.
+
+Overfull \hbox (14.13785pt too wide) in paragraph at lines 1200--1201
+\T1/XCharter-TLF/m/n/12 Prompt en-gi-neer-ing and in-context learn-ing (ICL) have emerged as the dom-i-nant paradigms
+ []
+
 [28
 
 ] [29] [30]
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 1271.
+(Font)              scaled to size 10.95pt on input line 1294.
  [31]
-Overfull \hbox (0.93747pt too wide) in paragraph at lines 1313--1314
+Overfull \hbox (0.93747pt too wide) in paragraph at lines 1336--1337
 []\T1/XCharter-TLF/b/n/12 Generate con-ver-sa-tion\T1/XCharter-TLF/m/n/12 : Teacher Model re-ceives sys-tem prompt, in-for-ma-tion about
  []
 
+[32]
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1344.
+(Font)              scaled to size 10.95pt on input line 1369.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 1344.
+(Font)              scaled to size 8.0pt on input line 1369.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 6.1pt on input line 1344.
+(Font)              scaled to size 6.1pt on input line 1369.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 1344.
+(Font)              scaled to size 10.95pt on input line 1369.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 1344.
+(Font)              scaled to size 8.0pt on input line 1369.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 6.1pt on input line 1344.
+(Font)              scaled to size 6.1pt on input line 1369.
 
-Overfull \hbox (5.60388pt too wide) in paragraph at lines 1339--1356
+Overfull \hbox (5.60388pt too wide) in paragraph at lines 1364--1381
 []\T1/XCharter-TLF/b/n/12 Superior Performance-to-Parameter Ra-tio\T1/XCharter-TLF/m/n/12 : Ex-per-i-men-tal data on stan-dard bench-
  []
 
-[32] [33] [34] [35]
-<figures/demo_tarot_application.png, id=830, 1137.24875pt x 814.04124pt>
+[33] [34] [35]
+<figures/demo_tarot_application.png, id=1014, 1137.24875pt x 814.04124pt>
 File: figures/demo_tarot_application.png Graphic file (type png)
 <use figures/demo_tarot_application.png>
-Package pdftex.def Info: figures/demo_tarot_application.png  used on input line 1499.
+Package pdftex.def Info: figures/demo_tarot_application.png  used on input line 1524.
 (pdftex.def)             Requested size: 364.19667pt x 260.69725pt.
- [36] [37 <./figures/demo_tarot_application.png>] [38] [39] [40
+ [36] [37 <./figures/demo_tarot_application.png>]
+Overfull \hbox (20.03012pt too wide) in paragraph at lines 1547--1548
+\T1/XCharter-TLF/m/n/12 un-der 100ms en-abling truly real-time in-ter-ac-tion, and (3) \T1/XCharter-TLF/m/it/12 be-hav-ioral re-li-a-bil-ity\T1/XCharter-TLF/m/n/12 ---internalized
+ []
+
+[38] [39]
+Chapter 5.
+
+Overfull \hbox (3.13194pt too wide) in paragraph at lines 1574--1575
+\T1/XCharter-TLF/m/n/12 tuning), ad-dress-ing the needs of en-ter-prises seek-ing to lever-age Gen-er-a-tive AI in resource-
+ []
+
+[40
 
 ]
-Overfull \hbox (27.619pt too wide) in paragraph at lines 1542--1542
-\T1/XCharter-TLF/m/n/12 Prin-ci-ples, Tax-on-omy, Chal-lenges, and Open Ques-tions.^^Q \T1/XCharter-TLF/m/it/12 arXiv preprint arXiv:2311.05232. 
+Overfull \hbox (0.34619pt too wide) in paragraph at lines 1582--1583
+[]\T1/XCharter-TLF/b/n/12 Reinforcement Learn-ing from Hu-man Feed-back (RLHF)\T1/XCharter-TLF/m/n/12 : While su-per-vised fine-tuning
  []
 
 [41]
-Overfull \hbox (11.65685pt too wide) in paragraph at lines 1542--1542
-[][]\T1/XCharter-TLF/m/n/12 Wang, Yizhong, Yeganeh Ko-rdi, Swa-roop Mishra, Al-isa Liu, Noah A. Smith, Daniel Khashabi,
+
+Package biblatex Warning: Split bibliography detected.
+(biblatex)                Many simple split bibliography setups with
+(biblatex)                non-overlapping bibliographies benefit from
+(biblatex)                setting 'defernumbers=true'.
+(biblatex)                See the documentation for details.
+(biblatex)                This warning can be suppressed with
+(biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
+
+[42]
+Overfull \hbox (33.39093pt too wide) in paragraph at lines 1607--1607
+[]\T1/XCharter-TLF/m/n/12 Aaron Grattafiori et al. ^^P  The llama 3 herd of mod-els^^Q. In: \T1/XCharter-TLF/m/it/12 arXiv preprint arXiv:2407.21783
  []
 
-[42] 
+LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/sc' will be
+(Font)              scaled to size 12.0pt on input line 1607.
+[43
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_yelf2i.enc}]
+Overfull \hbox (6.23604pt too wide) in paragraph at lines 1607--1607
+[]\T1/XCharter-TLF/m/n/12 Lianmin Zheng et al. ^^P  Judg-ing LLM-as-a-Judge with MT-Bench and Chat-bot Arena^^Q.
+ []
+
+
+Overfull \hbox (1.98148pt too wide) in paragraph at lines 1607--1607
+\T1/XCharter-TLF/m/n/12 Siamese BERT-networks^^Q. In: \T1/XCharter-TLF/m/it/12 Pro-ceed-ings of the 2019 Con-fer-ence on Em-pir-i-cal Meth-
+ []
+
+[44]
+Overfull \hbox (1.361pt too wide) in paragraph at lines 1607--1607
+\T1/XCharter-TLF/m/n/12 BM25 and Be-yond^^Q. In: \T1/XCharter-TLF/m/it/12 Foun-da-tions and Trends in In-for-ma-tion Re-trieval \T1/XCharter-TLF/m/n/12 3.4 (2009),
+ []
+
+
+Package biblatex Warning: Split bibliography detected.
+(biblatex)                Many simple split bibliography setups with
+(biblatex)                non-overlapping bibliographies benefit from
+(biblatex)                setting 'defernumbers=true'.
+(biblatex)                See the documentation for details.
+(biblatex)                This warning can be suppressed with
+(biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
+
+
+Overfull \hbox (3.25122pt too wide) in paragraph at lines 1608--1608
+\T1/cmtt/m/n/12 artificial -[] intelligence / 95 -[] percent -[] of -[] generative -[] ai -[] implementations -[]
+ []
+
+
+Overfull \hbox (2.9496pt too wide) in paragraph at lines 1608--1608
+[]\T1/XCharter-TLF/m/it/12 Chroma - the open-source em-bed-ding database. \T1/XCharter-TLF/m/sc/12 url\T1/XCharter-TLF/m/n/12 : [][]$\T1/cmtt/m/n/12 https : / / github . com / chroma -[]
+ []
+
+
+Overfull \hbox (20.98915pt too wide) in paragraph at lines 1608--1608
+[]\T1/XCharter-TLF/m/it/12 Embedding Leader-board\T1/XCharter-TLF/m/n/12 . \T1/XCharter-TLF/m/sc/12 url\T1/XCharter-TLF/m/n/12 : [][]$\T1/cmtt/m/n/12 https : / / huggingface . co / spaces / mteb / leaderboard$[][]\T1/XCharter-TLF/m/n/12 . 
+ []
+
+[45]
+Appendix A.
+
+Underfull \hbox (badness 3049) in paragraph at lines 1637--1638
+[]|\T1/cmtt/m/n/12 rude\T1/XCharter-TLF/m/n/12 , \T1/cmtt/m/n/12 doubtful\T1/XCharter-TLF/m/n/12 , \T1/cmtt/m/n/12 gentle\T1/XCharter-TLF/m/n/12 , \T1/cmtt/m/n/12 rejective\T1/XCharter-TLF/m/n/12 , \T1/cmtt/m/n/12 expressive\T1/XCharter-TLF/m/n/12 ,
+ []
+
+[46
+
+] [47] [48] [49]
+Appendix B.
+
+Overfull \hbox (1.73569pt too wide) in paragraph at lines 1791--1792
+\T1/XCharter-TLF/m/n/12 This ap-pendix pro-vides de-tailed con-fig-u-ra-tions for the fine-tuning ex-per-i-ments con-ducted
+ []
+
+[50
+
+] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 1891.
+ [51] [52]
+Appendix C.
+[53
+
+] [54] [55]
+Appendix D.
+
+Underfull \hbox (badness 1675) in paragraph at lines 2080--2081
+[]|\T1/XCharter-TLF/m/n/12 Category: ``card-box ma-jor'' or
+ []
+
+
+Overfull \hbox (37.8393pt too wide) in paragraph at lines 2100--2117
+ [][] 
+ []
+
+[56
+
+] [57]
+Appendix E.
+[58
+
+] [59] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (build/report-pi.aux)
  ***********
@@ -1646,24 +1741,24 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `report-pi.out' has not changed.
-(rerunfilecheck)             Checksum: 38F07D9469282F3874A627BCCE5740A8;16850.
+(rerunfilecheck)             Checksum: 2ABAAD1E811FF0D05727718A3CF467FB;22837.
 Package logreq Info: Writing requests to 'report-pi.run.xml'.
 \openout1 = `report-pi.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45963 strings out of 474222
- 900359 string characters out of 5748732
- 2256765 words of memory out of 5000000
- 67205 multiletter control sequences out of 15000+600000
- 764711 words of font info for 219 fonts, out of 8000000 for 9000
+ 44618 strings out of 474222
+ 865584 string characters out of 5748732
+ 2041975 words of memory out of 5000000
+ 65762 multiletter control sequences out of 15000+600000
+ 778976 words of font info for 225 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,24n,117p,1058b,4039s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Roman.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharterMathMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharterMathRM.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/eurosym/feymr10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on build/report-pi.pdf (50 pages, 8537014 bytes).
+ 99i,24n,117p,1059b,3464s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Roman.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharterMathMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharterMathRM.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/eurosym/feymr10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfit1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on build/report-pi.pdf (68 pages, 8651592 bytes).
 PDF statistics:
- 1021 PDF objects out of 1200 (max. 8388607)
- 904 compressed objects within 10 object streams
- 276 named destinations out of 1000 (max. 500000)
- 596 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1365 PDF objects out of 1440 (max. 8388607)
+ 1221 compressed objects within 13 object streams
+ 372 named destinations out of 1000 (max. 500000)
+ 828 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -24,11 +24,12 @@
 \setlength{\marginparwidth}{2cm}  % todonotes' requirements
 \usepackage{todonotes}            % todo's
 \usepackage{csquotes}             % context sensitive quotation facilities
-\usepackage[backend=biber,authordate]{biblatex-chicago}  % Chicago Manual of Style
+\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
 \usepackage{pgfgantt}             % Gantt charts
 \usepackage[breakable, listings, skins]{tcolorbox}
 \usepackage{eurosym}
 \usepackage{booktabs}
+\usepackage{enumitem}
 
 %% document dimensions
 \usepackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm,headheight=6mm,footskip=12mm]{geometry}
@@ -110,6 +111,15 @@
 %% path to the figures directory
 \graphicspath{{figures/}}
 
+\DeclareBibliographyDriver{online}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \printfield{title}%        % Chỉ in Tiêu đề
+  \newunit\newblock
+  \printfield{url}%          % Chỉ in URL
+  \usebibmacro{finentry}%
+}
+
 %% bibliography file, must be in preamble
 \addbibresource{bibliography.bib}
 \defbibheading{webography}{\section*{Webography}}
@@ -121,6 +131,7 @@
     }
   }
 }
+
 
 %% macros, to be updated as needed
 \newcommand{\school}{Institut National des Sciences Appliquées de Toulouse }
@@ -295,9 +306,19 @@ These findings contribute practical frameworks for deploying domain-specific AI 
 
 \chapter*{Acknowledgement}
 
-- Milad, Thao, Erfan, Khoi, Davis, Zung
-- TorusLab, Torus AI, 
-- 
+To begin with, I want to send my deepest thanks to Milad, my supervisor, who has guided me with great patience and understanding, especially regarding my areas for improvement. Your dedication and professionalism are truly inspiring. I have learned so much from you—not just about AI, but also about how to work with excellence.
+
+Next, I would like to thank Thang, Thao, Sy, Khoi, Dong, and everyone at Torus. Thank you for working alongside me, sharing your experiences, and helping me develop my ideas. I am also grateful for the fun times we shared, which helped relieve the pressures of work and life. You are not merely normal colleagues; you are a part of my life. A huge thank you to CEO Zung Nguyen for opening so many doors for us and supporting us enthusiastically as we honed our skills.
+
+I would also like to thank Erfan, Arina, Willy, Pierre, and the other members of Torus Lab. You are wonderful colleagues, and your support has meant a lot to me during my time here.
+
+Regarding my academic journey, I would like to thank Mr. David Bertoin, my school supervisor, Mr. Olivier Roustant, head of the ModIA program, Mrs. Karine Roques, and all the professors at INSA Toulouse. Thank you for creating a program that allows me to learn while experiencing a real-world work environment, enabling me to apply what I have learned in class effectively and constantly supporting me along the way.
+
+I sincerely thank Mr. Jean Tran Thanh Van, founder of the Hue University - INSA Toulouse cooperation program, and all the teachers at Hue University of Education. Thank you for the scholarship and the opportunity given to me; for everything you have taught me; your guidance has made it possible for me to reach this milestone today.
+
+Most importantly, a profound thank you to my parents and younger sister. You have always supported and believed in me, keeping me strong and focused on completing this path.
+
+To everyone who has played a part, directly or indirectly, in my journey and in this report: Thank you.
 
 %%------------------------------- table of contents ---------------------------
 
@@ -338,7 +359,7 @@ These findings contribute practical frameworks for deploying domain-specific AI 
 
 \subsection{Evolution of Large Language Model}
 
-Over the past decade, the fields of Artificial Intelligence (AI) and Natural Language Processing (NLP) have witnessed groundbreaking advances, particularly since the emergence of the Transformer architecture \parencite{vaswani2017attention}. Large Language Models (LLMs) such as GPT-4 \parencite{achiam2023gpt}, Claude \parencite{anthropic2024claude}, Gemini \parencite{comanici2025gemini}, and open-source models like Llama 3 \parencite{grattafiori2024llama} and Qwen 2 \parencite{team2024qwen2} have demonstrated superior capabilities in understanding context, generating text, and performing logical inference across a variety of tasks.
+Over the past decade, the fields of Artificial Intelligence (AI) and Natural Language Processing (NLP) have witnessed groundbreaking advances, particularly since the emergence of the Transformer architecture \parencite{vaswani2017attention}. Large Language Models (LLMs) such as GPT-4 \parencite{achiam2023gpt}, Claude \parencite{anthropic2024claude}, Gemini \parencite{comanici2025gemini}, and open-source models like Llama 3 \parencite{grattafiori2024llama} and Qwen 2.5 \parencite{team2024qwen2.5} have demonstrated superior capabilities in understanding context, generating text, and performing logical inference across a variety of tasks.
 
 \subsection{The Research-Industrial Application Gap}
 
@@ -371,7 +392,7 @@ Based on the above reality, this report focuses on researching and implementing 
 \end{itemize}
 
 
-\section{Internship Environment}
+\section{Apprenticeship Environment}
 
 This master's report was completed at \textbf{Torus AI}, a technology company with the mission \textit{Intelligence for Life}, specializing in providing advanced AI solutions to improve quality of life and business efficiency.
 
@@ -392,7 +413,7 @@ Resources provided:
 \begin{itemize}
   \item GPU infrastructure: NVIDIA RTX 3090 (24GB)
   \item Real-world enterprise data: Medical documents (CCAM), insurance financial reports
-  \item API access: OpenAI GPT-4, Google Gemini, Qwen API
+  \item API access: OpenAI GPT-4, Google Gemini, Qwen API and internal API for using in-house open-source models
 \end{itemize}
 
 \section{Problem Statement}
@@ -401,7 +422,7 @@ During our work in the R\&D department, we identified two core problems that nee
 
 \subsubsection{Problem 1: Integration of External Knowledge from Complex Unstructured Data}
 
-Partner businesses (such as insurance companies, healthcare facilities) possess large amounts of data in the form of PDF documents containing text, tables, and images. Traditional RAG methods based on plain text (text-only) fail to understand the semantics of complex tables or visual information \parencite{gao2023rag_survey, li2024multimodal_rag}.
+Clients businesses (such as insurance companies, healthcare facilities) possess large amounts of data in the form of PDF documents containing text, tables, and images. Traditional RAG methods based on plain text (text-only) fail to understand the semantics of complex tables or visual information \parencite{gao2024retrievalaugmented, li2024multimodal_rag}.
 The question is: How to build a Multimodal RAG pipeline capable of accurately parsing, indexing, and retrievaling information from these mixed documents to support decision-making (e.g., medical refund code lookup, financial data analysis)?
 
 \subsubsection{Problem 2: Behavioral Adaptation and Resource Optimization for Small Models (Behavioral Adaptation \& Efficiency)}
@@ -412,23 +433,25 @@ Recent research has shown that small language models can achieve competitive per
 
 The question is: Is it possible to fine-tune small language models (such as Qwen, Llama < 7B parameters) using parameter optimization techniques (PEFT/LoRA) and quantization so that they achieve inference capabilities and writing styles comparable to large models, but can be run locally at low cost?
 
-\section{Objectives and expected results}
+\section{Objectives of my apprenticeship}
 
-This report aims to achieve the following objectives:
+This report covers the following objectives:
 
 \begin{enumerate}
+  \item Reading and synthesizing the latest researches on Retrieval-Augmented Generation (RAG) and Parameter-Efficient Fine-Tuning (PEFT) techniques, to build a solid theoretical foundation.
+
   \item Design and implement an Advanced Multimodal RAG pipeline capable of accurately extracting and retrieving information from complex documents containing text, tables, and images in the medical and financial domains.
 
   \item Develop a methodology for fine-tuning Small Language Models (< 2B parameters) using PEFT/LoRA techniques to achieve domain-specific behavior adaptation while enabling cost-effective local deployment.
 
-  \item Establish \textbf{systematic evaluation frameworks} for both RAG retrieval quality using RAGAS metrics \parencite{es2024ragas} and fine-tuned model performance using LLM-as-a-Judge approaches \parencite{zheng2023llmjudge}, enabling reproducible benchmarking.
+  \item Establish systematic evaluation frameworks for both RAG retrieval quality using RAGAS metrics \parencite{es2024ragas} and fine-tuned model performance using LLM-as-a-Judge approaches \parencite{zheng2023llmjudge}, enabling reproducible benchmarking.
 
 \end{enumerate}
 
 
 \section{Report structure}
 	
-In addition to this introduction, this report is organized into four main chapters and appendices. Chapter 2 provides the theoretical background, introducing the foundational concepts of Retrieval-Augmented Generation (RAG) and Parameter-Efficient Fine-Tuning (PEFT), followed by an overview of Knowledge Distillation and Synthetic Data Generation techniques. Chapter 3 addresses the Knowledge Gap by presenting an Advanced Multimodal RAG pipeline for processing complex medical and financial documents. Chapter 4 tackles the Behavior Gap through LoRA fine-tuning of small Qwen models for persona-based tasks. Chapter 5 concludes the report by summarizing contributions and proposing future research directions. The Appendices provide supplementary materials including prompt templates and training configurations.
+In addition to this introduction, this report is organized into four main chapters and appendices. Chapter 2 provides the theoretical background, introducing the foundational concepts of RAG and PEFT, followed by an overview of Knowledge Distillation and Synthetic Data Generation techniques. Chapter 3 addresses the Knowledge Gap by presenting an Advanced Multimodal RAG pipeline for processing complex medical and financial documents. Chapter 4 tackles the Behavior Gap through LoRA fine-tuning of small Qwen models for persona-based tasks. Chapter 5 concludes the report by summarizing contributions and proposing future research directions. The Appendices provide supplementary materials including prompt templates and configurations.
 
 %%------------------------------- CHAPTER 2: THEORETICAL BACKGROUND ------------------------------------
 
@@ -464,11 +487,11 @@ The indexing phase prepares the knowledge base for efficient retrieval:
 \begin{enumerate}
     \item \textbf{Document Loading}: Raw documents (PDFs, web pages, databases) are ingested into the system.
     
-    \item \textbf{Chunking}: Documents are split into smaller segments called \textit{chunks}. The chunk size represents a trade-off: smaller chunks enable more precise retrieval but may lose context, while larger chunks preserve context but reduce retrieval granularity. Common strategies include fixed-size chunking (e.g., 512 tokens with overlap) and semantic chunking based on document structure \autocite{liu2024lost}.
+    \item \textbf{Chunking}: Documents are split into smaller segments called \textit{chunks}. The chunk size represents a trade-off: smaller chunks enable more precise retrieval but may lose context, while larger chunks preserve context but reduce retrieval granularity. Common strategies include fixed-size chunking (e.g., 512 tokens with overlap) and semantic chunking based on document structure \textcite{liu2024lost}.
     
-    \item \textbf{Embedding}: Each chunk is transformed into a dense vector representation using an embedding model. These vectors capture semantic meaning, allowing similar concepts to have proximate representations in vector space. Popular models include OpenAI's text-embedding-ada-002, Sentence-BERT \autocite{reimers2019sentence}, and multilingual variants like E5 \autocite{wang2024multilingual}.
-    
-    \item \textbf{Indexing}: Embeddings are stored in a vector database (e.g., ChromaDB, Pinecone, Qdrant) optimized for similarity search using algorithms like HNSW (Hierarchical Navigable Small World) or IVF (Inverted File Index) \autocite{malkov2020efficient}.
+    \item \textbf{Embedding}: Each chunk is transformed into a dense vector representation using an embedding model. These vectors capture semantic meaning, allowing similar concepts to have proximate representations in vector space. Popular models include OpenAI's text-embedding-ada-002 \autocite{openai2022embeddings}, Sentence-BERT \autocite{reimers2019sentence}, and multilingual variants like E5 \autocite{wang2024multilingual}.
+
+    \item \textbf{Indexing}: Embeddings are stored in a vector database (e.g., ChromaDB \autocite{chromadb}, Pinecone \autocite{pinecone}, Qdrant \autocite{qdrant}) optimized for similarity search using algorithms like HNSW (Hierarchical Navigable Small World) or IVF (Inverted File Index) \autocite{malkov2020efficient}.
 \end{enumerate}
 
 \subsubsection{Query Phase}
@@ -511,7 +534,7 @@ Parameter-Efficient Fine-Tuning (PEFT) methods address these challenges by train
 
 \subsection{Low-Rank Adaptation (LoRA)}
 
-Among PEFT methods, Low-Rank Adaptation (LoRA) \parencite{hu2021lora} has emerged as the dominant technique due to its simplicity, effectiveness, and inference efficiency. LoRA's key insight is that the weight updates during fine-tuning exhibit low intrinsic dimensionality---meaning they can be effectively approximated by low-rank matrices.
+Among PEFT methods, Low-Rank Adaptation (LoRA) \parencite{hu2022lora} has emerged as the dominant technique due to its simplicity, effectiveness, and inference efficiency. LoRA's key insight is that the weight updates during fine-tuning exhibit low intrinsic dimensionality---meaning they can be effectively approximated by low-rank matrices.
 
 \subsubsection{Mathematical Formulation}
 
@@ -599,7 +622,7 @@ While LoRA dominates current practice, other PEFT approaches offer alternative t
 
 \textbf{Prefix Tuning} \parencite{li2021prefix}: Prepends trainable continuous vectors (``soft prompts'') to the input at each transformer layer. These prefixes learn to condition the frozen model's behavior without modifying its weights.
 
-\textbf{Adapters} \parencite{houlsby2019adapter}: Insert small trainable bottleneck modules between transformer layers. Unlike LoRA, adapters add parameters to the forward pass, incurring slight inference overhead.
+\textbf{Adapters} \parencite{houlsby2019parameter}: Insert small trainable bottleneck modules between transformer layers. Unlike LoRA, adapters add parameters to the forward pass, incurring slight inference overhead.
 
 \textbf{QLoRA} \parencite{dettmers2023qlora}: Combines LoRA with 4-bit quantization, enabling fine-tuning of very large models on consumer hardware by dramatically reducing memory requirements.
 
@@ -659,7 +682,7 @@ In chapter \ref{chap:finetuning_slm_tarot}, we apply behavioral distillation to 
 
 \section{Real-world problem: Two business use cases}
 
-During our work at Torus AI, we received two requests from partners with similar challenges but in two completely different fields: finance and healthcare. Despite the distinctly different business contexts, both faced the same core problem: how to effectively extract knowledge from highly information-dense, unstructured documents --- specifically, documents containing numerous tables, images, and complex multimedia data.
+During our work at Torus AI, we received two requests from clients with similar challenges but in two completely different fields: finance and healthcare. Despite the distinctly different business contexts, both faced the same core problem: how to effectively extract knowledge from highly information-dense, unstructured documents --- specifically, documents containing numerous tables, images, and complex multimedia data.
 
 \subsection{Finance use case: Q\&A System for SFCR Reports (GPM)}
 
@@ -799,13 +822,13 @@ The retriever returns the passage containing the code at position 3, and all hig
 
 \subsection{Other Issues}
 
-The "Lost in the Middle" phenomenon discovered by Liu et al. (2023): when context contains many passages (e.g., 10-20), LLMs tend to focus on the beginning and the end, ignoring information in the middle. In our tests with top-20 retrieval, when the ground-truth passage was at position 7-12, LLM accuracy dropped by 23\% compared to when it was at position 1-3. 
+The "Lost in the Middle" phenomenon discovered by \textcite{liu2024lost}: when context contains many passages (e.g., 10-20), LLMs tend to focus on the beginning and the end, ignoring information in the middle. In our tests with top-20 retrieval, when the ground-truth passage was at position 7-12, LLM accuracy dropped by 23\% compared to when it was at position 1-3. 
 
 Additionally, there is the embedding model issue: \texttt{all-MiniLM-L6-v2} was trained primarily on English data. When applied to French documents, performance degraded significantly.
 
 \subsection{Quantitative Results: Simple RAG vs. Ground Truth}
 
-We evaluated Simple RAG on 25 questions from the GPM test set (which will be discussed later) using \texttt{Gemma-3-12b-it} as a LLM-as-a-Judge with two metrics: Correctness and Relevancy. The results are shown in Table~\ref{tab:simple_rag_performance}.
+We evaluated Simple RAG on 25 questions from the GPM test set (which will be discussed later) using Gemma-3-12b-it as a LLM-as-a-Judge with two metrics: Correctness and Relevancy. The results are shown in Table~\ref{tab:simple_rag_performance}.
 
 \begin{table}[H]
     \centering
@@ -835,7 +858,7 @@ Based on the analysis in the previous section, we designed a pipeline where each
     \label{fig:rag_pipeline_diagram}
 \end{figure}
 
-The Pipeline is organized into two phases: \textbf{Indexing Phase} (offline, runs once when new documents arrive) and \textbf{Query Phase} (online, each time a user asks a question).
+The pipeline is organized into two phases: \textbf{Indexing Phase} (offline, runs once when new documents arrive) and \textbf{Query Phase} (online, each time a user asks a question).
 
 \subsection{Indexing Phase: Restructuring Knowledge}
 
@@ -898,11 +921,11 @@ Figure \ref{fig:unstructuredio_table_detection} and the HTML output below illust
   </table>
 \end{htmlcode}
 
-Using the same table as in the PyPDF test above, we now preserve the table structure in HTML. This structure will be fed to the LLM. Using HTML as an intermediate format for tables is optimal because modern LLMs (like Gemma-3) are trained on large amounts of web data, giving them the ability to ``understand'' and ``reason'' on \texttt{<table>} structures much better than plain text.
+Using the same table as in the PyPDF test above, we now preserve the table structure in HTML. This structure will be fed to the LLM. Using HTML as an intermediate format for tables is optimal because modern LLMs (like Gemma-3-12b-it) are trained on large amounts of web data, giving them the ability to ``understand'' and ``reason'' on \texttt{<table>} structures much better than plain text.
 
 \subsubsection{Semantic Bridge: Summarization Mechanism for Multimodal Data}
 
-To bridge the semantic gap between user questions and dry numbers in tables/images, we deploy a Summarization layer. Current embedding models often struggle with:
+To bridge the semantic gap between user questions and dry numbers in tables/images, we deploy a summarization layer. Current embedding models often struggle with:
 
 \begin{itemize}
   \item \textbf{Tables}: Tables that are too large or contain pure numerical data (e.g., ``2024: 210,294'') often lack contextual keywords (like ``revenue'', ``growth''), making retrieval inaccurate.
@@ -947,7 +970,7 @@ We mentioned above that the all-Mini-LM6 embedding model doesn't perform well on
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/mteb_multilingual_comparison.png}
-    \caption{Comparison of the performance of embedding models on MTEB Multilingual}
+    \caption{Comparison of the performance of embedding models on MTEB Multilingual. Source: \autocite{mteb}}
     \label{fig:mteb_multilingual}
 \end{figure}
 
@@ -961,15 +984,13 @@ If the Indexing Phase is the process of building a knowledge ``library'', then t
 
 As analyzed in section \ref{sec:exact_code_matching_issue}, queries containing identifier codes (like CCAM code "HAFA008") often fail in Vector space (Dense Search) due to the distributed nature of embeddings. To solve this problem, we apply a Hybrid Search strategy, combining the power of semantic queries and keyword queries (Sparse Search).
 
-
-
-\textbf{Coordination mechanism}: We use the BM25 (Best Matching 25) algorithm to exactly capture specific keywords (exact match) and Dense Search with the \texttt{multilingual-e5-large} model to understand context. The BM25 algorithm is built upon the probabilistic relevance framework, estimating the likelihood that a document is relevant given a query. For a query $Q$ containing terms $q_1, q_2, \ldots, q_n$, the relevance score of document $D$ is computed as:
+\textbf{Coordination mechanism}: We use the Best Matching 25 (BM25) \autocite{robertson2009bm25} algorithm to exactly capture specific keywords (exact match) and Dense Search with the \texttt{multilingual-e5-large} model to understand context. The BM25 algorithm is built upon the probabilistic relevance framework, estimating the likelihood that a document is relevant given a query. For a query $Q$ containing terms $q_1, q_2, \ldots, q_n$, the relevance score of document $D$ is computed as:
 
 \[
 \text{BM25}(D, Q) = \sum_{i=1}^{n} \text{IDF}(q_i) \cdot \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot \left(1 - b + b \cdot \frac{|D|}{\text{avgdl}}\right)}
 \]
 
-The intuition behind this formula can be understood through its three key components. The IDF (Inverse Document Frequency) term, defined as $\text{IDF}(q_i) = \log \frac{N - n(q_i) + 0.5}{n(q_i) + 0.5}$, assigns higher weights to rare terms that appear in fewer documents, reflecting their discriminative power. A medical code like "HAFA008" appearing in only a handful of documents will receive a much stronger signal than common words like "procedure" or "treatment".
+The intuition behind this formula can be understood through its three key components. The  Inverse Document Frequency (IDF) \autocite{robertson2004understanding} term, defined as $\text{IDF}(q_i) = \log \frac{N - n(q_i) + 0.5}{n(q_i) + 0.5}$, assigns higher weights to rare terms that appear in fewer documents, reflecting their discriminative power. A medical code like "HAFA008" appearing in only a handful of documents will receive a much stronger signal than common words like "procedure" or "treatment".
 
 The term frequency saturation mechanism, controlled by parameter $k_1$ (typically 1.2--2.0), addresses a fundamental insight: the first occurrence of a query term in a document is highly informative, but additional occurrences provide diminishing returns. Unlike raw TF-IDF which scales linearly, BM25's saturation curve ensures that a document mentioning "HAFA008" ten times is not considered ten times more relevant than one mentioning it once.
 
@@ -979,7 +1000,7 @@ The document length normalization factor, governed by parameter $b \in [0,1]$, a
 
 \textbf{The Fusion Challenge.} Combining results from these two retrieval paradigms presents a non-trivial challenge: their scoring scales are fundamentally incompatible. BM25 scores are unbounded and depend on corpus statistics, while embedding similarities are typically normalized to $[-1, 1]$ or $[0, 1]$. Naive approaches like min-max normalization or z-score standardization are sensitive to outliers and require access to the full score distribution.
 
-\textbf{Reciprocal Rank Fusion.} RRF elegantly sidesteps the score calibration problem by operating solely on rank positions. Given a document $d$ retrieved by multiple systems, its fused score is:
+\textbf{Reciprocal Rank Fusion.} RRF \autocite{cormack2009reciprocal} elegantly sidesteps the score calibration problem by operating solely on rank positions. Given a document $d$ retrieved by multiple systems, its fused score is:
 
 \[
 \text{RRF}(d) = \sum_{r \in R} \frac{1}{k + \text{rank}_r(d)}
@@ -1013,7 +1034,7 @@ The result is that this pipeline not only returns answers but can also explain `
 
 \section{Experimental Evaluation}
 
-To demonstrate the effectiveness of the proposed Advanced RAG architecture, we conduct quantitative evaluation on two real-world datasets from partners, while also performing Ablation Study to determine the contribution value of each technical component.
+To demonstrate the effectiveness of the proposed Advanced RAG architecture, we conduct quantitative evaluation on two real-world datasets from clients, while also performing Ablation Study to determine the contribution value of each technical component.
 
 \subsection{Experimental Setup}
 
@@ -1153,13 +1174,13 @@ This work demonstrates the feasibility of constructing a unified RAG pipeline ca
 
 \subsection{Limitations and Future Directions}
 
-Despite these promising outcomes, several limitations warrant consideration. The integration of Cross-Encoder reranking introduces additional latency of approximately 3-5 seconds per query, while multimodal summarization further extends input processing time. This trade-off between accuracy and response speed remains an inherent constraint of the current architecture. Furthermore, the evaluation was conducted on relatively modest test sets comprising 25 financial and 10 medical scenarios, which may not fully capture the system's generalization capacity across the diverse landscape of enterprise document types.
+Despite these promising outcomes, several limitations warrant consideration. The integration of Cross-Encoder reranking introduces additional latency of approximately 2-3 seconds per query, while multimodal summarization further extends input processing time. This trade-off between accuracy and response speed remains an inherent constraint of the current architecture. Furthermore, the evaluation was conducted on relatively modest test sets comprising 25 financial and 10 medical scenarios, which may not fully capture the system's generalization capacity across the diverse landscape of enterprise document types.
 
-To address these challenges, future research will explore three primary directions. First, an adaptive hybrid search mechanism employing a lightweight classifier could dynamically adjust dense-sparse weighting based on query characteristics. Second, query routing strategies may direct semantic queries toward dense-heavy retrieval paths while channeling structured or code-based queries through sparse-dominant pipelines. Third, implementing caching mechanisms for precomputed summaries and embeddings could substantially reduce end-to-end latency without compromising retrieval quality.
+To address these challenges, future research will explore four primary directions. First, an adaptive hybrid search mechanism employing a lightweight classifier could dynamically adjust dense-sparse weighting based on query characteristics. Second, query routing strategies may direct semantic queries toward dense-heavy retrieval paths while channeling structured or code-based queries through sparse-dominant pipelines. Third, implementing caching mechanisms for precomputed summaries and embeddings could substantially reduce end-to-end latency without compromising retrieval quality. Lastly, training an embedding model and a table transformer specifically optimized for custom data formats could enhance the system's adaptability and performance in specialized domains.
 
 \subsection{Conclusion}
 
-This chapter has presented a comprehensive development process for an Advanced RAG architecture designed to tackle complex document understanding challenges in enterprise environments. Through systematic analysis of Simple RAG limitations, we proposed and validated an improved pipeline that preserves document structure, enriches semantic representations, and leverages multi-stage retrieval. The experimental findings not only fulfill the practical requirements of Torus AI's industry partners but also contribute a replicable framework to the broader RAG research community working with multimodal enterprise data.Claude is AI and can make mistakes. Please double-check responses.
+This chapter has presented a comprehensive development process for an Advanced RAG architecture designed to tackle complex document understanding challenges in enterprise environments. Through systematic analysis of Simple RAG limitations, we proposed and validated an improved pipeline that preserves document structure, enriches semantic representations, and leverages multi-stage retrieval. The experimental findings not only fulfill the practical requirements of Torus AI's industry projects but also contribute a replicable framework to the broader RAG research community working with multimodal enterprise data.
 
 %%------------------------------- CHAPTER 4: FINE-TUNING ------------------------------------
 
@@ -1176,6 +1197,8 @@ Therefore, Chapter 4 will focus on Fine-tuning techniques for Small Language Mod
 
 \section{Problem Analysis: Why is Prompt Engineering Not Enough?}
 
+Prompt engineering and in-context learning (ICL) have emerged as the dominant paradigms for adapting large language models to specific tasks without modifying model weights. By crafting system prompts with task descriptions, behavioral guidelines, and few-shot examples, practitioners can steer model outputs toward desired behaviors. This approach offers rapid iteration and zero training cost, making it an attractive first solution for domain-specific applications like our Tarot chatbot. However, when the target behavior requires consistent persona maintenance, nuanced conversational style, and domain expertise across extended multi-turn dialogues, the limitations of prompt-only approaches become apparent.
+
 \subsection{Limitations of In-Context Learning for Behavioral Tasks}
 
 A natural approach for Tarot chatbot is to use powerful models like GPT-4o or Claude 3.5 with carefully designed system prompts. However, through practical experimentation, we identified three technical barriers:
@@ -1183,7 +1206,7 @@ A natural approach for Tarot chatbot is to use powerful models like GPT-4o or Cl
 \begin{itemize}
   \item \textbf{Attention Dilution}: Although modern models support large context windows (like 128K tokens of GPT-4), empirical research on the ``Lost in the Middle'' phenomenon indicates that model performance significantly degrades when important guiding information is buried in too long a context. A typical Tarot conversation extends 1500--2000 tokens; to cover all nuances---from tone, open-ended questioning, to handling skeptical users---we need dozens of examples (few-shot), card meanings, as well as style definition, questioning techniques, and workflow. Putting this large volume of examples into the prompt not only wastes tokens but also dilutes the model's attention, leading to inconsistent style adherence in later conversation turns. Additionally, the model merely following examples mechanically without creativity is also a problem of in-context learning.
 
-  \item \textbf{Operational cost limitations}: Table \ref{tab:cost-comparison} compares costs between options. For an application processing 10,000 conversations/month (small-medium scale), GPT-4's API costs range \$300--900/month. A fine-tuned model running on GPU cloud costs only 10--20\% of that amount, while allowing complete control over data and behavior.
+  \item \textbf{Operational cost limitations}: Table \ref{tab:cost-comparison} compares costs between options. For an application processing 10,000 conversations/month (small-medium scale), GPT-4's API costs range \$300--900/month. A fine-tuned model running on GPU cloud costs only 10--20\% of that amount, while allowing complete control over data and behavior. Furthermore, successfully fine-tuning a very small but high-performance model capable of running locally on edge devices can eliminate server infrastructure costs entirely.
 
   \begin{table}[H]
       \centering
@@ -1194,8 +1217,8 @@ A natural approach for Tarot chatbot is to use powerful models like GPT-4o or Cl
           \hline
           GPT-4-turbo API & \$0.01--0.03 & \$300--900 \\
           Claude 3 Sonnet API & \$0.003--0.015 & \$90--450 \\
-          Qwen-1.5B Fine-tuned (T4) & \$0.0005** & \$50--100 \\
-          Qwen-0.5B Fine-tuned (Edge) & \$0.0001** & \$10--30  \\
+          Qwen-1.5B Fine-tuned & \$0.0005** & \$10--50 \\
+          Qwen-0.5B Fine-tuned (Edge) & \$0 & \$0  \\
           \hline
       \end{tabular}
       \label{tab:cost-comparison}
@@ -1326,7 +1349,9 @@ After generating raw data, we apply a filtering process:
     
     \item \textbf{Results}: From 366 raw conversations for each teacher model Qwen Plus and GPT-4o, we obtained 732 high-quality conversations ($\sim$585K tokens).
 
-    \item \textbf{Human review}: 20\% of samples were read by annotators to evaluate naturalness and adherence to style guide. Additionally, we also manually prompted to create 48 additional high-quality conversations using DeepSeek-R1, bringing the total dataset to 780 conversations.
+    \item \textbf{Human review}: 20\% of samples were read by annotators to evaluate naturalness and adherence to style guide. 
+
+    \item Additionally, we also manually prompted to create 48 additional high-quality conversations using DeepSeek-R1, bringing the total dataset to 780 conversations.
 \end{enumerate}
 
 \subsection{Model Selection and Training}
@@ -1382,7 +1407,7 @@ Training proceeded smoothly with loss decreasing rapidly in the first 200 steps 
 
 \begin{table}[H]
   \centering
-  \caption{Training results on NVIDIA T4 (16GB), 10 epochs}
+  \caption{Training results on NVIDIA RTX 3090 (24GB), 10 epochs}
     \begin{tabular}{|l|l|c|c|c|}
         \hline
         \textbf{Model} & \textbf{Method} & \textbf{Final Loss} & \textbf{Time} & \textbf{VRAM} \\
@@ -1462,7 +1487,7 @@ Human Evaluation results confirm findings from LLM Judge. Qwen-1.5B Fine-tuned w
 
 Error rate decreased significantly with model size (30\% → 10\% from 0.5B to 1.5B), with common errors in 0.5B being repetition and incomplete responses. Notably, GPT-4 despite having 16\% longer responses had higher error rate (32\% vs 10\%), mainly due to workflow violations --- the model often gave readings without inviting users to draw cards first.
 
-\subsection{Qualitative Analysis}
+\subsection{Qualitative Analysis with Examples}
 
 To illustrate the differences, we present two representative examples.
 
@@ -1519,7 +1544,7 @@ LoRA with rank 16 applied to both attention and FFN layers proved sufficient, ac
 
 \subsection{Implications for AI Application Development}
 
-Our findings suggest a paradigm shift in how we approach domain-specific conversational AI. Rather than relying solely on increasingly large models with elaborate prompts, practitioners can achieve superior behavioral consistency through targeted fine-tuning of small models. This approach offers three key advantages: (1) \textit{cost efficiency}---operational costs reduced by 80--90\% compared to GPT-4 API, (2) \textit{latency optimization}---time-to-first-token under 100ms enabling truly real-time interaction, and (3) \textit{behavioral reliability}---internalized patterns are more robust than in-context instructions that suffer from attention dilution.
+Our findings suggest a paradigm shift in how we approach domain-specific conversational AI. Rather than relying solely on increasingly large models with elaborate prompts, practitioners can achieve superior behavioral consistency through targeted fine-tuning of small models. This approach offers three key advantages: (1) \textit{cost efficiency}---costs reduced by 80--90\% compared to GPT-4 API, (2) \textit{latency optimization}---time-to-first-token under 100ms enabling truly real-time interaction, and (3) \textit{behavioral reliability}---internalized patterns are more robust than in-context instructions that suffer from attention dilution.
 
 The success of behavioral distillation also validates a broader principle: the appropriate model size depends not on the complexity of the domain knowledge, but on the complexity of the behavioral patterns to be learned. A Tarot reader needs to know 78 cards (simple knowledge) but must consistently exhibit empathy, follow rituals, and maintain character (complex behavior)---and our results show 1.5B parameters suffice for this behavioral complexity.
 
@@ -1534,6 +1559,46 @@ Future work should explore three directions: (1) \textit{Reinforcement Learning 
 This chapter demonstrated that the Behavior Gap in domain-specific conversational AI can be effectively addressed through knowledge distillation from large teacher models to small student models. By generating 780 high-quality synthetic conversations and fine-tuning Qwen2.5-1.5B-Instruct, we achieved behavioral consistency surpassing GPT-4 with prompt engineering---at less than 10\% of the operational cost and with sub-100ms latency suitable for real-time applications.
 
 The key insight is that behavioral expertise is compressible: while large models are necessary to \textit{generate} expert behavior (as teachers), small models are sufficient to \textit{reproduce} it (as students). This finding opens practical pathways for deploying character-consistent AI assistants in resource-constrained environments, from mobile applications to edge devices.
+%%------------------------------- CHAPTER 5: CONCLUSION AND PERSPECTIVES ------------------------------------
+
+\chapter{Conclusion and Perspectives}
+
+\section{Work Summary}
+
+This apprenticeship report has presented a comprehensive investigation into optimizing and adapting Language Models for domain-specific tasks, addressing two fundamental challenges that enterprises face when deploying Generative AI solutions: the Knowledge Gap and the Behavior Gap.
+
+To address the Knowledge Gap, Chapter 3 developed an Advanced Multimodal RAG pipeline capable of extracting and retrieving information from complex documents containing text, tables, and images. Through systematic analysis of two real-world use cases---the GPM financial reporting system and the CCAM medical coding lookup for Dr. Besnier---we demonstrated that a three-pillar approach combining Structure Preservation (via UnstructuredIO parsing), Semantic Enrichment (through multimodal summarization), and Multi-layer Retrieval (using Hybrid Search with Cross-Encoder reranking) achieves a 32.8\% improvement in answer precision and 40\% enhancement in specialized identifier retrieval. The resulting pipeline enables fully local deployment, addressing stringent data privacy requirements while optimizing operational costs.
+
+To address the Behavior Gap, Chapter 4 explored Knowledge Distillation and Parameter-Efficient Fine-Tuning techniques for small language models. Using the Tarot Reader as a case study, we demonstrated that a fine-tuned Qwen2.5-1.5B model can achieve behavioral consistency surpassing GPT-4 with prompt engineering---scoring 0.88 versus 0.85 on LLM-as-a-Judge evaluation and achieving 71\% win rate in human evaluation. This was accomplished at less than 10\% of the operational cost, with sub-100ms latency suitable for real-time applications. The key insight is that behavioral expertise is compressible: while large models are necessary to \textit{generate} expert behavior, small models are sufficient to \textit{reproduce} it.
+
+Together, these contributions provide a practical framework for deploying AI systems that are both knowledgeable (through RAG) and behaviorally consistent (through fine-tuning), addressing the needs of enterprises seeking to leverage Generative AI in resource-constrained environments.
+
+\section{Perspectives}
+
+Several promising directions emerge from this work for future research and development.
+
+\textbf{Hybrid Architecture Integration}: A natural extension is combining the RAG and fine-tuning approaches into a unified system. A fine-tuned small model could handle behavioral consistency and persona maintenance, while RAG provides dynamic knowledge updates. This hybrid architecture would be particularly valuable for applications requiring both character consistency and access to frequently changing information.
+
+\textbf{Reinforcement Learning from Human Feedback (RLHF)}: While supervised fine-tuning proved effective, further behavioral refinement through RLHF could address edge cases and improve handling of adversarial user interactions. Collecting real user feedback from deployed applications would enable continuous model improvement.
+
+\textbf{Multilingual and Cross-cultural Expansion}: Both Qwen and E5 models demonstrate strong multilingual capabilities. Extending the Tarot Reader to support multiple languages and cultural adaptations of card interpretations represents a significant opportunity. Similarly, the RAG pipeline could be adapted for multilingual document collections.
+
+\textbf{Edge Deployment Optimization}: With models as small as 0.5B parameters showing promising results, further optimization through quantization (INT4/INT8) and architecture pruning could enable deployment on mobile devices and edge hardware, expanding accessibility to users without cloud infrastructure.
+
+\textbf{Adaptive Retrieval Mechanisms}: Future RAG improvements could include query-aware routing that dynamically selects retrieval strategies based on query characteristics, reducing latency while maintaining accuracy for different query types.
+
+\section{Personal Appreciation}
+
+I would like to express my sincere gratitude for the opportunity to work at Torus AI during this apprenticeship period. This experience has been invaluable for both my professional and personal development.
+
+Throughout this apprenticeship, I have gained extensive knowledge in Generative AI and Retrieval-Augmented Generation---technologies that are rapidly transforming the industry. Working in the R\&D department allowed me to stay at the forefront of technological advancement, tracking and applying the latest breakthroughs in the AI field. The opportunity to work with real enterprise use cases---from financial reporting systems to medical coding applications---provided practical insights that cannot be obtained from academic settings alone.
+
+I am particularly grateful for the chance to apply the theoretical foundations in mathematics, machine learning, and deep learning that I acquired during my studies at INSA Toulouse and ENSEEIHT. Translating these academic concepts into working solutions for real-world problems has deepened my understanding and strengthened my capabilities as an AI practitioner.
+
+Beyond technical skills, this apprenticeship has developed my research abilities significantly. I learned how to read academic papers critically, synthesize findings from multiple sources, identify research gaps, and propose novel solutions. The collaborative environment at Torus Lab fostered valuable skills in teamwork, technical communication, and project management.
+
+All these experiences---the technical knowledge, research methodology, and professional skills---form a solid foundation for my future career, whether in industry or further academic pursuits. I am deeply grateful to my supervisors, Milad Mozafari at Torus AI and David Bertoin at INSA Toulouse, for their guidance and support throughout this journey.
+
 
 
 %%------------------------------- BIBLIOGRAPHY ------------------------------------
@@ -1542,6 +1607,581 @@ The key insight is that behavioral expertise is compressible: while large models
 \printbibliography[nottype=online, title={References}]
 \printbibliography[type=online, heading=webography]
 \addcontentsline{toc}{chapter}{\refname}
+
+
+% ---------------
+\appendix
+\chapter{Synthetic Data Generation}
+\label{appendix:synthetic_data}
+
+This appendix details the prompts and configurations used for generating synthetic Tarot reading conversations using teacher models (GPT-4o and Qwen Plus).
+
+\section{Conversation Parameters}
+
+The synthetic data generation process uses controlled parameters to ensure diversity in the generated conversations:
+
+\begin{table}[H]
+    \centering
+    \caption{Conversation Generation Parameters}
+    \begin{tabular}{|l|p{10cm}|}
+        \hline
+        \textbf{Parameter} & \textbf{Values} \\
+        \hline
+        Conversation Length & 
+        \begin{itemize}[nosep,leftmargin=*]
+            \item \texttt{short}: Less than 6 turns
+            \item \texttt{moderate}: 10--15 turns
+            \item \texttt{long}: More than 20 turns
+        \end{itemize} \\
+        \hline
+        User Personality & \texttt{rude}, \texttt{doubtful}, \texttt{gentle}, \texttt{rejective}, \texttt{expressive}, \texttt{close} \\
+        \hline
+        User Demographics & Age: \texttt{teenage}, \texttt{twenties}, \texttt{senior}, \texttt{old}; Gender: \texttt{men}, \texttt{women} \\
+        \hline
+        Card Selection & Random 3 cards from 78-card deck, 30\% probability for reversed position \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{System Prompt for Standard Conversations}
+\label{sec:system_prompt_standard}
+
+The following system prompt is used for generating standard Tarot reading conversations:
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60!black, title=System Prompt for Standard Conversations, breakable]
+\small
+\begin{verbatim}
+I want to create a dataset of chat conversation to develop 
+a tarot reading app.
+
+## The conversation should be like:
+The querent keys in a sentence, containing their concerns, 
+then the chatbot gets to know the querent and their situation 
+more by 3 to 4 short questions. Then the chatbot asks the 
+querent to draw 3 cards on the app interface and then key in 
+something to signify that they're done. Then the chatbot 
+starts the reading. 
+
+The reading must be in many turns of chat. Each turn of chat 
+is a short reading (around 5-6 sentences), begins with some 
+descriptions and explanations of symbols and images on the 
+cards and 2-3 very concrete and illustrative examples, adapted 
+to the situation of the querent and then ends with a question, 
+either to double check if it is the case of querent or to get 
+the feelings and more information from the querent.
+
+The querent can either confirm the reading or refuse the 
+relevance of the reading. If the querent confirms this, 
+continue the reading further, otherwise, take another examples 
+and provide another aspects to illustrate the reading. If it 
+is still not relevant, try to convince the querent to believe 
+in your reading, for example tell the querent to consider this 
+reading because it is a kind of signal from the universe.
+
+At the end of the reading, ask the querent if he/she wants to 
+continue with another questions or not. If yes, let him/her 
+ask and then guide him/her draw 3 cards, otherwise, give a 
+short summarization of the reading and some pieces of useful 
+advice or some hilarious comments to cheer up his/her mood.
+
+## Notice:
+- Make the conversation natural and human-like, keep the 
+  emotions in the reader's chat turn. Don't use too complicated 
+  vocabulary. Just make it a casual talk, don't make it boring 
+  for the querent.
+
+## Output needs to be in this form:
+Querent:
+Chatbot:
+Querent:
+Chatbot:
+....
+Don't print out anything else.
+{length_prompt}
+\end{verbatim}
+\end{tcolorbox}
+
+\section{System Prompt for Doubtful Users}
+\label{sec:system_prompt_doubtful}
+
+A specialized prompt for handling doubtful users who challenge the chatbot:
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60!black, title=System Prompt for Doubtful User Scenarios, breakable]
+\small
+\begin{verbatim}
+I want to create a dataset of chat conversation to develop 
+a tarot reading app. Now I want to create fake data to make 
+the model less overfitting.
+
+The situation is: the querent doesn't believe in the chatbot. 
+He keeps asking irrelevant questions to challenge the chatbot 
+and to test its knowledge. The chatbot must find a way to 
+drive the querent back to the reading and make all the 
+irrelevant information more relevant and coherent. The chatbot 
+must drive the querent back to choose 3 cards on the app 
+interface and then type 'done' when they're done and then the 
+chatbot does the reading based on cards and all the (irrelevant) 
+information provided. The querent can ask irrelevant and 
+general knowledge questions along the reading but try to link 
+these questions to the reading.
+
+## Notice:
+- Make the conversation natural and human-like, keep the 
+  emotions in the reader's chat turn. Don't use too complicated 
+  vocabulary. Just make it a casual talk, don't make it boring 
+  for the querent.
+
+## Output needs to be in this form:
+Querent:
+Chatbot:
+Querent:
+Chatbot:
+....
+Don't print out anything else.
+\end{verbatim}
+\end{tcolorbox}
+
+\section{User Prompt Template}
+
+The user prompt provides context about the querent and the drawn cards:
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60!black, title=User Prompt Template]
+\small
+\begin{verbatim}
+## The user's question is: {question}
+{personality_prompt}
+
+3 drawn cards and their description:  
+- {card_name_1} : {description_1}.
+- {card_name_2} : {description_2}.
+- {card_name_3} : {description_3}. 
+\end{verbatim}
+\end{tcolorbox}
+
+\section{Personality Prompt Templates}
+
+\begin{table}[H]
+    \centering
+    \caption{Personality-specific Prompt Templates}
+    \small
+    \begin{tabular}{|l|p{9cm}|}
+        \hline
+        \textbf{Personality} & \textbf{Prompt Template} \\
+        \hline
+        \texttt{rude} & This is a \{age\} \{gender\} who is a rude user trying to challenge the chatbot. \{pronoun\} behaves rudely and shows an uncooperative attitude. \\
+        \hline
+        \texttt{doubtful} & This is a \{age\} \{gender\} who is a doubtful user trying to challenge the chatbot. \{pronoun\} doesn't believe in what the chatbot tells him. Sometimes \{pronoun\} doesn't answer the question from the chatbot but asks a general knowledge question. \\
+        \hline
+        \texttt{gentle} & This is a \{age\} \{gender\} who is gentle. \\
+        \hline
+        \texttt{rejective} & This is a \{age\} \{gender\} who is lost in their life and rejects most of the reading that the reader says. \\
+        \hline
+        \texttt{expressive} & This is a \{age\} \{gender\} who is an expressive user trying to find someone to talk with. \{pronoun\} is willing to share their story. \\
+        \hline
+        \texttt{close} & This is a \{age\} \{gender\} who is closed and doesn't want to share much information. \\
+        \hline
+    \end{tabular}
+\end{table}
+
+%%------------------------------- APPENDIX B ------------------------------------
+
+\chapter{Fine-tuning Configurations}
+\label{appendix:finetuning}
+
+This appendix provides detailed configurations for the fine-tuning experiments conducted in Chapter 4.
+
+\section{System Prompt for Tarot Reader Model}
+\label{sec:tarot_system_prompt}
+
+The following system prompt is embedded in the training data and used during inference:
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60!black, title=Tarot Reader System Prompt, breakable]
+\small
+\begin{verbatim}
+You are a skilled and intuitive tarot reader with a warm, 
+friendly demeanor. Your goal is to guide the user through 
+a personalized tarot reading based on their concerns and 
+the cards they draw. You should: 
+
+- Ask the querent 4-5 short, thoughtful questions to get to 
+  know more about the situation. Keep it casual and 
+  conversational - no pressure, just curiosity.
+- Invite the querent to draw 3 cards for their reading. 
+- Conduct the reading in several turns of chat. For each 
+  reading turn you should:
+    - Start with a description and explanation of the 
+      drawn cards.
+    - Provide 2-3 concrete, relatable examples tailored 
+      to the querent's concerns.
+    - End with a question to open the chance for querent 
+      to share more about their feelings and their concerns.
+- At the end of the reading, ask if the querent wants to 
+  explore another question or concern. If yes, guide them 
+  to draw another set of cards and continue the process.
+
+## Tone and style:
+- Be casual, friendly, and conversational - like you're 
+  chatting with a close friend.
+- Use simple, relatable language and avoid overly formal 
+  or complex terms. Show empathy and warmth, but don't 
+  overdo it - stay grounded and human-like.
+- Add a touch of humor or encouragement when appropriate 
+  to keep the mood light and engaging.
+\end{verbatim}
+\end{tcolorbox}
+
+\section{Training Hyperparameters}
+
+\begin{table}[H]
+    \centering
+    \caption{Training Configuration}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{Hyperparameter} & \textbf{Full Fine-tuning} & \textbf{LoRA} \\
+        \hline
+        Batch size (per device) & 1 & 1 \\
+        \hline
+        Gradient accumulation steps & 8 & 8 \\
+        \hline
+        Effective batch size & 8 & 8 \\
+        \hline
+        Number of epochs & 10 & 10 \\
+        \hline
+        Learning rate & 3e-5 & 3e-5 \\
+        \hline
+        LR Scheduler & Cosine & Cosine \\
+        \hline
+        Warmup ratio & 0.05 & 0.05 \\
+        \hline
+        Optimizer & AdamW & AdamW \\
+        \hline
+        FP16 & False & False \\
+        \hline
+        Max sequence length & 1700 tokens & 1700 tokens \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{LoRA Configuration}
+
+\begin{table}[H]
+    \centering
+    \caption{LoRA Hyperparameters}
+    \begin{tabular}{|l|c|}
+        \hline
+        \textbf{Parameter} & \textbf{Value} \\
+        \hline
+        Rank ($r$) & 16 \\
+        \hline
+        Alpha ($\alpha$) & 32 \\
+        \hline
+        Dropout & 0.01 \\
+        \hline
+        Task type & CAUSAL\_LM \\
+        \hline
+        Target modules & Attention (Q, K, V, O) + FFN \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Data Collator Configuration}
+
+The training uses \texttt{DataCollatorForCompletionOnlyLM} to compute loss only on the assistant's responses:
+
+\begin{lstlisting}[language=Python, caption=Data Collator Configuration]
+from trl import DataCollatorForCompletionOnlyLM
+
+# For Qwen2.5 models
+instruction_template = '<|im_start|>user'
+response_template = '<|im_start|>assistant'
+
+collator = DataCollatorForCompletionOnlyLM(
+    instruction_template=instruction_template, 
+    response_template=response_template, 
+    tokenizer=tokenizer, 
+    mlm=False
+)
+\end{lstlisting}
+
+\section{Model Checkpoints}
+
+\begin{table}[H]
+    \centering
+    \caption{Tested Model Configurations}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Base Model} & \textbf{Method} & \textbf{Parameters (Trainable)} \\
+        \hline
+        Qwen2.5-0.5B-Instruct & Full Fine-tuning & 494M (100\%) \\
+        \hline
+        Qwen2.5-1.5B-Instruct & Full Fine-tuning & 1.54B (100\%) \\
+        \hline
+        Qwen2.5-1.5B-Instruct & LoRA r=16 & $\sim$12M (0.78\%) \\
+        \hline
+        Qwen2.5-3B-Instruct & LoRA r=16 & $\sim$24M (0.78\%) \\
+        \hline
+    \end{tabular}
+\end{table}
+
+%%------------------------------- APPENDIX C ------------------------------------
+
+\chapter{RAG Pipeline Configurations}
+\label{appendix:rag}
+
+This appendix provides detailed configurations for the Advanced RAG pipeline described in Chapter 3.
+
+\section{UnstructuredIO Configuration}
+
+\begin{lstlisting}[language=Python, caption=UnstructuredIO PDF Parsing Configuration]
+from unstructured.partition.pdf import partition_pdf
+
+chunks = partition_pdf(
+    filename=file_path, 
+    infer_table_structure=True,      # Enable table structure inference
+    strategy="hi_res",               # High-resolution parsing
+    
+    # Image extraction settings
+    extract_image_block_types=["Image", "Table"], 
+    image_output_dir_path=output_path, 
+    extract_image_block_to_payload=True, 
+    
+    # Chunking settings
+    chunking_strategy="by_title",    # Chunk by document titles
+    max_characters=10000,            # Maximum chunk size
+    combine_text_under_n_chars=500,  # Combine small text blocks
+    new_after_n_chars=3000           # Force new chunk threshold
+)
+\end{lstlisting}
+
+\section{Embedding Model Configuration}
+
+\begin{table}[H]
+    \centering
+    \caption{Embedding Model Specifications}
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Parameter} & \textbf{Value} \\
+        \hline
+        Model & \texttt{intfloat/multilingual-e5-large-instruct} \\
+        \hline
+        Embedding Dimension & 1024 \\
+        \hline
+        Max Sequence Length & 512 tokens \\
+        \hline
+        Languages & 100+ languages (including French) \\
+        \hline
+        Instruction Format & Task-specific instructions supported \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Summarization Prompt}
+\label{sec:summarization_prompt}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60!black, title=Text/Table Summarization Prompt]
+\small
+\begin{verbatim}
+You are an assistant tasked with summarizing tables and texts. 
+Give a detailed summary of the table or text. 
+
+**Important**: 
+- Include important terms of the domain in the summary. 
+- Answer in the language of the document. 
+- Respond only with the summary, no additional comment. 
+- Do not start your message by saying "Here is a summary" 
+  or anything like that. Just give the summary as it is. 
+
+Table or text chunk : {element}
+\end{verbatim}
+\end{tcolorbox}
+
+\section{Image Summarization Prompt}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60!black, title=Image Summarization Prompt]
+\small
+\begin{verbatim}
+Describe the image in detail. If the image is about a graph, 
+be specific and clear. 
+
+**Important**: 
+- Include important terms of the domain in the summary. 
+- Answer in the language of the document. 
+- Respond only with the summary, no additional comment. 
+- Do not start your message by saying "Here is a summary" 
+  or anything like that. Just give the summary as it is.
+\end{verbatim}
+\end{tcolorbox}
+
+\section{RAG System Prompt}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60!black, title=RAG System Prompt, breakable]
+\small
+\begin{verbatim}
+You are an expert assistant skilled in retrieving and 
+synthesizing information across diverse domains, including 
+medicine, technology, history, science, and more. Your goal 
+is to provide accurate, concise, and helpful answers based 
+on the information available to you. Follow these guidelines:
+
+- Use retrieved information to inform your response, 
+  prioritizing relevance and accuracy.
+- If information is limited or unclear, acknowledge it and 
+  provide the best possible answer based on your knowledge, 
+  or suggest where to find more details.
+- Answer in a clear, professional, and user-friendly manner, 
+  adapting to the user's language and context.
+- When applicable, break down complex topics into simple, 
+  understandable points.
+- Avoid speculation or unverified claims; stick to factual 
+  and reliable information.
+\end{verbatim}
+\end{tcolorbox}
+
+\section{Evaluation Prompt (LLM-as-a-Judge)}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60!black, title=RAG Evaluation Prompt]
+\small
+\begin{verbatim}
+You are a strict judge. You are provided with the context and 
+the question generated based on that context and the response 
+of the RAG pipeline. Your task is to give scores for the 
+relevancy between the response and the question, and the 
+precision of the response also. 
+
+**Important**: 
+- The scores are between 0 (bad) and 1 (good).
+- Response must strictly follow the format: 
+  Relevancy: ...
+  Precision: ...
+- Do not include any further explanation or information.
+
+Reference content: {content}
+Question: {question}
+RAG Response: {rag_response}
+\end{verbatim}
+\end{tcolorbox}
+
+%%------------------------------- APPENDIX E ------------------------------------
+
+\chapter{Tarot Card Dataset Structure}
+\label{appendix:dataset}
+
+This appendix describes the structure of the 78-card Tarot dataset used in this project.
+
+\section{Dataset Schema}
+
+\begin{table}[H]
+    \centering
+    \caption{Tarot Card Dataset Schema}
+    \begin{tabular}{|l|l|p{6cm}|}
+        \hline
+        \textbf{Column} & \textbf{Type} & \textbf{Description} \\
+        \hline
+        \texttt{card\_box} & String & Category: ``cardbox major'' or ``cardbox minor'' \\
+        \hline
+        \texttt{card\_name} & String & Full name of the card (e.g., ``The Fool'') \\
+        \hline
+        \texttt{upright} & String & Keywords for upright position \\
+        \hline
+        \texttt{reversed} & String & Keywords for reversed position \\
+        \hline
+        \texttt{description} & String & Detailed description of card symbolism \\
+        \hline
+        \texttt{img\_url} & String & URL to card image \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Card Distribution}
+
+\begin{table}[H]
+    \centering
+    \caption{Tarot Deck Composition}
+    \begin{tabular}{|l|c|l|}
+        \hline
+        \textbf{Category} & \textbf{Count} & \textbf{Examples} \\
+        \hline
+        Major Arcana & 22 & The Fool, The Magician, The High Priestess, ... \\
+        \hline
+        Minor Arcana - Wands & 14 & Ace of Wands, Two of Wands, ..., King of Wands \\
+        \hline
+        Minor Arcana - Cups & 14 & Ace of Cups, Two of Cups, ..., King of Cups \\
+        \hline
+        Minor Arcana - Swords & 14 & Ace of Swords, Two of Swords, ..., King of Swords \\
+        \hline
+        Minor Arcana - Pentacles & 14 & Ace of Pentacles, Two of Pentacles, ..., King of Pentacles \\
+        \hline
+        \textbf{Total} & \textbf{78} & \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Sample Card Entry}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60!black, title=Sample Card: The Fool, breakable]
+\small
+\textbf{Card Name:} The Fool \\
+\textbf{Category:} Major Arcana \\
+\textbf{Upright Keywords:} Beginnings, innocence, spontaneity, a free spirit \\
+\textbf{Reversed Keywords:} Holding back, recklessness, risk-taking \\
+\textbf{Description:} The Fool is numbered 0 -- the number of unlimited potential -- and so does not have a specific place in the sequence of the Tarot cards. The Fool can be placed either at the beginning of the Major Arcana or at the end. The Major Arcana is often considered The Fool's journey through life and as such, he is ever present and therefore needs no number.
+
+On The Fool Tarot card, a young man stands on the edge of a cliff, without a care in the world, as he sets out on a new adventure. He is gazing upwards toward the sky (and the Universe) and is seemingly unaware that he is about to skip off a precipice into the unknown. Over his shoulder rests a modest knapsack containing everything he needs -- which isn't much (let's say he's a minimalist). The white rose in his left hand represents his purity and innocence. And at his feet is a small white dog, representing loyalty and protection, that encourages him to charge forward and learn the lessons he came to learn. The mountains behind The Fool symbolize the challenges yet to come.
+\end{tcolorbox}
+
+%%------------------------------- APPENDIX F ------------------------------------
+
+\chapter{LLM-as-a-Judge Evaluation Prompts}
+\label{appendix:evaluation}
+
+This appendix provides the evaluation prompts used for assessing fine-tuned model performance.
+
+\section{Multi-dimensional Evaluation Prompt}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60!black, title=LLM-as-a-Judge Evaluation Prompt for Tarot Reader, breakable]
+\small
+\begin{verbatim}
+You are an expert evaluator for conversational AI systems, 
+specifically for Tarot reading applications. Evaluate the 
+following conversation based on these criteria:
+
+1. **Style Adherence** (0-1): How well does the chatbot 
+   maintain a casual, friendly, conversational tone like 
+   chatting with a close friend?
+
+2. **Card Knowledge** (0-1): How accurately does the chatbot 
+   interpret and explain the Tarot cards, including their 
+   symbolism and meaning?
+
+3. **Empathy** (0-1): How well does the chatbot show 
+   understanding and emotional support for the querent's 
+   concerns?
+
+4. **Workflow Compliance** (0-1): Does the chatbot follow 
+   the proper reading workflow (getting to know, card drawing, 
+   multi-turn reading, closing)?
+
+5. **Coherence** (0-1): Is the conversation logically 
+   coherent and does each response make sense in context?
+
+**Conversation to evaluate:**
+{conversation}
+
+**Drawn Cards:**
+{cards}
+
+**Response format:**
+Style Adherence: [score]
+Card Knowledge: [score]
+Empathy: [score]
+Workflow Compliance: [score]
+Coherence: [score]
+Average: [average score]
+
+Brief justification for each score:
+\end{verbatim}
+\end{tcolorbox}
+
 
 %%------------------------------- the end. ------------------------------------
 
