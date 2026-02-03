@@ -1,0 +1,44 @@
+\frametitle{Why SimpleRAG fails: An empirical analysis}
+\small
+    % --- Failure 1 ---
+    \textbf{\color{MainNavy}Failure 1: Loss of Table Structure}
+    \hfill \textit{Extraction using PyPDF}
+
+    \begin{columns}[T]
+        \begin{column}{0.45\textwidth}
+            \centering
+            \resizebox{\linewidth}{!}{
+            \begin{tabular}{|l|r|r|r|}
+                \hline
+                \textbf{Sous modules (en k€)} & \textbf{SCR 2024} & \textbf{SCR 2023} & \textbf{Evol.} \\ % Viết tắt Evolution để đỡ bị tràn
+                \hline
+                Type 1 & 2 692 & 2 487 & 8 \% \\
+                \hline
+                Type 2 & 28 377 & 36 221 & -22 \% \\
+                \hline
+                Diversification & -621 & -586 & 6 \% \\ % Rút gọn text một chút cho đẹp bảng nhỏ
+                \hline
+                \textbf{Risque de défaut} & \textbf{30 448} & \textbf{38 121} & \textbf{-20 \%} \\
+                \hline
+            \end{tabular}
+        }
+        \end{column}
+
+        \begin{column}{0.05\textwidth}
+            \vspace{0.5cm} $\rightarrow$
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \begin{minipage}[t]{0.48\textwidth}
+        \scriptsize
+        \begin{verbatim}
+Sous modules (en k€) SCR 2024 SCR 2023 Evolution
+Type 1 2 692 2 487 8 %
+Type 2 28 377 36 221 -22 %
+Effet de diversification -621 -586 6 %
+Risque de défaut 30 448 38 121 -20 %
+        \end{verbatim}
+    \end{minipage}
+            % \tiny \color{navyblue} PyPDF làm phẳng bảng 2 chiều $\rightarrow$ Mất ngữ cảnh hàng/cột.
+        \end{column}
+    \end{columns}

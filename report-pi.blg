@@ -1,0 +1,18 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'report-pi.blg'
+[32] biber:340> INFO - === Sun Feb  1, 2026, 22:08:33
+[38] Biber.pm:419> INFO - Reading 'report-pi.bcf'
+[64] Biber.pm:979> INFO - Found 42 citekeys in bib section 0
+[69] Biber.pm:4419> INFO - Processing section 0
+[73] Biber.pm:4610> INFO - Looking for bibtex file 'bibliography.bib' for section 0
+[75] bibtex.pm:1713> INFO - LaTeX decoding ...
+[95] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliography.bib'
+[292] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[292] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[292] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[292] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[303] bbl.pm:660> INFO - Writing 'report-pi.bbl' with encoding 'UTF-8'
+[312] bbl.pm:763> INFO - Output to report-pi.bbl
+[312] Biber.pm:131> WARN - Duplicate entry key: 'wang2023selfinstruct' in file 'bibliography.bib', skipping ...
+[312] Biber.pm:131> WARN - Duplicate entry key: 'houlsby2019parameter' in file 'bibliography.bib', skipping ...
+[312] Biber.pm:133> INFO - WARNINGS: 2
