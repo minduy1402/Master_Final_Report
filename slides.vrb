@@ -1,7 +1,7 @@
 \frametitle{Why SimpleRAG fails: An empirical analysis}
 \small
     % --- Failure 1 ---
-    \textbf{\color{MainNavy}Failure 1: Loss of Table Structure}
+    \textbf{\color{MainNavy}Issue 1: Loss of Table Structure}
     \hfill \textit{Extraction using PyPDF}
 
     \begin{columns}[T]
@@ -39,6 +39,24 @@ Effet de diversification -621 -586 6 %
 Risque de défaut 30 448 38 121 -20 %
         \end{verbatim}
     \end{minipage}
+            % \tiny \color{navyblue} PyPDF làm phẳng bảng 2 chiều $\rightarrow$ Mất ngữ cảnh hàng/cột.
+        \end{column}
+    \end{columns}
+
+    \textbf{\color{MainNavy}Issue 2: Failure with exact code matching}
+
+    \begin{columns}[T]
+        \begin{column}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/search_HAFA.png}
+        \end{column}
+
+        \begin{column}{0.05\textwidth}
+            \vspace{0.5cm} $\rightarrow$
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \includegraphics[width=\textwidth]{figures/ccam_dense_search_failure.png}
             % \tiny \color{navyblue} PyPDF làm phẳng bảng 2 chiều $\rightarrow$ Mất ngữ cảnh hàng/cột.
         \end{column}
     \end{columns}

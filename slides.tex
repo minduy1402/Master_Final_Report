@@ -2,13 +2,15 @@
 
 % --- Ngôn ngữ và Font ---
 \usepackage[utf8]{inputenc}
-\usepackage[vietnamese]{babel}
+\usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{helvet} % Font không chân hiện đại giống mẫu
 \usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{amsmath}
+
+
 
 % --- Giao diện và Màu sắc ---
 \usetheme{default}
@@ -107,10 +109,10 @@
     2 challenges in domain-specific NLP tasks:
     - Knowledge Gap
     - Behavior Gap
-\end{frame}
 
-\begin{frame}{}
-    
+    \begin{center}
+        \textbf{How can we bridge these gaps with resource-constrained deployment?}
+    \end{center}
 \end{frame}
 
 
@@ -158,7 +160,7 @@
 \begin{frame}[fragile]{Why SimpleRAG fails: An empirical analysis}
     \small
     % --- Failure 1 ---
-    \textbf{\color{MainNavy}Failure 1: Loss of Table Structure}
+    \textbf{\color{MainNavy}Issue 1: Loss of Table Structure}
     \hfill \textit{Extraction using PyPDF}
 
     \begin{columns}[T]
@@ -199,11 +201,8 @@ Risque de défaut 30 448 38 121 -20 %
             % \tiny \color{navyblue} PyPDF làm phẳng bảng 2 chiều $\rightarrow$ Mất ngữ cảnh hàng/cột.
         \end{column}
     \end{columns}
-\end{frame}
 
-\begin{frame}{Why SimpleRAG fails: An empirical analysis}
-    \textbf{\color{MainNavy}Failure 2: Failure with exact code matching}
-    \hfill \textit{Extraction using PyPDF}
+    \textbf{\color{MainNavy}Issue 2: Failure with exact code matching}
 
     \begin{columns}[T]
         \begin{column}{0.45\textwidth}
@@ -222,12 +221,144 @@ Risque de défaut 30 448 38 121 -20 %
     \end{columns}
 \end{frame}
 
+\begin{frame}{Why SimpleRAG fails: An empirical analysis}
+    Other issues: 
+    \begin{itemize}
+        \item Lost in the middle: LLM accuracy drops when ground truth passage is not in high position in top-k.
+        \item Multilingual embedding mismatch: English embedding model on French documents.
+    \end{itemize}
+
+    Quantitative results
+    \begin{table}[H]
+        \centering
+        \caption{Simple RAG Performance on GPM Test Set (25 questions)}
+        \begin{tabular}{|l|c|c|}
+            \hline
+            \textbf{Metric} & \textbf{Score} & \textbf{Interpretation} \\
+            \hline
+            Correctness & 0.66 & 66\% answers correct with respect to contexts \\
+            \hline
+            Relevancy & 0.73 & 73\% answers relevant to the question \\
+            \hline
+        \end{tabular}
+        \label{tab:simple_rag_performance}
+    \end{table}
+    SimpleRAG only attains 66\% correctness, insufficient for high-stakes domains like finance and healthcare. 
+
+\end{frame}
+
+
+
+
 \begin{frame}{Advanced Multimodal RAG Pipeline}
     \begin{figure}
         \centering
-        \includegraphics[width=0.35\textwidth]{figures/rag_pipeline_diagram.png}
+        \includegraphics[width=0.8\textwidth]{figures/advanced_rag_pipeline.jpg}
+        \caption{The advanced RAG pipeline composes of 2 phases}
     \end{figure}
 \end{frame}
+
+\begin{frame}{Offline Indexing Phase}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/processing.png}
+    \end{figure}
+    Preserving Structure with UnstructuredIO and Table Transformer
+    \begin{itemize}
+        \item \textbf{Table Detection}: Identify table positions. 
+        \item \textbf{Table Structure Recognition}: Recognize lines (cells), merged cells, and classify headers vs. body. 
+        \item \textbf{HTML Mapping}: Finally, map these coordinates to \texttt{<table>} tags for easy LLM processing.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Offline Indexing Phase}
+    \begin{columns}[c]
+        % --- CỘT TRÁI: Ảnh gốc ---
+        \begin{column}{0.6\textwidth} % Chiếm khoảng 48% chiều rộng slide
+            \centering
+            \includegraphics[width=\textwidth, keepaspectratio]{figures/unstructuredio_table_detection.png}
+            An example of table extraction using UnstructuredIO + Table Transformer. \\
+            % Left: table in PDF; Right: extracted HTML with preserved structure.
+        \end{column}
+        \begin{column}{0.38\textwidth} % Chiếm khoảng 48% chiều rộng slide
+            \centering
+            \includegraphics[height=0.8\textheight, keepaspectratio]{figures/html_output.png} \\
+            {\small HTML output} 
+        \end{column}
+
+    \end{columns}
+   
+\end{frame}
+
+\begin{frame}{Offline Indexing Phase}
+    Summarization for images and tables 
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/summarization.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Offline Indexing Phase}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\textwidth, keepaspectratio]{figures/parentchild.png} \\
+        {\small Parent-child indexing} \\
+        \includegraphics[width=0.6\textwidth, keepaspectratio]{figures/mteb_multilingual_comparison.png} \\
+        {\small MTEB benchmark: Multilingual E5 outperforms other models on multilingual tasks} 
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{Online Querying Phase}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\textwidth]{figures/hybridsearch.png}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}{Online Querying Phase}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\textwidth]{figures/reranking.png}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}{Experimental Evaluation Setup}
+    \begin{block}{Test Datasets}
+        \begin{itemize}
+            \item GPM Test Set: 25 complex questions on GPM's reports (financial domain)
+            \item CCAM Test Set: 10 clinical consultation scenarios provided by Dr.Besnier (healthcare domain)
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{LLM-as-a-Judge Evaluation using RAGAS metrics}
+        Two judge models: \texttt{gemma-3-12b-it}, \texttt{mistral-small-24b-instruct-2501}
+    \end{block}
+
+    \begin{table}
+        \centering
+        \small
+        \begin{tabular}{ll}
+            \toprule
+            \textbf{Metric} & \textbf{Definition} \\
+            \midrule
+            Answer Correctness & Semantic similarity: generated vs ground-truth \\
+            Answer Relevancy & How well response addresses query \\
+            Faithfulness & Response grounded in retrieved context \\
+            Context Precision & Relevant chunks ranked highly \\
+            \midrule
+            Code Hit Rate@k & Correct code in top-k results (CCAM) \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+    \vspace{0.2cm}
+    \textit{All metrics: continuous scale [0, 1], averaged across two judges}
+\end{frame}
+
 
 \begin{frame}{Experimental Results: Superior accuracy improvement}
     \begin{table}[H]
@@ -294,8 +425,48 @@ Risque de défaut 30 448 38 121 -20 %
         \end{tabular}
     \end{table}
 
+    \begin{itemize}
+        \item Structure preservation via UnstructuredIO yields largest single gain (+11.4\%).
+        \item Summarization, hybrid search and reranking also contribute significantly.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Problem 2: Behavior Gap}
+    Present the case of building a domain-specific chatbot for Tarot Reading.
+
+    Why prompt engineering alone is insufficient:
+    \begin{itemize}
+        \item Attention dilution: 
+        \item Inconsistency: Out-of-character drift in extended conversations
+        \item Cost: Large models (GPT-4) expensive for continuous deployment
+    \end{itemize}
+
+    \begin{table}[H]
+        \centering
+        \caption{Operational cost comparison. *Assuming 10K conversations × 3K tokens/conversation. **Amortized GPU cost.}
+        \begin{tabular}{|l|c|c|}
+            \hline
+            \textbf{Option} & \textbf{Cost/1K tokens} & \textbf{Cost/month*} \\
+            \hline
+            GPT-4-turbo API & \$0.01--0.03 & \$300--900 \\
+            Claude 3 Sonnet API & \$0.003--0.015 & \$90--450 \\
+            Qwen-1.5B Fine-tuned & \$0.0005** & \$10--50 \\
+            Qwen-0.5B Fine-tuned (Edge) & \$0 & \$0  \\
+            \hline
+        \end{tabular}
+        \label{tab:cost-comparison}
+    \end{table}
 \end{frame}
 
 
+\begin{frame}{Future Directions}
+    \begin{itemize}
+        \item Reinforcement learning from human feedback (RLHF) to further align model outputs with user expectations. 
+        \item Edge deployment optimizations for low-latency responses in real-time applications.
+        \item Multilingual response generation to support global user bases.
+        \item 
+    \end{itemize}
+    
+\end{frame}
 
 \end{document}
