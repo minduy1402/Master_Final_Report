@@ -1,12 +1,12 @@
-\frametitle{Why Simple RAG Fails: Issue 1 - Loss of Table Structure}
+\frametitle{Pourquoi le RAG Simple Échoue : Problème 1 - Perte de Structure de Table}
 \centering
-    \textbf{\color{MainNavy}Problem: Flattening of 2D Table Structure}
+    \textbf{\color{MainNavy}Problème : Aplatissement de la Structure de Table 2D}
     \vspace{0.3cm}
 
     \begin{columns}[c]
         \begin{column}{0.45\textwidth}
             \centering
-            \small\textbf{Original Table:}
+            \small\textbf{Table Originale :}
             \resizebox{\linewidth}{!}{
             \begin{tabular}{|l|r|r|r|}
                 \hline
@@ -29,7 +29,7 @@
         \end{column}
 
         \begin{column}{0.48\textwidth}
-            \small\textbf{PyPDF Output:}
+            \small\textbf{Sortie PyPDF :}
             \begin{minipage}[t]{0.95\textwidth}
         \tiny
         \begin{verbatim}
@@ -44,4 +44,4 @@ Risque de défaut 30 448 38 121 -20 %
     \end{columns}
 
     \vspace{0.3cm}
-    \small\textbf{Impact:} Row/column context is lost, making it difficult for LLMs to understand relationships
+    \small\textbf{Impact :} Le contexte ligne/colonne est perdu, rendant difficile la compréhension des relations par les LLM

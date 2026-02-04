@@ -1,4 +1,4 @@
-\documentclass[11pt, aspectratio=169]{beamer}
+\documentclass[11pt, aspectratio=169, xcolor=table]{beamer}
 
 % --- Ngôn ngữ và Font ---
 \usepackage[utf8]{inputenc}
@@ -104,78 +104,240 @@
     \titlepage
 \end{frame}
 
-\begin{frame}{From research to practice: challenges of AI implementation in business}
-    95\% AI generation/LLM project in companies fail to generate significant P\&L value. \cite{tomshardware2024mit}\\
-    2 challenges in domain-specific NLP tasks:
-    - Knowledge Gap
-    - Behavior Gap
+\begin{frame}{Presentation Outline}
+    \tableofcontents
+\end{frame} 
 
+
+
+\begin{frame}{From research to practice: challenges of AI implementation in business}
+    \textbf{Reality Check:} 95\% of AI generation/LLM projects in companies fail to generate significant P\&L value.\\
+    \vspace{0.3cm}
+    
+    \textbf{Two Fundamental Challenges in Domain-Specific NLP:}
+    \vspace{0.2cm}
+    
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \begin{alertblock}{Knowledge Gap}
+            \begin{itemize}
+                \item Static training data
+                \item Hallucination risks
+                \item No access to proprietary documents
+            \end{itemize}
+        \end{alertblock}
+
+        \column{0.48\textwidth}
+        \begin{alertblock}{Behavior Gap}
+            \begin{itemize}
+                \item Cannot follow domain workflows
+                \item Out-of-character drift
+            \end{itemize}
+        \end{alertblock}
+    \end{columns}
+
+    \vspace{0.3cm}
     \begin{center}
-        \textbf{How can we bridge these gaps with resource-constrained deployment?}
+        \textbf{\color{MainNavy} How can we bridge these gaps with resource-constrained deployment?}
     \end{center}
 \end{frame}
 
+% ========== NEW TRANSITION SLIDE ==========
+\begin{frame}{Bridging the Gaps: Two Complementary Approaches}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \begin{block}{Addressing Knowledge Gap}
+            \textbf{Common Approaches:}
+            \begin{itemize}
+                \item Continued pre-training
+                \item Prompt engineering
+                \item \textbf{\color{MainNavy}Retrieval-Augmented Generation (RAG)} 
+                \item API integration
+            \end{itemize} 
+        \end{block}
 
+        \column{0.48\textwidth}
+        \begin{block}{Addressing Behavior Gap}
+            \textbf{Common Approaches:}
+            \begin{itemize}
+                \item Complex prompt engineering
+                \item Few-shot learning
+                \item \textbf{\color{MainNavy}Fine-tuning}
+                \item RLHF
+            \end{itemize}  
+        \end{block}
+    \end{columns}
+    
+    \vspace{0.4cm}
+    \begin{center}
+        \textbf{\color{MainNavy}This work explores both approaches with real-world applications}
+    \end{center}
+\end{frame}
 
-% Slide nội dung mẫu
-\begin{frame}{Agenda}
+% ========== SECTION 2: PROBLEM 1 ==========
+\section{Problem 1: Integration of External Knowledge for Language Models}
+
+% Section divider slide
+\begin{frame}[plain]
+    \begin{center}
+        \vfill
+        {\Huge\color{MainNavy}\textbf{Problem 1}}
+        \vspace{0.5cm}
+        
+        {\Large Integration of External Knowledge for Language Models}
+        \vspace{0.3cm}
+        
+        {\large Building a RAG System for Complex Documents}
+        \vfill
+    \end{center}
+\end{frame}
+
+\begin{frame}{Problem 1: Integration of External Knowledge for Language Models}
+    \begin{block}{Use Case: Building a domain-specific QA system for financial and healthcare documents}
+        \begin{itemize}
+            \item \textbf{Objective:} Enable accurate question answering over complex, proprietary documents
+            \item \textbf{Constraints:} High accuracy, low latency, cost-effective deployment
+        \end{itemize}
+    \end{block}
+    
+    \vspace{0.3cm}
+    \textbf{Key Questions:}
     \begin{itemize}
-        \item 
-        \item 
-        \item 
-        \item 
-        \item 
+        \item How to preserve structure in complex documents?
+        \item How to ensure high accuracy with limited resources?
+        \item How to handle multimodal data effectively?
     \end{itemize}
 \end{frame}
 
-\begin{frame}{The real challenge: Complex financial and healthcare data}
-    \begin{columns}[t] % [t] để căn lề trên của 2 cột bằng nhau
-        % Cột 1: Tài chính
+\begin{frame}{The Real Challenge: Complex Financial Data}
+    \begin{columns}[t]
         \begin{column}{0.48\textwidth}
-            \textbf{\color{MainNavy} Case Study 1: Financial}
+            \textbf{\color{MainNavy} Case Study 1: Financial - GPM Reports}
             \vspace{0.2cm}
             
-            \small SFCR report with complex financial tables and charts.
+            \small Complex financial tables and charts
             
             \vspace{0.4cm}
             \centering
             \fbox{\includegraphics[width=\textwidth]{figures/gpm_report_example.png}} 
-            % Note: fbox (if using tcolorbox package) or custom border if needed
         \end{column}
 
-        % Cột 2: Y tế
         \begin{column}{0.48\textwidth}
-            \textbf{\color{MainNavy} Case Study 2: Healthcare}
+            \textbf{Objective}
+            \begin{itemize}
+                \item Quick lookup of information from annual financial reports
+            \end{itemize}
+
+            \textbf{Challenges}
+            \begin{itemize}
+                \item Multi-modal data: balance sheets, tables, charts, images
+                \item Long documents (50-200 pages)
+                \item Preserving relationships between data points
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{The Real Challenge: Complex Healthcare Data}
+    \begin{columns}[t]
+        \begin{column}{0.48\textwidth}
+            \textbf{\color{MainNavy} Case Study 2: Healthcare - CCAM Catalog}
             \vspace{0.2cm}
             
-            \small CCAM catalog with thousands of codes requiring exact matching.
+            \small Thousands of medical codes requiring exact matching
             
             \vspace{0.4cm}
             \centering
             \includegraphics[width=\textwidth]{figures/ccam_example.png}
         \end{column}
+
+        \begin{column}{0.48\textwidth}
+            \textbf{Objective}
+            \begin{itemize}
+                \item Find the correct medical code(s) for given clinical scenarios
+            \end{itemize}
+
+            \textbf{Challenges}
+            \begin{itemize}
+                \item Thousands of codes in complex tabular structure
+                \item Exact code matching required
+                \item Similar code descriptions causing confusion
+            \end{itemize}
+        \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Why SimpleRAG fails: An empirical analysis}
-    \small
-    % --- Failure 1 ---
-    \textbf{\color{MainNavy}Issue 1: Loss of Table Structure}
-    \hfill \textit{Extraction using PyPDF}
 
-    \begin{columns}[T]
+\begin{frame}{Other Technical Barriers}
+    \begin{itemize}
+        \item \textbf{Strict data security constraints:} Sensitive and private business data can not be exposed to ChatGPT or Cloud Services
+        \item \textbf{High accuracy requirements:} Hallucination is unacceptable in high-stakes domains like finance and healthcare
+        \item \textbf{Resource-constrained deployment:} Large models require significant computational resources, while smaller models have limited context windows
+    \end{itemize}
+    
+    \vspace{0.5cm}
+    \textbf{\color{MainNavy} $\rightarrow$ Solution Objective:} A unified in-house RAG pipeline that can handle complex documents with high accuracy
+\end{frame}
+
+\begin{frame}{Simple RAG Pipeline - Baseline Approach}
+    \begin{columns}[c]
+        \begin{column}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, keepaspectratio]{figures/basic_rag_pipeline.png}
+        \end{column}
+
+        \begin{column}{0.48\textwidth}
+            \textbf{\color{MainNavy} Simple RAG Configuration}
+            \begin{itemize}
+                \item \textbf{Parsing:} PyPDF for text extraction
+                \item \textbf{Chunking:} Fixed-size (512 tokens/chunk, 50 overlap)
+                \item \textbf{Embedding:} all-MiniLM-L6-v2 
+                \item \textbf{Vector Store:} ChromaDB with Dense Search
+                \item \textbf{Generation:} Gemma-3-12b-it
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Simple RAG Pipeline - Baseline Approach}
+    \begin{columns}[c]
+        \begin{column}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, keepaspectratio]{figures/basic_rag_pipeline.png}
+        \end{column}
+
+        \begin{column}{0.48\textwidth}
+            \textbf{\color{MainNavy} Simple RAG Configuration}
+            \begin{itemize}
+                \item \textbf{Parsing:} PyPDF for text extraction
+                \item \textbf{Chunking:} Fixed-size (512 tokens/chunk, 50 overlap)
+                \item \textbf{Embedding:} all-MiniLM-L6-v2 
+                \item \textbf{Vector Store:} ChromaDB with Dense Search
+                \item \textbf{Generation:} Gemma-3-12b-it
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Why Simple RAG Fails: Issue 1 - Loss of Table Structure}
+    \centering
+    \textbf{\color{MainNavy}Problem: Flattening of 2D Table Structure}
+    \vspace{0.3cm}
+    
+    \begin{columns}[c]
         \begin{column}{0.45\textwidth}
             \centering
+            \small\textbf{Original Table:}
             \resizebox{\linewidth}{!}{
             \begin{tabular}{|l|r|r|r|}
                 \hline
-                \textbf{Sous modules (en k€)} & \textbf{SCR 2024} & \textbf{SCR 2023} & \textbf{Evol.} \\ % Viết tắt Evolution để đỡ bị tràn
+                \textbf{Sous modules (en k€)} & \textbf{SCR 2024} & \textbf{SCR 2023} & \textbf{Évol.} \\
                 \hline
                 Type 1 & 2 692 & 2 487 & 8 \% \\
                 \hline
                 Type 2 & 28 377 & 36 221 & -22 \% \\
                 \hline
-                Diversification & -621 & -586 & 6 \% \\ % Rút gọn text một chút cho đẹp bảng nhỏ
+                Diversification & -621 & -586 & 6 \% \\
                 \hline
                 \textbf{Risque de défaut} & \textbf{30 448} & \textbf{38 121} & \textbf{-20 \%} \\
                 \hline
@@ -184,12 +346,13 @@
         \end{column}
         
         \begin{column}{0.05\textwidth}
-            \vspace{0.5cm} $\rightarrow$
+            \centering $\rightarrow$
         \end{column}
         
-        \begin{column}{0.5\textwidth}
-            \begin{minipage}[t]{0.48\textwidth}
-        \scriptsize 
+        \begin{column}{0.48\textwidth}
+            \small\textbf{PyPDF Output:}
+            \begin{minipage}[t]{0.95\textwidth}
+        \tiny
         \begin{verbatim}
 Sous modules (en k€) SCR 2024 SCR 2023 Evolution 
 Type 1 2 692 2 487 8 % 
@@ -198,179 +361,259 @@ Effet de diversification -621 -586 6 %
 Risque de défaut 30 448 38 121 -20 %
         \end{verbatim}
     \end{minipage}
-            % \tiny \color{navyblue} PyPDF làm phẳng bảng 2 chiều $\rightarrow$ Mất ngữ cảnh hàng/cột.
         \end{column}
     \end{columns}
+    
+    \vspace{0.3cm}
+    \small\textbf{Impact:} Row/column context is lost, making it difficult for LLMs to understand relationships
+\end{frame}
 
-    \textbf{\color{MainNavy}Issue 2: Failure with exact code matching}
 
-    \begin{columns}[T]
+\begin{frame}{Why Simple RAG Fails: Issue 2 - Failure with Exact Code Matching}
+    \textbf{\color{MainNavy}Problem: Dense embedding struggles with exact keyword matching}
+    \vspace{0.3cm}
+    
+    \begin{columns}[c]
         \begin{column}{0.45\textwidth}
             \centering
+            \textbf{User Query:}
             \includegraphics[width=\textwidth]{figures/search_HAFA.png}
         \end{column}
         
         \begin{column}{0.05\textwidth}
-            \vspace{0.5cm} $\rightarrow$
+            \centering $\rightarrow$
         \end{column}
         
-        \begin{column}{0.5\textwidth}
+        \begin{column}{0.48\textwidth}
+            \textbf{Search Results:}
             \includegraphics[width=\textwidth]{figures/ccam_dense_search_failure.png}
-            % \tiny \color{navyblue} PyPDF làm phẳng bảng 2 chiều $\rightarrow$ Mất ngữ cảnh hàng/cột.
         \end{column}
     \end{columns}
+    
+    \vspace{0.3cm}
+    \small\textbf{Impact:} Exact code "HAFA006" not found in highest top result; semantically similar but incorrect codes ranked higher
 \end{frame}
 
-\begin{frame}{Why SimpleRAG fails: An empirical analysis}
-    Other issues: 
+\begin{frame}{Why Simple RAG Fails: Quantitative Analysis}
+    \textbf{Other Issues:}
     \begin{itemize}
-        \item Lost in the middle: LLM accuracy drops when ground truth passage is not in high position in top-k.
-        \item Multilingual embedding mismatch: English embedding model on French documents.
+        \item \textbf{Lost in the middle:} LLM accuracy drops when ground truth passage is not in high position in top-k results
+        \item \textbf{Multilingual embedding mismatch:} English embedding model applied to French documents
     \end{itemize}
-
-    Quantitative results
-    \begin{table}[H]
+    
+    \vspace{0.4cm}
+    \textbf{\color{MainNavy}Quantitative Results on GPM Test Set}
+    \begin{table}
         \centering
-        \caption{Simple RAG Performance on GPM Test Set (25 questions)}
-        \begin{tabular}{|l|c|c|}
+        \begin{tabular}{|l|c|p{5cm}|}
             \hline
             \textbf{Metric} & \textbf{Score} & \textbf{Interpretation} \\
             \hline
-            Correctness & 0.66 & 66\% answers correct with respect to contexts \\
+            Correctness & 0.66 & Only 66\% answers correct w.r.t. contexts \\
             \hline
             Relevancy & 0.73 & 73\% answers relevant to the question \\
             \hline
         \end{tabular}
-        \label{tab:simple_rag_performance}
     \end{table}
-    SimpleRAG only attains 66\% correctness, insufficient for high-stakes domains like finance and healthcare. 
+    
+    \vspace{0.2cm}
+    \textbf{Conclusion:} Simple RAG achieves only 66\% correctness — insufficient for high-stakes domains
+\end{frame}
 
+\begin{frame}{Advanced Multimodal RAG Pipeline - Overview}
+    \begin{columns}[c] % [c] để căn giữa nội dung theo chiều dọc
+        % Cột 1: Văn bản (Key Innovations)
+        \begin{column}{0.4\textwidth}
+            \textbf{\color{MainNavy}Key Innovations:}
+            \vspace{0.3cm} % Tạo khoảng cách nhỏ giữa tiêu đề và list
+            \begin{itemize}
+                \item Structure-preserving document processing
+                \item Multimodal summarization
+                \item Hybrid search combining semantic and keyword matching
+                \item Cross-encoder reranking
+            \end{itemize}
+        \end{column}
+
+        % Cột 2: Hình ảnh
+        \begin{column}{0.6\textwidth}
+            \begin{figure}
+                \centering
+                % width=\textwidth ở đây sẽ bằng chiều rộng của cột (0.6 slide)
+                \includegraphics[width=\textwidth]{figures/advanced_rag_pipeline.jpg}
+            \end{figure}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 
-
-
-\begin{frame}{Advanced Multimodal RAG Pipeline}
+\begin{frame}{Offline Indexing: Structure Preservation}
     \begin{figure}
         \centering
-        \includegraphics[width=0.8\textwidth]{figures/advanced_rag_pipeline.jpg}
-        \caption{The advanced RAG pipeline composes of 2 phases}
+        \includegraphics[width=0.75\textwidth]{figures/processing.png}
     \end{figure}
+    
+    \textbf{Preserving Structure with UnstructuredIO and Table Transformer:}
+    \begin{enumerate}
+        \item \textbf{Table Detection:} Identify table positions using YoloX/Detectron2
+        \item \textbf{Structure Recognition:} Recognize cells, merged cells, headers vs. body
+        \item \textbf{HTML Mapping:} Convert to \texttt{<table>} tags for easy LLM processing
+    \end{enumerate}
 \end{frame}
 
-\begin{frame}{Offline Indexing Phase}
+\begin{frame}{Offline Indexing: Example of Structure Preservation}
+    \begin{columns}[c]
+        \begin{column}{0.58\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, keepaspectratio]{figures/unstructuredio_table_detection.png}
+            
+            \small Table extraction preserves spatial relationships
+        \end{column}
+        \begin{column}{0.38\textwidth}
+            \centering
+            \includegraphics[height=0.8\textheight, keepaspectratio]{figures/html_output.png}
+            
+            {\small HTML output with structure intact}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Offline Indexing: Multimodal Summarization}
     \begin{figure}
         \centering
-        \includegraphics[width=0.8\textwidth]{figures/processing.png}
+        \includegraphics[width=0.7\textwidth]{figures/summarization.png}
     \end{figure}
-    Preserving Structure with UnstructuredIO and Table Transformer
+    
+    \textbf{Purpose:} Reduce context size while preserving key information
+    \vspace{0.2cm}
+    
+    \begin{columns}[c]
+        \begin{column}{0.44\textwidth}
+            \centering
+            \small\textbf{Original Table:}
+            \resizebox{\linewidth}{!}{
+            \begin{tabular}{|l|r|r|r|}
+                \hline
+                \textbf{Sous modules} & \textbf{2024} & \textbf{2023} & \textbf{Évol.} \\
+                \hline
+                Type 1 & 2 692 & 2 487 & 8 \% \\
+                Type 2 & 28 377 & 36 221 & -22 \% \\
+                Diversif. & -621 & -586 & 6 \% \\
+                \textbf{Total} & \textbf{30 448} & \textbf{38 121} & \textbf{-20 \%} \\
+                \hline
+            \end{tabular}
+        }
+        \end{column}
+        
+        \begin{column}{0.05\textwidth}
+            $\rightarrow$
+        \end{column}
+        
+        \begin{column}{0.48\textwidth}
+            \includegraphics[width=\textwidth, keepaspectratio]{figures/table_summary.png}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Offline Indexing: Parent-Child Architecture}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.58\textwidth, keepaspectratio]{figures/parentchild.png}
+    \end{figure}
+    
+    \textbf{Design Principle:}
     \begin{itemize}
-        \item \textbf{Table Detection}: Identify table positions. 
-        \item \textbf{Table Structure Recognition}: Recognize lines (cells), merged cells, and classify headers vs. body. 
-        \item \textbf{HTML Mapping}: Finally, map these coordinates to \texttt{<table>} tags for easy LLM processing.
+        \item \textbf{Child (Summary):} Stored in vector store for efficient retrieval
+        \item \textbf{Parent (Raw Content):} Stored in document store for detailed generation
+    \end{itemize}
+    
+    \vspace{0.2cm}
+    \textbf{Benefit:} Retrieve using concise summaries, generate using complete information
+\end{frame}
+
+\begin{frame}{Offline Indexing: Multilingual Embedding Model}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth, keepaspectratio]{figures/mteb_multilingual_comparison.png}
+    \end{figure}
+    
+    \textbf{\color{MainNavy}Choice: Multilingual-E5-large-instruct}
+    \begin{itemize}
+        \item 560M parameters, trained on 100+ languages
+        \item Outperforms other models <1B params on MTEB multilingual benchmark
+        \item Instruction-following capability for better query understanding
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Offline Indexing Phase}
-    \begin{columns}[c]
-        % --- CỘT TRÁI: Ảnh gốc ---
-        \begin{column}{0.6\textwidth} % Chiếm khoảng 48% chiều rộng slide
-            \centering
-            \includegraphics[width=\textwidth, keepaspectratio]{figures/unstructuredio_table_detection.png}
-            An example of table extraction using UnstructuredIO + Table Transformer. \\
-            % Left: table in PDF; Right: extracted HTML with preserved structure.
-        \end{column}
-        \begin{column}{0.38\textwidth} % Chiếm khoảng 48% chiều rộng slide
-            \centering
-            \includegraphics[height=0.8\textheight, keepaspectratio]{figures/html_output.png} \\
-            {\small HTML output} 
-        \end{column}
 
-    \end{columns}
-   
-\end{frame}
-
-\begin{frame}{Offline Indexing Phase}
-    Summarization for images and tables 
+\begin{frame}{Online Querying Phase}
     \begin{figure}
         \centering
-        \includegraphics[width=0.8\textwidth]{figures/summarization.png}
+        \includegraphics[width=0.65\textwidth]{figures/querying2.png}
     \end{figure}
-\end{frame}
 
-\begin{frame}{Offline Indexing Phase}
+    \footnotesize
+    \textbf{Combining Two Approaches:}
+    \begin{itemize}
+        \item \textbf{BM25 (Keyword):} Exact term matching for codes, names
+        \item \textbf{Vector Search (Semantic):} Contextual understanding
+        \item \textbf{Reciprocal Rank Fusion:} Merge results intelligently
+    \end{itemize}
+
+    \textbf{Reranking Process:}
+    \begin{enumerate}
+        \item Hybrid search retrieves candidate documents
+        \item Cross-encoder computes relevance scores for each query-document pair
+        \item Top-k most relevant documents sent to LLM for generation
+    \end{enumerate}
     
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.6\textwidth, keepaspectratio]{figures/parentchild.png} \\
-        {\small Parent-child indexing} \\
-        \includegraphics[width=0.6\textwidth, keepaspectratio]{figures/mteb_multilingual_comparison.png} \\
-        {\small MTEB benchmark: Multilingual E5 outperforms other models on multilingual tasks} 
-    \end{figure}
-
-\end{frame}
-
-\begin{frame}{Online Querying Phase}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.6\textwidth]{figures/hybridsearch.png}
-    \end{figure}
-\end{frame}
-
-
-\begin{frame}{Online Querying Phase}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.6\textwidth]{figures/reranking.png}
-    \end{figure}
+    \textbf{Benefit:} Addresses "lost in the middle" problem by ensuring most relevant context is highly ranked
 \end{frame}
 
 
 \begin{frame}{Experimental Evaluation Setup}
     \begin{block}{Test Datasets}
         \begin{itemize}
-            \item GPM Test Set: 25 complex questions on GPM's reports (financial domain)
-            \item CCAM Test Set: 10 clinical consultation scenarios provided by Dr.Besnier (healthcare domain)
+            \item \textbf{GPM Test Set:} 25 complex questions on GPM's financial reports
+            \item \textbf{CCAM Test Set:} 10 clinical consultation scenarios (provided by Dr. Besnier)
         \end{itemize}
     \end{block}
 
-    \begin{block}{LLM-as-a-Judge Evaluation using RAGAS metrics}
-        Two judge models: \texttt{gemma-3-12b-it}, \texttt{mistral-small-24b-instruct-2501}
+    \begin{block}{LLM-as-a-Judge Evaluation using RAGAS Metrics}
+        \begin{itemize}
+            \item Two judge models: \texttt{gemma-3-12b-it}, \texttt{mistral-small-24b-instruct-2501}
+            \item All metrics on continuous scale [0, 1], averaged across both judges
+        \end{itemize}
     \end{block}
 
     \begin{table}
         \centering
         \small
-        \begin{tabular}{ll}
+        \begin{tabular}{lp{8cm}}
             \toprule
             \textbf{Metric} & \textbf{Definition} \\
             \midrule
-            Answer Correctness & Semantic similarity: generated vs ground-truth \\
+            Answer Correctness & Semantic similarity: generated vs. ground-truth \\
             Answer Relevancy & How well response addresses query \\
             Faithfulness & Response grounded in retrieved context \\
             Context Precision & Relevant chunks ranked highly \\
-            \midrule
-            Code Hit Rate@k & Correct code in top-k results (CCAM) \\
+            Code Hit Rate@k & Correct code in top-k results (CCAM only) \\
             \bottomrule
         \end{tabular}
     \end{table}
-
-    \vspace{0.2cm}
-    \textit{All metrics: continuous scale [0, 1], averaged across two judges}
 \end{frame}
 
-
-\begin{frame}{Experimental Results: Superior accuracy improvement}
+\begin{frame}{Results: Superior Accuracy Improvement}
     \begin{table}[H]
         \centering
         \caption{Results on GPM Test Set (25 questions)}
+        \small
         \begin{tabular}{|l|c|c|c|c|}
             \hline
-            \textbf{Pipeline} & \textbf{Correctness} & \textbf{Relevancy} & \textbf{Faithfulness} & \textbf{Context Precision} \\
+            \textbf{Pipeline} & \textbf{Correct.} & \textbf{Relev.} & \textbf{Faith.} & \textbf{Prec.} \\
             \hline
             Simple RAG & 0.648 & 0.788 & 0.732 & 0.654 \\
             \hline
-            Advanced RAG & \textbf{0.976} & \textbf{0.972} & \textbf{0.94} & \textbf{0.96} \\
+            Advanced RAG & \textbf{0.976} & \textbf{0.972} & \textbf{0.940} & \textbf{0.960} \\
             \hline
             \textit{Improvement} & \textit{+32.8\%} & \textit{+18.4\%} & \textit{+20.8\%} & \textit{+30.6\%} \\
             \hline
@@ -380,9 +623,10 @@ Risque de défaut 30 448 38 121 -20 %
     \begin{table}[H]
         \centering
         \caption{Results on CCAM Test Set (10 scenarios)}
+        \small
         \begin{tabular}{|l|c|c|}
             \hline
-            \textbf{Pipeline} & \textbf{Code Hit Rate@5} & \textbf{Code Hit Rate@20} \\
+            \textbf{Pipeline} & \textbf{Hit Rate@5} & \textbf{Hit Rate@20} \\
             \hline
             Simple RAG & 0.4 & 0.6 \\
             \hline
@@ -392,23 +636,31 @@ Risque de défaut 30 448 38 121 -20 %
             \hline
         \end{tabular}
     \end{table}
-
 \end{frame}
 
-\begin{frame}{Experimental Results: Superior accuracy improvement}
+\begin{frame}{Results: Visual Comparison}
     \begin{figure}
         \centering
-        \includegraphics[width=\textwidth]{figures/results_rag.png}
+        \includegraphics[width=0.8\textwidth]{figures/results_rag.png}
     \end{figure}
+    \footnotesize
+    \textbf{Key Observations:}
+    \begin{itemize}
+        \item Advanced RAG achieves near-perfect performance on GPM dataset
+        \item Biggest improvements in correctness and context precision
+        \item Dramatic improvement in exact code retrieval for CCAM
+        \item Consistent gains across all evaluation metrics
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Ablation Study: Contribution of Each Component}
     \begin{table}[H]
         \centering
-        \caption{Ablation Study on GPM Test Set}
+        \caption{Incremental improvements on GPM Test Set}
+        \small
         \begin{tabular}{|l|c|c|c|}
             \hline
-            \textbf{Configuration} & \textbf{Precision} & \textbf{$\Delta$ vs Baseline} & \textbf{Cumulative $\Delta$} \\
+            \textbf{Configuration} & \textbf{Precision} & \textbf{$\Delta$ vs Base} & \textbf{Cumulative $\Delta$} \\
             \hline
             Baseline (Simple RAG) & 0.648 & --- & --- \\
             \hline
@@ -418,32 +670,59 @@ Risque de défaut 30 448 38 121 -20 %
             \hline
             + Multilingual E5 Embedding & 0.875 & +5.7\% & +22.7\% \\
             \hline
-            + Hybrid Search & 0.92 & +4.5\% & +27.2\% \\
+            + Hybrid Search & 0.920 & +4.5\% & +27.2\% \\
             \hline
             + Reranking & \textbf{0.976} & +5.6\% & \textbf{+32.8\%} \\
             \hline
         \end{tabular}
     \end{table}
 
+    \textbf{Key Insights:}
     \begin{itemize}
-        \item Structure preservation via UnstructuredIO yields largest single gain (+11.4\%).
-        \item Summarization, hybrid search and reranking also contribute significantly.
+        \item Structure preservation (UnstructuredIO) yields the largest single gain (+11.4\%)
+        \item Each component contributes meaningfully to the final performance
+        \item Cumulative effect demonstrates value of holistic pipeline design
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Problem 2: Behavior Gap}
-    Present the case of building a domain-specific chatbot for Tarot Reading.
 
-    Why prompt engineering alone is insufficient:
+% ========== SECTION 3: PROBLEM 2 ==========
+\section{Problem 2: Behavior Adaptation for Small Models}
+
+% Section divider slide
+\begin{frame}[plain]
+    \begin{center}
+        \vfill
+        {\Huge\color{MainNavy}\textbf{Problem 2}}
+        \vspace{0.5cm}
+        
+        {\Large Behavior Adaptation and Resource Optimization for Small Models}
+        \vspace{0.3cm}
+        
+        {\large Fine-tuning Small Models for Specialized Tasks}
+        \vfill
+    \end{center}
+\end{frame}
+
+\begin{frame}{Problem 2: Behavior Adaptation for Small Models}
+    \textbf{Context:} Building a chatbot for Tarot Reading (psychological counseling)
+    
+    \vspace{0.3cm}
+    \textbf{Naive Approach:} Prompt engineering with large LLMs (GPT-4, Claude-3) via APIs
+    
+    \vspace{0.3cm}
+    \textbf{Why Prompt Engineering Alone Is Insufficient:}
     \begin{itemize}
-        \item Attention dilution: 
-        \item Inconsistency: Out-of-character drift in extended conversations
-        \item Cost: Large models (GPT-4) expensive for continuous deployment
+        \item \textbf{Attention dilution:} Important context lost in long prompts
+        \item \textbf{Inconsistency:} Out-of-character drift in extended conversations
+        \item \textbf{Cost:} Large models expensive for continuous deployment
     \end{itemize}
 
+    \vspace{0.3cm}
     \begin{table}[H]
         \centering
-        \caption{Operational cost comparison. *Assuming 10K conversations × 3K tokens/conversation. **Amortized GPU cost.}
+        \caption{Operational cost comparison. *10K conversations × 3K tokens each. **Amortized GPU cost.}
+        \small
         \begin{tabular}{|l|c|c|}
             \hline
             \textbf{Option} & \textbf{Cost/1K tokens} & \textbf{Cost/month*} \\
@@ -454,19 +733,214 @@ Risque de défaut 30 448 38 121 -20 %
             Qwen-0.5B Fine-tuned (Edge) & \$0 & \$0  \\
             \hline
         \end{tabular}
-        \label{tab:cost-comparison}
     \end{table}
 \end{frame}
 
+\begin{frame}{Specific Requirements for a Tarot Reader Task}
+     \begin{columns}[c]
+        \begin{column}{0.32\textwidth}
+            \includegraphics[width=\textwidth, keepaspectratio]{figures/tarot_cards.png}
+            
+            \small\textbf{Knowledge:} Card meanings and spreads
+        \end{column}
+        
+        \begin{column}{0.32\textwidth}
+            \includegraphics[width=0.9\textwidth, keepaspectratio]{figures/tarot_workflow.png}
+            
+            \small\textbf{Workflow:} Strict conversation structure
+        \end{column}
+        
+        \begin{column}{0.32\textwidth}
+            \textbf{Behavioral Traits:}
+            \begin{itemize}
+                \small
+                \item Empathetic tone
+                \item Open-ended interaction
+                \item Avoid direct predictions
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    
+    \vspace{0.4cm}
+    \textbf{\color{MainNavy}Challenge:} How to encode all these requirements into a small, efficient model?
+\end{frame}
 
-\begin{frame}{Future Directions}
+\begin{frame}{Example of a Tarot conversation}
+    \begin{figure}
+        \centering
+        \includegraphics[height=0.85\textheight]{figures/tarot_conversation.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Distillation Pipeline: Generating Synthetic Training Data}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{figures/distillation_pipeline.png}
+    \end{figure}
+    \footnotesize
+    \textbf{Data Generation Process:}
     \begin{itemize}
-        \item Reinforcement learning from human feedback (RLHF) to further align model outputs with user expectations. 
-        \item Edge deployment optimizations for low-latency responses in real-time applications.
-        \item Multilingual response generation to support global user bases.
-        \item 
+        \item LLMs (Qwen2.5-Plus, GPT-4o, DeepSeek-R1) generate 780 conversations
+        \item Each conversation includes:
+        \begin{itemize}
+            \item Simulated topics and questions from querents
+            \item Specified conversation length
+            \item Querent personality traits
+            \item Random card combinations with their meanings
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Model Selection: Why Qwen2.5-1.5B-Instruct?}
+    \begin{table}[H]
+            \centering
+            \caption{Performance on standard benchmarks (Source: Qwen2.5 Technical Report, 2024)}
+            \small
+            \begin{tabular}{lcccc}
+                \toprule
+                \textbf{Model} & \textbf{Params} & \textbf{MMLU} & \textbf{GSM8K} & \textbf{MATH} \\
+                 & & (Knowledge) & (Reasoning) & (Hard Logic) \\
+                \midrule
+                Llama-3.2-1B-Instruct & 1.23B & 49.3 & 44.4 & 30.6 \\
+                Gemma-2-2.6B-Base & 2.6B & 52.2 & 30.3 & 25.3 \\
+                \textbf{Qwen2.5-0.5B-Instruct} & \textbf{0.49B} & 47.5 & \textbf{49.6} & \textbf{34.4} \\
+                \textbf{Qwen2.5-1.5B-Instruct} & \textbf{1.54B} & \textbf{60.9} & \textbf{73.2} & \textbf{55.2} \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+    \textbf{Reasons for Selection:}
+    \begin{enumerate}
+        \item Superior performance-to-parameter ratio
+        \item Strong multilingual capability
+        \item Excellent instruction-following ability
+        \item Efficient inference on consumer hardware
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Fine-tuning Results: Comprehensive Evaluation}
+    \begin{table}[H]
+        \centering
+        \caption{LLM-as-a-Judge Results (FT = Fine-tuned)}
+        \tiny
+        \begin{tabular}{|l|c|c|c|c|c|c|}
+            \hline
+            \textbf{Model} & \textbf{Style} & \textbf{Knowledge} & \textbf{Empathy} & \textbf{Workflow} & \textbf{Coher.} & \textbf{Avg} \\
+            \hline
+            \multicolumn{7}{|c|}{\textit{Judge: Gemma-3-12B-Instruct}} \\
+            \hline
+            Qwen-0.5B (base) & 0.42 & 0.65 & 0.48 & 0.35 & 0.72 & 0.52 \\
+            Qwen-0.5B (FT) & 0.78 & 0.72 & 0.81 & 0.85 & 0.80 & 0.79 \\
+            Qwen-1.5B (base) & 0.55 & 0.71 & 0.58 & 0.42 & 0.78 & 0.61 \\
+            \rowcolor{gray!20}
+            Qwen-1.5B (FT) & \textbf{0.88} & 0.85 & \textbf{0.89} & \textbf{0.92} & 0.88 & \textbf{0.88} \\
+            GPT-4 (prompt) & 0.82 & 0.90 & 0.85 & 0.75 & 0.92 & 0.85 \\
+            \hline
+            \multicolumn{7}{|c|}{\textit{Judge: Mistral-Small-24B-Instruct}} \\
+            \hline
+            Qwen-1.5B (base) & 0.52 & 0.68 & 0.55 & 0.40 & 0.75 & 0.58 \\
+            \rowcolor{gray!20}
+            Qwen-1.5B (FT) & \textbf{0.85} & 0.82 & \textbf{0.86} & \textbf{0.90} & 0.86 & \textbf{0.86} \\
+            GPT-4o (prompt) & 0.80 & \textbf{0.88} & 0.82 & 0.72 & \textbf{0.90} & 0.82 \\
+            \hline
+        \end{tabular}
+    \end{table}
+    
+    \textbf{Key Findings:}
+    \begin{itemize}
+        \item Fine-tuning dramatically improves behavioral metrics, especially workflow compliance (+50\%: 0.42 → 0.92)
+        \item Fine-tuned Qwen-1.5B outperforms prompted GPT-4 on style, empathy, and workflow
+        \item 100x cost reduction with comparable or better performance
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Demo Application using Gradio}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/demo_tarot_application.png}
+    \end{figure}
+    \footnotesize
+    \textbf{Features:}
+    \begin{itemize}
+        \item Real-time card selection with visual feedback
+        \item Multi-turn conversation with context preservation
+        \item Model switching for comparison
+    \end{itemize}
+\end{frame}
+
+% ========== SECTION 4: CONCLUSION ==========
+\section{Conclusion}
+
+\begin{frame}[plain]
+    \begin{center}
+        \vfill
+        {\Huge\color{MainNavy}\textbf{Conclusion and Perspectives}}
+        \vspace{0.5cm}
+            
+        \vfill
+    \end{center}
+\end{frame}
+
+
+\begin{frame}{Key Contributions}
+    \textbf{\color{MainNavy}Problem 1: Advanced RAG Pipeline}
+    \begin{itemize}
+        \item Developed a structure-preserving multimodal RAG system
+        \item Achieved \textbf{32.8\% improvement} in answer correctness on financial documents
+        \item Achieved \textbf{40\% improvement} in code hit rate for healthcare documents
+        \item Demonstrated value of each pipeline component through ablation study
     \end{itemize}
     
+    \vspace{0.3cm}
+    \textbf{\color{MainNavy}Problem 2: Behavior Adaptation through Fine-tuning}
+    \begin{itemize}
+        \item Designed an effective distillation pipeline for small models
+        \item Fine-tuned Qwen-1.5B outperforms prompted GPT-4 on behavioral metrics
+        \item Achieved \textbf{80-90\% cost reduction} while maintaining comparable performance
+        \item Demonstrated feasibility of specialized conversational agents on consumer hardware
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    \textbf{\color{MainNavy}Overarching Impact}
+    \begin{itemize}
+        \item Provided practical solutions to both knowledge and behavior gaps
+        \item Enabled deployment in resource-constrained, high-stakes environments
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Future Directions}
+    \textbf{\color{MainNavy}Short-term Improvements:}
+    \begin{itemize}
+        \item Extended evaluation on additional domain-specific datasets
+        \item Optimization for edge deployment (quantization, pruning)
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    \textbf{\color{MainNavy}Long-term Research Directions:}
+    \begin{itemize}
+        \item \textbf{RLHF:} Reinforcement learning from human feedback to further align model outputs with user expectations
+        \item \textbf{Multimodal Generation:} Extending beyond text to support visual explanations (e.g., chart generation in financial reports)
+        \item \textbf{Multilingual Support:} Expanding to support global user bases across multiple languages
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[plain]
+    \begin{center}
+        \vfill
+        {\Huge\color{MainNavy}\textbf{Thank You}}
+        \vspace{0.5cm}
+        
+        {\Large Q\&A Session}
+        \vspace{1cm}
+        
+        \textbf{Contact:}
+        
+        Minh Duy Nguyen
+        
+        \texttt{mnguye@insa-toulouse.fr}
+        \vfill
+    \end{center}
 \end{frame}
 
 \end{document}
