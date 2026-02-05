@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1770239268.37803 "/home/minhduy/Documents/Projects/Master_Final_Report/slides.tex" "slides.pdf" "slides" 1770239275.35329 0
+["pdflatex"] 1770245779.68642 "/home/minhduy/Documents/Projects/Master_Final_Report/slides.tex" "slides.pdf" "slides" 1770245786.60142 0
   "/etc/texmf/web2c/texmf.cnf" 1759430234.41919 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/minhduy/Documents/Projects/Master_Final_Report/slides.tex" 1770239265.7744 34272 b7b4a17581c6275a92ef6a6bf83da1cf ""
+  "/home/minhduy/Documents/Projects/Master_Final_Report/slides.tex" 1770245772.17848 34315 5a0e96ea1271c45da686926e92200fd9 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvb8c.tfm" 1136768653 1344 2b79eb16daca0e8fd7cff8a5505df513 ""
@@ -268,12 +268,12 @@
   "figures/tarot_conversation.png" 1770212244.47884 390602 1f5454b10db849dfded4568abee478cd ""
   "figures/tarot_workflow.png" 1770211338.55154 28255 eed44b1caf7b13c6aaeec278a1d9245d ""
   "figures/unstructuredio_table_detection.png" 1768811559.00174 116748 39206ffe71363a366bad14dab3ef8050 ""
-  "slides.aux" 1770239275.28823 6364 27404c323aacafea9f879cdc6e5e022c "pdflatex"
-  "slides.nav" 1770239275.29027 4252 07f8f5be96f5c5319dce32e4798f8afc "pdflatex"
-  "slides.out" 1770239275.28969 776 3f37d425e613c40e42d504604568bc12 "pdflatex"
-  "slides.tex" 1770239265.7744 34272 b7b4a17581c6275a92ef6a6bf83da1cf ""
-  "slides.toc" 1770239275.29027 261 e43c55382d6042324b71f22fe4112eea "pdflatex"
-  "slides.vrb" 1770239273.76149 1596 f8393ff708c51c783f3cb4bb8307c615 "pdflatex"
+  "slides.aux" 1770245786.54089 6364 27404c323aacafea9f879cdc6e5e022c "pdflatex"
+  "slides.nav" 1770245786.54167 4252 07f8f5be96f5c5319dce32e4798f8afc "pdflatex"
+  "slides.out" 1770245786.54111 776 3f37d425e613c40e42d504604568bc12 "pdflatex"
+  "slides.tex" 1770245772.17848 34315 5a0e96ea1271c45da686926e92200fd9 ""
+  "slides.toc" 1770245786.54167 261 e43c55382d6042324b71f22fe4112eea "pdflatex"
+  "slides.vrb" 1770245785.01929 1596 f8393ff708c51c783f3cb4bb8307c615 "pdflatex"
   (generated)
   "slides.aux"
   "slides.log"

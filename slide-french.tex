@@ -23,6 +23,7 @@
 \setbeamercolor{author}{fg=black}
 \setbeamercolor{institute}{fg=black}
 \setbeamercolor{frametitle}{bg=MainNavy, fg=white}
+\setbeamertemplate{footline}[frame number]
 
 % --- Retirer les éléments superflus ---
 \setbeamertemplate{navigation symbols}{}
@@ -142,8 +143,8 @@
             \textbf{Approches Courantes :}
             \begin{itemize}
                 \item Pré-entraînement continu
-                \item Ingénierie de prompts
-                \item \textbf{\color{MainNavy}Génération Augmentée par Récupération (RAG)}
+                \item Prompt engineering
+                \item \textbf{\color{MainNavy}Retrieval Augmented Generation (RAG)}
                 \item Intégration d'API
             \end{itemize} 
         \end{block}
@@ -152,8 +153,8 @@
         \begin{block}{Traiter la Lacune Comportementale}
             \textbf{Approches Courantes :}
             \begin{itemize}
-                \item Ingénierie de prompts complexe
-                \item Apprentissage few-shot
+                \item Prompt engineering avancé
+                \item Few-shot learning 
                 \item \textbf{\color{MainNavy}Fine-tuning}
                 \item RLHF
             \end{itemize}  
@@ -189,16 +190,10 @@
         \begin{itemize}
             \item \textbf{Objectif :} Permettre des réponses précises aux questions sur des documents complexes et propriétaires
             \item \textbf{Contraintes :} Haute précision, faible latence, déploiement économique
+            \item \textbf{Challenges :} Documents multi-modal, longs, de structures complexes. 
         \end{itemize}
     \end{block}
-    
-    \vspace{0.3cm}
-    \textbf{Questions Clés :}
-    \begin{itemize}
-        \item Comment préserver la structure dans les documents complexes ?
-        \item Comment garantir une haute précision avec des ressources limitées ?
-        \item Comment traiter efficacement les données multimodales ?
-    \end{itemize}
+
 \end{frame}
 
 \begin{frame}{Le Vrai Défi : Données Financières Complexes}
@@ -280,10 +275,10 @@
         \begin{column}{0.48\textwidth}
             \textbf{\color{MainNavy} Configuration RAG Simple}
             \begin{itemize}
-                \item \textbf{Analyse :} PyPDF pour l'extraction de texte
-                \item \textbf{Découpage :} Taille fixe (512 tokens/chunk, 50 de chevauchement)
+                \item \textbf{Parsing :} PyPDF pour l'extraction de texte
+                \item \textbf{Chunking :} Taille fixe (512 tokens/chunk, 50 de chevauchement)
                 \item \textbf{Embedding :} all-MiniLM-L6-v2 
-                \item \textbf{Base Vectorielle :} ChromaDB avec recherche dense
+                \item \textbf{Vector Store :} ChromaDB avec recherche dense
                 \item \textbf{Génération :} Gemma-3-12b-it
             \end{itemize}
         \end{column}
@@ -367,7 +362,7 @@ Risque de défaut 30 448 38 121 -20 %
 \begin{frame}{Pourquoi le RAG Simple Échoue : Analyse Quantitative}
     \textbf{Autres Problèmes :}
     \begin{itemize}
-        \item \textbf{Perdu au milieu :} La précision du LLM diminue lorsque le passage de vérité terrain n'est pas en position élevée dans les top-k résultats
+        \item \textbf{Lost in the middle :} La précision du LLM diminue lorsque le passage de ground truth n'est pas en position élevée dans les top-k résultats
         \item \textbf{Incompatibilité d'embedding multilingue :} Modèle d'embedding anglais appliqué aux documents français
     \end{itemize}
     
@@ -390,7 +385,7 @@ Risque de défaut 30 448 38 121 -20 %
     \textbf{Conclusion :} Le RAG simple n'atteint que 66\% d'exactitude — insuffisant pour les domaines à enjeux élevés
 \end{frame}
 
-\begin{frame}{Pipeline RAG Multimodal Avancé - Vue d'Ensemble}
+\begin{frame}{Pipeline RAG Multimodal Avancé}
     \begin{columns}[c]
         \begin{column}{0.4\textwidth}
             \textbf{\color{MainNavy}Innovations Clés :}
@@ -412,7 +407,7 @@ Risque de défaut 30 448 38 121 -20 %
     \end{columns}
 \end{frame}
 
-\begin{frame}{Indexation Hors Ligne : Préservation de la Structure}
+\begin{frame}{Offline Indexing : Préservation de la Structure}
     \begin{figure}
         \centering
         \includegraphics[width=0.75\textwidth]{figures/processing.png}
@@ -426,7 +421,7 @@ Risque de défaut 30 448 38 121 -20 %
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Indexation Hors Ligne : Exemple de Préservation de Structure}
+\begin{frame}{Offline Indexing : Exemple de Préservation de Structure}
     \begin{columns}[c]
         \begin{column}{0.58\textwidth}
             \centering
@@ -443,7 +438,7 @@ Risque de défaut 30 448 38 121 -20 %
     \end{columns}
 \end{frame}
 
-\begin{frame}{Indexation Hors Ligne : Résumé Multimodal}
+\begin{frame}{Offline Indexing : Résumé Multimodal}
     \begin{figure}
         \centering
         \includegraphics[width=0.7\textwidth]{figures/summarization.png}
@@ -480,7 +475,7 @@ Risque de défaut 30 448 38 121 -20 %
     \end{columns}
 \end{frame}
 
-\begin{frame}{Indexation Hors Ligne : Architecture Parent-Enfant}
+\begin{frame}{Offline Indexing : Architecture Parent-Enfant}
     \begin{figure}
         \centering
         \includegraphics[width=0.58\textwidth, keepaspectratio]{figures/parentchild.png}
@@ -496,7 +491,7 @@ Risque de défaut 30 448 38 121 -20 %
     \textbf{Avantage :} Récupérer en utilisant des résumés concis, générer en utilisant des informations complètes
 \end{frame}
 
-\begin{frame}{Indexation Hors Ligne : Modèle d'Embedding Multilingue}
+\begin{frame}{Offline Indexing : Modèle d'Embedding Multilingue}
     \begin{figure}
         \centering
         \includegraphics[width=\textwidth, keepaspectratio]{figures/mteb_multilingual_comparison.png}
@@ -510,7 +505,7 @@ Risque de défaut 30 448 38 121 -20 %
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Phase de Requête en Ligne}
+\begin{frame}{Online Querying Phase}
     \begin{figure}
         \centering
         \includegraphics[width=0.65\textwidth]{figures/querying2.png}
@@ -559,7 +554,6 @@ Risque de défaut 30 448 38 121 -20 %
             \midrule
             Exactitude de Réponse & Similarité sémantique : générée vs. vérité terrain \\
             Pertinence de Réponse & Dans quelle mesure la réponse traite la requête \\
-            Fidélité & Réponse ancrée dans le contexte récupéré \\
             Précision du Contexte & Chunks pertinents bien classés \\
             Taux de Réussite de Code@k & Code correct dans les top-k résultats (CCAM uniquement) \\
             \bottomrule
@@ -572,15 +566,15 @@ Risque de défaut 30 448 38 121 -20 %
         \centering
         \caption{Résultats sur l'Ensemble de Test GPM (25 questions)}
         \small
-        \begin{tabular}{|l|c|c|c|c|}
+        \begin{tabular}{|l|c|c|c|}
             \hline
-            \textbf{Pipeline} & \textbf{Exact.} & \textbf{Pert.} & \textbf{Fidél.} & \textbf{Préc.} \\
+            \textbf{Pipeline} & \textbf{Exact.} & \textbf{Pert.}  & \textbf{Préc.} \\
             \hline
-            RAG Simple & 0.648 & 0.788 & 0.732 & 0.654 \\
+            RAG Simple & 0.648 & 0.788 & 0.654 \\
             \hline
-            RAG Avancé & \textbf{0.976} & \textbf{0.972} & \textbf{0.940} & \textbf{0.960} \\
+            RAG Avancé & \textbf{0.976} & \textbf{0.972}  & \textbf{0.960} \\
             \hline
-            \textit{Amélioration} & \textit{+32.8\%} & \textit{+18.4\%} & \textit{+20.8\%} & \textit{+30.6\%} \\
+            \textit{Amélioration} & \textit{+32.8\%} & \textit{+18.4\%} & \textit{+30.6\%} \\
             \hline
         \end{tabular}
     \end{table}
@@ -660,7 +654,7 @@ Risque de défaut 30 448 38 121 -20 %
         {\Huge\color{MainNavy}\textbf{Problème 2}}
         \vspace{0.5cm}
         
-        {\Large Adaptation Comportementale et Optimisation des Ressources pour Petits Modèles}
+        {\Large Adaptation Comportementale pour Petits Modèles}
         \vspace{0.3cm}
         
         {\large Fine-tuning de Petits Modèles pour Tâches Spécialisées}
@@ -669,13 +663,14 @@ Risque de défaut 30 448 38 121 -20 %
 \end{frame}
 
 \begin{frame}{Problème 2 : Adaptation Comportementale pour Petits Modèles}
+    \footnotesize
     \textbf{Contexte :} Construction d'un chatbot pour la lecture de Tarot (conseil psychologique)
     
     \vspace{0.3cm}
-    \textbf{Approche Naïve :} Ingénierie de prompts avec de grands LLM (GPT-4, Claude-3) via API
+    \textbf{Approche Naïve :} Prompt engineering avec de grands LLM (GPT-4, Claude-3) via API
     
     \vspace{0.3cm}
-    \textbf{Pourquoi l'Ingénierie de Prompts Seule Est Insuffisante :}
+    \textbf{Pourquoi Prompt engineering Seule Est Insuffisante :}
     \begin{itemize}
         \item \textbf{Dilution de l'attention :} Contexte important perdu dans les longs prompts
         \item \textbf{Inconsistance :} Dérive hors caractère dans les conversations étendues
@@ -739,7 +734,7 @@ Risque de défaut 30 448 38 121 -20 %
 \begin{frame}{Pipeline de Distillation : Génération de Données d'Entraînement Synthétiques}
     \begin{figure}
         \centering
-        \includegraphics[width=\textwidth]{figures/distillation_pipeline.png}
+        \includegraphics[width=0.8\textwidth]{figures/distillation_pipeline.png}
     \end{figure}
     \footnotesize
     \textbf{Processus de Génération de Données :}
@@ -747,6 +742,7 @@ Risque de défaut 30 448 38 121 -20 %
         \item Les LLM (Qwen2.5-Plus, GPT-4o, DeepSeek-R1) génèrent 780 conversations
         \item Chaque conversation inclut :
         \begin{itemize}
+            \footnotesize
             \item Sujets et questions simulés des consultants
             \item Longueur de conversation spécifiée
             \item Traits de personnalité du consultant
@@ -777,8 +773,7 @@ Risque de défaut 30 448 38 121 -20 %
     \begin{enumerate}
         \item Ratio performance/paramètres supérieur
         \item Forte capacité multilingue
-        \item Excellente capacité de suivi d'instructions
-        \item Inférence efficace sur matériel grand public
+        \item Capacité de suivi d'instructions
     \end{enumerate}
 \end{frame}
 
@@ -813,8 +808,7 @@ Risque de défaut 30 448 38 121 -20 %
     \textbf{Résultats Clés :}
     \begin{itemize}
         \item Le fine-tuning améliore considérablement les métriques comportementales, en particulier la conformité au workflow (+50\% : 0.42 → 0.92)
-        \item Qwen-1.5B fine-tuné surpasse GPT-4 avec prompts sur le style, l'empathie et le workflow
-        \item Réduction de coût de 100x avec performance comparable ou meilleure
+        \item Qwen2.5-1.5B fine-tuné surpasse GPT-4o avec prompts sur le style, l'empathie et le workflow
     \end{itemize}
 \end{frame}
 
@@ -846,36 +840,31 @@ Risque de défaut 30 448 38 121 -20 %
 \end{frame}
 
 \begin{frame}{Contributions Clés}
+    \footnotesize 
     \textbf{\color{MainNavy}Problème 1 : Pipeline RAG Avancé}
     \begin{itemize}
         \item Développé un système RAG multimodal préservant la structure
         \item Atteint \textbf{32.8\% d'amélioration} de l'exactitude des réponses sur les documents financiers
         \item Atteint \textbf{40\% d'amélioration} du taux de réussite de code pour les documents médicaux
-        \item Démontré la valeur de chaque composant du pipeline par étude d'ablation
     \end{itemize}
     
     \vspace{0.3cm}
     \textbf{\color{MainNavy}Problème 2 : Adaptation Comportementale par Fine-tuning}
     \begin{itemize}
         \item Conçu un pipeline de distillation efficace pour petits modèles
-        \item Qwen-1.5B fine-tuné surpasse GPT-4 avec prompts sur les métriques comportementales
-        \item Atteint \textbf{80-90\% de réduction de coût} tout en maintenant une performance comparable
+        \item Qwen2.5-1.5B fine-tuné surpasse GPT-4o avec prompts sur les métriques comportementales
         \item Démontré la faisabilité d'agents conversationnels spécialisés sur matériel grand public
     \end{itemize}
     
-    \vspace{0.3cm}
-    \textbf{\color{MainNavy}Impact Global}
-    \begin{itemize}
-        \item Fourni des solutions pratiques aux lacunes de connaissances et de comportement
-        \item Permis le déploiement dans des environnements à enjeux élevés et ressources limitées
-    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}{Directions Futures}
+    \footnotesize 
     \textbf{\color{MainNavy}Améliorations à Court Terme :}
     \begin{itemize}
         \item Évaluation étendue sur des ensembles de données spécifiques au domaine supplémentaires
-        \item Optimisation pour le déploiement en périphérie (quantification, élagage)
+        \item Optimisation pour le déploiement en edge devices (quantization)
     \end{itemize}
     
     \vspace{0.3cm}
@@ -883,7 +872,12 @@ Risque de défaut 30 448 38 121 -20 %
     \begin{itemize}
         \item \textbf{RLHF :} Apprentissage par renforcement à partir de retours humains pour mieux aligner les sorties du modèle avec les attentes des utilisateurs
         \item \textbf{Génération Multimodale :} Extension au-delà du texte pour soutenir les explications visuelles (par ex. génération de graphiques dans les rapports financiers)
-        \item \textbf{Support Multilingue :} Extension pour soutenir des bases d'utilisateurs mondiales dans plusieurs langues
+    \end{itemize}
+
+    \vspace{0.3cm}
+    \textbf{\color{MainNavy}Key takeaways}
+    \begin{itemize}
+        \item Les modèles de langage offrent de nombreuses possibilités d'exploitation—le choix de la méthode d'adaptation et d'optimisation doit être guidé par les exigences spécifiques du problème
     \end{itemize}
 \end{frame}
 

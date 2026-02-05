@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.31)  4 FEB 2026 23:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.31)  5 FEB 2026 13:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -670,7 +670,7 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@lastruleclass=\count358
 \@thisrulewidth=\dimen331
 ) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty)
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 92.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 93.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -680,24 +680,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 ) (./slide-french.aux)
 \openout1 = `slide-french.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -752,53 +752,53 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 92.
+Package hyperref Info: Link coloring OFF on input line 93.
  (./slide-french.out) (./slide-french.out)
 \@outlinefile=\write5
 \openout5 = `slide-french.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 92.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 93.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 92.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 93.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 92.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 92.
+(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 93.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> T1/phv/b/n on input line 92.
+(Font)                  OT1/cmr/bx/n --> T1/phv/b/n on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/phv/b/n on input line 92.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 92.
+(Font)                  OT1/cmr/bx/n --> T1/phv/b/n on input line 93.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/phv/m/n on input line 92.
+(Font)                  OT1/cmss/m/n --> T1/phv/m/n on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/phv/m/n on input line 92.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 92.
+(Font)                  OT1/cmss/bx/n --> T1/phv/m/n on input line 93.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> T1/phv/m/it on input line 92.
+(Font)                  OT1/cmr/m/it --> T1/phv/m/it on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> T1/phv/m/it on input line 92.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 92.
+(Font)                  OT1/cmr/bx/it --> T1/phv/m/it on input line 93.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 92.
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 92.
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 93.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/phv/m/n --> T1/phv/b/n on input line 92.
+(Font)                  T1/phv/m/n --> T1/phv/b/n on input line 93.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/phv/m/it --> T1/phv/b/it on input line 92.
+(Font)                  T1/phv/m/it --> T1/phv/b/it on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> T1/cmr/b/n on input line 92.
+(Font)                  OT1/cmss/b/n --> T1/cmr/b/n on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/phv/b/n --> T1/phv/b/n on input line 92.
+(Font)                  T1/phv/b/n --> T1/phv/b/n on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/phv/m/n --> T1/phv/b/n on input line 92.
+(Font)                  T1/phv/m/n --> T1/phv/b/n on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/phv/m/it --> T1/phv/b/it on input line 92.
+(Font)                  T1/phv/m/it --> T1/phv/b/it on input line 93.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/cmtt/m/n --> T1/cmtt/b/n on input line 92.
+(Font)                  T1/cmtt/m/n --> T1/cmtt/b/n on input line 93.
  (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 ) (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
@@ -812,37 +812,37 @@ Dictionary: translator-numbers-dictionary, Language: English
 ) (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \degres on input line 92.
-LaTeX Info: Redefining \up on input line 92.
+LaTeX Info: Redefining \degres on input line 93.
+LaTeX Info: Redefining \up on input line 93.
  (./slide-french.nav)
 <figures/logo-INSA.png, id=29, 2546.51375pt x 552.0625pt>
 File: figures/logo-INSA.png Graphic file (type png)
 <use figures/logo-INSA.png>
-Package pdftex.def Info: figures/logo-INSA.png  used on input line 97.
+Package pdftex.def Info: figures/logo-INSA.png  used on input line 98.
 (pdftex.def)             Requested size: 95.60258pt x 20.7225pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 97.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 98.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 97.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 98.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 97.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 98.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <8> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 97.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 98.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <6> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 97.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 98.
 <figures/logo-torus.png, id=31, 301.125pt x 301.8778pt>
 File: figures/logo-torus.png Graphic file (type png)
 <use figures/logo-torus.png>
-Package pdftex.def Info: figures/logo-torus.png  used on input line 97.
+Package pdftex.def Info: figures/logo-torus.png  used on input line 98.
 (pdftex.def)             Requested size: 59.75139pt x 59.90004pt.
 <figures/logo-N7.png, id=32, 567.11874pt x 205.76875pt>
 File: figures/logo-N7.png Graphic file (type png)
 <use figures/logo-N7.png>
-Package pdftex.def Info: figures/logo-N7.png  used on input line 97.
+Package pdftex.def Info: figures/logo-N7.png  used on input line 98.
 (pdftex.def)             Requested size: 95.60258pt x 34.68507pt.
  [1
 
@@ -863,15 +863,15 @@ pdfTeX warning: pdflatex (file ./figures/logo-torus.png): large interlaced PNG m
 <figures/gpm_report_example.png, id=77, 550.055pt x 719.68875pt>
 File: figures/gpm_report_example.png Graphic file (type png)
 <use figures/gpm_report_example.png>
-Package pdftex.def Info: figures/gpm_report_example.png  used on input line 231.
+Package pdftex.def Info: figures/gpm_report_example.png  used on input line 226.
 (pdftex.def)             Requested size: 191.20082pt x 250.15974pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 231--231
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 226--226
  [][] 
  []
 
 
-Overfull \vbox (104.40828pt too high) detected at line 231
+Overfull \vbox (112.80827pt too high) detected at line 226
  []
 
 [7
@@ -880,10 +880,10 @@ Overfull \vbox (104.40828pt too high) detected at line 231
 <figures/ccam_example.png, id=85, 550.055pt x 719.68875pt>
 File: figures/ccam_example.png Graphic file (type png)
 <use figures/ccam_example.png>
-Package pdftex.def Info: figures/ccam_example.png  used on input line 260.
+Package pdftex.def Info: figures/ccam_example.png  used on input line 255.
 (pdftex.def)             Requested size: 191.20082pt x 250.15974pt.
 
-Overfull \vbox (97.60829pt too high) detected at line 260
+Overfull \vbox (106.00829pt too high) detected at line 255
  []
 
 [8
@@ -894,7 +894,7 @@ Overfull \vbox (97.60829pt too high) detected at line 260
 <figures/basic_rag_pipeline.png, id=98, 2665.96pt x 1606.0pt>
 File: figures/basic_rag_pipeline.png Graphic file (type png)
 <use figures/basic_rag_pipeline.png>
-Package pdftex.def Info: figures/basic_rag_pipeline.png  used on input line 291.
+Package pdftex.def Info: figures/basic_rag_pipeline.png  used on input line 286.
 (pdftex.def)             Requested size: 191.20082pt x 115.1761pt.
  [10
 
@@ -925,23 +925,27 @@ File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 <figures/search_HAFA.png, id=112, 999.735pt x 123.46124pt>
 File: figures/search_HAFA.png Graphic file (type png)
 <use figures/search_HAFA.png>
-Package pdftex.def Info: figures/search_HAFA.png  used on input line 365.
+Package pdftex.def Info: figures/search_HAFA.png  used on input line 360.
 (pdftex.def)             Requested size: 179.25114pt x 22.13539pt.
 <figures/ccam_dense_search_failure.png, id=113, 627.34375pt x 289.08pt>
 File: figures/ccam_dense_search_failure.png Graphic file (type png)
 <use figures/ccam_dense_search_failure.png>
-Package pdftex.def Info: figures/ccam_dense_search_failure.png  used on input line 365.
+Package pdftex.def Info: figures/ccam_dense_search_failure.png  used on input line 360.
 (pdftex.def)             Requested size: 191.20082pt x 88.1053pt.
  [12
 
  <./figures/search_HAFA.png> <./figures/ccam_dense_search_failure.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 391--391
+Underfull \hbox (badness 10000) in paragraph at lines 386--386
 []|\T1/phv/m/n/10.95 Seulement 66% des ré-
  []
 
 
-Underfull \hbox (badness 7649) in paragraph at lines 391--391
+Underfull \hbox (badness 7649) in paragraph at lines 386--386
 []|\T1/phv/m/n/10.95 73% des ré-ponses per-ti-
+ []
+
+
+Overfull \vbox (1.87149pt too high) detected at line 386
  []
 
 [13
@@ -950,7 +954,7 @@ Underfull \hbox (badness 7649) in paragraph at lines 391--391
 <figures/advanced_rag_pipeline.jpg, id=127, 1445.4pt x 813.0375pt>
 File: figures/advanced_rag_pipeline.jpg Graphic file (type jpg)
 <use figures/advanced_rag_pipeline.jpg>
-Package pdftex.def Info: figures/advanced_rag_pipeline.jpg  used on input line 413.
+Package pdftex.def Info: figures/advanced_rag_pipeline.jpg  used on input line 408.
 (pdftex.def)             Requested size: 239.00558pt x 134.43073pt.
  [14
 
@@ -958,7 +962,7 @@ Package pdftex.def Info: figures/advanced_rag_pipeline.jpg  used on input line 4
 <figures/processing.png, id=133, 1388.93906pt x 430.60875pt>
 File: figures/processing.png Graphic file (type png)
 <use figures/processing.png>
-Package pdftex.def Info: figures/processing.png  used on input line 427.
+Package pdftex.def Info: figures/processing.png  used on input line 422.
 (pdftex.def)             Requested size: 298.75394pt x 92.61848pt.
  [15
 
@@ -966,15 +970,15 @@ Package pdftex.def Info: figures/processing.png  used on input line 427.
 <figures/unstructuredio_table_detection.png, id=140, 840.13875pt x 368.37625pt>
 File: figures/unstructuredio_table_detection.png Graphic file (type png)
 <use figures/unstructuredio_table_detection.png>
-Package pdftex.def Info: figures/unstructuredio_table_detection.png  used on input line 444.
+Package pdftex.def Info: figures/unstructuredio_table_detection.png  used on input line 439.
 (pdftex.def)             Requested size: 231.03711pt x 101.30096pt.
 <figures/html_output.png, id=141, 336.25626pt x 653.44125pt>
 File: figures/html_output.png Graphic file (type png)
 <use figures/html_output.png>
-Package pdftex.def Info: figures/html_output.png  used on input line 444.
-(pdftex.def)             Requested size: 103.77145pt x 201.6606pt.
+Package pdftex.def Info: figures/html_output.png  used on input line 439.
+(pdftex.def)             Requested size: 100.31325pt x 194.94058pt.
 
-Overfull \vbox (6.04776pt too high) detected at line 444
+Overfull \vbox (7.72774pt too high) detected at line 439
  []
 
 [16
@@ -983,12 +987,12 @@ Overfull \vbox (6.04776pt too high) detected at line 444
 <figures/summarization.png, id=149, 1388.93906pt x 430.60875pt>
 File: figures/summarization.png Graphic file (type png)
 <use figures/summarization.png>
-Package pdftex.def Info: figures/summarization.png  used on input line 481.
+Package pdftex.def Info: figures/summarization.png  used on input line 476.
 (pdftex.def)             Requested size: 278.83578pt x 86.44217pt.
 <figures/table_summary.png, id=150, 491.8375pt x 128.48pt>
 File: figures/table_summary.png Graphic file (type png)
 <use figures/table_summary.png>
-Package pdftex.def Info: figures/table_summary.png  used on input line 481.
+Package pdftex.def Info: figures/table_summary.png  used on input line 476.
 (pdftex.def)             Requested size: 191.20082pt x 49.94623pt.
  [17
 
@@ -996,7 +1000,7 @@ Package pdftex.def Info: figures/table_summary.png  used on input line 481.
 <figures/parentchild.png, id=157, 1388.93906pt x 430.60875pt>
 File: figures/parentchild.png Graphic file (type png)
 <use figures/parentchild.png>
-Package pdftex.def Info: figures/parentchild.png  used on input line 497.
+Package pdftex.def Info: figures/parentchild.png  used on input line 492.
 (pdftex.def)             Requested size: 231.03711pt x 71.62558pt.
  [18
 
@@ -1004,18 +1008,22 @@ Package pdftex.def Info: figures/parentchild.png  used on input line 497.
 <figures/mteb_multilingual_comparison.png, id=163, 1496.59125pt x 487.8225pt>
 File: figures/mteb_multilingual_comparison.png Graphic file (type png)
 <use figures/mteb_multilingual_comparison.png>
-Package pdftex.def Info: figures/mteb_multilingual_comparison.png  used on input line 511.
+Package pdftex.def Info: figures/mteb_multilingual_comparison.png  used on input line 506.
 (pdftex.def)             Requested size: 398.3386pt x 129.83806pt.
- [19
+
+Overfull \vbox (8.21521pt too high) detected at line 506
+ []
+
+[19
 
  <./figures/mteb_multilingual_comparison.png>]
 <figures/querying2.png, id=171, 1363.34344pt x 401.24907pt>
 File: figures/querying2.png Graphic file (type png)
 <use figures/querying2.png>
-Package pdftex.def Info: figures/querying2.png  used on input line 535.
+Package pdftex.def Info: figures/querying2.png  used on input line 530.
 (pdftex.def)             Requested size: 258.91765pt x 76.20137pt.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 535.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 530.
  [20
 
  <./figures/querying2.png (PNG copy)>] [21
@@ -1026,7 +1034,7 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
 <figures/results_rag.png, id=190, 729.72626pt x 285.065pt>
 File: figures/results_rag.png Graphic file (type png)
 <use figures/results_rag.png>
-Package pdftex.def Info: figures/results_rag.png  used on input line 619.
+Package pdftex.def Info: figures/results_rag.png  used on input line 613.
 (pdftex.def)             Requested size: 318.67209pt x 124.48509pt.
  [23
 
@@ -1034,25 +1042,21 @@ Package pdftex.def Info: figures/results_rag.png  used on input line 619.
 
 ] [25
 
-]
-Overfull \vbox (19.88492pt too high) detected at line 701
- []
-
-[26
+] [26
 
 ]
 <figures/tarot_cards.png, id=213, 462.528pt x 472.76625pt>
 File: figures/tarot_cards.png Graphic file (type png)
 <use figures/tarot_cards.png>
-Package pdftex.def Info: figures/tarot_cards.png  used on input line 730.
+Package pdftex.def Info: figures/tarot_cards.png  used on input line 725.
 (pdftex.def)             Requested size: 127.47125pt x 130.28885pt.
 <figures/tarot_workflow.png, id=214, 295.1025pt x 492.84125pt>
 File: figures/tarot_workflow.png Graphic file (type png)
 <use figures/tarot_workflow.png>
-Package pdftex.def Info: figures/tarot_workflow.png  used on input line 730.
+Package pdftex.def Info: figures/tarot_workflow.png  used on input line 725.
 (pdftex.def)             Requested size: 114.72334pt x 191.59065pt.
 
-Overfull \vbox (15.85675pt too high) detected at line 730
+Overfull \vbox (24.25674pt too high) detected at line 725
  []
 
 [27
@@ -1061,29 +1065,29 @@ Overfull \vbox (15.85675pt too high) detected at line 730
 <figures/tarot_conversation.png, id=221, 837.1275pt x 618.31pt>
 File: figures/tarot_conversation.png Graphic file (type png)
 <use figures/tarot_conversation.png>
-Package pdftex.def Info: figures/tarot_conversation.png  used on input line 737.
-(pdftex.def)             Requested size: 290.08665pt x 214.2651pt.
- [28
+Package pdftex.def Info: figures/tarot_conversation.png  used on input line 732.
+(pdftex.def)             Requested size: 280.42987pt x 207.12506pt.
+
+Overfull \vbox (0.59729pt too high) detected at line 732
+ []
+
+[28
 
  <./figures/tarot_conversation.png>]
 <figures/distillation_pipeline.png, id=228, 1016.79875pt x 311.1625pt>
 File: figures/distillation_pipeline.png Graphic file (type png)
 <use figures/distillation_pipeline.png>
-Package pdftex.def Info: figures/distillation_pipeline.png  used on input line 756.
-(pdftex.def)             Requested size: 398.3386pt x 121.8989pt.
-
-Overfull \vbox (15.1961pt too high) detected at line 756
- []
-
-[29
+Package pdftex.def Info: figures/distillation_pipeline.png  used on input line 752.
+(pdftex.def)             Requested size: 318.67209pt x 97.51817pt.
+ [29
 
  <./figures/distillation_pipeline.png>] [30
 
 ]
 LaTeX Info: Symbol \textrightarrow not provided by
             font family phv in TS1 encoding.
-            Default family used instead on input line 819.
-LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 819.
+            Default family used instead on input line 813.
+LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 813.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ) [31
@@ -1092,17 +1096,13 @@ File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 <figures/demo_tarot_application.png, id=247, 1137.24875pt x 814.04124pt>
 File: figures/demo_tarot_application.png Graphic file (type png)
 <use figures/demo_tarot_application.png>
-Package pdftex.def Info: figures/demo_tarot_application.png  used on input line 833.
+Package pdftex.def Info: figures/demo_tarot_application.png  used on input line 827.
 (pdftex.def)             Requested size: 199.1693pt x 142.55872pt.
  [32
 
  <./figures/demo_tarot_application.png>] [33
 
-]
-Overfull \vbox (68.27pt too high) detected at line 872
- []
-
-[34
+] [34
 
 ] [35
 
@@ -1127,15 +1127,15 @@ Package rerunfilecheck Info: File `slide-french.out' has not changed.
 (rerunfilecheck)             Checksum: 0CAF1B96DDD8AC97B39AB38F22310208;1036.
  ) 
 Here is how much of TeX's memory you used:
- 27184 strings out of 474222
- 530560 string characters out of 5748732
- 1944975 words of memory out of 5000000
- 48797 multiletter control sequences out of 15000+600000
+ 27195 strings out of 474222
+ 530992 string characters out of 5748732
+ 1943975 words of memory out of 5000000
+ 48808 multiletter control sequences out of 15000+600000
  627585 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,12n,123p,576b,756s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on slide-french.pdf (36 pages, 9555311 bytes).
+Output written on slide-french.pdf (36 pages, 9555807 bytes).
 PDF statistics:
  341 PDF objects out of 1000 (max. 8388607)
  233 compressed objects within 3 object streams

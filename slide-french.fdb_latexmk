@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1770243301.32663 "/home/minhduy/Documents/Projects/Master_Final_Report/slide-french.tex" "slide-french.pdf" "slide-french" 1770243308.30158 0
+["pdflatex"] 1770294181.46638 "/home/minhduy/Documents/Projects/Master_Final_Report/slide-french.tex" "slide-french.pdf" "slide-french" 1770294188.40219 0
   "/etc/texmf/web2c/texmf.cnf" 1759430234.41919 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/minhduy/Documents/Projects/Master_Final_Report/slide-french.tex" 1770243300.98888 35104 5afe013cf02a0f9be4cbb40f65edee75 ""
+  "/home/minhduy/Documents/Projects/Master_Final_Report/slide-french.tex" 1770294181.01641 34281 e3110624a508e11518aa66bd65785df3 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvb8c.tfm" 1136768653 1344 2b79eb16daca0e8fd7cff8a5505df513 ""
@@ -271,12 +271,12 @@
   "figures/tarot_conversation.png" 1770212244.47884 390602 1f5454b10db849dfded4568abee478cd ""
   "figures/tarot_workflow.png" 1770211338.55154 28255 eed44b1caf7b13c6aaeec278a1d9245d ""
   "figures/unstructuredio_table_detection.png" 1768811559.00174 116748 39206ffe71363a366bad14dab3ef8050 ""
-  "slide-french.aux" 1770243308.22922 6683 58716a479e92bbf2ddfa6e642cb4c6ea "pdflatex"
-  "slide-french.nav" 1770243308.23007 4377 3ee091564b3f9a7da8432a87719137eb "pdflatex"
-  "slide-french.out" 1770243308.22944 1036 0caf1b96ddd8ac97b39ab38f22310208 "pdflatex"
-  "slide-french.tex" 1770243300.98888 35104 5afe013cf02a0f9be4cbb40f65edee75 ""
-  "slide-french.toc" 1770243308.23007 339 4ca5d4b5f53f0dde43e84e5d24f9fee2 "pdflatex"
-  "slide-french.vrb" 1770243306.69663 1645 f1bf52e9af29e76ae6236a6d33fecfb4 "pdflatex"
+  "slide-french.aux" 1770294188.33685 6683 58716a479e92bbf2ddfa6e642cb4c6ea "pdflatex"
+  "slide-french.nav" 1770294188.33773 4377 3ee091564b3f9a7da8432a87719137eb "pdflatex"
+  "slide-french.out" 1770294188.33707 1036 0caf1b96ddd8ac97b39ab38f22310208 "pdflatex"
+  "slide-french.tex" 1770294181.01641 34281 e3110624a508e11518aa66bd65785df3 ""
+  "slide-french.toc" 1770294188.33773 339 4ca5d4b5f53f0dde43e84e5d24f9fee2 "pdflatex"
+  "slide-french.vrb" 1770294186.81216 1645 f1bf52e9af29e76ae6236a6d33fecfb4 "pdflatex"
   (generated)
   "slide-french.aux"
   "slide-french.log"
